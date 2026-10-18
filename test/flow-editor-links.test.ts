@@ -102,3 +102,21 @@ describe('flow editor links', () => {
     expect(m.wrapperRoot.querySelector(`a[${EDITOR_LINK_ATTR}]`)).toBeNull();
   });
 });
+
+describe('other flow-setting blocks', () => {
+  it('links any flow select regardless of its label, and ignores queue or other ARNs', () => {
+    document.body.innerHTML = '';
+    const form = document.createElement('block-form');
+    document.body.append(form);
+    const root = form.attachShadow({ mode: 'open' });
+    root.innerHTML = `
+      <fe-aggregate><fe-select><picasa-select label="Select a flow" value="${FLOW}"></picasa-select></fe-select></fe-aggregate>
+      <fe-aggregate><fe-select><picasa-select label="Flow" value="${MODULE}"></picasa-select></fe-select></fe-aggregate>
+      <fe-aggregate><fe-select><picasa-select label="Search for queue" value="arn:aws:connect:us-west-2:111122223333:instance/00000000-0000-0000-0000-000000000001/queue/q1"></picasa-select></fe-select></fe-aggregate>
+      <fe-aggregate><fe-select><picasa-select label="Select an event hook" value="DefaultAgentUI"></picasa-select></fe-select></fe-aggregate>`;
+    expect(decorateEditor(document, ORIGIN)).toBe(2);
+    const links = [...root.querySelectorAll<HTMLAnchorElement>(`a[${EDITOR_LINK_ATTR}]`)];
+    expect(links.map((a) => a.textContent)).toEqual(['Open flow ↗', 'Open flow module ↗']);
+    expect(links[0]!.previousElementSibling?.tagName.toLowerCase()).toBe('fe-select');
+  });
+});
