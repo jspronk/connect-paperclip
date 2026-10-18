@@ -7,8 +7,10 @@ and get the official AWS definition, metric type and category, calculation logic
 and a link to the exact anchor in the AWS docs. On the **Contact search** page the column headers
 (default and optional) are explained from the contact record data model, on the **routing
 profile editor** the Channel settings, Queues and Manual assignment headers are explained from the
-"Create a routing profile" guide, and on the **Quick connects** list, detail and edit views the
-headers and field labels are explained from the "Create quick connects" guide.
+"Create a routing profile" guide, on the **Quick connects** list, detail and edit views the
+headers and field labels are explained from the "Create quick connects" guide, and on the
+**security profile editor** every permission name is explained from the "List of security profile
+permissions" page, with all of its actions and API names.
 
 All definitions are generated from the AWS Administrator Guide page
 [Metric definitions](https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html)
@@ -28,6 +30,14 @@ on the **Email addresses** page into links that open each flow in the flow edito
   exact labels the docs say each metric uses on Real-time reports, Historical reports and Dashboards.
 - `src/data/aliases.json` adds the few console labels the docs do not list verbatim (e.g. the
   Agents table column **Activity**).
+- `src/lib/parse-security-profiles.ts` parses the
+  [security profile permissions](https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html)
+  tables into one entry per permission ("Routing profiles" lists its Create, Edit and View rows with
+  their API names). The console's current spellings that differ from the docs (for example
+  "Contact Lens data" for "Conversational analytics data") are mapped in `src/data/aliases.json`.
+  Permission names are plain text rather than table headers, so that page uses a "loose" matching
+  mode: any short text equal to one of the page's own labels, excluding navigation, links, buttons
+  and form controls.
 - `src/lib/parse-ctr.ts` parses the [contact record data model](https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html)
   page into one entry per field (`ContactTraceRecord.InitiationMethod`, `Agent.NumberOfHolds`, ...).
   `src/data/contact-search-columns.json` maps every Contact search column label to the field(s) that
@@ -115,6 +125,9 @@ test/                    vitest suites and sanitized HTML fixtures from a live i
 - Custom metrics defined in your instance are not in the AWS docs and get no tooltip.
 - On Contact search, the four video/screen-share duration columns have no documented contact record
   field yet and get no tooltip.
+- On the security profile editor, permissions that the docs page does not list yet (for example
+  Conversational AI, Agentic CX designer, Test Cases, Staff calendar, Connect assistant, File
+  attachments) get no tooltip.
 - The console shows its own short native hint on some Real-time headers. The extension shows that
   hint at the top of its tooltip and adds the full definition below it.
 - Dashboard widgets only render their tables when they have data, so labels in empty widgets
