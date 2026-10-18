@@ -11,8 +11,9 @@ All definitions are generated from the AWS Administrator Guide page
 and bundled with the extension. The extension makes **no network calls of its own** at runtime and
 collects nothing.
 
-It also turns the **Contact flow/IVR** column on the **Phone numbers** page into links that open each
-flow in the flow editor (`/contact-flows/edit?id=<flow ARN>&tab=designer`).
+It also turns the **Contact flow/IVR** column on the **Phone numbers** page and the **Flow** column
+on the **Email addresses** page into links that open each flow in the flow editor
+(`/contact-flows/edit?id=<flow ARN>&tab=designer`).
 
 ## How it works
 
@@ -27,17 +28,20 @@ flow in the flow editor (`/contact-flows/edit?id=<flow ARN>&tab=designer`).
 - Options let you switch to a broader "any short text" match mode, change the hover delay,
   hide the dotted underline, expand calculation logic by default, or turn the flow links off.
 
-### Flow links on the Phone numbers page
+### Flow links on the Phone numbers and Email addresses pages
 
-The Phone numbers table never shows flow ARNs, and the console's internal endpoints reject
-requests that do not come from the page itself. So `public/capture.js` runs in the page's own
-JavaScript world (manifest `world: "MAIN"`, `document_start`), wraps `window.fetch`, and when the
-page receives its phone-number list or flow-association responses it forwards only
-phone-number/ARN and phone-ARN/flow-ARN pairs to the content script via `window.postMessage`.
-Responses are never altered and nothing leaves the page. `src/content/features/flow-links.ts`
-listens for those messages and wraps the flow name in each row with a real anchor, so normal
-clicks, ctrl-clicks and middle-clicks all behave like any other console link. The table lives in
-an open shadow root (`<lily-number-website-ui>`), which `src/content/dom.ts` handles.
+Neither table shows flow ARNs, and the console's internal endpoints reject requests that do not
+come from the page itself. So `public/capture.js` runs in the page's own JavaScript world
+(manifest `world: "MAIN"`, `document_start`), wraps `window.fetch` and `XMLHttpRequest`, and when
+the page receives its phone-number list, email-address search or flow-association responses it
+forwards only resource/ARN and resource-ARN/flow-ARN pairs to the content script via
+`window.postMessage`. Responses are never altered and nothing leaves the page.
+`src/content/features/flow-links.ts` listens for those messages, keys each table row by its phone
+number digits or email address, and wraps the flow name with a real anchor, so normal clicks,
+ctrl-clicks and middle-clicks all behave like any other console link. The Phone numbers table
+lives in an open shadow root (`<lily-number-website-ui>`), which `src/content/dom.ts` handles; the
+Email addresses table is a light-DOM Cloudscape table. Adding another list page is a one-line
+entry in the `PAGES` table of `flow-links.ts` plus, if needed, a new endpoint in `capture.js`.
 
 `capture.js` is deliberately a plain static file: the bundler's content-script loader is
 asynchronous and would race the page's first requests. A small plugin in `vite.config.ts` appends
@@ -79,7 +83,7 @@ src/data/                metrics.json (generated), aliases.json (hand-written), 
 src/lib/                 parser, normalization, lookup index, settings
 src/content/             content script entry, matcher, tooltip, markdown renderer, dom helpers
 src/content/features/    metric-tooltips and flow-links feature modules
-public/capture.js        page-world fetch capture for the Phone numbers page (static, unbundled)
+public/capture.js        page-world fetch/XHR capture for the flow-link pages (static, unbundled)
 src/options/, src/popup/ options page and toolbar popup
 test/                    vitest suites and sanitized HTML fixtures from a live instance
 ```
