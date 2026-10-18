@@ -148,6 +148,11 @@ src/options/, src/popup/ options page and toolbar popup
 test/                    vitest suites and sanitized HTML fixtures from a live instance
 ```
 
+## Privacy
+
+The extension runs only on Amazon Connect admin pages, keeps everything in the browser and makes no
+network requests of its own. See [PRIVACY.md](PRIVACY.md) for the full policy.
+
 ## Known limitations
 
 - Definitions reflect the docs snapshot date shown in the popup and tooltip footer. Updating
