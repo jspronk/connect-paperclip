@@ -49,8 +49,10 @@ on the **Email addresses** page into links that open each flow in the flow edito
   `src/data/contact-search-columns.json` maps every Contact search column label to the field(s) that
   back it, with hand-written entries for the few console-only columns (Contact status, Contact
   duration, First contact flow, Is transferred out, Task template name) whose text comes from the
-  Contact search docs page. `src/data/routing-profile-columns.json` and `src/data/quick-connect-columns.json` do the
-  same for the routing profile editor and the Quick connects pages; its labels are marked surface-only so
+  Contact search docs page. `src/data/routing-profile-columns.json`, `src/data/quick-connect-columns.json`,
+  `src/data/forecasting-columns.json`, `src/data/capacity-planning-columns.json` and
+  `src/data/scheduling-columns.json` do the same for the routing profile editor, the Quick connects
+  pages and the three Analytics and optimization pages; its labels are marked surface-only so
   generic words such as **Status** or **Channels** never match on other pages. The build picks up
   every `src/data/*-columns.json`.
 - The content script (`src/content/`) watches the page with a `MutationObserver`, matches
