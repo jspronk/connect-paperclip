@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from 'vitest';
-import { EDITOR_LINK_ATTR, decorateEditor, editorUrlForArn, isFlowEditorPage, undecorateEditor } from '../src/content/features/flow-editor-links';
+import { EDITOR_LINK_ATTR, decorateEditor, editorUrlForArn, instancePrefix, isFlowEditorPage, undecorateEditor } from '../src/content/features/flow-editor-links';
 
 const ORIGIN = 'https://alias.my.connect.aws';
 const FLOW = 'arn:aws:connect:us-west-2:111122223333:instance/00000000-0000-0000-0000-000000000001/contact-flow/1e47c663-7f87-42a8-8958-f2c205cc6f2a';
@@ -118,5 +118,33 @@ describe('other flow-setting blocks', () => {
     const links = [...root.querySelectorAll<HTMLAnchorElement>(`a[${EDITOR_LINK_ATTR}]`)];
     expect(links.map((a) => a.textContent)).toEqual(['Open flow ↗', 'Open flow module ↗']);
     expect(links[0]!.previousElementSibling?.tagName.toLowerCase()).toBe('fe-select');
+  });
+});
+
+describe('Invoke module block', () => {
+  const PREFIX = 'arn:aws:connect:us-west-2:111122223333:instance/00000000-0000-0000-0000-000000000001';
+  it('reads the instance prefix from the editor url', () => {
+    expect(instancePrefix({ search: `?id=${encodeURIComponent(FLOW)}&tab=designer` })).toBe(PREFIX);
+    expect(instancePrefix({ search: '?id=' + encodeURIComponent(MODULE) })).toBe(PREFIX);
+    expect(instancePrefix({ search: '' })).toBeUndefined();
+  });
+  it('turns the module id in the Module name picker into a flow-modules editor link', () => {
+    document.body.innerHTML = '';
+    const form = document.createElement('block-form');
+    document.body.append(form);
+    const root = form.attachShadow({ mode: 'open' });
+    root.innerHTML = `
+      <fe-aggregate><fe-select><picasa-select label="Module name" value="7a28327f-f7d5-4173-9e79-7b31bc3e325d"></picasa-select></fe-select></fe-aggregate>
+      <fe-aggregate><fe-select><picasa-select label="Aliases" value="$LATEST"></picasa-select></fe-select></fe-aggregate>
+      <fe-aggregate><fe-select><picasa-select label="Select an event hook" value="7a28327f-f7d5-4173-9e79-7b31bc3e325d"></picasa-select></fe-select></fe-aggregate>`;
+    expect(decorateEditor(document, ORIGIN, PREFIX)).toBe(1);
+    const a = root.querySelector<HTMLAnchorElement>(`a[${EDITOR_LINK_ATTR}]`)!;
+    expect(a.textContent).toBe('Open flow module ↗');
+    expect(a.getAttribute('href')).toBe(
+      `${ORIGIN}/flow-modules/edit?id=${encodeURIComponent(`${PREFIX}/flow-module/7a28327f-f7d5-4173-9e79-7b31bc3e325d`)}&tab=designer`,
+    );
+    // Without a known instance prefix a bare id cannot be linked.
+    undecorateEditor(document);
+    expect(decorateEditor(document, ORIGIN, undefined)).toBe(0);
   });
 });

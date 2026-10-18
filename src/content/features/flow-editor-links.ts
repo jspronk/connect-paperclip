@@ -12,6 +12,18 @@ a[${EDITOR_LINK_ATTR}]:hover{text-decoration-style:solid}`;
 /** A flow or flow-module ARN as stored by the flow editor's "Select a flow" controls. */
 const FLOW_ARN = /^arn:aws:connect:[a-z0-9-]+:\d{12}:instance\/[0-9a-f-]+\/(contact-flow|flow-module)\/[0-9a-f-]+$/i;
 
+/**
+ * "arn:aws:connect:<region>:<account>:instance/<id>" taken from the ARN of the flow being edited
+ * (the page's `id` query parameter). Used to turn bare resource ids into ARNs.
+ */
+export function instancePrefix(loc: Pick<Location, 'search'> = location): string | undefined {
+  const id = new URLSearchParams(loc.search).get('id') ?? '';
+  const m = /^(arn:aws:connect:[a-z0-9-]+:\d{12}:instance\/[0-9a-f-]+)\//i.exec(id);
+  return m?.[1];
+}
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export function isFlowEditorPage(loc: Pick<Location, 'pathname'> = location): boolean {
   return /^(\/connect)?\/(contact-flows|flow-modules)\/edit(\/|$)/.test(loc.pathname);
 }
@@ -61,23 +73,29 @@ function anchorPoint(field: Element): Element {
  * script can see: JavaScript properties defined by the page's component classes are invisible in
  * the isolated world. Native inputs expose their value as a property.
  */
-function fieldArn(field: Element): string | undefined {
+function fieldArn(field: Element, prefix: string | undefined): string | undefined {
   const attr = field.getAttribute('value');
   const v = attr ?? (field as HTMLInputElement).value;
-  return typeof v === 'string' && FLOW_ARN.test(v.trim()) ? v.trim() : undefined;
+  if (typeof v !== 'string') return undefined;
+  const t = v.trim();
+  if (FLOW_ARN.test(t)) return t;
+  // The Invoke module block's "Module name" picker stores only the module id.
+  if (prefix && UUID.test(t) && /module/i.test(field.getAttribute('label') ?? '')) return `${prefix}/flow-module/${t}`;
+  return undefined;
 }
 
 /**
  * Add, update or remove "Open flow" links next to every field in `root` (and nested shadow roots)
- * whose value is a flow ARN. Idempotent. Returns the number of links created.
+ * whose value is a flow or flow-module ARN, or a bare module id in a module picker.
+ * Idempotent. Returns the number of links created.
  */
-export function decorateEditor(root: ParentNode, origin = location.origin): number {
+export function decorateEditor(root: ParentNode, origin = location.origin, prefix = instancePrefix()): number {
   let created = 0;
   const roots: ParentNode[] = [root, ...shadowRootsUnder(root)];
   const handled = new Set<Element>();
   for (const r of roots) {
     for (const field of r.querySelectorAll('picasa-select, input[type="text"], input:not([type])')) {
-      const arn = fieldArn(field);
+      const arn = fieldArn(field, prefix);
       const at = anchorPoint(field);
       // A select and the input mirrored inside it share one anchor point; handle it once per pass.
       if (handled.has(at)) continue;
