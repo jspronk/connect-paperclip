@@ -6,7 +6,7 @@ export interface Settings {
   hoverDelay: number;
   /** Dotted underline on matched labels. */
   underline: boolean;
-  /** Link flow names on the Phone numbers page to the flow editor. */
+  /** Add Open flow links under flow pickers in the flow editor. */
   flowLinks: boolean;
 }
 

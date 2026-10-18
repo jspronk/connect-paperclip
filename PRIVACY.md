@@ -25,14 +25,11 @@ other site.
 To do its job the extension reads, in memory and only while a page is open:
 
 - **Page content** on Amazon Connect admin pages: table headers, headings and picker labels, so it
-  can show a definition when you hover one; and the text of certain table columns (Contact flow /
-  IVR, Flow, Routing profile) and flow editor fields, so it can turn them into links.
-- **Responses the Amazon Connect admin website receives from its own backend** for the Phone
-  numbers, Email addresses and User management pages. The website loads these lists itself; the
-  extension observes the responses already arriving in your browser tab and keeps only the fields
-  needed to build links: phone number and email address to flow identifier mappings, and username
-  to routing profile identifier mappings. It never issues these requests itself, never calls any
-  Amazon Connect or AWS API, and discards this data when the tab is closed or reloaded.
+  can show a definition when you hover one; and the flow selected in a flow editor block's
+  settings panel, so it can add a link that opens that flow.
+
+The extension reads only what is displayed on the page. It does not observe or intercept the
+website's network traffic and never calls any Amazon Connect or AWS API.
 
 This data is used only to render tooltips and links on the page you are viewing. It is not written
 to disk, not stored in extension storage, and not sent anywhere.
@@ -60,7 +57,7 @@ It includes no remote code.
 
 ## Chrome Web Store disclosures
 
-Connect Paperclip's use of information received from the pages it runs on adheres to the
+Connect Paperclip's use of information read from the pages it runs on adheres to the
 [Chrome Web Store User Data Policy](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq),
 including the Limited Use requirements. The extension does not collect user data, so there is no
 user data to transfer, sell or use for purposes unrelated to its single purpose.

@@ -17,11 +17,9 @@ All definitions are generated from the AWS Administrator Guide page
 and bundled with the extension. The extension makes **no network calls of its own** at runtime and
 collects nothing.
 
-It also turns the **Contact flow/IVR** column on the **Phone numbers** page and the **Flow** column
-on the **Email addresses** page into links that open each flow in the flow editor
-(`/contact-flows/edit?id=<flow ARN>&tab=designer`), and the **Routing profile** column on the
-**User management** page into links to the routing profile editor
-(`/routing-profiles/edit?id=<routing profile id>`).
+In the **flow editor**, blocks that reference another flow or module (Transfer to flow, Set customer
+queue flow, Set hold flow, Invoke module, and so on) get an **Open flow ↗** link that opens that flow
+in a new tab.
 
 ## How it works
 
@@ -58,10 +56,10 @@ on the **Email addresses** page into links that open each flow in the flow edito
 - The content script (`src/content/`) watches the page with a `MutationObserver`, matches
   header-like elements (`th`, `[role=columnheader]`, headings) whose text equals a known label,
   tags them, and shows a shadow-DOM tooltip on hover or keyboard focus. It looks inside open shadow
-  roots too, which the Contact search and Phone numbers micro-frontends use.
+  roots too, which the Contact search micro-frontend and the flow editor use.
 - Only table headers, headings and header-like elements are ever matched, and calculation logic
   starts collapsed in the tooltip. Options let you change the hover delay, hide the dotted
-  underline, or turn the resource links off.
+  underline, or turn the flow editor links off.
 
 ### Open flow links in the flow editor
 
@@ -79,28 +77,6 @@ so values are read from the reflected `value` attribute. A **Set dynamically** f
 a flow; a link appears there only when the field literally contains a flow or flow-module ARN.
 Values change without DOM mutations when a flow is picked, so the panel is also re-checked on a
 short timer while the editor is open.
-
-### Resource links on list pages (flows, routing profiles)
-
-The list tables show names, not IDs or ARNs, and the console's internal endpoints reject requests
-that do not come from the page itself. So `public/capture.js` runs in the page's own JavaScript
-world (manifest `world: "MAIN"`, `document_start`), wraps `window.fetch` and `XMLHttpRequest`, and
-when the page receives its phone-number list, email-address search, user search or
-flow-association responses it forwards only the pairs needed for linking (resource/ARN,
-resource-ARN/flow-ARN, username/routing-profile-id) to the content script via `window.postMessage`.
-Responses are never altered and nothing leaves the page.
-`src/content/features/resource-links.ts` listens for those messages, works out each row's identity
-from its other cells (phone digits, email address, or the row's primary link such as a username),
-and wraps the cell text with a real anchor, so normal clicks, ctrl-clicks and middle-clicks all
-behave like any other console link. The Phone numbers table lives in an open shadow root
-(`<lily-number-website-ui>`), which `src/content/dom.ts` handles; Email addresses and User
-management are light-DOM Cloudscape tables. Adding another page is an entry in `PAGES`, another
-column is an entry in `COLUMNS` with its header pattern and href resolver, plus, if needed, a new
-endpoint in `capture.js`.
-
-`capture.js` is deliberately a plain static file: the bundler's content-script loader is
-asynchronous and would race the page's first requests. A small plugin in `vite.config.ts` appends
-its manifest entry after the build.
 
 Supported hosts: `https://*.my.connect.aws/*` and `https://*.awsapps.com/connect/*`.
 
@@ -142,8 +118,7 @@ data/raw/                committed docs markdown snapshots + meta.json
 src/data/                metrics.json (generated), aliases.json (hand-written), schema.ts
 src/lib/                 parser, normalization, lookup index, settings
 src/content/             content script entry, matcher, tooltip, markdown renderer, dom helpers
-src/content/features/    metric-tooltips, resource-links and flow-editor-links feature modules
-public/capture.js        page-world fetch/XHR capture for the link pages (static, unbundled)
+src/content/features/    metric-tooltips and flow-editor-links feature modules
 src/options/, src/popup/ options page and toolbar popup
 test/                    vitest suites and sanitized HTML fixtures from a live instance
 ```
@@ -172,11 +147,3 @@ network requests of its own. See [PRIVACY.md](PRIVACY.md) for the full policy.
   hint at the top of its tooltip and adds the full definition below it.
 - Dashboard widgets only render their tables when they have data, so labels in empty widgets
   cannot be matched until data appears.
-- The extension's error log in `chrome://extensions` can show fetch errors that belong to the
-  Connect console itself, for example `Fetch API cannot load https://….cloudfront.net/connect-csm-worker.js.
-  Refused to connect because it violates the document's Content Security Policy.` The page-world
-  capture script wraps `window.fetch`, so every request the console makes has a `capture.js` frame on
-  its call stack, and Chrome attributes any failure of such a request to the extension. The requests
-  are made, and in this case blocked, by the console's own code and would fail the same way with the
-  extension disabled. The capture script never alters a request or response, and these entries do
-  not affect any feature.
