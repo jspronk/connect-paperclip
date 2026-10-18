@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T04:29:15.667Z",
+  "generatedAt": "2026-10-18T04:41:19.893Z",
   "sources": [
     {
       "slug": "ctr-data-model",
@@ -16,6 +16,14 @@
       "fetchedAt": "2026-10-18T02:17:47.611Z",
       "sha256": "cd5347ab2a4499ba970d2c319d146b1996114c724c3b39402ca8de4fed2dd3fe",
       "metricCount": 227
+    },
+    {
+      "slug": "security-profile-list",
+      "url": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.md",
+      "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html",
+      "fetchedAt": "2026-10-18T04:36:58.127Z",
+      "sha256": "a6a360ede4242e98abf38bad9a01f7caa6377927752a05c6194e3a52c12b3b86",
+      "metricCount": 123
     }
   ],
   "metrics": [
@@ -9271,6 +9279,2343 @@
       "metricType": "Double",
       "metricCategory": "Flow driven metric",
       "calculationLogic": "+ TEST\\_CASE\\_EXECUTION\\_SUCCESS\\_COUNT / TEST\\_CASE\\_EXECUTION\\_COUNT"
+    },
+    {
+      "id": "security-profile-list#amazonq.aiagents",
+      "name": "AI agents",
+      "anchor": "amazonq-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#amazonq-permissions-list",
+      "summary": "Create and manage AI agents.",
+      "description": "+ [Create and manage AI agents](create-ai-agents.md). (`QConnectAIAgents.View`, `QConnectAIAgents.Edit`, `QConnectAIAgents.Create`, `QConnectAIAgents.Delete`)",
+      "metricCategory": "Security profile permission (Amazon Q)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "AI agents",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#amazonq.aiprompts",
+      "name": "AI prompts",
+      "anchor": "amazonq-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#amazonq-permissions-list",
+      "summary": "Create and manage AI prompts.",
+      "description": "+ [Create and manage AI prompts](create-ai-prompts.md). (`QConnectAIPrompts.View`, `QConnectAIPrompts.Edit`, `QConnectAIPrompts.Create`, `QConnectAIPrompts.Delete`)",
+      "metricCategory": "Security profile permission (Amazon Q)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "AI prompts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#amazonq.aiguardrails",
+      "name": "AI guardrails",
+      "anchor": "amazonq-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#amazonq-permissions-list",
+      "summary": "Create and manage AI guardrails.",
+      "description": "+ [Create and manage AI guardrails](create-ai-guardrails.md). (`QConnectGuardrails.View`, `QConnectGuardrails.Edit`, `QConnectGuardrails.Create`, `QConnectGuardrails.Delete`)",
+      "metricCategory": "Security profile permission (Amazon Q)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "AI guardrails",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#routing.routingprofiles",
+      "name": "Routing profiles",
+      "anchor": "routing-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#routing-permissions-list",
+      "summary": "Routing permission: Create, Edit, View.",
+      "description": "+ **Create**: [Create routing profiles](routing-profiles.md). (`RoutingPolicies.Create`)\n+ **Edit**: Edit routing profiles. (`RoutingPolicies.Edit`)\n+ **View**: View routing profiles. (`RoutingPolicies.View`)",
+      "metricCategory": "Security profile permission (Routing)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Routing profiles",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#routing.quickconnects",
+      "name": "Quick connects",
+      "anchor": "routing-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#routing-permissions-list",
+      "summary": "Routing permission: Create, Delete, Edit, View.",
+      "description": "+ **Create**: [Create quick connects](quick-connects.md). (`TransferDestinations.Create`)\n+ **Delete**: [Delete quick connects](quick-connects-delete.md). (`TransferDestinations.Delete`)\n+ **Edit**: Edit quick connects. (`TransferDestinations.Edit`)\n+ **View**: View quick connects. (`TransferDestinations.View`)",
+      "metricCategory": "Security profile permission (Routing)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Quick connects",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#routing.hoursofoperation",
+      "name": "Hours of operation",
+      "anchor": "routing-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#routing-permissions-list",
+      "summary": "Routing permission: Create, Delete, Edit, View.",
+      "description": "+ **Create**: [Set hours of operation and timezone for a queue](set-hours-operation.md). (`HoursOfOperation.Create`)\n+ **Delete**: Delete hours of operation and timezone for a queue. (`HoursOfOperation.Delete`)\n+ **Edit**: Edit hours of operation and timezone for a queue. (`HoursOfOperation.Edit`)\n+ **View**: View hours of operation and timezone for a queue. (`HoursOfOperation.View`)",
+      "metricCategory": "Security profile permission (Routing)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Hours of operation",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#routing.queues",
+      "name": "Queues",
+      "anchor": "routing-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#routing-permissions-list",
+      "summary": "Routing permission: Create, Edit, Enable / Disable, View.",
+      "description": "+ **Create**: [Create queues](create-queue.md). (`Queues.Create`)\n+ **Edit**: Edit information for a queue, such as name, description, and hours of operation. (`Queues.Edit`)\n+ **Enable / Disable**: [Enable and disable queues](disable-a-queue.md) to quickly control the flow of contacts to queues temporarily. (`Queues.EnableAndDisable`)\n+ **View**: View a list of queues in your Connect Customer instance. (`Queues.View`)",
+      "metricCategory": "Security profile permission (Routing)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Queues",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#routing.tasktemplates",
+      "name": "Task templates",
+      "anchor": "routing-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#routing-permissions-list",
+      "summary": "Routing permission: Create, Delete, Edit, View.",
+      "description": "+ **Create**: [Create task templates](task-templates.md). (`TaskTemplates.Create`)\n+ **Delete**: Delete task templates. (`TaskTemplates.Delete`)\n+ **Edit**: Edit task templates. (`TaskTemplates.Edit`)\n+ **View**: View task templates. (`TaskTemplates.View`)",
+      "metricCategory": "Security profile permission (Routing)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Task templates",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#routing.predefinedattributes",
+      "name": "Predefined attributes",
+      "anchor": "routing-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#routing-permissions-list",
+      "summary": "Routing permission: View, Edit, Create, Delete.",
+      "description": "+ **View**: View predefined attributes. (`PredefinedAttributes.View`)\n+ **Edit**: Edit predefined attributes. (`PredefinedAttributes.Edit`)\n+ **Create**: [Create predefined attributes for routing contacts to agents](predefined-attributes.md). (`PredefinedAttributes.Create`)\n+ **Delete**: Delete predefined attributes. (`PredefinedAttributes.Delete`)",
+      "metricCategory": "Security profile permission (Routing)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Predefined attributes",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#routing.datatables",
+      "name": "Data tables",
+      "anchor": "routing-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#routing-permissions-list",
+      "summary": "Routing permission: Create, Delete, Edit, View, Manage values, Edit expressions.",
+      "description": "+ **Create**: [Create and configure data tables](data-tables.md). (`DataTables.Create`)\n+ **Delete**: Delete data tables. (`DataTables.Delete`)\n+ **Edit**: Edit metadata and values for data tables. (`DataTables.Edit`)\n+ **View**: View data tables. (`DataTables.View`)\n+ **Manage values**: Manage data table values. (`DataTables.ManageValues`)\n+ **Edit expressions**: Edit data table value expressions. (`DataTables.EditExpressionValues`)",
+      "metricCategory": "Security profile permission (Routing)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Data tables",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.prompts",
+      "name": "Prompts",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: Create, Delete, Edit, View.",
+      "description": "+ **Create**: [Create prompts](prompts.md). (`Prompts.Create`)\n+ **Delete**: Delete prompts. (`Prompts.Delete`)\n+ **Edit**: Edit prompts. (`Prompts.Edit`)\n+ **View**: View a list of available prompts. (`Prompts.View`)",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Prompts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.flows",
+      "name": "Flows",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: Create, Remove, Edit, Publish, View.",
+      "description": "+ **Create**: [Create flows](create-contact-flow.md). (`ContactFlows.Create`)\n+ **Remove**: [Delete flows](delete-contact-flow.md). (`ContactFlows.Delete`)\n+ **Edit**: Edit flows. (`ContactFlows.Edit`)\n+ **Publish**: Publish flows. (`ContactFlows.Publish`)\n+ **View**: View flows. (`ContactFlows.View`)",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Flows",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.flowmodules",
+      "name": "Flow modules",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: Create, Remove, Edit, Publish, View.",
+      "description": "+ **Create**: [Create flow modules for reusable functions](contact-flow-modules.md). (`ContactFlowModules.Create`)\n+ **Remove**: Delete flow modules. (`ContactFlowModules.Delete`)\n+ **Edit**: Edit flow modules. (`ContactFlowModules.Edit`)\n+ **Publish**: Publish flow modules. (`ContactFlowModules.Publish`)\n+ **View**: View flow modules. (`ContactFlowModules.View`)",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Flow modules",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.bots",
+      "name": "Bots",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: all actions, all actions, all actions.",
+      "description": "+ [Create a bot by using the Connect Customer admin website](work-bot-building-experience.md). (`Bots.Create`)\n+ [Evaluate the performance of your conversational AI bot in Connect Customer](lex-bot-analytics.md). (`Bots.View`, `Bots.Edit`)\n+ Remove a bot. (`Bots.Delete`)",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Bots",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.phonenumbers",
+      "name": "Phone numbers",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: Claim, Edit, Release, View.",
+      "description": "+ **Claim**: [Claim phone numbers](get-connect-number.md). (`PhoneNumbers.Claim`)\n+ **Edit**: Edit phone numbers. [Attach a claimed or ported phone number to a flow in Connect Customer](associate-claimed-ported-phone-number-to-flow.md). (`PhoneNumbers.Edit`)\n+ **Release**: [Release phone numbers back to inventory](release-phone-number.md). (`PhoneNumbers.Release`)\n+ **View**: View a list of phone numbers that have been claimed or ported to your Connect Customer instance. (`PhoneNumbers.View`)",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Phone numbers",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.communicationwidget",
+      "name": "Communication widget",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: Enable/Disable.",
+      "description": "+ **Enable/Disable**: Access a simulated web page so users can [test the chat experience](chat-testing.md#test-chat). Also grant users the **Contactflow.View** permission so they can view and choose from a list of available flows in the **Test settings** option. (`ChatTestMode`)",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Communication widget",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.emailaddresses",
+      "name": "Email addresses",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: all actions, all actions, all actions, all actions.",
+      "description": "+ View\n+ Edit\n+ Create\n+ Remove",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Email addresses",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.views",
+      "name": "Views",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: View, Edit, Create, Remove.",
+      "description": "+ **View**: Allow access to [Views](view-resources-sg.md). (`Views.View`)\n+ **Edit**: Allow access to edit [Views](view-resources-sg.md). (`Views.Edit`)\n+ **Create**: Create custom [view](view-resources-custom-view.md) resources. (`Views.Create`)\n+ **Remove**: Remove View resources. (`Views.Remove`)",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Views",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#channelsandflows.analyticsconnectors",
+      "name": "AnalyticsConnectors",
+      "anchor": "numbers-flows-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#numbers-flows-permissions-list",
+      "summary": "Channels and flows permission: Edit, View.",
+      "description": "+ **Edit**: [Edit existing analytics connectors](contact-lens-integration.md). (`AnalyticsConnectors.Edit`)\n+ **View**: [View existing analytics connectors](contact-lens-integration.md). (`AnalyticsConnectors.View`)",
+      "metricCategory": "Security profile permission (Channels and flows)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "AnalyticsConnectors",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#usersandpermissions.users",
+      "name": "Users",
+      "anchor": "users-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#users-permissions-list",
+      "summary": "Users and permissions permission: Create, Delete, Edit, Edit permission, View.",
+      "description": "+ **Create**: [Add users to Connect Customer](user-management.md). We recommend you limit who has these permissions. They pose a risk to your contact center because they can do the following:+  Reset passwords, including that of the administrator.  <br />+  Grant other users permission to the Admin security profile. People assigned to the Admin security profile have full access to your contact center. <br />Doing these things would enable someone to lock out those who need to access Connect Customer, and allow in others who can steal customer data and damage your business. <br />You can limit this risk by adding [tag-based access control](tag-based-access-control.md) on the security profile. For example, you can apply tag-based access control to deny access to administrators and the Admin security profile. (`Users.Create`)\n+ **Delete**: [Delete users from Connect Customer](delete-users.md). (`Users.Delete`)\n+ **Edit**: View and edit all user identity information *except* for security profiles. As with **Users - Create**, limit who has these permissions because they pose a risk to your contact center. (`Users.Edit`)\n+ **Edit permission**: View and edit user security profiles. As with **Users - Create**, limit who has these permissions because they pose a risk to your contact center. (`Users.EditPermission`)\n+ **View**: View user records. [Download or export a list of users](download-user-records.md) from your Connect Customer instance to a CSV file. (`Users.View`)",
+      "metricCategory": "Security profile permission (Users and permissions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Users",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#usersandpermissions.agenthierarchy",
+      "name": "Agent hierarchy",
+      "anchor": "users-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#users-permissions-list",
+      "summary": "Users and permissions permission: Create, Edit, Enable/Disable, View.",
+      "description": "+ **Create**: [Create agent hierarchies](agent-hierarchy.md). Add groups, teams, and agents. (`AgentGrouping.Create`)\n+ **Edit**: Edit agent hierarchies and the hierarchy level structure. (`AgentGrouping.Edit`)\n+ **Enable/Disable**: View or edit agent hierarchy information. (`AgentGrouping.EnableAndDisable`)\n+ **View**: View the agent's hierarchy information in a real-time metrics report, which can include their location and skill set data. (`AgentGrouping.View`)",
+      "metricCategory": "Security profile permission (Users and permissions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Agent hierarchy",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#usersandpermissions.securityprofiles",
+      "name": "Security profiles",
+      "anchor": "users-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#users-permissions-list",
+      "summary": "Users and permissions permission: Create, Delete, Edit, View.",
+      "description": "+ **Create**: [Create security profiles](create-security-profile.md). (`SecurityProfiles.Create`)\n+ **Delete**: Delete security profiles. (`SecurityProfiles.Delete`)\n+ **Edit**: [Update security profiles](update-security-profiles.md). (`SecurityProfiles.Edit`)\n+ **View**: View security profiles. (`SecurityProfiles.View`)",
+      "metricCategory": "Security profile permission (Users and permissions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Security profiles",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#usersandpermissions.agentstatus",
+      "name": "Agent status",
+      "anchor": "users-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#users-permissions-list",
+      "summary": "Users and permissions permission: Create, Edit, Enable/Disable, View.",
+      "description": "+ **Create**: [Create an custom agent status](agent-custom.md). The status appears in the Contact Control Panel (CCP), such as Break, Lunch, or Training. (`AgentStates.Create`)\n+ **Edit**: Edit a custom agent status. (`AgentStates.Edit`)\n+ **Enable/Disable**: View and edit custom agent states. (`AgentStates.EnableAndDisable`)\n+ **View**: [View an agent's status in the real-time metrics report](rtm-change-agent-activity-state.md) and historical metrics report. For example, if they are **Available**, **Offline**, or in a custom state. View their status in the [Agent activity report](agent-activity-audit-report.md). (`AgentStates.View`)",
+      "metricCategory": "Security profile permission (Users and permissions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Agent status",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#usersandpermissions.workspaces",
+      "name": "Workspaces",
+      "anchor": "users-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#users-permissions-list",
+      "summary": "Users and permissions permission: Create, Delete, Edit, View, Assign, Edit visibility.",
+      "description": "+ **Create**: [Set up workspaces for your business users](amazon-connect-workspaces.md). (`Workspaces.Create`)\n+ **Delete**: Delete workspaces. (`Workspaces.Delete`)\n+ **Edit**: Edit workspaces. (`Workspaces.Edit`)\n+ **View**: View workspaces. (`Workspaces.View`)\n+ **Assign**: Assign workspaces to users and routing profiles. (`Workspaces.Assign`)\n+ **Edit visibility**: Edit workspaces to be visible to all users, no users, or based on assignments. (`Workspaces.EditVisibility`)",
+      "metricCategory": "Security profile permission (Users and permissions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Workspaces",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.accesscontactcontrolpanel",
+      "name": "Access Contact Control Panel",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Manages access to the Contact Control Panel (CCP). Assign this permission to agents as well as managers who need to monitor live conversations.",
+      "description": "+ Manages access to the Contact Control Panel (CCP). Assign this permission to agents as well as managers who need to monitor live conversations. (`BasicAgentAccess`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Access Contact Control Panel",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.conversationalanalyticsdata",
+      "name": "Conversational analytics data",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Enables users to view real-time analytics provided by conversational analytics.",
+      "description": "+ Enables users to view real-time analytics provided by conversational analytics. (`RealtimeContactLens.View`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Conversational analytics data",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.makeoutboundcalls",
+      "name": "Make outbound calls",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Grants users permissions to make outbound calls. For more information about setting up outbound calling, see Set up outbound calling in Connect Customer.",
+      "description": "+ Grants users permissions to make outbound calls. For more information about setting up outbound calling, see [Set up outbound calling in Connect Customer](outbound-communications.md). (`OutboundCallAccess`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Make outbound calls",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.voiceid",
+      "name": "Voice ID",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Enables controls in the Contact Control Panel so agents can:+ View authentication outcomes. <br />+ Opt-out or re-authenticate a caller. <br />+ Update SpeakerID. <br />+ View fraud detection results, rerun fraud analysis (fraud detection decision, fraud type and score).",
+      "description": "+ Enables controls in the Contact Control Panel so agents can:+  View authentication outcomes. <br />+  Opt-out or re-authenticate a caller. <br />+  Update `SpeakerID`. <br />+  View fraud detection results, rerun fraud analysis (fraud detection decision, fraud type and score). (`VoiceId.Access`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Voice ID",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.restricttaskcreation",
+      "name": "Restrict task creation",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Block agents from being able to create tasks.",
+      "description": "+ Block agents from being able to create tasks. (`RestrictTaskCreation.Access`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Restrict task creation",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.restrictphonetypesettings",
+      "name": "Restrict phone type settings",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Block agents from changing their phone type (softphone or deskphone) in the Contact Control Panel.",
+      "description": "+ Block agents from changing their phone type (softphone or deskphone) in the Contact Control Panel. (`RestrictPhoneTypeSettings.Access`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Restrict phone type settings",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.audiodevicesettings",
+      "name": "Audio device settings",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Choose your preferred device for speaker, microphone, and ringer in the Contact Control Panel (CCP) or agent workspace.",
+      "description": "+ [Choose your preferred device for speaker, microphone, and ringer in the Contact Control Panel (CCP) or agent workspace](audio-device-settings.md). (`AudioDeviceSettings.Access`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Audio device settings",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.videocalls",
+      "name": "Video calls",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Enable agents to use video calling and screen sharing.",
+      "description": "+ [Enable agents to use video calling and screen sharing](config-com-widget1.md#agent-cx-cw). (`VideoContact.Access`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Video calls",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.initiateemailconversation",
+      "name": "Initiate email conversation",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Allows agents to initiate an outbound email from the Contact Control Panel / agent workspace without first receiving an email contact from a customer. Allows agents to forward email contacts to external email addresses or distribution lists. Allows agents to reply to closed email contacts.",
+      "description": "+ Allows agents to initiate an outbound email from the Contact Control Panel / agent workspace without first receiving an email contact from a customer. Allows agents to forward email contacts to external email addresses or distribution lists. Allows agents to reply to closed email contacts. (`OutboundEmail.Create`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Initiate email conversation",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.allowselfassigningofcontacts",
+      "name": "Allow self assigning of contacts",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "To self assign tasks, agents also need to have the Restrict Task Creation permission disabled and have tasks enabled as a channel within their assigned routing profile.",
+      "description": "+ To self assign tasks, agents also need to have the **Restrict Task Creation** permission disabled and have tasks enabled as a channel within their assigned routing profile. (`SelfAssignContacts.Access`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Allow self assigning of contacts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactcontrolpanelccp.confirmationbeforeendingcontact",
+      "name": "Confirmation before ending contact",
+      "anchor": "ccp-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#ccp-permissions-list",
+      "summary": "Requires agents to confirm before ending a contact. When enabled, agents see a confirmation dialog when they choose the End button for voice calls, chats, emails, and tasks.",
+      "description": "+ Requires agents to confirm before ending a contact. When enabled, agents see a confirmation dialog when they choose the **End** button for voice calls, chats, emails, and tasks. (`RequireEndContactConfirmation.Enabled`)",
+      "metricCategory": "Security profile permission (Contact Control Panel (CCP))",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Confirmation before ending contact",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.accessmetrics",
+      "name": "Access metrics",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Assign permissions to view dashboards and reports.",
+      "description": "+ [Assign permissions to view dashboards and reports](dashboard-required-permissions.md). (`AccessMetrics`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Access metrics",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.realtimemetrics",
+      "name": "Real-time metrics",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Manage access to the real-time metrics page.",
+      "description": "+ Manage access to the real-time metrics page. (`AccessMetrics.RealTimeMetrics.Access`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Real-time metrics",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.historicalmetrics",
+      "name": "Historical metrics",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Manage access to the historical metrics page.",
+      "description": "+ Manage access to the historical metrics page. (`AccessMetrics.HistoricalMetrics.Access`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Historical metrics",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.agentactivityaudit",
+      "name": "Agent activity audit",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Manage access to the agent activity audit within the historical metrics page.",
+      "description": "+ Manage access to the agent activity audit within the historical metrics page. (`AccessMetrics.AgentActivityAudit.Access`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Agent activity audit",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.dashboards",
+      "name": "Dashboards",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Dashboards in Connect Customer for getting contact center performance data",
+      "description": "+ [Dashboards in Connect Customer for getting contact center performance data](dashboards.md) (`AccessMetrics.Dashboards.Access`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Dashboards",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.viewmyowndataindashboards",
+      "name": "View my own data in dashboards",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View.",
+      "description": "+ **View**: Grants access to the Dashboards to view individual agent performance metrics and the metrics of queues in the agent's routing profile. For more information, see [Agent workspace performance dashboard](performance-dashboard-aw.md). (`AccessMetrics.DashboardsWithMyData.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "View my own data in dashboards",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.custommetrics",
+      "name": "Custom metrics",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Grants access to create and manage custom service level metric calculations for any widget on a dashboard.",
+      "description": "+ Grants access to [create and manage custom service level metric calculations](dashboard-customize-widgets.md#dashboard-custom-sl) for any widget on a dashboard. (`CustomMetrics.Create`, `CustomMetrics.View`, `CustomMetrics.Edit`, `CustomMetrics.Delete`, `CustomMetrics.Publish`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Custom metrics",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.contactsearch",
+      "name": "Contact Search",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Access the Contact search page, which is where users can search for contacts and see results on the Contact details page.",
+      "description": "+ Access the **Contact search** page, which is where users can [search for contacts](contact-search.md) and see results on the **Contact details** page. (`ContactSearch.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Contact Search",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.viewmycontacts",
+      "name": "View my contacts",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Allows agents to view contacts that they themselves had handled, on Contact search and Contact details pages.",
+      "description": "+ Allows agents to view contacts that they themselves had handled, on **Contact search** and **Contact details** pages. (`MyContacts.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "View my contacts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.samplecontacts",
+      "name": "Sample contacts",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Find a random sample of contacts for evaluating agent performance and contact quality, for example, 5 contacts per agent from last month.",
+      "description": "+ Find a [random sample of contacts](random-sampling-of-contacts-for-evaluation.md) for evaluating agent performance and contact quality, for example, 5 contacts per agent from last month. (`ContactSearchSampleContacts.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Sample contacts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.searchcontactsbyconversationcharacteristics",
+      "name": "Search contacts by conversation characteristics",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: all actions, View.",
+      "description": "+ Access to the conversational analytics filters that enable users to search by sentiment scores, non-talk time, and category. (`ContactSearchWithCharacteristics.Access`)\n+ **View**: View the conversational analytics filters that enable users to search by sentiment scores, non-talk time, and category. (`ContactSearchWithCharacteristics.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Search contacts by conversation characteristics",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.searchcontactsbykeywords",
+      "name": "Search contacts by keywords",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: all actions, View.",
+      "description": "+ Search for contacts by keyword. On the **Contact Search** page, users can access additional filters that allow them to search conversational analytics transcripts by keywords or phrases, such as \"thank you for your business.\" (`ContactSearchWithKeywords.Access`)\n+ **View**: Search for contacts by keyword. On the **Contact Search** page, users can access additional filters that allow them to search conversational analytics transcripts by keywords or phrases, such as \"thank you for your business.\" (`ContactSearchWithKeywords.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Search contacts by keywords",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.configuresearchablecontactattributes",
+      "name": "Configure searchable contact attributes",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View.",
+      "description": "+ **View**: Determine what custom attribute data will be searchable (by people who have the **Contact attributes** permission). It allows them to access the **Searchable custom contact attributes** page. For more information, see [Search for contacts in Connect Customer by using custom contact attributes or contact segment attributes](search-custom-attributes.md). (`ConfigureContactAttributes.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Configure searchable contact attributes",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.restrictcontactaccess",
+      "name": "Restrict contact access",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Manage a user's access to results on the Contact search page based on their agent hierarchy group. For more information, see Manage who can search for contacts and access detailed information.",
+      "description": "+ Manage a user's access to results on the **Contact search** page based on their agent hierarchy group. For more information, see [Manage who can search for contacts and access detailed information](contact-search.md#required-permissions-search-contacts). (`RestrictContactAccessByHierarchy.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Restrict contact access",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.contactattributes",
+      "name": "Contact attributes",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "View contact attributes. Also controls access to the search filters based on contact attributes. For more information, see Search for contacts in Connect Customer by using custom contact attributes or contact segment attributes.",
+      "description": "+ View contact attributes. Also controls access to the search filters based on contact attributes. For more information, see [Search for contacts in Connect Customer by using custom contact attributes or contact segment attributes](search-custom-attributes.md). (`ContactAttributes.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Contact attributes",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.conversationalanalytics",
+      "name": "Conversational analytics",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View.",
+      "description": "+ **View**: On the **Contact details** page for a contact, users can view conversational analytics outputs such as graphs (on sentiment, talk time, and other various outputs), sentiment indicators, and contact category labels on conversation recordings and transcripts.<br />Users can view data on the [Connect Customer conversational analytics dashboard](contact-lens-conversational-analytics-dashboard.md). (`GraphTrends.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Conversational analytics",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.informationextractiondefinitions",
+      "name": "Information extraction – definitions",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Create and manage information extraction definitions.",
+      "description": "+ Create and manage [information extraction definitions](information-extraction-configure.md). (`InformationExtraction.Definitions.Create`, `InformationExtraction.Definitions.View`, `InformationExtraction.Definitions.Edit`, `InformationExtraction.Definitions.Delete`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Information extraction – definitions",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.informationextractionresults",
+      "name": "Information extraction - results",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View.",
+      "description": "+ **View**: View [extracted information](information-extraction-view.md) on the Contact details page and in the CCP. (`InformationExtraction.Results.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Information extraction - results",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.conversationalanalyticspostcontactsummary",
+      "name": "Conversational analytics - post-contact summary",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "View post-contact summarization powered by generative artificial intelligence (generative AI) on the Contact Search and Contact Details pages.",
+      "description": "+ View post-contact summarization powered by generative artificial intelligence (generative AI) on the Contact Search and Contact Details pages. (`ContactLensPostContactSummary.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Conversational analytics - post-contact summary",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.conversationalanalyticscustomvocabularies",
+      "name": "Conversational analytics - custom vocabularies",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: Edit, View.",
+      "description": "+ **Edit**: [Add custom vocabularies](add-custom-vocabulary.md). (`ContactLensCustomVocabulary.Edit`)\n+ **View**: [Download and view custom vocabularies](add-custom-vocabulary.md#view-custom-vocabulary). (`ContactLensCustomVocabulary.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Conversational analytics - custom vocabularies",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.conversationalanalyticsthemedetection",
+      "name": "Conversational analytics - theme detection",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: Create, View, Delete.",
+      "description": "+ **Create**: [Create theme detection reports on the **Contact search** page](use-theme-detection.md). (`ThemeDetection.Create`)\n+ **View**: View theme detection reports on the **Contact search** page. (`ThemeDetection.View`)\n+ **Delete**: Delete theme detection reports on the **Contact search** page. (`ThemeDetection.Delete`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Conversational analytics - theme detection",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.rules",
+      "name": "Rules",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: Create, Delete, Edit, View.",
+      "description": "+ **Create**: [Create rules](connect-rules.md). (`Rules.Create`)\n+ **Delete**: Delete rules. (`Rules.Delete`)\n+ **Edit**: Edit rules. (`Rules.Edit`)\n+ **View**: View rules. (`Rules.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Rules",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.rulesgenerativeai",
+      "name": "Rules - Generative AI",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Manage rules that use generative AI. To create generative AI-powered rules, you additionally need the Rules permission.",
+      "description": "+ Manage rules that use generative AI. To create generative AI-powered rules, you additionally need the **Rules** permission. (`RulesGenerativeAI.Create`, `RulesGenerativeAI.View`, `RulesGenerativeAI.Edit`, `RulesGenerativeAI.Delete`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Rules - Generative AI",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.loginlogoutreport",
+      "name": "Login/Logout report",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View.",
+      "description": "+ **View**: [View Login/Logout reports](login-logout-reports.md). (`AgentTimeCard.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Login/Logout report",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.realtimecontactmonitoring",
+      "name": "Real-time contact monitoring",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: Enable/Disable.",
+      "description": "+ **Enable/Disable**: [Monitor live conversations](monitor-conversations.md) and [listen to recordings of past conversations](review-recorded-conversations.md). Be sure to assign managers to the Agent security profile so they can access the Contact Control Panel (CCP). This enables them to monitor the conversation through the CCP. (`ManagerListenIn`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Real-time contact monitoring",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.realtimecontactbargein",
+      "name": "Real-time contact barge-in",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: Enable/Disable.",
+      "description": "+ **Enable/Disable**: Enables supervisors and managers to barge into live conversations between agents and customers. To learn more about Barge for live conversations, see [Barge into live voice and chat conversations between contact center agents and customers](monitor-barge.md). (`ManagerBargeIn`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Real-time contact barge-in",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.savedreports",
+      "name": "Saved reports",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View, Create, Edit, Delete, Publish, Schedule.",
+      "description": "+ **View**: [View a shared report](view-a-shared-report.md). (`MetricsReports.View`)\n+ **Create**: [Create and share reports](share-reports.md). (`MetricsReports.Create`, `MetricsReports.Share`)\n+ **Edit**: Edit saved reports. (`MetricsReports.Edit`)\n+ **Delete**: Delete saved reports. (`MetricsReports.Delete`)\n+ **Publish**: [Publish reports](publish-reports.md) and [share reports](share-reports.md). (`MetricsReports.Publish`)\n+ **Schedule**: [Schedule a saved report](schedule-historical-metrics-report.md). By default, they get permission to create, delete, edit, and view a saved report. (`MetricsReports.Schedule`, `MetricsReports.Publish`, `ReportSchedules.Create`, `ReportSchedules.Delete`, `ReportSchedules.Edit`, `ReportSchedules.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Saved reports",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.savedreportsadmin",
+      "name": "Saved reports (admin)",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "View and delete all saved reports in your instance, including those not created by you.",
+      "description": "+ [View and delete all saved reports in your instance, including those not created by you](manage-saved-reports-admin.md). (`ReportsAdmin.View`, `ReportsAdmin.Delete`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Saved reports (admin)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.evaluationforms",
+      "name": "Evaluation forms",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: perform evaluations, view my received evaluations, manage form definitions, manage calibration sessions.",
+      "description": "+ **perform evaluations**: [Evaluate performance](evaluations.md). (`Evaluation.Create`, `Evaluation.View`, `Evaluation.Edit`, `Evaluation.Delete`)\n+ **view my received evaluations**: User can [search and view completed evaluations](search-evaluations.md) they have received. (`MyReceivedEvaluations.View`)\n+ **manage form definitions**: [Create and manage evaluation forms](create-evaluation-forms.md). (`EvaluationForms.Create`, `EvaluationForms.View`, `EvaluationForms.Edit`, `EvaluationForms.Delete`)\n+ **manage calibration sessions**: Create and manage calibration sessions to drive consistency and accuracy in how managers evaluate agent performance. (`EvaluationCalibrationSessions.Create`, `EvaluationCalibrationSessions.Delete`, `EvaluationCalibrationSessions.Edit`, `EvaluationCalibrationSessions.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Evaluation forms",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.evaluationformsaskaiassistant",
+      "name": "Evaluation forms - ask AI assistant",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Access the Ask AI button while performing evaluations, enabling you to get generative AI-powered recommendations for answers to questions in evaluation forms.",
+      "description": "+ Access the **Ask AI** button while performing evaluations, enabling you to get generative AI-powered recommendations for answers to questions in evaluation forms. (`EvaluationAssistant.Access`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Evaluation forms - ask AI assistant",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.coachingmycoachingsessions",
+      "name": "Coaching - my coaching sessions",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View, Create, Edit, Delete.",
+      "description": "+ **View**: View [coaching sessions](provide-coaching.md) where you are the coach or the participant. If you are the participant, you can acknowledge the coaching session with this permission. (`MyCoachingSessions.View`)\n+ **Create, Edit, Delete**: Create, edit or delete coaching sessions with yourself as the coach. (`MyCoachingSessions.Create`, `MyCoachingSessions.Delete`, `MyCoachingSessions.Edit`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Coaching - my coaching sessions",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.coaching",
+      "name": "Coaching",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: manage coaching sessions.",
+      "description": "+ **manage coaching sessions**: Access coaching sessions performed by yourself or others. With this permission, you can [create coaching](provide-coaching.md) with yourself or others as the coach. (`CoachingSessions.Create`, `CoachingSessions.Delete`, `CoachingSessions.Edit`, `CoachingSessions.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Coaching",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.evaluationformsreviewevaluations",
+      "name": "Evaluation forms - review evaluations",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: Create, View.",
+      "description": "+ **Create**: Perform evaluation reviews. (`EvaluationReviews.Create`)\n+ **View**: View evaluation review drafts before they are finalized. (`EvaluationReviews.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Evaluation forms - review evaluations",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.evaluationformsrequestevaluationreviews",
+      "name": "Evaluation forms - request evaluation reviews",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Request evaluation reviews if the evaluation form has review requests enabled.",
+      "description": "+ [Request evaluation reviews](evaluation-review-requests.md) if the evaluation form has review requests enabled. (`EvaluationReviewRequest.View`, `EvaluationReviewRequest.Create`, `EvaluationReviewRequest.Delete`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Evaluation forms - request evaluation reviews",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.voiceidattributesandsearch",
+      "name": "Voice ID - attributes and search",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Search for and view Voice ID results on the Contact detail page.",
+      "description": "+ Search for and view Voice ID results on the **Contact detail** page. (`VoiceIdAttributesAndSearch.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Voice ID - attributes and search",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.forecasting",
+      "name": "Forecasting",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View, Edit, Publish.",
+      "description": "+ **View**: [Review contact volume and average handle time forecasts](inspect-forecast.md). (`Forecasting.View`)\n+ **Edit**: [Create and edit contact volume and average handle time forecasts](create-forecasts.md). (`Forecasting.Edit`)\n+ **Publish**: [Publish a forecast in Connect Customer](publish-forecast.md). (`Forecasting.Publish`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Forecasting",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.capacityplanning",
+      "name": "Capacity planning",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: View, Edit, Publish.",
+      "description": "+ **View**: [Review capacity plan output in Connect Customer](capacity-planning-review-output.md). (`Capacity.View`)\n+ **Edit**: [Create capacity planning scenarios in Connect Customer](capacity-planning-create-scenarios.md). (`Capacity.Edit`)\n+ **Publish**: [Publish a capacity plan in Connect Customer](publish-capacity-plan.md). (`Capacity.Publish`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Capacity planning",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#analyticsandoptimization.forecastandscheduleinterval",
+      "name": "Forecast and schedule interval",
+      "anchor": "analytics-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#analytics-list",
+      "summary": "Analytics and Optimization permission: Edit and View.",
+      "description": "+ **Edit and View**: [Set the forecast and schedule interval in Connect Customer](set-forecast-scheduling-interval.md). (`ForecastScheduleInterval.Edit`, `ForecastScheduleInterval.View`)",
+      "metricCategory": "Security profile permission (Analytics and Optimization)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Forecast and schedule interval",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.callrecordingsunredacted",
+      "name": "Call recordings (unredacted)",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Recordings and Transcripts permission: Access, Enable download button.",
+      "description": "+ **Access**: On the **Contact details** and **Contact search** pages for a contact, view unredacted audio recordings.<br />If you have BOTH **Call recordings (unredacted) - Access** and **Call recordings (redacted) - Access** permissions: +  If redaction is enabled on the flow, then redacted content is displayed on the **Contact details** and **Contact search** pages. <br />+  If redaction is disabled on the flow or the contact is not analyzed by conversational analytics, then unredacted content is displayed on the **Contact details** and **Contact search** pages. <br />You cannot access both the redacted and unredacted version of a conversation at the same time. (`CallRecordings.Unredacted.Access`)\n+ **Enable download button**: Enables buttons to download call recordings when user is viewing the unredacted recording on the **Contact Search** and **Contact Details** pages. The **Enable download button** permission is selected by default when you select **Call recordings (unredacted)** permission, so they can [download call recordings](download-recordings.md) through the Connect Customer admin website. This permission only controls the ability to view the download button. They might still be able to download the contact recording without this permission if they have the **Call recordings (unredacted) - Access** permission. (`CallRecordings.Unredacted.DownloadButton`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Call recordings (unredacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.callrecordingsredacted",
+      "name": "Call recordings (redacted)",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Recordings and Transcripts permission: Access, Enable download button.",
+      "description": "+ **Access**: On the **Contact details** and **Contact search** pages for a contact, listen to call recordings in which the sensitive data has been redacted. (`CallRecordings.Redacted.Access`)\n+ **Enable download button**: Enables buttons to download call recordings when user is viewing the redacted recording on the **Contact Search** and **Contact Details** pages. The **Enable download button** permission is selected by default when you select **Call recordings (redacted)** permission, so they can [download call recordings](download-recordings.md) through the Connect Customer admin website. This permission only controls the ability to view the download button. They might still be able to download the contact recording without this permission if they have the **Call recordings (redacted) - Access** permission. (`CallRecordings.Redacted.DownloadButton`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Call recordings (redacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.contacttranscriptsunredacted",
+      "name": "Contact transcripts (unredacted)",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Recordings and Transcripts permission: Access, Enable download button.",
+      "description": "+ **Access**: On the **Contact details** and **Contact search** pages for a contact, view unredacted chat and email conversations, and unredacted voice transcripts produced by conversational analytics.<br />If you have BOTH **Contact transcripts (unredacted) - Access** and **Contact transcripts (redacted) - Access** permissions:+  If redaction is enabled on the flow, then redacted content is displayed on the **Contact details** and **Contact search** pages. <br />+  If redaction is disabled on the flow or the contact is not analyzed by conversational analytics, then unredacted content is displayed on the **Contact details** and **Contact search** pages. <br />You cannot access both the redacted and unredacted version of a conversation at the same time. (`ContactTranscripts.Unredacted.Access`)\n+ **Enable download button**: Enables buttons to download contact transcripts when user is viewing the unredacted transcript on the **Contact Search** and **Contact Details** pages. The **Enable download button** permission is selected by default when you select **Contact transcripts (unredacted)** permission so they can [download call recordings](download-recordings.md) through the Connect Customer admin website. This permission only controls the ability to view the download button. They might still be able to download the contact transcript without this permission if they have the **Contact transcript (unredacted) - Access** permission. <br />A button appears on the **Contact Search** and **Contact Details** pages to download unredacted transcripts for chat and email. (`ContactTranscripts.Unredacted.DownloadButton`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Contact transcripts (unredacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.contacttranscriptsredacted",
+      "name": "Contact transcripts (redacted)",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Recordings and Transcripts permission: Access.",
+      "description": "+ **Access**: On the **Contact details** and **Contact search** pages for a contact, view chat and voice transcripts in which the sensitive data has been redacted. (`ContactTranscripts.Redacted.Access`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Contact transcripts (redacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.deleterecordedconversations",
+      "name": "Delete recorded conversations",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Delete call recordings and contact transcripts",
+      "description": "+ Delete call recordings and contact transcripts (`DeleteCallRecordings`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Delete recorded conversations",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.screenrecording",
+      "name": "Screen recording",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Recordings and Transcripts permission: Access.",
+      "description": "+ **Access**: Access the screen recording media player and view videos on the Contact details page. If rule-based redaction is not enabled, screen recording merges the screen recording video with the unredacted call recording file. If users have permission to view screen recordings, they can listen to the unredacted audio. <br />To overcome this, you can enable [rule-based redaction](rule-based-redaction-screen-recording.md) which merges the screen recording video with the redacted call recording (if enabled). You will have to update the permissions to choose which users get access to redacted and unredacted screen recording. (`ScreenRecording.Access`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Screen recording",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.screenrecordingredacted",
+      "name": "Screen recording (redacted)",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Recordings and Transcripts permission: Access, Enable download button.",
+      "description": "+ **Access**: Open the contact detail page media player and view redacted screen recordings produced by [rule-based redaction](rule-based-redaction-screen-recording.md). (`ScreenRecording.Redacted.Access`)\n+ **Enable download button**: Download redacted screen recordings from the Contact details page. Requires the **Screen recording (redacted) - Access** permission. (`ScreenRecording.Redacted.Download`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Screen recording (redacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.automatedinteractionvoiceivrrecordingsunredacted",
+      "name": "Automated interaction voice (IVR) recordings (unredacted)",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Recordings and Transcripts permission: Access, Enable download button.",
+      "description": "+ **Access**: Access voice recordings of automated interactions (with IVR, Amazon Lex or other bots).<br />View the Play icon so users can listen to prompts while reviewing the automated interaction logs on the Connect Customer admin website. (`AutomatedVoiceInteraction.Recordings.Unredacted.Access`)\n+ **Enable download button**: Enables buttons to download call recordings. The **Enable download button** permission is selected by default when you select the **Automated interaction voice (IVR) recordings** permission so they can [download call recordings](download-recordings.md) through the Connect Customer admin website.<br />To perform a download, however, they need the **Automated interaction voice (IVR) recordings (unredacted) - Access** permission. (`AutomatedVoiceInteraction.Recordings.Unredacted.DownloadButton`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Automated interaction voice (IVR) recordings (unredacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#recordingsandtranscripts.automatedinteractionvoiceivrtranscriptsunredacted",
+      "name": "Automated interaction voice (IVR) transcripts (unredacted)",
+      "anchor": "recordings-and-transcripts-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#recordings-and-transcripts-list",
+      "summary": "Access human-readable logs of the IVR interaction including keypad inputs in response to IVR prompts, transcripts of Amazon Lex interactions, and more, on the Contact details and Contact search pages.",
+      "description": "+ Access human-readable logs of the IVR interaction including keypad inputs in response to IVR prompts, transcripts of Amazon Lex interactions, and more, on the **Contact details** and **Contact search** pages. (`AutomatedVoiceInteraction.Transcripts.Unredacted.Access`)",
+      "metricCategory": "Security profile permission (Recordings and Transcripts)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Automated interaction voice (IVR) transcripts (unredacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#legacypermissions.recordedconversationsredacted",
+      "name": "Recorded conversations (redacted)",
+      "anchor": "legacy-permissions",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#legacy-permissions",
+      "summary": "Legacy permissions permission: View.",
+      "description": "+ **View**: On the **Contact Details** and **Contact Search** pages for a contact, listen to call recording files and view call transcripts in which the sensitive data has been removed. If you edit a security profile containing the **Recorded conversations (redacted) - View** permission, it will automatically be migrated to contain the new corresponding permissions (**Call recordings (redacted) - Access** and **Contact transcripts (redacted) - Access**) when you choose **Save** on the **Security Profiles** page. <br />To grant access to redacted recorded conversations:+  Use the **Call recordings (redacted) - Access** permission for redacted call recordings <br />+  Use the **Contact transcripts (redacted) - Access** permission for redacted contact transcripts <br />You can access both newly migrated permissions in the **Recordings and Transcripts** section of the **Security Profiles** page. (`RedactedData.View`)",
+      "metricCategory": "Security profile permission (Legacy permissions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Recorded conversations (redacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#legacypermissions.recordedconversationsunredacted",
+      "name": "Recorded conversations (unredacted)",
+      "anchor": "legacy-permissions",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#legacy-permissions",
+      "summary": "Legacy permissions permission: View.",
+      "description": "+ **View**: On the **Contact details** and **Contact search** pages for a contact, view unredacted content that contains sensitive data, such as name and credit card information.+  Unredacted chat and email conversations <br />+  Unredacted voice transcripts produced by conversational analytics <br />+  Unredacted voice recordings  If you edit a security profile containing the **Recorded conversations (unredacted) - View** permission, it will automatically be migrated to contain the new corresponding permissions (**Call recordings (unredacted) - Access** and **Contact transcripts (unredacted) - Access**) when you choose **Save** on the **Security Profiles** page. <br />To grant access to unredacted recorded conversations:+  Use the **Call recordings (unredacted) - Access** permission for unredacted call recordings <br />+  Use the **Contact transcripts (unredacted) - Access** permission for unredacted contact transcripts <br />You can access both newly migrated permissions in the **Recordings and Transcripts** section on the **Security Profiles** page.<br />If you have both **Recorded conversations (redacted) - Access** and **Recorded conversations (unredacted) - Access** permissions, then:+  If redaction is enabled on the flow, the redacted content is displayed on the **Contact details** and **Contact search** pages. <br />+  If redaction is disabled on the flow or the contact is not analyzed by conversational analytics, the unredacted content is displayed on the **Contact details** and **Contact search** pages. <br />You cannot access both the redacted and unredacted version of a conversation at the same time. (`ListenCallRecordings`)",
+      "metricCategory": "Security profile permission (Legacy permissions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Recorded conversations (unredacted)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#legacypermissions.recordedconversations",
+      "name": "Recorded conversations",
+      "anchor": "legacy-permissions",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#legacy-permissions",
+      "summary": "Legacy permissions permission: Enable download button.",
+      "description": "+ **Enable download button**: Enables buttons on the Connect Customer admin website to download call recordings. By default, the **Enable download button** permission is granted so they can [download call recordings](download-recordings.md) through the Connect Customer admin website. To perform a download, however, they need permissions to access a **Recorded conversation (unredacted)**. If you edit a security profile that contains the **Recorded conversations (unredacted) - Enable download button** permission, it is automatically migrated to contain the new corresponding permissions (**Call recordings (unredacted) - Enable download button**, **Call recordings (redacted) - Enable download button**, and **Contact transcripts (unredacted) - Enable download button**) when you choose **Save** on the **Security Profiles** page. <br />To enable the download button for recorded conversations:+  Use the **Call recordings (unredacted) - Enable download button** permission for unredacted call recordings. <br />+  Use the **Call recordings (redacted) - Enable download button** permission for redacted call recordings. <br />+  Use the **Contact transcripts (unredacted) - Enable download button** permission for unredacted contact transcripts. <br />All newly migrated permissions are located in the **Recordings and Transcripts** section on the **Security Profiles** page. (`DownloadCallRecordings`)",
+      "metricCategory": "Security profile permission (Legacy permissions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Recorded conversations",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactactions.allowassigntomeforanycontact",
+      "name": "Allow 'Assign to Me' for any contact",
+      "anchor": "contactactions-sp",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#contactactions-sp",
+      "summary": "This permission allows an Agent to View and manually assign any Contacts that are part of the Manual Assignment Queue.",
+      "description": "+ This permission allows an Agent to View and manually assign any Contacts that are part of the Manual Assignment Queue. (`ManualAssignAnyContact.Enable`)",
+      "metricCategory": "Security profile permission (Contact Actions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Allow 'Assign to Me' for any contact",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactactions.allowassigntomeformycontacts",
+      "name": "Allow 'Assign to Me' for my contacts",
+      "anchor": "contactactions-sp",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#contactactions-sp",
+      "summary": "This permission allows an Agent to View and manually assign any contacts that are part of the Manual Assignment Queue and the Agent is one of the Preferred Agents on the Contact.",
+      "description": "+ This permission allows an Agent to View and manually assign any contacts that are part of the Manual Assignment Queue and the Agent is one of the Preferred Agents on the Contact. (`ManualAssignMyContacts.Enable`)",
+      "metricCategory": "Security profile permission (Contact Actions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Allow 'Assign to Me' for my contacts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactactions.transfercontact",
+      "name": "Transfer Contact",
+      "anchor": "contactactions-sp",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#contactactions-sp",
+      "summary": "Transfer contacts on Analytics and optimization pages. Currently transfer of task contacts to quick connects is supported on the Contact details page.",
+      "description": "+ [Transfer contacts on Analytics and optimization pages](transfer-contacts-admin.md). Currently transfer of task contacts to quick connects is supported on the **Contact details** page. (`TransferContact.Enabled`)",
+      "metricCategory": "Security profile permission (Contact Actions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Transfer Contact",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactactions.endcontact",
+      "name": "End contact",
+      "anchor": "contactactions-sp",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#contactactions-sp",
+      "summary": "End contacts on Analytics and optimization pages. Currently supported on the Contact details page.",
+      "description": "+ [End contacts on Analytics and optimization pages](end-contacts-admin.md). Currently supported on the **Contact details** page. (`StopContact.Enabled`)",
+      "metricCategory": "Security profile permission (Contact Actions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "End contact",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactactions.reschedulecontact",
+      "name": "Reschedule contact",
+      "anchor": "contactactions-sp",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#contactactions-sp",
+      "summary": "Reschedule previously scheduled contact on Analytics and optimization pages. Currently supported on the Contact details page for task contacts only.",
+      "description": "+ [Reschedule previously scheduled contact on Analytics and optimization pages](reschedule-contacts-admin.md). Currently supported on the **Contact details** page for task contacts only. (`UpdateContactSchedule.Enabled`)",
+      "metricCategory": "Security profile permission (Contact Actions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Reschedule contact",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contactactions.updatecontacttags",
+      "name": "Update contact tags",
+      "anchor": "contactactions-sp",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#contactactions-sp",
+      "summary": "Add and remove tags from contacts on the Contact details page. For more information, see Tag contacts on the Contact details page in Connect Customer.",
+      "description": "+ Add and remove tags from contacts on the **Contact details** page. For more information, see [Tag contacts on the Contact details page in Connect Customer](tag-contacts-admin.md). (`Contacts.Tag.Edit`)",
+      "metricCategory": "Security profile permission (Contact Actions)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Update contact tags",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#historicalchanges.viewhistoricalchanges",
+      "name": "View historical changes",
+      "anchor": "historical-changes-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#historical-changes-list",
+      "summary": "View historical changes on all Connect Customer admin website pages that support historical changes.",
+      "description": "+ View historical changes on all Connect Customer admin website pages that support historical changes. (`HistoricalChanges.View`)",
+      "metricCategory": "Security profile permission (Historical changes)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "View historical changes",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#customerprofiles.customerprofiles",
+      "name": "Customer profiles",
+      "anchor": "customerprofiles-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#customerprofiles-permissions-list",
+      "summary": "Customer Profiles permission: Create, Edit, View.",
+      "description": "+ **Create**: [Create customer profiles in the agent workspace](ag-cp-create.md). (`CustomerProfiles.Create`)\n+ **Edit**: Edit customer profiles in the agent workspace. (`CustomerProfiles.Edit`)\n+ **View**: View customer profiles in the agent workspace. (`CustomerProfiles.View`)",
+      "metricCategory": "Security profile permission (Customer Profiles)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Customer profiles",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#customerprofiles.calculatedattributes",
+      "name": "Calculated Attributes",
+      "anchor": "customerprofiles-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#customerprofiles-permissions-list",
+      "summary": "Customer Profiles permission: Create, Edit, Delete, View.",
+      "description": "+ **Create**: [Create calculated attributes](calculated-attributes-admin-website-create.md). (`CustomerProfiles.CalculatedAttributes.Create`)\n+ **Edit**: [Edit calculated attributes](calculated-attributes-admin-website-edit.md). (`CustomerProfiles.CalculatedAttributes.Edit`)\n+ **Delete**: [Delete calculated attributes](calculated-attributes-admin-website-delete.md). (`CustomerProfiles.CalculatedAttributes.Delete`)\n+ **View**: [View calculated attributes](calculated-attributes-admin-website-view.md). (`CustomerProfiles.CalculatedAttributes.View`)",
+      "metricCategory": "Security profile permission (Customer Profiles)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Calculated Attributes",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#customerprofiles.customersegments",
+      "name": "Customer segments",
+      "anchor": "customerprofiles-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#customerprofiles-permissions-list",
+      "summary": "Customer Profiles permission: View, Create, Delete, Export.",
+      "description": "+ **View**: View all customer created segments. You can see segment details, the definitions that were created, and segment estimate counts. (`CustomerProfiles.Segments.View`)\n+ **Create**: Create segment definitions based on all profile attributes on a Customer Profiles domain associated with this instance. `Create` permissions allow creating definitions based on existing profile attributes and their values. You can also use default and created calculated attributes in the segment definition. (`CustomerProfiles.Segments.Create`)\n+ **Delete**: With `Delete` permissions, you can delete your Segment Definition. (`CustomerProfiles.Segments.Delete`)\n+ **Export**: With Export, you can create an exported CSV of all the profile data from profiles in that segment. You can also use it to view underlying profile data once exported. (`CustomerProfiles.Segments.Export`)",
+      "metricCategory": "Security profile permission (Customer Profiles)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Customer segments",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#customerprofiles.profileexplorer",
+      "name": "Profile explorer",
+      "anchor": "customerprofiles-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#customerprofiles-permissions-list",
+      "summary": "Customer Profiles permission: View, Create, Edit, Delete.",
+      "description": "+ **View**: View the profile explorer landing page and the default Domain layout. (`CustomerProfiles.ProfileExplorer.View`)\n+ **Create**: [Create a Domain layout](https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-customer-profiles_CreateDomainLayout.html) (`CustomerProfiles.ProfileExplorer.Create`)\n+ **Edit**: [Edit a Domain layout](https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-customer-profiles_UpdateDomainLayout.html) (`CustomerProfiles.ProfileExplorer.Edit`)\n+ **Delete**: [Delete a Domain layout](https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-customer-profiles_DeleteDomainLayout.html) (`CustomerProfiles.ProfileExplorer.Delete`)",
+      "metricCategory": "Security profile permission (Customer Profiles)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Profile explorer",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#customerprofiles.predictiveinsights",
+      "name": "Predictive Insights",
+      "anchor": "customerprofiles-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#customerprofiles-permissions-list",
+      "summary": "Customer Profiles permission: View, Create, Edit, Delete.",
+      "description": "+ **View**: View [Predictive Insights](customer-profiles-predictive-insights.md). (`CustomerProfiles.PredictiveInsights.View`)\n+ **Create**: Create Predictive Insights. (`CustomerProfiles.PredictiveInsights.Create`)\n+ **Edit**: Edit Predictive Insights. (`CustomerProfiles.PredictiveInsights.Edit`)\n+ **Delete**: Delete Predictive Insights. (`CustomerProfiles.PredictiveInsights.Delete`)",
+      "metricCategory": "Security profile permission (Customer Profiles)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Predictive Insights",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#scheduling.schedulemanager",
+      "name": "Schedule manager",
+      "anchor": "scheduling-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#scheduling-permissions-list",
+      "summary": "Scheduling permission: View, Edit, Publish.",
+      "description": "+ **View**: [View generated staff schedules in the Schedule manager user experience](scheduling-publish-schedule.md). (`Scheduling.View`)\n+ **Edit**: [Create, edit schedule configuration and publish generated staff schedules](scheduling-publish-schedule.md). (`Scheduling.Edit`)\n+ **Publish**: [Publish a schedule](scheduling-publish-schedule.md) by using Schedule Manager. (`Scheduling.Publish`)",
+      "metricCategory": "Security profile permission (Scheduling)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Schedule manager",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#scheduling.publishedschedulecalendar",
+      "name": "Published schedule calendar",
+      "anchor": "scheduling-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#scheduling-permissions-list",
+      "summary": "View a schedule.",
+      "description": "+ [View](scheduling-view-schedule-staff.md) a schedule. (`Scheduling.View`)",
+      "metricCategory": "Security profile permission (Scheduling)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Published schedule calendar",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#scheduling.timeoffrequests",
+      "name": "Time off requests",
+      "anchor": "scheduling-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#scheduling-permissions-list",
+      "summary": "Scheduling permission: Approve, Edit, View.",
+      "description": "+ **Approve, Edit, View**: [Time off management](scheduling-time-off.md). (`TimeOff.Approve`, `TimeOff.Edit`, `TimeOff.View`)",
+      "metricCategory": "Security profile permission (Scheduling)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Time off requests",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#scheduling.timeoffbalance",
+      "name": "Time off balance",
+      "anchor": "scheduling-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#scheduling-permissions-list",
+      "summary": "Scheduling permission: Edit, View.",
+      "description": "+ **Edit, View**: [Time off management](scheduling-time-off.md). (`TimeOffBalance.Edit`, `TimeOffBalance.View`)",
+      "metricCategory": "Security profile permission (Scheduling)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Time off balance",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#scheduling.teamcalendar",
+      "name": "Team calendar",
+      "anchor": "scheduling-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#scheduling-permissions-list",
+      "summary": "Scheduling permission: all actions, all actions.",
+      "description": "+ [View published staff schedules in the Published Calendar user experience](scheduling-view-schedule-supervisors.md). (`TeamCalendar.View`)\n+ [Edit published staff schedules in the Published Calendar user experience](scheduling-view-schedule-supervisors.md). (`TeamCalendar.Edit`)",
+      "metricCategory": "Security profile permission (Scheduling)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Team calendar",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#agentapplications.agentapplicationschedulecalendar",
+      "name": "Agent application schedule calendar",
+      "anchor": "agentapplications-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#agentapplications-permissions-list",
+      "summary": "Ability for agents to view their schedules. The Edit permission is required for agents to view and use the Time off widget on their schedule that they use to request time off. If they only have View permission, the Time off widget will not appear on their schedule.<br />For an example image that shows the Time off widget on an agent's schedule, see Agent initiated time off request.",
+      "description": "+ [Ability for agents to view their schedules](scheduling-view-schedule-agents.md). The **Edit** permission is required for agents to view and use the **Time off **widget on their schedule that they use to request time off. If they only have **View** permission, the **Time off** widget will not appear on their schedule.<br />For an example image that shows the **Time off** widget on an agent's schedule, see [Agent initiated time off request](create-time-off-to.md#to-agent). (`StaffCalendar.View`, `StaffCalendar.Edit`)",
+      "metricCategory": "Security profile permission (Agent Applications)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Agent application schedule calendar",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#agentapplications.customviews",
+      "name": "Custom views",
+      "anchor": "agentapplications-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#agentapplications-permissions-list",
+      "summary": "Use the step-by-step guides guide.",
+      "description": "+ Use the [step-by-step guides](step-by-step-guided-experiences.md) guide. (`CustomViews.Access`)",
+      "metricCategory": "Security profile permission (Agent Applications)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Custom views",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#agentapplications.agentassist",
+      "name": "agent assist",
+      "anchor": "agentapplications-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#agentapplications-permissions-list",
+      "summary": "View real-time recommendations in the agent workspace.",
+      "description": "+ [View real-time recommendations in the agent workspace](use-realtime-recommendations.md). (`Wisdom.View`)",
+      "metricCategory": "Security profile permission (Agent Applications)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "agent assist",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#agentapplications.3pappname",
+      "name": "{{<3p app name}}",
+      "anchor": "agentapplications-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#agentapplications-permissions-list",
+      "summary": "Agent Applications permission: Access.",
+      "description": "+ **Access**: Allows agents to access a third-party application. (`{{<3p app name}}.Access`)",
+      "metricCategory": "Security profile permission (Agent Applications)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "{{<3p app name}}",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#agentapplications.performancemetrics",
+      "name": "{{Performance metrics}}",
+      "anchor": "agentapplications-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#agentapplications-permissions-list",
+      "summary": "Agent Applications permission: Access.",
+      "description": "+ **Access**: Displays the **Performance metrics** option in the **Apps** dropdown menu in the agent workspace. For more information, see [Agent workspace performance dashboard](performance-dashboard-aw.md). (`Analytics.PerformanceMetrics.Access`)",
+      "metricCategory": "Security profile permission (Agent Applications)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "{{Performance metrics}}",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#agentapplications.worklist",
+      "name": "{{Worklist}}",
+      "anchor": "agentapplications-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#agentapplications-permissions-list",
+      "summary": "Agent Applications permission: Access.",
+      "description": "+ **Access**: Allows Agents to view the Worklist App that will display Contacts that can be Manually assigned. (`ManualAssignAnyContact.Enable`, `ManualAssignMyContacts.Enable`)",
+      "metricCategory": "Security profile permission (Agent Applications)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "{{Worklist}}",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contentmanagement.messagetemplates",
+      "name": "Message templates",
+      "anchor": "contentmanagement-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#contentmanagement-permissions-list",
+      "summary": "Content Management permission: View, Edit, Create, Delete.",
+      "description": "+ **View**: View a list of message templates in the Connect Customer admin website.\n+ **Edit**: Edit message templates.\n+ **Create**: Create message templates.\n+ **Delete**: Delete message templates by using the Connect Customer admin website.",
+      "metricCategory": "Security profile permission (Content Management)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Message templates",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#contentmanagement.quickresponses",
+      "name": "Quick responses",
+      "anchor": "contentmanagement-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#contentmanagement-permissions-list",
+      "summary": "Content Management permission: Create, Edit, View, Delete.",
+      "description": "+ **Create**: [Set up a knowledge base to store quick responses](setup-knowledgebase.md). [Create](create-quick-responses.md), [import](add-data.md), and [view the import history](view-import-history.md) of quick responses that are displayed in the agent workspace. (`ContentManagement.Create`)\n+ **Edit**: [Edit](edit-quick-responses.md), [import](add-data.md), and [view the import history](view-import-history.md) of quick responses that are displayed in the agent workspace. (`ContentManagement.Edit`)\n+ **View**: View a list of quick responses in the Connect Customer admin website. (`ContentManagement.View`)\n+ **Delete**: [Delete quick responses](delete-qr.md) by using the Connect Customer admin website. (`ContentManagement.Delete`)",
+      "metricCategory": "Security profile permission (Content Management)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Quick responses",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.audithistory",
+      "name": "Audit History",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: View.",
+      "description": "+ **View**: View the audit history of cases in the agent workspace. (`CaseHistory.View`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Audit History",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.cases",
+      "name": "Cases",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Create, View, Edit, Delete.",
+      "description": "+ **Create**: [Create cases in the agent workspace](create-cases.md). (`Cases.Create`)\n+ **View**: View cases in the agent workspace. (`Cases.View`)\n+ **Edit**: Edit cases in the agent workspace. (`Cases.Edit`)\n+ **Delete**: Delete any case in the domain. (`Cases.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Cases",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.casefields",
+      "name": "Case Fields",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Create, View, Edit.",
+      "description": "+ **Create**: [Create case fields](case-fields.md). (`CaseFields.Create`)\n+ **View**: View case fields. (`CaseFields.View`)\n+ **Edit**: Edit case fields. (`CaseFields.Edit`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Case Fields",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.casetemplates",
+      "name": "Case Templates",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Create, View, Edit.",
+      "description": "+ **Create**: [Create case templates](case-templates.md). (`CaseTemplates.Create`)\n+ **View**: View case templates. (`CaseTemplates.View`)\n+ **Edit**: Edit case templates. (`CaseTemplates.Edit`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Case Templates",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.mycases",
+      "name": "My Cases",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Delete.",
+      "description": "+ **Delete**: Delete cases the user created. (`MyCases.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "My Cases",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.casecomments",
+      "name": "Case Comments",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Edit, Delete.",
+      "description": "+ **Edit**: Edit any comment on a case. (`CaseComments.Edit`)\n+ **Delete**: Delete any comment on a case. (`CaseComments.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Case Comments",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.mycasecomments",
+      "name": "My Case Comments",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Edit, Delete.",
+      "description": "+ **Edit**: Edit comments the user authored. (`MyCaseComments.Edit`)\n+ **Delete**: Delete comments the user authored. (`MyCaseComments.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "My Case Comments",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.casecustomrelateditems",
+      "name": "Case Custom Related Items",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Edit, Delete.",
+      "description": "+ **Edit**: Edit any custom related item on a case. (`CaseCustomRelatedItems.Edit`)\n+ **Delete**: Delete any custom related item from a case. (`CaseCustomRelatedItems.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Case Custom Related Items",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.mycasecustomrelateditems",
+      "name": "My Case Custom Related Items",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Edit, Delete.",
+      "description": "+ **Edit**: Edit custom related items the user created. (`MyCaseCustomRelatedItems.Edit`)\n+ **Delete**: Delete custom related items the user created. (`MyCaseCustomRelatedItems.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "My Case Custom Related Items",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.casecontacts",
+      "name": "Case Contacts",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Delete.",
+      "description": "+ **Delete**: Remove any contact associated with a case. (`CaseContacts.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Case Contacts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.mycasecontacts",
+      "name": "My Case Contacts",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Delete.",
+      "description": "+ **Delete**: Remove contact associations the user created. (`MyCaseContacts.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "My Case Contacts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#cases.casefiles",
+      "name": "Case Files",
+      "anchor": "cases-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#cases-permissions-list",
+      "summary": "Cases permission: Delete.",
+      "description": "+ **Delete**: Delete any file attached to a case. (`CaseFiles.Delete`)",
+      "metricCategory": "Security profile permission (Cases)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Case Files",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "security-profile-list#outboundcampaigns.campaigns",
+      "name": "Campaigns",
+      "anchor": "campaigns-permissions-list",
+      "sourceSlug": "security-profile-list",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html#campaigns-permissions-list",
+      "summary": "Outbound Campaigns permission: Create, Delete, Edit, Manage, View.",
+      "description": "+ **Create**: [Create outbound campaigns](how-to-create-campaigns.md). (`Campaigns.Create`)\n+ **Delete**: Delete outbound campaigns. (`Campaigns.Delete`)\n+ **Edit**: Edit outbound campaigns. (`Campaigns.Edit`)\n+ **Manage**: Manage outbound campaigns. (`Campaigns.Delete`)\n+ **View**: View outbound campaigns.",
+      "metricCategory": "Security profile permission (Outbound Campaigns)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "securityprofile",
+          "label": "Campaigns",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
     },
     {
       "id": "custom#contact-status",

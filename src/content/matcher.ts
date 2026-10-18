@@ -32,6 +32,14 @@ const NON_HEADER_HINT = /cell|value|input|button|option|menu|breadcrumb|nav/i;
 
 const SKIP_SELECTOR = ['input', 'textarea', 'select', 'option', 'script', 'style', 'svg', '[contenteditable]', `#${HOST_ID}`].join(',');
 
+/**
+ * Surfaces whose labels are plain text rather than table headers (e.g. permission names on the
+ * security profile editor). There, any short leaf text that exactly equals one of the surface's own
+ * labels is matched, excluding navigation, links, buttons and form controls.
+ */
+const LOOSE_SURFACES: ReadonlySet<PageSurface> = new Set<PageSurface>(['securityprofile']);
+const LOOSE_SKIP = 'nav,[role="navigation"],aside,a,button,[role="tab"],[role="menuitem"],[role="option"],label,input,textarea,select';
+
 export interface Match {
   element: Element;
   ids: string[];
@@ -69,9 +77,10 @@ export function shadowRootsUnder(root: ParentNode, out: ShadowRoot[] = []): Shad
 
 export function createScanner(index: MetricIndex, getSurface: () => PageSurface, options: ScannerOptions = {}): Scanner {
   const knownShadowRoots = new Set<ShadowRoot>();
-  function candidates(root: ParentNode): Element[] {
-    // Only table headers, headings and header-like elements (by role, tag or class hint) are considered.
-    const selector = `${HEADER_SELECTOR},[class],[data-testid]`;
+  function candidates(root: ParentNode, loose: boolean): Element[] {
+    // Only table headers, headings and header-like elements (by role, tag or class hint) are considered,
+    // unless the surface is "loose", where every element is a candidate and the exact-label rule filters.
+    const selector = loose ? '*' : `${HEADER_SELECTOR},[class],[data-testid]`;
     const list: Element[] = [];
     if (root instanceof Element && root.matches(selector)) list.push(root);
     list.push(...root.querySelectorAll(selector));
@@ -105,16 +114,21 @@ export function createScanner(index: MetricIndex, getSurface: () => PageSurface,
 
   function scanOne(root: ParentNode, out: Match[]): void {
       const surface = getSurface();
-      for (const el of candidates(root)) {
+      const loose = LOOSE_SURFACES.has(surface);
+      for (const el of candidates(root, loose)) {
         if (el.closest(SKIP_SELECTOR)) continue;
         if (el.hasAttribute(ATTR) || el.closest(`[${ATTR}]`) || el.querySelector(`[${ATTR}]`)) continue;
-        if (!isHeaderLike(el)) continue;
+        if (loose) {
+          if (el.closest(LOOSE_SKIP)) continue;
+        } else if (!isHeaderLike(el)) continue;
         const text = ownText(el);
         if (!text || text.length > MAX_LABEL_CHARS) continue;
         if (!index.mightMatch(text)) continue;
         const key = normalizeLabel(text);
         const found = index.lookup(key, surface);
         if (!found.length) continue;
+        // In loose mode only the surface's own labels count; other surfaces' words must not tag body text.
+        if (loose && !found.some((c) => c.rank === 0)) continue;
         const target = innermost(el, key);
         if (target.hasAttribute(ATTR)) continue;
         const ids = found.map((c) => c.metric.id);

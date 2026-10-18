@@ -12,6 +12,8 @@ export interface Alias {
   metricId: string;
   surface: Surface;
   label: string;
+  /** Only match on that surface (see UiLabel.surfaceOnly). */
+  surfaceOnly?: boolean;
 }
 
 /** Hand-written corrections applied on top of the generated data. */
@@ -44,6 +46,7 @@ export class MetricIndex {
     contactsearch: new Map(),
     routingprofile: new Map(),
     quickconnect: new Map(),
+    securityprofile: new Map(),
   };
   private readonly byName = new Map<string, Candidate[]>();
   private readonly patterns: PatternEntry[] = [];
@@ -55,7 +58,9 @@ export class MetricIndex {
     overrides: Overrides = {},
   ) {
     const extra = new Map<string, UiLabel[]>();
-    for (const a of overrides.aliases ?? []) push(extra, a.metricId, { surface: a.surface, label: a.label });
+    for (const a of overrides.aliases ?? []) {
+      push(extra, a.metricId, { surface: a.surface, label: a.label, ...(a.surfaceOnly ? { surfaceOnly: true } : {}) });
+    }
     const suppressed = new Set((overrides.suppress ?? []).map((a) => `${a.metricId}|${a.surface}|${normalizeLabel(a.label)}`));
     for (const metric of data.metrics) {
       for (const uiLabel of [...metric.uiLabels, ...(extra.get(metric.id) ?? [])]) {
@@ -103,7 +108,7 @@ export class MetricIndex {
     if (!key) return [];
     const found: Candidate[] = [];
 
-    const all: Surface[] = ['realtime', 'historical', 'dashboard', 'contactsearch', 'routingprofile', 'quickconnect'];
+    const all: Surface[] = ['realtime', 'historical', 'dashboard', 'contactsearch', 'routingprofile', 'quickconnect', 'securityprofile'];
     const order: Surface[] = surface === 'unknown' ? all : [surface, ...all.filter((s) => s !== surface)];
 
     order.forEach((s, i) => {

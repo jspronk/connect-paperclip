@@ -1,5 +1,5 @@
 {
-  "$comment": "Hand-written corrections to the docs data, verified against a live instance on 2026-10-17. aliases: console labels the docs do not list. suppress: docs labels that are wrong (e.g. copy/paste errors in the AWS page).",
+  "$comment": "Hand-written corrections to the docs data, verified against a live instance on 2026-10-17. aliases: console labels the docs do not list. suppress: docs labels that are wrong (e.g. copy/paste errors in the AWS page). Security profile aliases map the console's current permission spellings (e.g. 'Contact Lens ...') to the docs' names; ids are security-profile-list#<section>.<permission> with non-alphanumerics removed.",
   "aliases": [
     {
       "metricId": "metrics-definitions#agent-activity-state-real-time",
@@ -10,6 +10,126 @@
       "metricId": "metrics-definitions#duration-real-time",
       "surface": "realtime",
       "label": "Duration"
+    },
+    {
+      "metricId": "security-profile-list#routing.datatables",
+      "surface": "securityprofile",
+      "label": "Data table",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#usersandpermissions.workspaces",
+      "surface": "securityprofile",
+      "label": "Workspace",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#contactcontrolpanelccp.conversationalanalyticsdata",
+      "surface": "securityprofile",
+      "label": "Contact Lens data",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#contactcontrolpanelccp.makeoutboundcalls",
+      "surface": "securityprofile",
+      "label": "Allow all outbound dialing",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#contactcontrolpanelccp.confirmationbeforeendingcontact",
+      "surface": "securityprofile",
+      "label": "Confirmation before end contact",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.conversationalanalytics",
+      "surface": "securityprofile",
+      "label": "Contact Lens - conversational analytics",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.conversationalanalyticspostcontactsummary",
+      "surface": "securityprofile",
+      "label": "Contact Lens - post-contact summary",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.conversationalanalyticscustomvocabularies",
+      "surface": "securityprofile",
+      "label": "Contact Lens - custom vocabularies",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.conversationalanalyticsthemedetection",
+      "surface": "securityprofile",
+      "label": "Contact Lens - theme detection",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.evaluationforms",
+      "surface": "securityprofile",
+      "label": "Evaluation forms - perform contact evaluations",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.evaluationforms",
+      "surface": "securityprofile",
+      "label": "Evaluation forms - manage form definitions",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.evaluationforms",
+      "surface": "securityprofile",
+      "label": "Evaluation forms - manage calibration sessions",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.evaluationforms",
+      "surface": "securityprofile",
+      "label": "Evaluation forms - view my received evaluations",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.forecastandscheduleinterval",
+      "surface": "securityprofile",
+      "label": "Forecast schedule interval",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#scheduling.timeoffrequests",
+      "surface": "securityprofile",
+      "label": "Time off",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#analyticsandoptimization.coaching",
+      "surface": "securityprofile",
+      "label": "Coaching - manage coaching sessions",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#agentapplications.performancemetrics",
+      "surface": "securityprofile",
+      "label": "Performance metrics",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#cases.mycases",
+      "surface": "securityprofile",
+      "label": "My cases (delete)",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#cases.cases",
+      "surface": "securityprofile",
+      "label": "Cases (delete)",
+      "surfaceOnly": true
+    },
+    {
+      "metricId": "security-profile-list#cases.mycasecontacts",
+      "surface": "securityprofile",
+      "label": "My case contacts (delete)",
+      "surfaceOnly": true
     }
   ],
   "suppress": [

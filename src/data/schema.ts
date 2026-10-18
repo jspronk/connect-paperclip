@@ -1,6 +1,6 @@
 /** Types for the generated src/data/metrics.json. Produced by scripts/build-metrics.ts. */
 
-export type Surface = 'realtime' | 'historical' | 'dashboard' | 'contactsearch' | 'routingprofile' | 'quickconnect';
+export type Surface = 'realtime' | 'historical' | 'dashboard' | 'contactsearch' | 'routingprofile' | 'quickconnect' | 'securityprofile';
 
 export interface UiLabel {
   surface: Surface;

@@ -14,5 +14,13 @@
     "fetchedAt": "2026-10-18T03:29:52.862Z",
     "sha256": "4627e3c13c7f9839a158982c15a8cc31c23434c0cc8d24cd6aa70acce30dcd5a",
     "bytes": 60723
+  },
+  "security-profile-list": {
+    "slug": "security-profile-list",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html",
+    "fetchedAt": "2026-10-18T04:36:58.127Z",
+    "sha256": "a6a360ede4242e98abf38bad9a01f7caa6377927752a05c6194e3a52c12b3b86",
+    "bytes": 49418
   }
 }

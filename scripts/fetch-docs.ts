@@ -12,7 +12,7 @@ import path from 'node:path';
 
 const BASE = 'https://docs.aws.amazon.com/connect/latest/adminguide/';
 /** Pages fetched by default: metric definitions, plus the contact record data model (Contact search columns). */
-const MAIN_PAGES = ['metrics-definitions', 'ctr-data-model'];
+const MAIN_PAGES = ['metrics-definitions', 'ctr-data-model', 'security-profile-list'];
 const FEATURE_PAGES = [
   'metric-primitive-definitions',
   'case-management-metrics',

@@ -6,6 +6,7 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseCtrMarkdown } from '../src/lib/parse-ctr';
 import { parseMetricsMarkdown } from '../src/lib/parse-docs';
+import { parseSecurityProfilesMarkdown } from '../src/lib/parse-security-profiles';
 import type { Metric, MetricsData, MetricsSource, Surface } from '../src/data/schema';
 import type { RawSourceMeta } from './fetch-docs';
 
@@ -21,7 +22,12 @@ async function main(): Promise<void> {
   for (const file of files) {
     const slug = file.replace(/\.md$/, '');
     const md = await readFile(path.join(rawDir, file), 'utf8');
-    const { metrics, warnings } = slug === 'ctr-data-model' ? parseCtrMarkdown(md, slug) : parseMetricsMarkdown(md, slug);
+    const { metrics, warnings } =
+      slug === 'ctr-data-model'
+        ? parseCtrMarkdown(md, slug)
+        : slug === 'security-profile-list'
+          ? parseSecurityProfilesMarkdown(md, slug)
+          : parseMetricsMarkdown(md, slug);
     for (const w of warnings) console.warn(`warn [${slug}] ${w.metric}: ${w.message}`);
     for (const m of metrics) {
       if (seenIds.has(m.id)) {
@@ -60,7 +66,7 @@ async function main(): Promise<void> {
 
   await writeFile(outPath, JSON.stringify(data, null, 2) + '\n', 'utf8');
 
-  const bySurface: Record<Surface, number> = { realtime: 0, historical: 0, dashboard: 0, contactsearch: 0, routingprofile: 0, quickconnect: 0 };
+  const bySurface: Record<Surface, number> = { realtime: 0, historical: 0, dashboard: 0, contactsearch: 0, routingprofile: 0, quickconnect: 0, securityprofile: 0 };
   let noLabel = 0;
   let noType = 0;
   for (const m of data.metrics) {
@@ -70,13 +76,14 @@ async function main(): Promise<void> {
   }
   console.log(`Wrote ${outPath}`);
   console.log(`  metrics: ${data.metrics.length} (${noLabel} without a UI label, ${noType} without a type)`);
-  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}, routing profile ${bySurface.routingprofile}, quick connect ${bySurface.quickconnect}`);
+  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}, routing profile ${bySurface.routingprofile}, quick connect ${bySurface.quickconnect}, security profile ${bySurface.securityprofile}`);
 }
 
 const SURFACE_TITLE: Partial<Record<Surface, string>> = {
   contactsearch: 'Contact search',
   routingprofile: 'Routing profile editor',
   quickconnect: 'Quick connects',
+  securityprofile: 'Security profile editor',
 };
 
 interface ColumnMap {

@@ -105,3 +105,37 @@ describe('scanner inside open shadow roots', () => {
     expect(innerRoot.querySelectorAll(`[${ATTR}]`)).toHaveLength(0);
   });
 });
+
+describe('loose matching on the security profile editor', () => {
+  it('tags plain-text permission names but not navigation links, buttons or action labels', () => {
+    document.body.innerHTML = `
+      <nav><ul><li><a href="/queues">Queues</a></li><li><a href="/routing-profiles">Routing profiles</a></li></ul></nav>
+      <main>
+        <h2>Routing (25/31)</h2>
+        <div role="group">
+          <div class="awsui_root"><span>Routing profiles</span></div>
+          <label><input type="checkbox" /><span>View</span></label>
+          <label><input type="checkbox" /><span>Edit</span></label>
+        </div>
+        <div role="group">
+          <div class="awsui_root"><span>Queues</span></div>
+          <button>Queues</button>
+        </div>
+        <p><span>Online</span></p>
+      </main>`;
+    const scanner = createScanner(index, () => 'securityprofile');
+    const matches = scanner.scan(document.body);
+    const tagged = [...document.querySelectorAll(`[${ATTR}]`)];
+    expect(tagged.map((e) => e.textContent)).toEqual(['Routing profiles', 'Queues']);
+    expect(tagged.every((e) => e.closest('main') && !e.closest('nav,button,label'))).toBe(true);
+    expect(matches).toHaveLength(2);
+    // "Online" is a real-time label; on this surface plain text must not match other surfaces' words.
+    expect(document.querySelector('p [' + ATTR + ']')).toBeNull();
+  });
+
+  it('does not tag the same words on a header-only surface', () => {
+    document.body.innerHTML = `<main><div role="group"><div class="awsui_root"><span>Routing profiles</span></div></div></main>`;
+    createScanner(index, () => 'realtime').scan(document.body);
+    expect(document.querySelectorAll(`[${ATTR}]`)).toHaveLength(0);
+  });
+});
