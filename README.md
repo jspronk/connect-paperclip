@@ -40,8 +40,9 @@ on the **Email addresses** page into links that open each flow in the flow edito
   header-like elements (`th`, `[role=columnheader]`, headings) whose text equals a known label,
   tags them, and shows a shadow-DOM tooltip on hover or keyboard focus. It looks inside open shadow
   roots too, which the Contact search and Phone numbers micro-frontends use.
-- Options let you switch to a broader "any short text" match mode, change the hover delay,
-  hide the dotted underline, expand calculation logic by default, or turn the flow links off.
+- Only table headers, headings and header-like elements are ever matched, and calculation logic
+  starts collapsed in the tooltip. Options let you change the hover delay, hide the dotted
+  underline, or turn the resource links off.
 
 ### Resource links on list pages (flows, routing profiles)
 
