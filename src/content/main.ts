@@ -1,6 +1,7 @@
 import type { MetricsData } from '../data/schema';
+import aliasesJson from '../data/aliases.json';
 import metricsJson from '../data/metrics.json';
-import { MetricIndex, type PageSurface } from '../lib/index';
+import { MetricIndex, type Alias, type PageSurface } from '../lib/index';
 import { loadSettings, onSettingsChanged, type Settings } from '../lib/settings';
 import { ATTR, HOST_ID, clearMatches, createScanner } from './matcher';
 import { detectSurface, isConnectAdminPage } from './surface';
@@ -13,7 +14,7 @@ async function main(): Promise<void> {
   if (document.getElementById(HOST_ID)) return; // already injected
 
   const data = metricsJson as MetricsData;
-  const index = new MetricIndex(data);
+  const index = new MetricIndex(data, aliasesJson.aliases as Alias[]);
   let settings: Settings = await loadSettings();
   let surface: PageSurface = detectSurface();
 
@@ -114,7 +115,8 @@ async function main(): Promise<void> {
       const byId = new Map(data.metrics.map((m) => [m.id, m]));
       candidates = ids.flatMap((id) => (byId.get(id) ? [{ metric: byId.get(id)!, uiLabel: null, rank: 2 as const }] : []));
     }
-    tooltip.show(el, candidates);
+    const nativeHint = el.closest('[title]')?.getAttribute('title')?.trim() ?? '';
+    tooltip.show(el, candidates, nativeHint);
   };
   document.addEventListener('mouseover', (e) => {
     if (!settings.enabled) return;

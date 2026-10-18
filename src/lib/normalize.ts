@@ -41,8 +41,12 @@ export function markdownToPlain(md: string): string {
 export function labelToPattern(label: string): string | undefined {
   const plain = markdownToPlain(label);
   if (!/(^|\s)X(\s|$)/.test(plain)) return undefined;
+  // "X" stands for a number; the console may append a unit ("SL 60 secs"), and when the docs label
+  // itself ends in "seconds" the console may omit or abbreviate it.
   const src = normalizeLabel(plain)
     .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    .replace(/(^|\s)x(?=\s|$)/g, '$1\\d+');
+    .replace(/(^|\s)x(?=\s|$)/g, '$1<<X>>')
+    .replace(/<<X>> (?:secs?|seconds?)(?=\s|$)/g, '<<X>>')
+    .replace(/<<X>>/g, '\\d+(?: ?(?:s|secs?|seconds?))?');
   return `^${src}$`;
 }

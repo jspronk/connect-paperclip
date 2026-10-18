@@ -7,6 +7,13 @@ import { normalizeLabel } from './normalize';
 
 export type PageSurface = Surface | 'unknown';
 
+/** A console label not listed in the docs, mapped to a metric by hand (src/data/aliases.json). */
+export interface Alias {
+  metricId: string;
+  surface: Surface;
+  label: string;
+}
+
 export interface Candidate {
   metric: Metric;
   uiLabel: UiLabel | null;
@@ -31,9 +38,14 @@ export class MetricIndex {
   /** Every normalized exact label, for a cheap "could this text be a label at all" check. */
   private readonly allKeys = new Set<string>();
 
-  constructor(public readonly data: MetricsData) {
+  constructor(
+    public readonly data: MetricsData,
+    aliases: Alias[] = [],
+  ) {
+    const extra = new Map<string, UiLabel[]>();
+    for (const a of aliases) push(extra, a.metricId, { surface: a.surface, label: a.label });
     for (const metric of data.metrics) {
-      for (const uiLabel of metric.uiLabels) {
+      for (const uiLabel of [...metric.uiLabels, ...(extra.get(metric.id) ?? [])]) {
         if (uiLabel.pattern) {
           this.patterns.push({ regex: new RegExp(uiLabel.pattern, 'i'), metric, uiLabel });
           continue;

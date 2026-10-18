@@ -69,6 +69,13 @@
   .badge[data-surface="dashboard"] { background: #5a3a00; color: #ffe2b0; }
   .badge[data-surface="name"] { background: #3a3f46; color: #ddd; }
 }
+.hint {
+  margin: 0 0 8px;
+  padding: 6px 8px;
+  border-left: 3px solid #0972d3;
+  background: rgba(9, 114, 211, 0.06);
+  font-size: 12px;
+}
 .qualifier {
   font-style: italic;
   opacity: 0.8;

@@ -33,9 +33,16 @@ describe('labelToPattern', () => {
   });
   it('builds anchored case-insensitive patterns for X placeholders', () => {
     const p = labelToPattern('SL *X*')!;
-    expect(p).toBe('^sl \\d+$');
-    expect(new RegExp(p, 'i').test(normalizeLabel('SL 60'))).toBe(true);
-    expect(new RegExp(p, 'i').test(normalizeLabel('SL'))).toBe(false);
-    expect(labelToPattern('Contacts answered in X seconds')).toBe('^contacts answered in \\d+ seconds$');
+    expect(p).toBe('^sl \\d+(?: ?(?:s|secs?|seconds?))?$');
+    const re = new RegExp(p, 'i');
+    expect(re.test(normalizeLabel('SL 60'))).toBe(true);
+    expect(re.test(normalizeLabel('SL 60 secs'))).toBe(true);
+    expect(re.test(normalizeLabel('SL'))).toBe(false);
+    expect(re.test(normalizeLabel('SL 60 secs extra'))).toBe(false);
+    const answered = new RegExp(labelToPattern('Contacts answered in X seconds')!, 'i');
+    expect(answered.test('contacts answered in 30 seconds')).toBe(true);
+    expect(answered.test('contacts answered in 30 secs')).toBe(true);
+    expect(answered.test('contacts answered in 30')).toBe(true);
+    expect(answered.test('contacts answered in')).toBe(false);
   });
 });

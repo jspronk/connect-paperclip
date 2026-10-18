@@ -1,0 +1,7 @@
+{
+  "$comment": "Console labels that the AWS docs do not list verbatim. Key: metric id from metrics.json. Verified against a live instance on 2026-10-17.",
+  "aliases": [
+    { "metricId": "metrics-definitions#agent-activity-state-real-time", "surface": "realtime", "label": "Activity" },
+    { "metricId": "metrics-definitions#duration-real-time", "surface": "realtime", "label": "Duration" }
+  ]
+}

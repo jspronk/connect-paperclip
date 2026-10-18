@@ -27,9 +27,19 @@ export const DEFAULT_SETTINGS: Settings = {
 
 const KEY = 'settings';
 
-export async function loadSettings(): Promise<Settings> {
+function storage(): typeof chrome.storage | undefined {
   try {
-    const stored = await chrome.storage.sync.get(KEY);
+    return typeof chrome !== 'undefined' && chrome.storage ? chrome.storage : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export async function loadSettings(): Promise<Settings> {
+  const st = storage();
+  if (!st) return { ...DEFAULT_SETTINGS };
+  try {
+    const stored = await st.sync.get(KEY);
     return { ...DEFAULT_SETTINGS, ...((stored[KEY] as Partial<Settings> | undefined) ?? {}) };
   } catch {
     return { ...DEFAULT_SETTINGS };
@@ -39,12 +49,14 @@ export async function loadSettings(): Promise<Settings> {
 export async function saveSettings(patch: Partial<Settings>): Promise<Settings> {
   const current = await loadSettings();
   const next = { ...current, ...patch };
-  await chrome.storage.sync.set({ [KEY]: next });
+  await storage()?.sync.set({ [KEY]: next });
   return next;
 }
 
 export function onSettingsChanged(cb: (settings: Settings) => void): void {
-  chrome.storage.onChanged.addListener((changes, area) => {
+  const st = storage();
+  if (!st) return;
+  st.onChanged.addListener((changes, area) => {
     if (area !== 'sync' || !changes[KEY]) return;
     cb({ ...DEFAULT_SETTINGS, ...((changes[KEY].newValue as Partial<Settings> | undefined) ?? {}) });
   });

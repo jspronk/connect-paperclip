@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T02:22:01.059Z",
+  "generatedAt": "2026-10-18T02:30:15.459Z",
   "sources": [
     {
       "slug": "metrics-definitions",
@@ -4134,12 +4134,12 @@
         {
           "surface": "realtime",
           "label": "Contacts answered in X seconds",
-          "pattern": "^contacts answered in \\d+ seconds$"
+          "pattern": "^contacts answered in \\d+(?: ?(?:s|secs?|seconds?))?$"
         },
         {
           "surface": "historical",
           "label": "Contacts answered in X seconds",
-          "pattern": "^contacts answered in \\d+ seconds$"
+          "pattern": "^contacts answered in \\d+(?: ?(?:s|secs?|seconds?))?$"
         }
       ],
       "extraSections": {},
@@ -4632,7 +4632,7 @@
         {
           "surface": "historical",
           "label": "Contacts Resolved in X",
-          "pattern": "^contacts resolved in \\d+$"
+          "pattern": "^contacts resolved in \\d+(?: ?(?:s|secs?|seconds?))?$"
         }
       ],
       "extraSections": {},
@@ -5771,12 +5771,12 @@
         {
           "surface": "realtime",
           "label": "SL X",
-          "pattern": "^sl \\d+$"
+          "pattern": "^sl \\d+(?: ?(?:s|secs?|seconds?))?$"
         },
         {
           "surface": "historical",
           "label": "Service level X",
-          "pattern": "^service level \\d+$"
+          "pattern": "^service level \\d+(?: ?(?:s|secs?|seconds?))?$"
         }
       ],
       "extraSections": {},

@@ -75,8 +75,8 @@ describe('parseMetricsMarkdown', () => {
   it('turns templated labels into patterns', () => {
     const m = byName['Service level X']!;
     expect(m.uiLabels).toEqual([
-      { surface: 'realtime', label: 'SL X', pattern: '^sl \\d+$' },
-      { surface: 'historical', label: 'Service level X', pattern: '^service level \\d+$' },
+      { surface: 'realtime', label: 'SL X', pattern: '^sl \\d+(?: ?(?:s|secs?|seconds?))?$' },
+      { surface: 'historical', label: 'Service level X', pattern: '^service level \\d+(?: ?(?:s|secs?|seconds?))?$' },
     ]);
   });
 

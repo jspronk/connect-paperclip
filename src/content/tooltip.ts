@@ -18,6 +18,7 @@ export class Tooltip {
   private readonly tip: HTMLDivElement;
   private anchor: Element | null = null;
   private candidates: Candidate[] = [];
+  private nativeHint = '';
   private selected = 0;
   private hideTimer: number | undefined;
 
@@ -53,11 +54,12 @@ export class Tooltip {
     return this.anchor;
   }
 
-  show(anchor: Element, candidates: Candidate[]): void {
+  show(anchor: Element, candidates: Candidate[], nativeHint = ''): void {
     if (!candidates.length) return;
     this.cancelHide();
     this.anchor = anchor;
     this.candidates = candidates;
+    this.nativeHint = nativeHint;
     this.selected = 0;
     this.render();
     this.tip.hidden = false;
@@ -127,6 +129,13 @@ export class Tooltip {
       q.className = 'qualifier';
       q.textContent = `Shown as “${uiLabel.label}” ${uiLabel.qualifier}`;
       this.tip.append(q);
+    }
+
+    if (this.nativeHint) {
+      const hint = document.createElement('p');
+      hint.className = 'hint';
+      hint.textContent = this.nativeHint;
+      this.tip.append(hint);
     }
 
     const body = document.createElement('div');

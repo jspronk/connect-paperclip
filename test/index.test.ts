@@ -50,6 +50,14 @@ describe('MetricIndex', () => {
     expect(index.mightMatch('adherence')).toBe(true);
   });
 
+  it('accepts hand-written aliases for console labels', () => {
+    const withAlias = new MetricIndex(data, [
+      { metricId: 'metrics-definitions#agent-activity-state-real-time', surface: 'realtime', label: 'Activity' },
+    ]);
+    expect(withAlias.lookup('Activity', 'realtime')[0]!.metric.name).toBe('Agent Activity');
+    expect(index.lookup('Activity', 'realtime')).toEqual([]);
+  });
+
   it('collapses duplicate metrics to their best rank', () => {
     // "Adherence" is both a historical label and the metric name.
     const c = index.lookup('Adherence', 'historical');
