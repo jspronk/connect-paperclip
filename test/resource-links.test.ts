@@ -14,10 +14,12 @@ import {
   resourceKey,
   undecorate,
   type FlowMaps,
-} from '../src/content/features/flow-links';
+  routingProfileUrl,
+} from '../src/content/features/resource-links';
 
 const html = readFileSync(path.join(__dirname, 'fixtures/phone-numbers-table.html'), 'utf8');
 const emailHtml = readFileSync(path.join(__dirname, 'fixtures/email-addresses-table.html'), 'utf8');
+const usersHtml = readFileSync(path.join(__dirname, 'fixtures/users-table.html'), 'utf8');
 const EMAIL_1 = 'arn:aws:connect:us-west-2:111122223333:instance/00000000-0000-0000-0000-000000000001/email-address/e1';
 const ORIGIN = 'https://alias.my.connect.aws';
 const INSTANCE = 'arn:aws:connect:us-west-2:111122223333:instance/00000000-0000-0000-0000-000000000001';
@@ -185,5 +187,41 @@ describe('decorate on a light-DOM Cloudscape Email addresses table', () => {
     // The email address link in column 2 is not touched.
     expect(document.querySelectorAll('tbody tr')[0]!.querySelectorAll('a')).toHaveLength(2);
     expect(decorate(document, maps, ORIGIN)).toBe(0);
+  });
+});
+
+describe('decorate on the User management table', () => {
+  beforeEach(() => {
+    document.body.innerHTML = usersHtml;
+  });
+
+  it('links Routing profile cells by username, falling back to the profile name', () => {
+    const maps = createMaps();
+    handleMessage(maps, {
+      source: 'connect-metrics-helper',
+      type: 'users',
+      items: [
+        { username: 'Agent.One@example.test', routingProfileId: '8d6ab8f5-690d-4853-962c-b0bbc363ae4d', routingProfileName: 'FUNC' },
+        { username: 'agent.two@example.test', routingProfileId: '11111111-2222-3333-4444-555555555555', routingProfileName: 'Basic Routing Profile' },
+      ],
+    });
+    expect(decorate(document, maps, ORIGIN)).toBe(3);
+    const anchors = [...document.querySelectorAll<HTMLAnchorElement>(`a[${FLOW_ATTR}]`)];
+    expect(anchors.map((a) => [a.textContent, a.getAttribute('href')])).toEqual([
+      ['FUNC', routingProfileUrl('8d6ab8f5-690d-4853-962c-b0bbc363ae4d', ORIGIN)],
+      ['Basic Routing Profile', routingProfileUrl('11111111-2222-3333-4444-555555555555', ORIGIN)],
+      // Third row's username is unknown; resolved through the profile name instead.
+      ['FUNC', routingProfileUrl('8d6ab8f5-690d-4853-962c-b0bbc363ae4d', ORIGIN)],
+    ]);
+    expect(anchors[0]!.title).toBe('Open this routing profile');
+    // Username links and other cells are untouched.
+    expect(document.querySelectorAll('tbody tr')[0]!.querySelectorAll('a')).toHaveLength(2);
+    expect(decorate(document, maps, ORIGIN)).toBe(0);
+  });
+
+  it('only activates on the users route among the new pages', () => {
+    expect(pageConfig({ pathname: '/users' })).toBeDefined();
+    expect(pageConfig({ pathname: '/users/4aefa550' })).toBeDefined();
+    expect(pageConfig({ pathname: '/user-management' })).toBeUndefined();
   });
 });

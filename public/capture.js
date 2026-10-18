@@ -4,12 +4,12 @@
  * Runs in the page's own JavaScript world (manifest "world": "MAIN", run_at document_start) as a
  * plain, synchronous script, so window.fetch and XMLHttpRequest are wrapped before any page script runs.
  *
- * The Connect admin website fetches phone numbers, email addresses and their flow associations
+ * The Connect admin website fetches phone numbers, email addresses, users and flow associations
  * from internal endpoints that reject requests made by anyone but the page itself. Rather than
- * replicate those calls, this script watches the page's own fetch responses and forwards a reduced
- * copy (phone number / email address <-> resource ARN, resource ARN <-> flow ARN) to the extension's
- * content script via window.postMessage. Nothing is sent anywhere else and responses are never
- * modified.
+ * replicate those calls, this script watches the page's own fetch/XHR responses and forwards a
+ * reduced copy (phone number / email address <-> resource ARN, resource ARN <-> flow ARN,
+ * username <-> routing profile id/name) to the extension's content script via window.postMessage.
+ * Nothing is sent anywhere else and responses are never modified.
  *
  * Kept as hand-written plain JS on purpose: the bundler's content-script loader is asynchronous,
  * which would race the page's first requests.
@@ -39,7 +39,8 @@
     return (
       path.indexOf('/api-proxy/connect/phone-number/list') !== -1 ||
       path.indexOf('/api-proxy/connect/search-email-addresses') !== -1 ||
-      path.indexOf('/api-proxy/connect/flow-associations-batch/') !== -1
+      path.indexOf('/api-proxy/connect/flow-associations-batch/') !== -1 ||
+      path.indexOf('/user-management/search-users') !== -1
     );
   }
 
@@ -48,6 +49,7 @@
     var isNumbers = path.indexOf('/api-proxy/connect/phone-number/list') !== -1;
     var isEmails = path.indexOf('/api-proxy/connect/search-email-addresses') !== -1;
     var isAssoc = path.indexOf('/api-proxy/connect/flow-associations-batch/') !== -1;
+    var isUsers = path.indexOf('/user-management/search-users') !== -1;
     var i, n, a, items;
     if (isNumbers && Array.isArray(body.ListPhoneNumbersSummaryList)) {
       items = [];
@@ -74,6 +76,17 @@
         }
       }
       if (items.length) post('email-addresses', items);
+    } else if (isUsers && Array.isArray(body.UserList)) {
+      // User management list: each user carries { RoutingProfile: { Id, Arn, Name } }.
+      items = [];
+      for (i = 0; i < body.UserList.length; i++) {
+        var u = body.UserList[i];
+        var rp = u && u.RoutingProfile;
+        if (u && typeof u.Username === 'string' && rp && typeof rp.Id === 'string') {
+          items.push({ username: u.Username, routingProfileId: rp.Id, routingProfileName: typeof rp.Name === 'string' ? rp.Name : '' });
+        }
+      }
+      if (items.length) post('users', items);
     } else if (isAssoc && Array.isArray(body.FlowAssociationSummaryList)) {
       items = [];
       for (i = 0; i < body.FlowAssociationSummaryList.length; i++) {
