@@ -157,5 +157,18 @@ describe('dashboard widget editor metric pickers', () => {
     createScanner(index, () => 'dashboard').scan(document.body);
     const tagged = [...document.querySelectorAll(`[${ATTR}]`)].map((e) => e.textContent);
     expect(tagged).toEqual(['Contacts handled', 'Contacts abandoned', 'Oldest']);
+
+    // Cloudscape disables pointer events on option text, so the hover event targets the <li>;
+    // the tagged label inside it must still be found.
+    const li = document.querySelector('li[role="option"]')!;
+    const seen: Array<Element | null> = [];
+    document.addEventListener('mouseover', (e) => seen.push(taggedFromEvent(e)), { once: true });
+    li.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+    expect(seen[0]?.textContent).toBe('Contacts abandoned');
+    // The same for the select trigger button.
+    const btn = document.querySelector('button')!;
+    document.addEventListener('mouseover', (e) => seen.push(taggedFromEvent(e)), { once: true });
+    btn.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+    expect(seen[1]?.textContent).toBe('Contacts handled');
   });
 });

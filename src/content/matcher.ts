@@ -188,12 +188,23 @@ export function clearMatches(roots: ParentNode | ParentNode[] = document): void 
   }
 }
 
-/** The tagged element for a DOM event, looking through shadow boundaries via composedPath(). */
+/**
+ * The tagged element for a DOM event, looking through shadow boundaries via composedPath().
+ * Some controls (Cloudscape options, buttons) disable pointer events on their inner text, so the
+ * event targets the container above the tagged span; in that case the single tagged descendant of
+ * the target counts.
+ */
 export function taggedFromEvent(e: Event): Element | null {
-  for (const n of e.composedPath()) {
+  const path = e.composedPath();
+  for (const n of path) {
     if (!(n instanceof Element)) continue;
     if (n.id === HOST_ID) return null;
     if (n.hasAttribute(ATTR)) return n;
+  }
+  const target = path.find((n): n is Element => n instanceof Element);
+  if (target && target.matches('[role="option"],[role="option"] *,button,button *,th,[role="columnheader"]')) {
+    const inner = target.querySelectorAll(`[${ATTR}]`);
+    if (inner.length === 1) return inner[0]!;
   }
   return null;
 }
