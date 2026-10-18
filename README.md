@@ -5,9 +5,10 @@ A Chrome extension (Manifest V3) that adds hover definitions to metric labels on
 Hover a column header such as **ACW**, **NPT**, **SL 60 secs** or **After contact work time**
 and get the official AWS definition, metric type and category, calculation logic, API identifier,
 and a link to the exact anchor in the AWS docs. On the **Contact search** page the column headers
-(default and optional) are explained from the contact record data model, and on the **routing
+(default and optional) are explained from the contact record data model, on the **routing
 profile editor** the Channel settings, Queues and Manual assignment headers are explained from the
-"Create a routing profile" guide.
+"Create a routing profile" guide, and on the **Quick connects** list, detail and edit views the
+headers and field labels are explained from the "Create quick connects" guide.
 
 All definitions are generated from the AWS Administrator Guide page
 [Metric definitions](https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html)
@@ -32,8 +33,8 @@ on the **Email addresses** page into links that open each flow in the flow edito
   `src/data/contact-search-columns.json` maps every Contact search column label to the field(s) that
   back it, with hand-written entries for the few console-only columns (Contact status, Contact
   duration, First contact flow, Is transferred out, Task template name) whose text comes from the
-  Contact search docs page. `src/data/routing-profile-columns.json` does the same for the routing
-  profile editor with text from the routing profile guide; its labels are marked surface-only so
+  Contact search docs page. `src/data/routing-profile-columns.json` and `src/data/quick-connect-columns.json` do the
+  same for the routing profile editor and the Quick connects pages; its labels are marked surface-only so
   generic words such as **Status** or **Channels** never match on other pages. The build picks up
   every `src/data/*-columns.json`.
 - The content script (`src/content/`) watches the page with a `MutationObserver`, matches
