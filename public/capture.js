@@ -1,5 +1,5 @@
 /**
- * Connect Metrics Helper: page-world capture script.
+ * Amazon Connect Paperclip: page-world capture script.
  *
  * Runs in the page's own JavaScript world (manifest "world": "MAIN", run_at document_start) as a
  * plain, synchronous script, so window.fetch and XMLHttpRequest are wrapped before any page script runs.
@@ -19,7 +19,7 @@
   if (window.__cmhCaptureInstalled) return;
   window.__cmhCaptureInstalled = true;
 
-  var SOURCE = 'connect-metrics-helper';
+  var SOURCE = 'connect-paperclip';
   var originalFetch = window.fetch;
   if (typeof originalFetch !== 'function') return;
 

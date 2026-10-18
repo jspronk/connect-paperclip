@@ -50,7 +50,7 @@ async function main(): Promise<void> {
   for (const slug of slugs) {
     const url = `${BASE}${slug}.md`;
     process.stdout.write(`Fetching ${url} ... `);
-    const res = await fetch(url, { headers: { 'user-agent': 'connect-metrics-helper docs fetcher' } });
+    const res = await fetch(url, { headers: { 'user-agent': 'amazon-connect-paperclip docs fetcher' } });
     if (!res.ok) {
       console.log(`FAILED (${res.status})`);
       process.exitCode = 1;

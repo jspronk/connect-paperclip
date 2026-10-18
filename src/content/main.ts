@@ -4,7 +4,7 @@ import { startResourceLinks } from './features/resource-links';
 import { startMetricTooltips } from './features/metric-tooltips';
 import { isConnectAdminPage } from './surface';
 
-const LOG = '[connect-metrics-helper]';
+const LOG = '[connect-paperclip]';
 
 async function main(): Promise<void> {
   if (!isConnectAdminPage()) return;

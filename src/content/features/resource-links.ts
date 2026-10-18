@@ -2,8 +2,8 @@ import type { Settings } from '../../lib/settings';
 import { createQueue, observeShadow, onElement, type Disposable } from '../dom';
 import type { FeatureContext } from './context';
 
-const LOG = '[connect-metrics-helper]';
-export const MESSAGE_SOURCE = 'connect-metrics-helper';
+const LOG = '[connect-paperclip]';
+export const MESSAGE_SOURCE = 'connect-paperclip';
 /** Attribute on anchors this feature creates. (Name kept from the first, flow-only version.) */
 export const FLOW_ATTR = 'data-cmh-flow';
 const STYLE_ID = 'cmh-flow-links-style';

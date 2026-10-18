@@ -1,6 +1,6 @@
-# Connect Metrics Helper
+# Amazon Connect Paperclip
 
-A Chrome extension (Manifest V3) that adds hover definitions to metric labels on the
+A Chrome extension (Manifest V3), formerly "Connect Metrics Helper", that adds hover definitions to metric labels on the
 **Amazon Connect Customer** admin website (the product formerly called Amazon Connect).
 Hover a column header such as **ACW**, **NPT**, **SL 60 secs** or **After contact work time**
 and get the official AWS definition, metric type and category, calculation logic, API identifier,

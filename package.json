@@ -1,5 +1,5 @@
 {
-  "name": "connect-metrics-helper",
+  "name": "amazon-connect-paperclip",
   "version": "0.1.0",
   "private": true,
   "description": "Chrome extension that adds hover definitions, sourced from the AWS docs, to metric labels on the Amazon Connect Customer admin website.",

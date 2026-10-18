@@ -9,7 +9,7 @@ import { detectSurface } from '../surface';
 import { Tooltip } from '../tooltip';
 import type { FeatureContext } from './context';
 
-const LOG = '[connect-metrics-helper]';
+const LOG = '[connect-paperclip]';
 
 /** Hover definitions for metric labels on Real-time, Historical and dashboard pages. */
 export function startMetricTooltips(ctx: FeatureContext): void {

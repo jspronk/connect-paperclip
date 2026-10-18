@@ -39,7 +39,7 @@ function mount(): ShadowRoot {
 
 function feed(maps: FlowMaps): void {
   handleMessage(maps, {
-    source: 'connect-metrics-helper',
+    source: 'connect-paperclip',
     type: 'phone-numbers',
     items: [
       { number: '+15550100001', arn: PHONE_1 },
@@ -48,7 +48,7 @@ function feed(maps: FlowMaps): void {
     ],
   });
   handleMessage(maps, {
-    source: 'connect-metrics-helper',
+    source: 'connect-paperclip',
     type: 'flow-associations',
     items: [
       { resourceArn: PHONE_1, flowArn: FLOW_A, resourceType: 'VOICE_PHONE_NUMBER' },
@@ -86,8 +86,8 @@ describe('flow-links helpers', () => {
     const maps = createMaps();
     expect(handleMessage(maps, { source: 'someone-else', type: 'phone-numbers', items: [] })).toBe(false);
     expect(handleMessage(maps, 'nope')).toBe(false);
-    expect(handleMessage(maps, { source: 'connect-metrics-helper', type: 'phone-numbers', items: [{ number: '+1 5', arn: 'x' }] })).toBe(true);
-    expect(handleMessage(maps, { source: 'connect-metrics-helper', type: 'phone-numbers', items: [{ number: '+1 5', arn: 'x' }] })).toBe(false);
+    expect(handleMessage(maps, { source: 'connect-paperclip', type: 'phone-numbers', items: [{ number: '+1 5', arn: 'x' }] })).toBe(true);
+    expect(handleMessage(maps, { source: 'connect-paperclip', type: 'phone-numbers', items: [{ number: '+1 5', arn: 'x' }] })).toBe(false);
   });
 });
 
@@ -115,12 +115,12 @@ describe('decorate on a shadow-rooted picasa table', () => {
   it('does nothing until both datasets have arrived, then links on the second pass', () => {
     const maps = createMaps();
     handleMessage(maps, {
-      source: 'connect-metrics-helper',
+      source: 'connect-paperclip',
       type: 'flow-associations',
       items: [{ resourceArn: PHONE_1, flowArn: FLOW_A, resourceType: 'VOICE_PHONE_NUMBER' }],
     });
     expect(decorate(root, maps, ORIGIN)).toBe(0);
-    handleMessage(maps, { source: 'connect-metrics-helper', type: 'phone-numbers', items: [{ number: '+15550100001', arn: PHONE_1 }] });
+    handleMessage(maps, { source: 'connect-paperclip', type: 'phone-numbers', items: [{ number: '+15550100001', arn: PHONE_1 }] });
     expect(decorate(root, maps, ORIGIN)).toBe(1);
   });
 
@@ -140,7 +140,7 @@ describe('decorate on a shadow-rooted picasa table', () => {
     feed(maps);
     decorate(root, maps, ORIGIN);
     handleMessage(maps, {
-      source: 'connect-metrics-helper',
+      source: 'connect-paperclip',
       type: 'flow-associations',
       items: [{ resourceArn: PHONE_1, flowArn: FLOW_B, resourceType: 'VOICE_PHONE_NUMBER' }],
     });
@@ -167,12 +167,12 @@ describe('decorate on a light-DOM Cloudscape Email addresses table', () => {
   it('links the Flow column by email address and leaves "-" cells alone', () => {
     const maps = createMaps();
     handleMessage(maps, {
-      source: 'connect-metrics-helper',
+      source: 'connect-paperclip',
       type: 'email-addresses',
       items: [{ address: 'DMV@example.test', arn: EMAIL_1 }],
     });
     handleMessage(maps, {
-      source: 'connect-metrics-helper',
+      source: 'connect-paperclip',
       type: 'flow-associations',
       items: [{ resourceArn: EMAIL_1, flowArn: FLOW_B, resourceType: 'INBOUND_EMAIL' }],
     });
@@ -198,7 +198,7 @@ describe('decorate on the User management table', () => {
   it('links Routing profile cells by username, falling back to the profile name', () => {
     const maps = createMaps();
     handleMessage(maps, {
-      source: 'connect-metrics-helper',
+      source: 'connect-paperclip',
       type: 'users',
       items: [
         { username: 'Agent.One@example.test', routingProfileId: '8d6ab8f5-690d-4853-962c-b0bbc363ae4d', routingProfileName: 'FUNC' },
