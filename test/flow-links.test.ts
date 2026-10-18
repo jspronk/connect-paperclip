@@ -10,11 +10,15 @@ import {
   editorUrl,
   handleMessage,
   isPhoneNumbersPage,
+  pageConfig,
+  resourceKey,
   undecorate,
   type FlowMaps,
 } from '../src/content/features/flow-links';
 
 const html = readFileSync(path.join(__dirname, 'fixtures/phone-numbers-table.html'), 'utf8');
+const emailHtml = readFileSync(path.join(__dirname, 'fixtures/email-addresses-table.html'), 'utf8');
+const EMAIL_1 = 'arn:aws:connect:us-west-2:111122223333:instance/00000000-0000-0000-0000-000000000001/email-address/e1';
 const ORIGIN = 'https://alias.my.connect.aws';
 const INSTANCE = 'arn:aws:connect:us-west-2:111122223333:instance/00000000-0000-0000-0000-000000000001';
 const FLOW_A = `${INSTANCE}/contact-flow/6ab6d57c-25dc-4b53-9d0c-733350bbdc05`;
@@ -62,10 +66,18 @@ describe('flow-links helpers', () => {
     expect(digitsOf('+1 555-010-0001')).toBe('15550100001');
   });
 
-  it('only runs on the Phone numbers route', () => {
+  it('only runs on the Phone numbers and Email addresses routes', () => {
     expect(isPhoneNumbersPage({ pathname: '/numbers' })).toBe(true);
     expect(isPhoneNumbersPage({ pathname: '/connect/numbers' })).toBe(true);
+    expect(pageConfig({ pathname: '/email-addresses' })?.shadowHost).toBeUndefined();
+    expect(pageConfig({ pathname: '/connect/email-addresses' })).toBeDefined();
+    expect(pageConfig({ pathname: '/real-time-metrics' })).toBeUndefined();
     expect(isPhoneNumbersPage({ pathname: '/real-time-metrics' })).toBe(false);
+  });
+
+  it('normalises resource keys for phones and emails', () => {
+    expect(resourceKey('+1 555-010-0001')).toBe('15550100001');
+    expect(resourceKey(' DMV@Example.test ')).toBe('dmv@example.test');
   });
 
   it('ignores messages from other sources and reports changes', () => {
@@ -142,5 +154,36 @@ describe('decorate on a shadow-rooted picasa table', () => {
     undecorate(root);
     expect(root.querySelector(`a[${FLOW_ATTR}]`)).toBeNull();
     expect(root.querySelectorAll('picasa-table-body picasa-table-row')[0]!.children[5]!.textContent).toBe('DEMO-Bootstrap');
+  });
+});
+
+describe('decorate on a light-DOM Cloudscape Email addresses table', () => {
+  beforeEach(() => {
+    document.body.innerHTML = emailHtml;
+  });
+
+  it('links the Flow column by email address and leaves "-" cells alone', () => {
+    const maps = createMaps();
+    handleMessage(maps, {
+      source: 'connect-metrics-helper',
+      type: 'email-addresses',
+      items: [{ address: 'DMV@example.test', arn: EMAIL_1 }],
+    });
+    handleMessage(maps, {
+      source: 'connect-metrics-helper',
+      type: 'flow-associations',
+      items: [{ resourceArn: EMAIL_1, flowArn: FLOW_B, resourceType: 'INBOUND_EMAIL' }],
+    });
+    expect(decorate(document, maps, ORIGIN)).toBe(1);
+    const a = document.querySelector<HTMLAnchorElement>(`a[${FLOW_ATTR}]`)!;
+    expect(a.textContent).toBe('DEMO-DMV-Email_Inbound');
+    expect(a.getAttribute('href')).toBe(editorUrl(FLOW_B, ORIGIN));
+    // The anchor replaces the innermost wrapper's text, keeping the Cloudscape cell wrappers.
+    expect(a.parentElement?.className).toBe('vaF4jlpXh265BjTcdd5QIw==');
+    // Second row has no flow.
+    expect(document.querySelectorAll('tbody tr')[1]!.querySelector(`a[${FLOW_ATTR}]`)).toBeNull();
+    // The email address link in column 2 is not touched.
+    expect(document.querySelectorAll('tbody tr')[0]!.querySelectorAll('a')).toHaveLength(2);
+    expect(decorate(document, maps, ORIGIN)).toBe(0);
   });
 });
