@@ -6,5 +6,13 @@
     "fetchedAt": "2026-10-18T02:17:47.611Z",
     "sha256": "cd5347ab2a4499ba970d2c319d146b1996114c724c3b39402ca8de4fed2dd3fe",
     "bytes": 261411
+  },
+  "ctr-data-model": {
+    "slug": "ctr-data-model",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html",
+    "fetchedAt": "2026-10-18T03:29:52.862Z",
+    "sha256": "4627e3c13c7f9839a158982c15a8cc31c23434c0cc8d24cd6aa70acce30dcd5a",
+    "bytes": 60723
   }
 }

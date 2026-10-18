@@ -1,6 +1,6 @@
 /** Types for the generated src/data/metrics.json. Produced by scripts/build-metrics.ts. */
 
-export type Surface = 'realtime' | 'historical' | 'dashboard';
+export type Surface = 'realtime' | 'historical' | 'dashboard' | 'contactsearch';
 
 export interface UiLabel {
   surface: Surface;
@@ -12,6 +12,8 @@ export interface UiLabel {
   qualifier?: string;
   /** Dashboard name when the docs give one, e.g. "Queue and agent performance dashboard". */
   dashboardName?: string;
+  /** Preferred position among several metrics sharing this label (lower first). */
+  order?: number;
 }
 
 export interface ApiAccess {

@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import aliases from '../src/data/aliases.json';
 import metricsJson from '../src/data/metrics.json';
 import type { MetricsData } from '../src/data/schema';
-import { ATTR, clearMatches, createScanner } from '../src/content/matcher';
+import { ATTR, clearMatches, createScanner, taggedFromEvent } from '../src/content/matcher';
 import { MetricIndex, type Overrides } from '../src/lib/index';
 
 const html = readFileSync(path.join(__dirname, 'fixtures/realtime-queues-table.html'), 'utf8');
@@ -77,5 +77,37 @@ describe('scanner on a live-shaped Real-time Queues table', () => {
     const labels = tagged().map(([t]) => t);
     expect(labels.filter((l) => l === 'Available')).toHaveLength(2);
     expect(document.querySelectorAll(`input[${ATTR}], option[${ATTR}]`)).toHaveLength(0);
+  });
+});
+
+describe('scanner inside open shadow roots', () => {
+  it('tags headers rendered in nested shadow roots and reports each root once', () => {
+    document.body.innerHTML = '';
+    const outer = document.createElement('contact-search-page');
+    document.body.append(outer);
+    const outerRoot = outer.attachShadow({ mode: 'open' });
+    const inner = document.createElement('contact-search-table-widget');
+    outerRoot.append(inner);
+    const innerRoot = inner.attachShadow({ mode: 'open' });
+    innerRoot.innerHTML = html;
+
+    const seen: ShadowRoot[] = [];
+    const scanner = createScanner(index, () => 'realtime', () => 'headers', { onShadowRoot: (r) => seen.push(r) });
+    const matches = scanner.scan(document.body);
+    expect(matches.map((m) => (m.element.textContent ?? '').trim()).sort()).toEqual(['ACW', 'Available', 'Duration', 'Online', 'SL 60 secs']);
+    expect(seen).toEqual([outerRoot, innerRoot]);
+    expect(scanner.scan(document.body)).toHaveLength(0);
+    expect(seen).toHaveLength(2);
+    expect(scanner.roots()).toEqual([document, outerRoot, innerRoot]);
+
+    // Events from inside the shadow tree resolve to the tagged element through composedPath().
+    const acw = innerRoot.querySelector(`[${ATTR}*="agent-after-contact-work"]`)!;
+    let resolved: Element | null = null;
+    document.addEventListener('mouseover', (e) => (resolved = taggedFromEvent(e)), { once: true });
+    acw.firstChild!.parentElement!.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+    expect(resolved).toBe(acw);
+
+    clearMatches(scanner.roots());
+    expect(innerRoot.querySelectorAll(`[${ATTR}]`)).toHaveLength(0);
   });
 });

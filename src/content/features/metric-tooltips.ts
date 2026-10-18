@@ -3,7 +3,7 @@ import aliasesJson from '../../data/aliases.json';
 import metricsJson from '../../data/metrics.json';
 import { MetricIndex, type Overrides, type PageSurface } from '../../lib/index';
 import type { Settings } from '../../lib/settings';
-import { ATTR, HINT_ATTR, HOST_ID, clearMatches, createScanner, findHint } from '../matcher';
+import { ATTR, HINT_ATTR, HOST_ID, clearMatches, createScanner, findHint, taggedFromEvent } from '../matcher';
 import { detectSurface } from '../surface';
 import { Tooltip } from '../tooltip';
 import type { FeatureContext } from './context';
@@ -19,23 +19,37 @@ export function startMetricTooltips(ctx: FeatureContext): void {
   let settings: Settings = ctx.settings;
   let surface: PageSurface = detectSurface();
 
+  const tooltip = new Tooltip(settings, data.generatedAt);
+
+  // Underline style for matched labels: one <style> in the document and one per shadow root,
+  // since page styles do not reach into shadow trees.
+  const UNDERLINE_CSS = `[${ATTR}]{text-decoration:underline dotted currentColor;text-decoration-thickness:1px;text-underline-offset:3px;cursor:help}`;
+  const styles: HTMLStyleElement[] = [];
+  const addStyle = (into: Document | ShadowRoot): void => {
+    const style = document.createElement('style');
+    style.id = `${HOST_ID}-style`;
+    style.textContent = settings.underline && settings.enabled ? UNDERLINE_CSS : '';
+    (into instanceof Document ? into.head : into).append(style);
+    styles.push(style);
+  };
+  addStyle(document);
+  const applyUnderline = (): void => {
+    for (const st of styles) st.textContent = settings.underline && settings.enabled ? UNDERLINE_CSS : '';
+  };
+
+  const OBSERVE_OPTS: MutationObserverInit = { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['title'] };
+  let observer: MutationObserver; // assigned below; shadow roots found during scanning are observed too
   const scanner = createScanner(
     index,
     () => surface,
     () => settings.matchMode,
+    {
+      onShadowRoot: (sr) => {
+        addStyle(sr);
+        observer.observe(sr, OBSERVE_OPTS);
+      },
+    },
   );
-  const tooltip = new Tooltip(settings, data.generatedAt);
-
-  // Underline style for matched labels, in the page (not the shadow root).
-  const style = document.createElement('style');
-  style.id = `${HOST_ID}-style`;
-  document.head.append(style);
-  const applyUnderline = (): void => {
-    style.textContent = settings.underline && settings.enabled
-      ? `[${ATTR}]{text-decoration:underline dotted currentColor;text-decoration-thickness:1px;text-underline-offset:3px;cursor:help}`
-      : '';
-  };
-  applyUnderline();
 
   // SPA route changes. Content scripts run in an isolated world, so patching history.pushState
   // would not see the page's router; instead re-check the URL whenever we scan, and on the
@@ -63,7 +77,7 @@ export function startMetricTooltips(ctx: FeatureContext): void {
     }
     if (refreshSurface()) {
       // Route changed under us: drop stale tags so they are re-ranked for the new surface.
-      clearMatches();
+      clearMatches(scanner.roots());
       pending.add(document.body);
     }
     const roots = [...pending];
@@ -80,12 +94,12 @@ export function startMetricTooltips(ctx: FeatureContext): void {
     if (timer === undefined) timer = window.setTimeout(flush, 150);
   };
   const rescanAll = (): void => {
-    clearMatches();
+    clearMatches(scanner.roots());
     pending.clear();
     queue(document.body);
   };
 
-  const observer = new MutationObserver((records) => {
+  observer = new MutationObserver((records) => {
     for (const r of records) {
       if (r.type === 'attributes') {
         // The console sets header "title" hints after the cell is inserted; cache them when they appear.
@@ -111,7 +125,7 @@ export function startMetricTooltips(ctx: FeatureContext): void {
       }
     }
   });
-  observer.observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['title'] });
+  observer.observe(document.body, OBSERVE_OPTS);
 
   const onRoute = (): void => {
     if (!refreshSurface()) return;
@@ -138,7 +152,7 @@ export function startMetricTooltips(ctx: FeatureContext): void {
   };
   document.addEventListener('mouseover', (e) => {
     if (!settings.enabled) return;
-    const el = (e.target as Element | null)?.closest?.(`[${ATTR}]`);
+    const el = taggedFromEvent(e);
     if (!el) return;
     if (tooltip.currentAnchor === el) {
       tooltip.cancelHide();
@@ -148,7 +162,7 @@ export function startMetricTooltips(ctx: FeatureContext): void {
     hoverTimer = window.setTimeout(() => open(el), settings.hoverDelay);
   });
   document.addEventListener('mouseout', (e) => {
-    const el = (e.target as Element | null)?.closest?.(`[${ATTR}]`);
+    const el = taggedFromEvent(e);
     if (!el) return;
     const to = e.relatedTarget as Node | null;
     if (to && el.contains(to)) return;
@@ -157,11 +171,11 @@ export function startMetricTooltips(ctx: FeatureContext): void {
   });
   document.addEventListener('focusin', (e) => {
     if (!settings.enabled) return;
-    const el = (e.target as Element | null)?.closest?.(`[${ATTR}]`);
+    const el = taggedFromEvent(e);
     if (el) open(el);
   });
   document.addEventListener('focusout', (e) => {
-    const el = (e.target as Element | null)?.closest?.(`[${ATTR}]`);
+    const el = taggedFromEvent(e);
     if (el && tooltip.currentAnchor === el) tooltip.scheduleHide();
   });
   document.addEventListener('keydown', (e) => {
@@ -176,7 +190,7 @@ export function startMetricTooltips(ctx: FeatureContext): void {
     applyUnderline();
     if (!next.enabled) {
       tooltip.hide();
-      clearMatches();
+      clearMatches(scanner.roots());
     } else if (modeChanged) {
       rescanAll();
     }

@@ -1,6 +1,14 @@
 {
-  "generatedAt": "2026-10-18T02:30:15.459Z",
+  "generatedAt": "2026-10-18T03:34:21.764Z",
   "sources": [
+    {
+      "slug": "ctr-data-model",
+      "url": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.md",
+      "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html",
+      "fetchedAt": "2026-10-18T03:29:52.862Z",
+      "sha256": "4627e3c13c7f9839a158982c15a8cc31c23434c0cc8d24cd6aa70acce30dcd5a",
+      "metricCount": 207
+    },
     {
       "slug": "metrics-definitions",
       "url": "https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.md",
@@ -11,6 +19,3310 @@
     }
   ],
   "metrics": [
+    {
+      "id": "ctr-data-model#Agent.AcceptedByAgentTimestamp",
+      "name": "Agent.AcceptedByAgentTimestamp",
+      "anchor": "AcceptedByAgentTimestamp-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#AcceptedByAgentTimestamp-CTR",
+      "summary": "The date and time the outbound campaigns voice contact in preview dialing mode was accepted by the agent, in UTC time.",
+      "description": "The date and time the outbound campaigns voice contact in preview dialing mode was accepted by the agent, in UTC time.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#Agent.AgentInteractionDuration",
+      "name": "Agent.AgentInteractionDuration",
+      "anchor": "AgentInteractionDuration-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#AgentInteractionDuration-CTR",
+      "summary": "The time, in whole seconds, that an agent interacted with a customer. For outbound calls, this is the time, in whole seconds, that an agent was connected to a contact, even if the customer is not present.",
+      "description": "The time, in whole seconds, that an agent interacted with a customer. For outbound calls, this is the time, in whole seconds, that an agent was connected to a contact, even if the customer is not present.\n\nThis does not include agent pause duration (which applies only to tasks).",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Agent interaction duration"
+        }
+      ],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Agent.AgentPauseDuration",
+      "name": "Agent.AgentPauseDuration",
+      "anchor": "AgentPauseDuration-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#AgentPauseDuration-CTR",
+      "summary": "The time, in whole seconds, that a task assigned to an agent was paused.",
+      "description": "The time, in whole seconds, that a task assigned to an agent was paused.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Agent.AfterContactWorkDuration",
+      "name": "Agent.AfterContactWorkDuration",
+      "anchor": "AfterContactWorkDuration-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#AfterContactWorkDuration-CTR",
+      "summary": "The difference in time, in whole seconds, between AfterContactWorkStartTimestamp and AfterContactWorkEndTimestamp.",
+      "description": "The difference in time, in whole seconds, between `AfterContactWorkStartTimestamp` and `AfterContactWorkEndTimestamp`.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Agent.AfterContactWorkEndTimestamp",
+      "name": "Agent.AfterContactWorkEndTimestamp",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The date and time when the agent stopped doing After Contact Work for the contact, in UTC time.",
+      "description": "The date and time when the agent stopped doing After Contact Work for the contact, in UTC time.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "ACW end timestamp"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#Agent.AfterContactWorkStartTimestamp",
+      "name": "Agent.AfterContactWorkStartTimestamp",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The date and time when the agent started doing After Contact Work for the contact, in UTC time.",
+      "description": "The date and time when the agent started doing After Contact Work for the contact, in UTC time.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "ACW start timestamp"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#Agent.ActiveRegion",
+      "name": "Agent.ActiveRegion",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The AWS Region where the agent handled the contact.",
+      "description": "The AWS Region where the agent handled the contact.\n\nThis value may differ from the Region in the agent ARN. For cross-region contacts routed via Connect Customer Global Resiliency, the Regions embedded in the CTR ARNs (for example, contact ARN, agent ARN, queue ARN) reflect the Region of the CTR stream itself; CTRs are generated in the Region where the contact originates. Meanwhile, the agent who handled the contact could have been connected to a different Region based on their Traffic Distribution Group configuration. For example, if a contact originates in `us-east-1` but is routed to an agent in `us-west-2` via cross-region routing for ACGR, the CTR for that contact is published from `us-east-1`, the contact's `OriginRegion` returns `us-east-1`, and the `ActiveRegion` field in the `Agent` object returns `us-west-2`.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#Agent.ARN",
+      "name": "Agent.ARN",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The Amazon Resource Name of the agent.",
+      "description": "The Amazon Resource Name of the agent.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ARN"
+    },
+    {
+      "id": "ctr-data-model#Agent.Capabilities",
+      "name": "Agent.Capabilities",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "Information about Agent's capabilities.",
+      "description": "Information about Agent's capabilities.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Capabilities"
+    },
+    {
+      "id": "ctr-data-model#Agent.ConnectedToAgentTimestamp",
+      "name": "Agent.ConnectedToAgentTimestamp",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The date and time the contact was connected to the agent, in UTC time.",
+      "description": "The date and time the contact was connected to the agent, in UTC time.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Connected to agent timestamp"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#Agent.CustomerHoldDuration",
+      "name": "Agent.CustomerHoldDuration",
+      "anchor": "CustomerHoldDuration-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#CustomerHoldDuration-CTR",
+      "summary": "The time, in whole seconds, that the customer spent on hold while connected to the agent.",
+      "description": "The time, in whole seconds, that the customer spent on hold while connected to the agent.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Agent.AgentInitiatedHoldDuration",
+      "name": "Agent.AgentInitiatedHoldDuration",
+      "anchor": "AgentInitiatedHoldDuration-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#AgentInitiatedHoldDuration-CTR",
+      "summary": "The total time, in whole seconds, that a specific agent placed a customer on hold. In multi-party scenarios, if Agent A puts a customer on hold and then drops from the call, and Agent B later takes the customer off hold, the remaining hold duration is attributed to Agent B.",
+      "description": "The total time, in whole seconds, that a specific agent placed a customer on hold. In multi-party scenarios, if Agent A puts a customer on hold and then drops from the call, and Agent B later takes the customer off hold, the remaining hold duration is attributed to Agent B.\n\nThe key distinction between CustomerHoldDuration and AgentInitiatedHoldDuration is:\n\n+ CustomerHoldDuration tracks all hold time from a customer's perspective.\n\n+ AgentInitiatedHoldDuration tracks hold time initiated by specific agents, making it especially valuable in multi-party call scenarios.\n\nFor non-multiparty scenarios, CustomerHoldDuration and AgentInitiatedHoldDuration will be the same.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Agent.DeviceInfo",
+      "name": "Agent.DeviceInfo",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "Information about agent's device.",
+      "description": "Information about agent's device.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "DeviceInfo"
+    },
+    {
+      "id": "ctr-data-model#Agent.HierarchyGroups",
+      "name": "Agent.HierarchyGroups",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The agent hierarchy groups for the agent.",
+      "description": "The agent hierarchy groups for the agent.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AgentHierarchyGroups"
+    },
+    {
+      "id": "ctr-data-model#Agent.LongestHoldDuration",
+      "name": "Agent.LongestHoldDuration",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The longest time, in whole seconds, that the customer was put on hold by the agent.",
+      "description": "The longest time, in whole seconds, that the customer was put on hold by the agent.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Agent.NumberOfHolds",
+      "name": "Agent.NumberOfHolds",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The number of times the customer was put on hold while connected to the agent.",
+      "description": "The number of times the customer was put on hold while connected to the agent.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Number of holds"
+        }
+      ],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Agent.PreviewEndTimestamp",
+      "name": "Agent.PreviewEndTimestamp",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The date and time the agent finishes previewing outbound campaigns voice contact in preview dialing mode, in UTC time.",
+      "description": "The date and time the agent finishes previewing outbound campaigns voice contact in preview dialing mode, in UTC time.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#Agent.RoutingProfile",
+      "name": "Agent.RoutingProfile",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The routing profile of the agent.",
+      "description": "The routing profile of the agent.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Routing profile"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "RoutingProfile"
+    },
+    {
+      "id": "ctr-data-model#Agent.Username",
+      "name": "Agent.Username",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The username of the agent.",
+      "description": "The username of the agent.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Agent",
+          "order": 1
+        },
+        {
+          "surface": "contactsearch",
+          "label": "Agent full name",
+          "qualifier": "the console shows the agent's name from their user record"
+        },
+        {
+          "surface": "contactsearch",
+          "label": "Agent first name",
+          "qualifier": "the console shows the agent's first name from their user record"
+        },
+        {
+          "surface": "contactsearch",
+          "label": "Agent last name",
+          "qualifier": "the console shows the agent's last name from their user record"
+        }
+      ],
+      "extraSections": {
+        "Length": "1-100"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#Agent.StateTransitions",
+      "name": "Agent.StateTransitions",
+      "anchor": "ctr-Agent",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Agent",
+      "summary": "The state transitions of a supervisor.",
+      "description": "The state transitions of a supervisor.",
+      "metricCategory": "Contact record field (Agent)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Array of StateTransitions."
+    },
+    {
+      "id": "ctr-data-model#AgentHierarchyGroup.ARN",
+      "name": "AgentHierarchyGroup.ARN",
+      "anchor": "ctr-AgentHierarchyGroup",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AgentHierarchyGroup",
+      "summary": "The Amazon Resource Name (ARN) of the group.",
+      "description": "The Amazon Resource Name (ARN) of the group.",
+      "metricCategory": "Contact record field (AgentHierarchyGroup)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ARN"
+    },
+    {
+      "id": "ctr-data-model#AgentHierarchyGroup.GroupName",
+      "name": "AgentHierarchyGroup.GroupName",
+      "anchor": "ctr-AgentHierarchyGroup",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AgentHierarchyGroup",
+      "summary": "The name of the hierarchy group.",
+      "description": "The name of the hierarchy group.",
+      "metricCategory": "Contact record field (AgentHierarchyGroup)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#AgentHierarchyGroups.Level1",
+      "name": "AgentHierarchyGroups.Level1",
+      "anchor": "ctr-AgentHierarchyGroups",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AgentHierarchyGroups",
+      "summary": "The group at level one of the agent hierarchy.",
+      "description": "The group at level one of the agent hierarchy.",
+      "metricCategory": "Contact record field (AgentHierarchyGroups)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AgentHierarchyGroup"
+    },
+    {
+      "id": "ctr-data-model#AgentHierarchyGroups.Level2",
+      "name": "AgentHierarchyGroups.Level2",
+      "anchor": "ctr-AgentHierarchyGroups",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AgentHierarchyGroups",
+      "summary": "The group at level two of the agent hierarchy.",
+      "description": "The group at level two of the agent hierarchy.",
+      "metricCategory": "Contact record field (AgentHierarchyGroups)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AgentHierarchyGroup"
+    },
+    {
+      "id": "ctr-data-model#AgentHierarchyGroups.Level3",
+      "name": "AgentHierarchyGroups.Level3",
+      "anchor": "ctr-AgentHierarchyGroups",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AgentHierarchyGroups",
+      "summary": "The group at level three of the agent hierarchy.",
+      "description": "The group at level three of the agent hierarchy.",
+      "metricCategory": "Contact record field (AgentHierarchyGroups)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AgentHierarchyGroup"
+    },
+    {
+      "id": "ctr-data-model#AgentHierarchyGroups.Level4",
+      "name": "AgentHierarchyGroups.Level4",
+      "anchor": "ctr-AgentHierarchyGroups",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AgentHierarchyGroups",
+      "summary": "The group at level four of the agent hierarchy.",
+      "description": "The group at level four of the agent hierarchy.",
+      "metricCategory": "Contact record field (AgentHierarchyGroups)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AgentHierarchyGroup"
+    },
+    {
+      "id": "ctr-data-model#AgentHierarchyGroups.Level5",
+      "name": "AgentHierarchyGroups.Level5",
+      "anchor": "ctr-AgentHierarchyGroups",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AgentHierarchyGroups",
+      "summary": "The group at level five of the agent hierarchy.",
+      "description": "The group at level five of the agent hierarchy.",
+      "metricCategory": "Contact record field (AgentHierarchyGroups)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AgentHierarchyGroup"
+    },
+    {
+      "id": "ctr-data-model#AttributeCondition.Name",
+      "name": "AttributeCondition.Name",
+      "anchor": "ctr-AttributeCondition",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AttributeCondition",
+      "summary": "The name of predefined attribute.",
+      "description": "The name of predefined attribute.",
+      "metricCategory": "Contact record field (AttributeCondition)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-64"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#AttributeCondition.Value",
+      "name": "AttributeCondition.Value",
+      "anchor": "ctr-AttributeCondition",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AttributeCondition",
+      "summary": "The value of predefined attribute.",
+      "description": "The value of predefined attribute.",
+      "metricCategory": "Contact record field (AttributeCondition)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-64"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#AttributeCondition.ComparisonOperator",
+      "name": "AttributeCondition.ComparisonOperator",
+      "anchor": "ctr-AttributeCondition",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AttributeCondition",
+      "summary": "The comparison operator of the condition.",
+      "description": "The comparison operator of the condition.",
+      "metricCategory": "Contact record field (AttributeCondition)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "NumberGreaterOrEqualTo, Match, Range"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#AttributeCondition.ProficiencyLevel",
+      "name": "AttributeCondition.ProficiencyLevel",
+      "anchor": "ctr-AttributeCondition",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AttributeCondition",
+      "summary": "The proficiency level of the condition.",
+      "description": "The proficiency level of the condition.",
+      "metricCategory": "Contact record field (AttributeCondition)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "1.0, 2.0, 3.0, 4.0 and 5.0"
+      },
+      "metricType": "Float"
+    },
+    {
+      "id": "ctr-data-model#AttributeCondition.Range",
+      "name": "AttributeCondition.Range",
+      "anchor": "ctr-AttributeCondition",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AttributeCondition",
+      "summary": "An Object to define the minimum and maximum proficiency levels.",
+      "description": "An Object to define the minimum and maximum proficiency levels.",
+      "metricCategory": "Contact record field (AttributeCondition)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Range object"
+    },
+    {
+      "id": "ctr-data-model#AttributeCondition.MatchCriteria",
+      "name": "AttributeCondition.MatchCriteria",
+      "anchor": "ctr-AttributeCondition",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AttributeCondition",
+      "summary": "An object to define AgentsCriteria.",
+      "description": "An object to define AgentsCriteria.",
+      "metricCategory": "Contact record field (AttributeCondition)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "MatchCriteria object"
+    },
+    {
+      "id": "ctr-data-model#AttributeCondition.AgentsCriteria",
+      "name": "AttributeCondition.AgentsCriteria",
+      "anchor": "ctr-AttributeCondition",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AttributeCondition",
+      "summary": "An Object to define agentIds.",
+      "description": "An Object to define agentIds.",
+      "metricCategory": "Contact record field (AttributeCondition)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Preferred agents"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "AgentsCriteria object"
+    },
+    {
+      "id": "ctr-data-model#AttributeCondition.AgentIds",
+      "name": "AttributeCondition.AgentIds",
+      "anchor": "ctr-AttributeCondition",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AttributeCondition",
+      "summary": "An object to specify a list of agents, by Agent ID.",
+      "description": "An object to specify a list of agents, by Agent ID.\n\nLength Constraints: Maximum length of 256",
+      "metricCategory": "Contact record field (AttributeCondition)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Preferred agents",
+          "order": 1
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Array of strings"
+    },
+    {
+      "id": "ctr-data-model#ContactMetrics.MultiParty",
+      "name": "ContactMetrics.MultiParty",
+      "anchor": "ctr-ContactMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactMetrics",
+      "summary": "A Boolean flag indicating whether multiparty chat or supervisor barge were enabled on this contact.",
+      "description": "A Boolean flag indicating whether multiparty chat or supervisor barge were enabled on this contact.",
+      "metricCategory": "Contact record field (ContactMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Boolean"
+    },
+    {
+      "id": "ctr-data-model#ContactMetrics.TotalMessages",
+      "name": "ContactMetrics.TotalMessages",
+      "anchor": "ctr-ContactMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactMetrics",
+      "summary": "The number of chat messages on the contact.",
+      "description": "The number of chat messages on the contact.",
+      "metricCategory": "Contact record field (ContactMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ContactMetrics.TotalBotMessages",
+      "name": "ContactMetrics.TotalBotMessages",
+      "anchor": "ctr-ContactMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactMetrics",
+      "summary": "The total number of bot and automated messages on a chat contact.",
+      "description": "The total number of bot and automated messages on a chat contact.",
+      "metricCategory": "Contact record field (ContactMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ContactMetrics.TotalBotMessageLengthInChars",
+      "name": "ContactMetrics.TotalBotMessageLengthInChars",
+      "anchor": "ctr-ContactMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactMetrics",
+      "summary": "The total number of characters from bot and automated messages on a chat contact.",
+      "description": "The total number of characters from bot and automated messages on a chat contact.",
+      "metricCategory": "Contact record field (ContactMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ContactMetrics.ConversationCloseTimeInMillis",
+      "name": "ContactMetrics.ConversationCloseTimeInMillis",
+      "anchor": "ctr-ContactMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactMetrics",
+      "summary": "The time it took for a contact to end after the last customer message.",
+      "description": "The time it took for a contact to end after the last customer message.",
+      "metricCategory": "Contact record field (ContactMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Long"
+    },
+    {
+      "id": "ctr-data-model#ContactMetrics.ConversationTurnCount",
+      "name": "ContactMetrics.ConversationTurnCount",
+      "anchor": "ctr-ContactMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactMetrics",
+      "summary": "The number of conversation turns in a chat contact.",
+      "description": "The number of conversation turns in a chat contact.",
+      "metricCategory": "Contact record field (ContactMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ContactMetrics.AgentFirstResponseTimestamp",
+      "name": "ContactMetrics.AgentFirstResponseTimestamp",
+      "anchor": "ctr-ContactMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactMetrics",
+      "summary": "The agent first response Timestamp for a chat contact.",
+      "description": "The agent first response Timestamp for a chat contact.",
+      "metricCategory": "Contact record field (ContactMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#ContactMetrics.AgentFirstResponseTimeInMillis",
+      "name": "ContactMetrics.AgentFirstResponseTimeInMillis",
+      "anchor": "ctr-ContactMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactMetrics",
+      "summary": "The time for an agent to respond after obtaining a chat contact.",
+      "description": "The time for an agent to respond after obtaining a chat contact.",
+      "metricCategory": "Contact record field (ContactMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Long"
+    },
+    {
+      "id": "ctr-data-model#CustomerMetrics.Type",
+      "name": "CustomerMetrics.Type",
+      "anchor": "ctr-CustomerMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-CustomerMetrics",
+      "summary": "ParticipantMetrics Object",
+      "description": "[ParticipantMetrics](#ctr-ParticipantMetrics) Object",
+      "metricCategory": "Contact record field (CustomerMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {}
+    },
+    {
+      "id": "ctr-data-model#AgentMetrics.Type",
+      "name": "AgentMetrics.Type",
+      "anchor": "ctr-AgentMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AgentMetrics",
+      "summary": "ParticipantMetrics Object",
+      "description": "[ParticipantMetrics](#ctr-ParticipantMetrics) Object",
+      "metricCategory": "Contact record field (AgentMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {}
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.ParticipantId",
+      "name": "ParticipantMetrics.ParticipantId",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "The Participant's participant ID.",
+      "description": "The Participant's participant ID.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.ParticipantType",
+      "name": "ParticipantMetrics.ParticipantType",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "Information about the conversation participant. The following participant types are supported: Agent, Customer, Supervisor.",
+      "description": "Information about the conversation participant. The following participant types are supported: Agent, Customer, Supervisor.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.ConversationAbandon",
+      "name": "ParticipantMetrics.ConversationAbandon",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "A Boolean flag indicating whether the chat conversation was abandoned by Participant.",
+      "description": "A Boolean flag indicating whether the chat conversation was abandoned by Participant.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Boolean"
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.MessagesSent",
+      "name": "ParticipantMetrics.MessagesSent",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "The number of chat messages sent by Participant.",
+      "description": "The number of chat messages sent by Participant.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.NumResponses",
+      "name": "ParticipantMetrics.NumResponses",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "The number of responses sent by Participant.",
+      "description": "The number of responses sent by Participant.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.MessageLengthInChars",
+      "name": "ParticipantMetrics.MessageLengthInChars",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "The number of chat characters sent by Participant.",
+      "description": "The number of chat characters sent by Participant.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.TotalResponseTimeInMillis",
+      "name": "ParticipantMetrics.TotalResponseTimeInMillis",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "The total chat response time by Participant.",
+      "description": "The total chat response time by Participant.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Long"
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.MaxResponseTimeInMillis",
+      "name": "ParticipantMetrics.MaxResponseTimeInMillis",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "The maximum chat response time by Participant.",
+      "description": "The maximum chat response time by Participant.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Long"
+    },
+    {
+      "id": "ctr-data-model#ParticipantMetrics.LastMessageTimestamp",
+      "name": "ParticipantMetrics.LastMessageTimestamp",
+      "anchor": "ctr-ParticipantMetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ParticipantMetrics",
+      "summary": "The Timestamp of last chat message by Participant.",
+      "description": "The Timestamp of last chat message by Participant.",
+      "metricCategory": "Contact record field (ParticipantMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#ContactDetails.ContactDetailsName",
+      "name": "ContactDetails.ContactDetailsName",
+      "anchor": "ctr-contact-details",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-contact-details",
+      "summary": "",
+      "description": "",
+      "metricCategory": "Contact record field (ContactDetails)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-128"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactDetails.ContactDetailsValue",
+      "name": "ContactDetails.ContactDetailsValue",
+      "anchor": "ctr-contact-details",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-contact-details",
+      "summary": "",
+      "description": "",
+      "metricCategory": "Contact record field (ContactDetails)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "0-1024"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactDetails.ReferenceAttributeName",
+      "name": "ContactDetails.ReferenceAttributeName",
+      "anchor": "ctr-contact-details",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-contact-details",
+      "summary": "",
+      "description": "",
+      "metricCategory": "Contact record field (ContactDetails)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-128"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactDetails.ReferenceAttributesValue",
+      "name": "ContactDetails.ReferenceAttributesValue",
+      "anchor": "ctr-contact-details",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-contact-details",
+      "summary": "",
+      "description": "",
+      "metricCategory": "Contact record field (ContactDetails)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "0-1024"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Agent",
+      "name": "ContactTraceRecord.Agent",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "If this contact successfully connected to an agent, this is information about the agent.",
+      "description": "If this contact successfully connected to an agent, this is information about the agent.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Agent"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Agent"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Customer",
+      "name": "ContactTraceRecord.Customer",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Information about the person (customer) who contacts your contact center.",
+      "description": "Information about the person (customer) who contacts your contact center.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Customer"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.AgentConnectionAttempts",
+      "name": "ContactTraceRecord.AgentConnectionAttempts",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The number of times Connect Customer attempted to connect this contact with an agent.",
+      "description": "The number of times Connect Customer attempted to connect this contact with an agent.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Agent connection attempts"
+        }
+      ],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Attributes",
+      "name": "ContactTraceRecord.Attributes",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The contact attributes, formatted as a map of keys and values.",
+      "description": "The contact attributes, formatted as a map of keys and values.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Members": "`AttributeName`, `AttributeValue`"
+      },
+      "metricType": "Attributes"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.AWSAccountId",
+      "name": "ContactTraceRecord.AWSAccountId",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The ID of the AWS account that owns the contact.",
+      "description": "The ID of the AWS account that owns the contact.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.AWSContactTraceRecordFormatVersion",
+      "name": "ContactTraceRecord.AWSContactTraceRecordFormatVersion",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The record format version.",
+      "description": "The record format version.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Channel",
+      "name": "ContactTraceRecord.Channel",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "How the contact reached your contact center.",
+      "description": "How the contact reached your contact center.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Channel"
+        }
+      ],
+      "extraSections": {
+        "Valid values": "`VOICE`, `CHAT`, `TASK`, `EMAIL`"
+      }
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.ConnectedToSystemTimestamp",
+      "name": "ContactTraceRecord.ConnectedToSystemTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time the customer endpoint connected to Connect Customer, in UTC time. For INBOUND, this matches InitiationTimestamp. For OUTBOUND, CALLBACK, and API, this is when the customer endpoint answers.",
+      "description": "The date and time the customer endpoint connected to Connect Customer, in UTC time. For `INBOUND`, this matches InitiationTimestamp. For `OUTBOUND`, `CALLBACK`, and `API`, this is when the customer endpoint answers.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.ContactId",
+      "name": "ContactTraceRecord.ContactId",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The ID of the contact.",
+      "description": "The ID of the contact.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Contact ID"
+        }
+      ],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.ContactLens",
+      "name": "ContactTraceRecord.ContactLens",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Information about conversational analytics features applied to this contact.",
+      "description": "Information about conversational analytics features applied to this contact.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ContactLens"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.CustomerId",
+      "name": "ContactTraceRecord.CustomerId",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The customer's identification number. For example, the CustomerId might be a customer number from your CRM. You can create a Lambda function to pull the unique customer ID of the caller from your CRM system. If you enable Connect Customer Voice ID capability, this attribute is populated with the CustomerSpeakerId of the caller.",
+      "description": "The customer's identification number. For example, the CustomerId might be a customer number from your CRM. You can create a Lambda function to pull the unique customer ID of the caller from your CRM system. If you enable Connect Customer Voice ID capability, this attribute is populated with the CustomerSpeakerId of the caller.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.CustomerEndpoint",
+      "name": "ContactTraceRecord.CustomerEndpoint",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The customer or external third party participant endpoint.",
+      "description": "The customer or external third party participant endpoint.\n\nIf you redacted this field using the [DeleteContactData API reference](https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteContactData.html) (by specifying `CUSTOMER_ENDPOINT`), the DeleteContactData API sets this field to `null`. The `connect:RedactedFields` segment attribute lists the categories of PII that you redacted from the contact. For more information, see [SegmentAttributes](#segmentattributes).",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Customer phone number / email address"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Endpoint, EMAIL_ADDRESS"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.CustomerVoiceActivity",
+      "name": "ContactTraceRecord.CustomerVoiceActivity",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "This field is populated for calls using answering machine detection (AMD), which is only available for Outbound Campaigns. Otherwise, this field is null.",
+      "description": "This field is populated for calls using answering machine detection (AMD), which is only available for Outbound Campaigns. Otherwise, this field is null.\n\nThe `CustomerVoiceActivity` object includes the following properties:",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {}
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.GreetingStartTimestamp",
+      "name": "ContactTraceRecord.GreetingStartTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time that measures the beginning of the customer greeting from an outbound voice call, in UTC time.",
+      "description": "The date and time that measures the beginning of the customer greeting from an outbound voice call, in UTC time.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-MM-dd'T'HH:mm:ss.SSS'Z')"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.GreetingEndTimestamp",
+      "name": "ContactTraceRecord.GreetingEndTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time that measures the end of the customer greeting from an outbound voice call, in UTC time.",
+      "description": "The date and time that measures the end of the customer greeting from an outbound voice call, in UTC time.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-MM-dd'T'HH:mm:ss.SSS'Z')"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.DisconnectTimestamp",
+      "name": "ContactTraceRecord.DisconnectTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time that the customer endpoint disconnected from the current contact, in UTC time. In transfer scenarios, the DisconnectTimestamp of the previous contact indicates the date and time when that contact ended.",
+      "description": "The date and time that the customer endpoint disconnected from the current contact, in UTC time. In transfer scenarios, the DisconnectTimestamp of the previous contact indicates the date and time when that contact ended.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Disconnect timestamp"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.DisconnectReason",
+      "name": "ContactTraceRecord.DisconnectReason",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Indicates how the contact was terminated. This data is available in the Connect Customer contact record stream and Contact details page.",
+      "description": "Indicates how the contact was terminated. This data is available in the Connect Customer contact record stream and **Contact details** page.\n\nThe disconnect reason standardizes responses across different telephony providers into unified disconnect reasons. This helps you identify issues such as invalid numbers, call rejections, and spam blocking (both temporary and permanent). With these definitive telephony events, you can make data-driven decisions about how to handle call terminations.\n\nVoice contacts can have the following disconnect reasons:\n\n+ `TELECOM_BUSY` – The call attempt to the third party returns a network busy signal. This indicates the endpoint you are trying to call currently cannot take a call because it is currently engaged.\n\n+ `TELECOM_NUMBER_INVALID` – The number you are attempting to call either lacks proper E164 formatting, or the number you are attempting to call does not exist or is no longer in use.\n\n+ `TELECOM_POTENTIAL_BLOCKING` – The call attempt to the customer receives a response from multiple networks that suggest the number currently faces blocking based on network level blocks.\n\nBlockReason – If the call is formally blocked using the 603\\+ \"Network Blocked\", the [ FCC-mandated standard](https://docs.fcc.gov/public/attachments/FCC-25-15A1.pdf) that provides a uniform informative message that you can process and seek correction with the end customers carrier if you believe the traffic is blocked for invalid reasons, see [Segment attributes](connect-attrib-list.md#attribs-segment-attributes) for detail.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Disconnect reason"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.AnsweringMachineDetectionStatus",
+      "name": "ContactTraceRecord.AnsweringMachineDetectionStatus",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Indicates how an outbound campaign call is actually disposed if the contact is connected to Connect Customer.",
+      "description": "Indicates how an [outbound campaign](how-to-create-campaigns.md) call is actually disposed if the contact is connected to Connect Customer.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "+ `HUMAN_ANSWERED`: The number dialed was answered by a person.\n+ `VOICEMAIL_BEEP`: The number dialed was answered by voicemail with a beep.\n+ `VOICEMAIL_NO_BEEP`: The number dialed was answered by a voicemail with no beep.\n+ `AMD_UNANSWERED`: The number dialed kept ringing, but the call was not picked up.\n+ `AMD_UNRESOLVED`: The number dialed was connected but the answering machine detection could not determine whether the call was picked up by a person or voicemail.\n+ `AMD_UNRESOLVED_SILENCE`: The number dialed was connected but the answering machine detection observed silence.\n+ `AMD_NOT_APPLICABLE`: The call disconnected before ringing, and there was no media to detect.\n+ `SIT_TONE_BUSY`: The number dialed was busy\n+ `SIT_TONE_INVALID_NUMBER`: The number dialed was not a valid number.\n+ `SIT_TONE_DETECTED`: A special information tone (SIT) was detected.\n+ `FAX_MACHINE_DETECTED`: A fax machine was detected.\n+ `AMD_ERROR`: The number dialed was connected, but there was an error in answering machine detection."
+      }
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.InitialContactId",
+      "name": "ContactTraceRecord.InitialContactId",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The identifier of the initial contact.",
+      "description": "The identifier of the initial contact.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Initial contact ID"
+        }
+      ],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.InitiationMethod",
+      "name": "ContactTraceRecord.InitiationMethod",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Indicates how the contact was initiated. For more information, see Contact initiation methods and flow types in your Connect Customer contact center.",
+      "description": "Indicates how the contact was initiated. For more information, see [Contact initiation methods and flow types in your Connect Customer contact center](contact-initiation-methods.md).",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Initiation method"
+        },
+        {
+          "surface": "contactsearch",
+          "label": "Contact direction",
+          "qualifier": "inbound or outbound, derived from the initiation method"
+        }
+      ],
+      "extraSections": {
+        "Valid values": "+  `INBOUND`: The customer initiated voice (phone) contact with your contact center.\n+  `OUTBOUND`: An agent initiated voice (phone) contact with the customer, by using the CCP to call their number.\n+  `TRANSFER`: The customer was transferred by an agent to another agent or to a queue, using quick connects in the CCP. This results in the creation of a new contact record.\n+  `CALLBACK`: The customer was contacted as part of a callback flow.\n  For more information about the InitiationMethod in this scenario, see [Queued callbacks in real-time metrics in Connect Customer](about-queued-callbacks.md).\n+  `API`: The contact was initiated with Connect Customer by API. This could be an outbound contact you created and queued to an agent, using the [StartOutboundVoiceContact](https://docs.aws.amazon.com/connect/latest/APIReference/API_StartOutboundVoiceContact.html) API, or it could be a live chat that was initiated by the customer with your contact center, where you called the [StartChatConnect](https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html) API.\n+  `WEBRTC_API`: The contact used the communication widget with video call.\n+  `QUEUE_TRANSFER`: While the customer was in one queue (listening to Customer queue flow), they were transferred into another queue using a flow block.\n+  `EXTERNAL_OUTBOUND`: An agent initiated voice (phone) contact with an external participant to your contact center using either quick connect in the CCP or a flow block.\n+  `MONITOR`: A supervisor initiated monitor on an agent. The supervisor can silently monitor the agent and customer, or barge the conversation.\n+  `DISCONNECT`: When a [Set disconnect flow](set-disconnect-flow.md) block is triggered, it specifies which flow to run after a disconnect event during a contact.\n  A disconnect event is when:\n  + A voice call ends when the customer hangs up, the agent hangs up, or the call drops because of a telecom or network issue.\n  + A chat, or task is disconnected.\n  + A task is disconnected as a result of a flow action.\n  + A task expires. The task is automatically disconnected when it completes its expiry timer. The default is 7 days and task expiry is configurable up to 90 days.\n  If a new contact is created while running a disconnect flow, then the initiation method for that new contact is DISCONNECT.\n+  `AGENT_REPLY`: An agent has replied to an inbound email contact to create an outbound email reply.\n+  `FLOW`: An email intiated by the [Send message](send-message.md) block.\n+  `CAMPAIGN_PREVIEW`: The contact was initiated by an outbound campaign using preview dialing mode. The agent previews customer information before the call is placed."
+      }
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.InitiationTimestamp",
+      "name": "ContactTraceRecord.InitiationTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time this contact was initiated, in UTC time.",
+      "description": "The date and time this contact was initiated, in UTC time.\n\n+ For `INBOUND`, this is when the contact arrived.\n\n+ For `OUTBOUND`, this is when the agent began dialing.\n\n+ For `CALLBACK`, this is when the callback contact was created.\n\n+ For `EXTERNAL_OUTBOUND`, this is when the agent started dialing the external participant.\n\n+  For `MONITOR`, this is when the manager started listening to a contact.\n\n+ For `TRANSFER` and `QUEUE_TRANSFER`, this is when the transfer was initiated.\n\nIn the case of tasks, InitiationTimestamp signifies when the task contact was created, whereas EnqueueTimestamp signifies time when the task contact was put in a queue to match the contact with agent.\n\nYou can configure flows so there is processing done on the task before a contact is queued. For example, this processing can take one minute or maybe several days. Many tasks, especially those used for backoffice processing aren't queued so they might have an InitiationTimestamp but not an EnqueueTimestamp.\n\nScheduled tasks get initiated when a contact is created, however they only start running flows when the schedule is met.\n\nThe 7 days expiry value is not absolute and there could be cases where tasks expire just beyond 7 days ( 7.01 days )",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Initiation timestamp"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.InstanceARN",
+      "name": "ContactTraceRecord.InstanceARN",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The Amazon Resource Name of the Connect Customer instance.",
+      "description": "The Amazon Resource Name of the Connect Customer instance.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ARN"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.LastUpdateTimestamp",
+      "name": "ContactTraceRecord.LastUpdateTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time this contact was last updated, in UTC time.",
+      "description": "The date and time this contact was last updated, in UTC time.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.LastPausedTimestamp",
+      "name": "ContactTraceRecord.LastPausedTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time this contact was last paused, in UTC time.",
+      "description": "The date and time this contact was last paused, in UTC time.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.LastResumedTimestamp",
+      "name": "ContactTraceRecord.LastResumedTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time this contact was last resumed, in UTC time.",
+      "description": "The date and time this contact was last resumed, in UTC time.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.MediaStreams",
+      "name": "ContactTraceRecord.MediaStreams",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The media streams.",
+      "description": "The media streams.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Array of MediaStream"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.NextContactId",
+      "name": "ContactTraceRecord.NextContactId",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The ID of the contact created when:",
+      "description": "The ID of the contact created when:\n\n+ An agent uses a Quick Connect or the number pad on the CCP.\n\n—or—\n\n+ One of the following flow blocks is run:\n\n+ [Transfer to flow](transfer-to-flow.md)\n\n+ [Transfer to queue](transfer-to-queue.md)\n\n+ [Set disconnect flow](set-disconnect-flow.md)\n\n—or—\n\n+ An additional WebRTC (audio or video) participant is added.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Next contact ID"
+        }
+      ],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.OutboundStrategy",
+      "name": "ContactTraceRecord.OutboundStrategy",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Information about the outbound strategy.",
+      "description": "Information about the outbound strategy.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "OutboundStrategy object"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.PreviousContactId",
+      "name": "ContactTraceRecord.PreviousContactId",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The ID of the previous contact from which the current contact is created when:",
+      "description": "The ID of the previous contact from which the current contact is created when:\n\n+ An agent uses a Quick Connect or the number pad on the CCP.\n\n—or—\n\n+ One of the following flow blocks is run:\n\n+ [Transfer to flow](transfer-to-flow.md)\n\n+ [Transfer to queue](transfer-to-queue.md)\n\n+ [Set disconnect flow](set-disconnect-flow.md)\n\n—or—\n\n+ An additional WebRTC (audio or video) participant is added.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Previous contact ID"
+        }
+      ],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Queue",
+      "name": "ContactTraceRecord.Queue",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "If this contact was queued, this is information about the queue.",
+      "description": "If this contact was queued, this is information about the queue.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Queue"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "QueueInfo"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Campaign",
+      "name": "ContactTraceRecord.Campaign",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Information associated with a campaign.",
+      "description": "Information associated with a campaign.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Campaign object"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.DisconnectDetails",
+      "name": "ContactTraceRecord.DisconnectDetails",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Information about the call disconnect experience.",
+      "description": "Information about the call disconnect experience.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "DisconnectDetails"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.QualityMetrics",
+      "name": "ContactTraceRecord.QualityMetrics",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Information about the quality of participant's media connection when the participant is talking during the call.",
+      "description": "Information about the quality of participant's media connection when the participant is talking during the call.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "QualityMetrics"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Recording",
+      "name": "ContactTraceRecord.Recording",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "If recording was enabled, this is information about the recording.",
+      "description": "If recording was enabled, this is information about the recording.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Recording/Transcript"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "RecordingInfo"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Recordings",
+      "name": "ContactTraceRecord.Recordings",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "If recording was enabled, this is information about the recording.",
+      "description": "If recording was enabled, this is information about the recording.\n\nThe first recording for a contact will appear in both the Recording and Recordings sections of the contact record.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Recording/Transcript",
+          "order": 1
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Array of RecordingsInfo"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.agent assist",
+      "name": "ContactTraceRecord.agent assist",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "If Amazon Q was enabled on the contact, this is information about the Amazon Q session.",
+      "description": "If Amazon Q was enabled on the contact, this is information about the Amazon Q session.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "WisdomInfo"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.RelatedContactId",
+      "name": "ContactTraceRecord.RelatedContactId",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "If this contact is associated with another contact, this is the identifier of the related contact.",
+      "description": "If this contact is associated with another contact, this is the identifier of the related contact.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-256."
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.RingStartTimestamp",
+      "name": "ContactTraceRecord.RingStartTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time that ringing started for a campaign call, in UTC time. Connect Customer populates this field only for outbound campaign calls.",
+      "description": "The date and time that ringing started for a campaign call, in UTC time. Connect Customer populates this field only for outbound campaign calls.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.ScheduledTimestamp",
+      "name": "ContactTraceRecord.ScheduledTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The date and time when this contact was scheduled to trigger the flow to run, in UTC time. This is supported only for the task channel.",
+      "description": "The date and time when this contact was scheduled to trigger the flow to run, in UTC time. This is supported only for the task channel.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Scheduled timestamp"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.SegmentAttributes",
+      "name": "ContactTraceRecord.SegmentAttributes",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "A set of system defined key-value pairs stored on individual contact segments using an attribute map. The attributes are standard Connect Customer attributes and can be accessed in flows. Attribute keys can include only alphanumeric, -, and _ characters.",
+      "description": "A set of system defined key-value pairs stored on individual contact segments using an attribute map. The attributes are standard Connect Customer attributes and can be accessed in flows. Attribute keys can include only alphanumeric, -, and \\_ characters.\n\nSegmentAttributes are where the email subject and SES flags are stored for email contacts.\n\nThis field can be used to show channel subtype. For example, `connect:Guide` or `connect:SMS`.\n\nWhen you redact PII from a contact using the [DeleteContactData API reference](https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteContactData.html), the `connect:RedactedFields` segment attribute appears in the contact record, listing the categories of PII that you redacted, for example `CUSTOMER_ENDPOINT,EMAIL_SUBJECT`. If you redact the `EMAIL_SUBJECT` category, the DeleteContactData API sets the value of the `connect:EmailSubject` segment attribute to `null`. For more information, see [Segment attributes](connect-attrib-list.md#attribs-segment-attributes).",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Channel subtype",
+          "qualifier": "stored as the connect:Subtype segment attribute"
+        },
+        {
+          "surface": "contactsearch",
+          "label": "Email subject",
+          "qualifier": "stored as the connect:EmailSubject segment attribute"
+        }
+      ],
+      "extraSections": {
+        "Members": "SegmentAttributeName, SegmentAttributeValue"
+      },
+      "metricType": "SegmentAttributes"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.SystemEndpoint",
+      "name": "ContactTraceRecord.SystemEndpoint",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The system endpoint. For INBOUND, this is the phone number that the customer dialed. For OUTBOUND and EXTERNAL_OUTBOUND, this is the outbound caller ID number assigned to the outbound queue that is used to dial the customer. For CALLBACK, this is the caller ID number used to dial out to customer. If a caller ID number is explicitly configured in the Transfer to Queue block, that number is used to dial out to the customer. If no caller ID is configured in the Transfer to Queue block, the outbound caller ID number configured in the queue is used to dial out to the customer. If no caller ID is configured, SystemEndpoint value will show up as anonymous.",
+      "description": "The system endpoint. For `INBOUND`, this is the phone number that the customer dialed. For `OUTBOUND` and `EXTERNAL_OUTBOUND`, this is the outbound caller ID number assigned to the outbound queue that is used to dial the customer. For `CALLBACK`, this is the caller ID number used to dial out to customer. If a caller ID number is explicitly configured in the Transfer to Queue block, that number is used to dial out to the customer. If no caller ID is configured in the Transfer to Queue block, the outbound caller ID number configured in the queue is used to dial out to the customer. If no caller ID is configured, SystemEndpoint value will show up as anonymous.\n\nWhen [Transfer to phone number](transfer-to-phone-number.md) block is used without specifying a custom caller ID, the caller ID of the caller is passed as the caller ID. For example, if you transfer to an external number and no custom caller ID is used to specify that the call is coming from your organization, then the contact's caller ID is displayed to the external party.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "System phone number / email address"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Endpoint, EMAIL_ADDRESS"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.AdditionalEmailRecipients",
+      "name": "ContactTraceRecord.AdditionalEmailRecipients",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "The To and CC fields.",
+      "description": "The To and CC fields.\n\nIf you redacted this field using the [DeleteContactData API reference](https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteContactData.html) (by specifying `ADDITIONAL_EMAIL_RECIPIENTS`), the DeleteContactData API sets this field to `null`. This category is supported only for contacts in the email channel. The `connect:RedactedFields` segment attribute lists the categories of PII that you redacted from the contact. For more information, see [SegmentAttributes](#segmentattributes).",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.ContactAssociationId",
+      "name": "ContactTraceRecord.ContactAssociationId",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "A contact identifier that is common across all contacts linked by relatedContactId. This is used for email contacts in a thread.",
+      "description": "A contact identifier that is common across all contacts linked by relatedContactId. This is used for email contacts in a thread.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.TotalPauseCount",
+      "name": "ContactTraceRecord.TotalPauseCount",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Total number of pauses including when the contact was not connected.",
+      "description": "Total number of pauses including when the contact was not connected.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.TotalPauseDurationInSeconds",
+      "name": "ContactTraceRecord.TotalPauseDurationInSeconds",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Total pause duration, including before and after the agent was connected.",
+      "description": "Total pause duration, including before and after the agent was connected.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.TransferCompletedTimestamp",
+      "name": "ContactTraceRecord.TransferCompletedTimestamp",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "TransferCompleteTimestamp is populated when the agent (who initiated the transfer) disconnects before the new agent joining (cold transfer). If the agent who initiated the transfer does not disconnect before the new agent connected (warm transfer), TransferCompleteTimestamp is not populated on the initial agent's contact.",
+      "description": "TransferCompleteTimestamp is populated when the agent (who initiated the transfer) disconnects before the new agent joining (cold transfer). If the agent who initiated the transfer does not disconnect before the new agent connected (warm transfer), TransferCompleteTimestamp is not populated on the initial agent's contact.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Is transferred out",
+          "order": 1
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.TransferredToEndpoint",
+      "name": "ContactTraceRecord.TransferredToEndpoint",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "If this contact was transferred out of Connect Customer, the transfer endpoint.",
+      "description": "If this contact was transferred out of Connect Customer, the transfer endpoint.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Is transferred out",
+          "order": 2
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Endpoint"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.Tags",
+      "name": "ContactTraceRecord.Tags",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Tags associated with the contact. This contains both AWS generated and user-defined tags.",
+      "description": "[Tags](granular-billing.md) associated with the contact. This contains both AWS generated and user-defined tags.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Contact tag"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String to string map"
+    },
+    {
+      "id": "ctr-data-model#ContactTraceRecord.GlobalResiliencyMetadata",
+      "name": "ContactTraceRecord.GlobalResiliencyMetadata",
+      "anchor": "ctr-ContactTraceRecord",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "Information about the global resiliency configuration for the contact, including traffic distribution details.",
+      "description": "Information about the global resiliency configuration for the contact, including traffic distribution details.",
+      "metricCategory": "Contact record field (ContactTraceRecord)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "GlobalResiliencyMetadata"
+    },
+    {
+      "id": "ctr-data-model#ContactLens.ConversationalAnalytics",
+      "name": "ContactLens.ConversationalAnalytics",
+      "anchor": "ctr-ContactLens",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactLens",
+      "summary": "Information about the conversational analytics feature.",
+      "description": "Information about the [conversational analytics](analyze-conversations.md) feature.\n\nAn object that holds the conversational analytics behavior for the contact.",
+      "metricCategory": "Contact record field (ContactLens)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ConversationalAnalytics"
+    },
+    {
+      "id": "ctr-data-model#ConversationalAnalytics.Configuration",
+      "name": "ConversationalAnalytics.Configuration",
+      "anchor": "ctr-ConversationalAnalytics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ConversationalAnalytics",
+      "summary": "Configuration for conversational analytics for the contact.",
+      "description": "Configuration for conversational analytics for the contact.",
+      "metricCategory": "Contact record field (ConversationalAnalytics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Configuration"
+    },
+    {
+      "id": "ctr-data-model#Configuration.Enabled",
+      "name": "Configuration.Enabled",
+      "anchor": "ctr-Configuration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Configuration",
+      "summary": "Is conversational analytics enabled for the contact?",
+      "description": "Is conversational analytics enabled for the contact?",
+      "metricCategory": "Contact record field (Configuration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Boolean"
+    },
+    {
+      "id": "ctr-data-model#Configuration.ChannelConfiguration",
+      "name": "Configuration.ChannelConfiguration",
+      "anchor": "ctr-Configuration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Configuration",
+      "summary": "Channel-specific conversational analytics configuration for the contact. Conversational analytics configuration is mapped to the flow block that can process contacts from different channels. While majority of configuration parameters apply to all channels, this object contains a subset that are channel-specific.",
+      "description": "Channel-specific conversational analytics configuration for the contact. Conversational analytics configuration is mapped to the flow block that can process contacts from different channels. While majority of configuration parameters apply to all channels, this object contains a subset that are channel-specific.",
+      "metricCategory": "Contact record field (Configuration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ChannelConfiguration"
+    },
+    {
+      "id": "ctr-data-model#Configuration.LanguageLocale",
+      "name": "Configuration.LanguageLocale",
+      "anchor": "ctr-Configuration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Configuration",
+      "summary": "Language locale used by conversational analytics to analyze the contact.",
+      "description": "Language locale used by conversational analytics to analyze the contact.",
+      "metricCategory": "Contact record field (Configuration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#Configuration.RedactionConfiguration",
+      "name": "Configuration.RedactionConfiguration",
+      "anchor": "ctr-Configuration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Configuration",
+      "summary": "Redaction configuration for the contact.",
+      "description": "Redaction configuration for the contact.",
+      "metricCategory": "Contact record field (Configuration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "RedactionConfiguration"
+    },
+    {
+      "id": "ctr-data-model#Configuration.SentimentConfiguration",
+      "name": "Configuration.SentimentConfiguration",
+      "anchor": "ctr-Configuration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Configuration",
+      "summary": "Sentiment configuration for the contact.",
+      "description": "Sentiment configuration for the contact.",
+      "metricCategory": "Contact record field (Configuration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "SentimentConfiguration"
+    },
+    {
+      "id": "ctr-data-model#ChannelConfiguration.AnalyticsModes",
+      "name": "ChannelConfiguration.AnalyticsModes",
+      "anchor": "ctr-ChannelConfiguration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ChannelConfiguration",
+      "summary": "List of analytics modes for the contact.",
+      "description": "List of analytics modes for the contact.",
+      "metricCategory": "Contact record field (ChannelConfiguration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AnalyticsModes"
+    },
+    {
+      "id": "ctr-data-model#Customer.Capabilities",
+      "name": "Customer.Capabilities",
+      "anchor": "Capabilities-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#Capabilities-CTR",
+      "summary": "Information about customer’s capabilities.",
+      "description": "Information about customer’s capabilities.",
+      "metricCategory": "Contact record field (Customer)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Capabilities"
+    },
+    {
+      "id": "ctr-data-model#Customer.DeviceInfo",
+      "name": "Customer.DeviceInfo",
+      "anchor": "DeviceInfo-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#DeviceInfo-CTR",
+      "summary": "Information about customer's device.",
+      "description": "Information about customer's device.\n\nThis field is populated only for in-app and web calling contacts, when the initiation method is `WEBRTC_API`. Otherwise, this field is not present, because PSTN voice and chat contacts don't include device information.",
+      "metricCategory": "Contact record field (Customer)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "DeviceInfo"
+    },
+    {
+      "id": "ctr-data-model#Capabilities.Video",
+      "name": "Capabilities.Video",
+      "anchor": "Video-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#Video-CTR",
+      "summary": "",
+      "description": "",
+      "metricCategory": "Contact record field (Capabilities)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "SEND."
+      }
+    },
+    {
+      "id": "ctr-data-model#Capabilities.ScreenShare",
+      "name": "Capabilities.ScreenShare",
+      "anchor": "ScreenShare-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ScreenShare-CTR",
+      "summary": "",
+      "description": "",
+      "metricCategory": "Contact record field (Capabilities)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "SEND."
+      }
+    },
+    {
+      "id": "ctr-data-model#AnalyticsModes.AnalyticsModes",
+      "name": "AnalyticsModes.AnalyticsModes",
+      "anchor": "ctr-AnalyticsModes",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-AnalyticsModes",
+      "summary": "Analytics mode for the contact.",
+      "description": "Analytics mode for the contact.\n\nValid values for voice: `PostContact` \\| `RealTime`\n\nValid values for chat: `ContactLens`",
+      "metricCategory": "Contact record field (AnalyticsModes)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RedactionConfiguration.Behavior",
+      "name": "RedactionConfiguration.Behavior",
+      "anchor": "ctr-RedactionConfiguration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RedactionConfiguration",
+      "summary": "Indicates whether redaction is enabled for sensitive data, such as personal information, in the conversational analytics output file and audio recording. When this field is set to Disabled all other values in this object are ignored.",
+      "description": "Indicates whether redaction is enabled for sensitive data, such as personal information, in the conversational analytics output file and audio recording. When this field is set to `Disabled` all other values in this object are ignored.",
+      "metricCategory": "Contact record field (RedactionConfiguration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`Enable` \\| `Disable`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RedactionConfiguration.Policy",
+      "name": "RedactionConfiguration.Policy",
+      "anchor": "ctr-RedactionConfiguration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RedactionConfiguration",
+      "summary": "Indicates whether you get both the redacted and the original transcripts and audio files, just the redacted transcripts and audio files, or only transcript with unredacted content. None indicates no redaction is applied.",
+      "description": "Indicates whether you get both the redacted and the original transcripts and audio files, just the redacted transcripts and audio files, or only transcript with unredacted content. `None` indicates no redaction is applied.",
+      "metricCategory": "Contact record field (RedactionConfiguration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`None` \\| `RedactedOnly` \\| `RedactedAndOriginal`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RedactionConfiguration.Entities",
+      "name": "RedactionConfiguration.Entities",
+      "anchor": "ctr-RedactionConfiguration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RedactionConfiguration",
+      "summary": "List of redaction entities for the contact. If this is present, only entities mentioned in this list are redacted.",
+      "description": "List of redaction entities for the contact. If this is present, only entities mentioned in this list are redacted.",
+      "metricCategory": "Contact record field (RedactionConfiguration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Entities"
+    },
+    {
+      "id": "ctr-data-model#RedactionConfiguration.MaskMode",
+      "name": "RedactionConfiguration.MaskMode",
+      "anchor": "ctr-RedactionConfiguration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RedactionConfiguration",
+      "summary": "How sensitive information in a contact record should be masked.",
+      "description": "How sensitive information in a contact record should be masked.\n\n+ When `PII` is selected, all redacted entities are replaced with `[PII]` string.\n\n+ When `EntityType` is selected, all redacted entities are replaced with the label of the entity. For example, when `EMAIL` entity is configured for redaction, emails in the transcript are replaced by `[EMAIL]` string.",
+      "metricCategory": "Contact record field (RedactionConfiguration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`PII ` \\| `EntityType`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#SentimentConfiguration.Behavior",
+      "name": "SentimentConfiguration.Behavior",
+      "anchor": "ctr-SentimentConfiguration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-SentimentConfiguration",
+      "summary": "Indicates whether sentiment analysis is enabled or disabled for contacts, default value is Enable.",
+      "description": "Indicates whether sentiment analysis is enabled or disabled for contacts, default value is `Enable`.",
+      "metricCategory": "Contact record field (SentimentConfiguration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`Enable` \\| `Disable`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#Entities.Entity",
+      "name": "Entities.Entity",
+      "anchor": "ctr-Entities",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Entities",
+      "summary": "Entities that should be redacted for the contact.",
+      "description": "Entities that should be redacted for the contact.",
+      "metricCategory": "Contact record field (Entities)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#SummaryConfiguration.SummaryModes",
+      "name": "SummaryConfiguration.SummaryModes",
+      "anchor": "ctr-SummaryConfiguration",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-SummaryConfiguration",
+      "summary": "List of summary modes for the contact.",
+      "description": "List of summary modes for the contact.",
+      "metricCategory": "Contact record field (SummaryConfiguration)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Max value": "1"
+      },
+      "metricType": "SummaryModes"
+    },
+    {
+      "id": "ctr-data-model#SummaryModes.SummaryMode",
+      "name": "SummaryModes.SummaryMode",
+      "anchor": "ctr-SummaryModes",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-SummaryModes",
+      "summary": "Summary mode for the contact.",
+      "description": "Summary mode for the contact.",
+      "metricCategory": "Contact record field (SummaryModes)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`PostContact`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#DeviceInfo.PlatformName",
+      "name": "DeviceInfo.PlatformName",
+      "anchor": "ctr-deviceinfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-deviceinfo",
+      "summary": "Name of the platform that the participant used for the call.",
+      "description": "Name of the platform that the participant used for the call.",
+      "metricCategory": "Contact record field (DeviceInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-128"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#DeviceInfo.PlatformVersion",
+      "name": "DeviceInfo.PlatformVersion",
+      "anchor": "ctr-deviceinfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-deviceinfo",
+      "summary": "Version of the platform that the participant used for the call.",
+      "description": "Version of the platform that the participant used for the call.",
+      "metricCategory": "Contact record field (DeviceInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-128"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#DeviceInfo.OperatingSystem",
+      "name": "DeviceInfo.OperatingSystem",
+      "anchor": "ctr-deviceinfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-deviceinfo",
+      "summary": "Operating system that the participant used for the call.",
+      "description": "Operating system that the participant used for the call.",
+      "metricCategory": "Contact record field (DeviceInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-128"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#DisconnectDetails.PotentialDisconnectIssue",
+      "name": "DisconnectDetails.PotentialDisconnectIssue",
+      "anchor": "ctr-disconnectdetails",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-disconnectdetails",
+      "summary": "Indicates the potential disconnection issues for a call. This field is not populated if the service does not detect potential issues.",
+      "description": "Indicates the potential disconnection issues for a call. This field is not populated if the service does not detect potential issues.",
+      "metricCategory": "Contact record field (DisconnectDetails)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "0-128",
+        "Valid values": "+ `AGENT_CONNECTIVITY_ISSUE`: Indicates potential issues with agent network connectivity.\n+ `AGENT_DEVICE_ISSUE`: Indicates problems with the customer hearing the agent due to potential issues with the agent's device such as their workstation, headset, or microphone.\n+ `CUSTOMER_CONNECTIVITY_ISSUE`: Indicates potential issues with customer network connectivity.\n+ `CUSTOMER_DEVICE_ISSUE`: Indicates problems with the customer hearing the agent due to potential issues with the customer's device such as their device speaker or microphone."
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#Endpoint.Address",
+      "name": "Endpoint.Address",
+      "anchor": "ctr-endpoint",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-endpoint",
+      "summary": "The value for the type of endpoint. For TELEPHONE_NUMBER, the value is a phone number in E.164 format.",
+      "description": "The value for the type of endpoint. For `TELEPHONE_NUMBER`, the value is a phone number in E.164 format.",
+      "metricCategory": "Contact record field (Endpoint)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#Endpoint.Type",
+      "name": "Endpoint.Type",
+      "anchor": "ctr-endpoint",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-endpoint",
+      "summary": "The endpoint type. Currently, an endpoint can only be a telephone number.",
+      "description": "The endpoint type. Currently, an endpoint can only be a telephone number.",
+      "metricCategory": "Contact record field (Endpoint)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`TELEPHONE_NUMBER`"
+      }
+    },
+    {
+      "id": "ctr-data-model#Expiry.DurationInSeconds",
+      "name": "Expiry.DurationInSeconds",
+      "anchor": "ctr-Expiry",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Expiry",
+      "summary": "The number of seconds to wait before expiring the routing step.",
+      "description": "The number of seconds to wait before expiring the routing step.",
+      "metricCategory": "Contact record field (Expiry)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "1"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Expiry.ExpiryTimestamp",
+      "name": "Expiry.ExpiryTimestamp",
+      "anchor": "ctr-Expiry",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Expiry",
+      "summary": "The Timestamp indicating when the routing step expires.",
+      "description": "The Timestamp indicating when the routing step expires.",
+      "metricCategory": "Contact record field (Expiry)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#Expression.AndExpression",
+      "name": "Expression.AndExpression",
+      "anchor": "ctr-Expression",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Expression",
+      "summary": "List of routing expressions which will be AND-ed together.",
+      "description": "List of routing expressions which will be AND-ed together.",
+      "metricCategory": "Contact record field (Expression)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Expression"
+    },
+    {
+      "id": "ctr-data-model#Expression.OrExpression",
+      "name": "Expression.OrExpression",
+      "anchor": "ctr-Expression",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Expression",
+      "summary": "List of routing expressions which will be OR-ed together.",
+      "description": "List of routing expressions which will be OR-ed together.",
+      "metricCategory": "Contact record field (Expression)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Expression"
+    },
+    {
+      "id": "ctr-data-model#Expression.AttributeCondition",
+      "name": "Expression.AttributeCondition",
+      "anchor": "ctr-Expression",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Expression",
+      "summary": "An object to specify the predefined attribute condition.",
+      "description": "An object to specify the predefined attribute condition.",
+      "metricCategory": "Contact record field (Expression)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AttributeCondition"
+    },
+    {
+      "id": "ctr-data-model#Expression.NotAttributeCondition",
+      "name": "Expression.NotAttributeCondition",
+      "anchor": "ctr-Expression",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Expression",
+      "summary": "An object to specify the predefined attribute condition to exclude agents with certain proficiencies.",
+      "description": "An object to specify the predefined attribute condition to exclude agents with certain proficiencies.",
+      "metricCategory": "Contact record field (Expression)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AttributeCondition"
+    },
+    {
+      "id": "ctr-data-model#ExternalThirdParty.ExternalThirdPartyInteractionDuration",
+      "name": "ExternalThirdParty.ExternalThirdPartyInteractionDuration",
+      "anchor": "ctr-ExternalThirdParty",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ExternalThirdParty",
+      "summary": "The time, in whole seconds, that the external participant interacted with the customer.",
+      "description": "The time, in whole seconds, that the external participant interacted with the customer.",
+      "metricCategory": "Contact record field (ExternalThirdParty)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#GlobalResiliencyMetadata.ActiveRegion",
+      "name": "GlobalResiliencyMetadata.ActiveRegion",
+      "anchor": "ctr-GlobalResiliencyMetadata",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-GlobalResiliencyMetadata",
+      "summary": "The current AWS Region in which the contact is active. This indicates where the contact is being processed in real-time.",
+      "description": "The current AWS Region in which the contact is active. This indicates where the contact is being processed in real-time.\n\nLength Constraints: Minimum length of 0. Maximum length of 1024.",
+      "metricCategory": "Contact record field (GlobalResiliencyMetadata)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#GlobalResiliencyMetadata.OriginRegion",
+      "name": "GlobalResiliencyMetadata.OriginRegion",
+      "anchor": "ctr-GlobalResiliencyMetadata",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-GlobalResiliencyMetadata",
+      "summary": "The AWS Region where the contact was originally created and initiated. This might differ from the ActiveRegion if the contact has been transferred across Regions.",
+      "description": "The AWS Region where the contact was originally created and initiated. This might differ from the `ActiveRegion` if the contact has been transferred across Regions.\n\nLength Constraints: Minimum length of 0. Maximum length of 1024.",
+      "metricCategory": "Contact record field (GlobalResiliencyMetadata)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#GlobalResiliencyMetadata.TrafficDistributionGroupId",
+      "name": "GlobalResiliencyMetadata.TrafficDistributionGroupId",
+      "anchor": "ctr-GlobalResiliencyMetadata",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-GlobalResiliencyMetadata",
+      "summary": "The identifier of the traffic distribution group.",
+      "description": "The identifier of the traffic distribution group.\n\nPattern: `^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$`",
+      "metricCategory": "Contact record field (GlobalResiliencyMetadata)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactEvaluations.FormId",
+      "name": "ContactEvaluations.FormId",
+      "anchor": "ctr-ContactEvaluations",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactEvaluations",
+      "summary": "A unique identifier for the form. It is always present.",
+      "description": "A unique identifier for the form. It is always present.",
+      "metricCategory": "Contact record field (ContactEvaluations)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactEvaluations.EvaluationArn",
+      "name": "ContactEvaluations.EvaluationArn",
+      "anchor": "ctr-ContactEvaluations",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactEvaluations",
+      "summary": "The Amazon Resource Name for the evaluation form. It is always present.",
+      "description": "The Amazon Resource Name for the evaluation form. It is always present.",
+      "metricCategory": "Contact record field (ContactEvaluations)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactEvaluations.Status",
+      "name": "ContactEvaluations.Status",
+      "anchor": "ctr-ContactEvaluations",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactEvaluations",
+      "summary": "The status of the evaluation.",
+      "description": "The status of the evaluation.",
+      "metricCategory": "Contact record field (ContactEvaluations)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`COMPLETE`, `IN_PROGRESS`, `DELETED`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#ContactEvaluations.StartTimestamp",
+      "name": "ContactEvaluations.StartTimestamp",
+      "anchor": "ctr-ContactEvaluations",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactEvaluations",
+      "summary": "The date and time when the evaluation was started, in UTC time.",
+      "description": "The date and time when the evaluation was started, in UTC time.",
+      "metricCategory": "Contact record field (ContactEvaluations)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy-mm-dd*T*hh:mm:ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactEvaluations.EndTimestamp",
+      "name": "ContactEvaluations.EndTimestamp",
+      "anchor": "ctr-ContactEvaluations",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactEvaluations",
+      "summary": "The date and time when the evaluation was submitted, in UTC time.",
+      "description": "The date and time when the evaluation was submitted, in UTC time.",
+      "metricCategory": "Contact record field (ContactEvaluations)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy-mm-dd*T*hh:mm:ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactEvaluations.DeleteTimestamp",
+      "name": "ContactEvaluations.DeleteTimestamp",
+      "anchor": "ctr-ContactEvaluations",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactEvaluations",
+      "summary": "The date and time when the evaluation was deleted, in UTC time.",
+      "description": "The date and time when the evaluation was deleted, in UTC time.",
+      "metricCategory": "Contact record field (ContactEvaluations)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy-mm-dd*T*hh:mm:ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#ContactEvaluations.ExportLocation",
+      "name": "ContactEvaluations.ExportLocation",
+      "anchor": "ctr-ContactEvaluations",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactEvaluations",
+      "summary": "The path where evaluation was exported.",
+      "description": "The path where evaluation was exported.",
+      "metricCategory": "Contact record field (ContactEvaluations)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "0-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#MediaStream.Type",
+      "name": "MediaStream.Type",
+      "anchor": "MediaStream",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#MediaStream",
+      "summary": "",
+      "description": "",
+      "metricCategory": "Contact record field (MediaStream)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`AUDIO`, `CHAT`, `AUTOMATED_INTERACTION`"
+      },
+      "metricType": "MediaStreamType"
+    },
+    {
+      "id": "ctr-data-model#QualityMetrics.Agent",
+      "name": "QualityMetrics.Agent",
+      "anchor": "ctr-qualitymetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-qualitymetrics",
+      "summary": "Information about the quality of agent media connection. This is a measure of how the agent sounded to the customer.",
+      "description": "Information about the quality of agent media connection. This is a measure of how the agent sounded to the customer.",
+      "metricCategory": "Contact record field (QualityMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AgentQualityMetrics"
+    },
+    {
+      "id": "ctr-data-model#QualityMetrics.Customer",
+      "name": "QualityMetrics.Customer",
+      "anchor": "ctr-qualitymetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-qualitymetrics",
+      "summary": "Information about the quality of customer media connection. This is a measure of how the customer sounded to the agent.",
+      "description": "Information about the quality of customer media connection. This is a measure of how the customer sounded to the agent.",
+      "metricCategory": "Contact record field (QualityMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "CustomerQualityMetrics"
+    },
+    {
+      "id": "ctr-data-model#AgentQualityMetrics.Audio",
+      "name": "AgentQualityMetrics.Audio",
+      "anchor": "ctr-agentqualitymetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-agentqualitymetrics",
+      "summary": "Information about the audio quality of the agent.",
+      "description": "Information about the audio quality of the agent.",
+      "metricCategory": "Contact record field (AgentQualityMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AudioQualityMetricsInfo"
+    },
+    {
+      "id": "ctr-data-model#CustomerQualityMetrics.Audio",
+      "name": "CustomerQualityMetrics.Audio",
+      "anchor": "ctr-customerqualitymetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-customerqualitymetrics",
+      "summary": "Information about the audio quality of the Agent.",
+      "description": "Information about the audio quality of the Agent.",
+      "metricCategory": "Contact record field (CustomerQualityMetrics)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "AudioQualityMetricsInfo"
+    },
+    {
+      "id": "ctr-data-model#AudioQualityMetricsInfo.QualityScore",
+      "name": "AudioQualityMetricsInfo.QualityScore",
+      "anchor": "ctr-audioqualitymetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-audioqualitymetrics",
+      "summary": "Number representing the estimated quality of the media connection.",
+      "description": "Number representing the estimated quality of the media connection.\n\nMax val: 5.00",
+      "metricCategory": "Contact record field (AudioQualityMetricsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "1.00"
+      },
+      "metricType": "Number"
+    },
+    {
+      "id": "ctr-data-model#AudioQualityMetricsInfo.PotentialQualityIssues",
+      "name": "AudioQualityMetricsInfo.PotentialQualityIssues",
+      "anchor": "ctr-audioqualitymetrics",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-audioqualitymetrics",
+      "summary": "List of potential issues causing degradation of quality on a media connection. If the service did not detect any potential quality issues the list is empty.",
+      "description": "List of potential issues causing degradation of quality on a media connection. If the service did not detect any potential quality issues the list is empty.",
+      "metricCategory": "Contact record field (AudioQualityMetricsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "Empty array or array with any of the following values: `HighPacketLoss`, `HighRoundTripTime`, `HighJitterBuffer`."
+      },
+      "metricType": "StringArray"
+    },
+    {
+      "id": "ctr-data-model#QueueInfo.ARN",
+      "name": "QueueInfo.ARN",
+      "anchor": "ctr-QueueInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-QueueInfo",
+      "summary": "The Amazon Resource Name of the queue.",
+      "description": "The Amazon Resource Name of the queue.",
+      "metricCategory": "Contact record field (QueueInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ARN"
+    },
+    {
+      "id": "ctr-data-model#QueueInfo.DequeueTimestamp",
+      "name": "QueueInfo.DequeueTimestamp",
+      "anchor": "DequeueTimestamp-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#DequeueTimestamp-CTR",
+      "summary": "The date and time the contact was removed from the queue, in UTC time. Either the customer disconnected or the agent started interacting with the customer.",
+      "description": "The date and time the contact was removed from the queue, in UTC time. Either the customer disconnected or the agent started interacting with the customer.",
+      "metricCategory": "Contact record field (QueueInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#QueueInfo.Duration",
+      "name": "QueueInfo.Duration",
+      "anchor": "Duration-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#Duration-CTR",
+      "summary": "The difference in time, in whole seconds, between EnqueueTimestamp and DequeueTimestamp.",
+      "description": "The difference in time, in whole seconds, between `EnqueueTimestamp` and `DequeueTimestamp`.",
+      "metricCategory": "Contact record field (QueueInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#QueueInfo.EnqueueTimestamp",
+      "name": "QueueInfo.EnqueueTimestamp",
+      "anchor": "EnqueueTimestamp-CTR",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#EnqueueTimestamp-CTR",
+      "summary": "The date and time the contact was added to the queue, in UTC time.",
+      "description": "The date and time the contact was added to the queue, in UTC time.",
+      "metricCategory": "Contact record field (QueueInfo)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Enqueue timestamp"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "String (*yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z)"
+    },
+    {
+      "id": "ctr-data-model#QueueInfo.Name",
+      "name": "QueueInfo.Name",
+      "anchor": "ctr-QueueInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-QueueInfo",
+      "summary": "The name of the queue.",
+      "description": "The name of the queue.",
+      "metricCategory": "Contact record field (QueueInfo)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Queue",
+          "order": 1
+        }
+      ],
+      "extraSections": {
+        "Length": "1-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingInfo.DeletionReason",
+      "name": "RecordingInfo.DeletionReason",
+      "anchor": "ctr-RecordingInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingInfo",
+      "summary": "If the recording was deleted, this is the reason entered for the deletion.",
+      "description": "If the recording was deleted, this is the reason entered for the deletion.",
+      "metricCategory": "Contact record field (RecordingInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingInfo.Location",
+      "name": "RecordingInfo.Location",
+      "anchor": "ctr-RecordingInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingInfo",
+      "summary": "The location, in Amazon S3, for the recording.",
+      "description": "The location, in Amazon S3, for the recording.",
+      "metricCategory": "Contact record field (RecordingInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "0-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingInfo.Status",
+      "name": "RecordingInfo.Status",
+      "anchor": "ctr-RecordingInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingInfo",
+      "summary": "The recording status.",
+      "description": "The recording status.",
+      "metricCategory": "Contact record field (RecordingInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`AVAILABLE` \\| `DELETED` \\| `NULL`"
+      }
+    },
+    {
+      "id": "ctr-data-model#RecordingInfo.Type",
+      "name": "RecordingInfo.Type",
+      "anchor": "ctr-RecordingInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingInfo",
+      "summary": "The recording type.",
+      "description": "The recording type.",
+      "metricCategory": "Contact record field (RecordingInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`AUDIO`"
+      }
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.DeletionReason",
+      "name": "RecordingsInfo.DeletionReason",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "If the recording/transcript was deleted, this is the reason entered for the deletion.",
+      "description": "If the recording/transcript was deleted, this is the reason entered for the deletion.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.FragmentStartNumber",
+      "name": "RecordingsInfo.FragmentStartNumber",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "The number that identifies the Kinesis Video Streams fragment where the customer audio stream started.",
+      "description": "The number that identifies the Kinesis Video Streams fragment where the customer audio stream started.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.FragmentStopNumber",
+      "name": "RecordingsInfo.FragmentStopNumber",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "The number that identifies the Kinesis Video Streams fragment where the customer audio stream stopped.",
+      "description": "The number that identifies the Kinesis Video Streams fragment where the customer audio stream stopped.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.Location",
+      "name": "RecordingsInfo.Location",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "The location of the recording or transcript. This is an Amazon S3 path when StorageType is S3, or a ARN when StorageType is KINESIS_VIDEO_STREAM.",
+      "description": "The location of the recording or transcript. This is an Amazon S3 path when StorageType is S3, or a ARN when StorageType is KINESIS\\_VIDEO\\_STREAM.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "0-256"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.MediaStreamType",
+      "name": "RecordingsInfo.MediaStreamType",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "Information about the media stream used during the conversation.",
+      "description": "Information about the media stream used during the conversation.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`AUDIO`, `VIDEO`, `CHAT`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.ParticipantType",
+      "name": "RecordingsInfo.ParticipantType",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "Information about the conversation participant: whether they are an agent or contact. Following are the participant types:",
+      "description": "Information about the conversation participant: whether they are an agent or contact. Following are the participant types:\n\n+ All\n\n+ Manager\n\n+ Agent\n\n+ Customer\n\n+ Thirdparty\n\n+ Supervisor\n\n+ IVR",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.StartTimestamp",
+      "name": "RecordingsInfo.StartTimestamp",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "When the conversation of the last leg of the recording started.",
+      "description": "When the conversation of the last leg of the recording started.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.Status",
+      "name": "RecordingsInfo.Status",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "The status of the recording/transcript.",
+      "description": "The status of the recording/transcript.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`AVAILABLE` \\| `DELETED` \\| `NULL`"
+      }
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.StopTimestamp",
+      "name": "RecordingsInfo.StopTimestamp",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "When the conversation of the last leg of recording stopped.",
+      "description": "When the conversation of the last leg of recording stopped.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#RecordingsInfo.StorageType",
+      "name": "RecordingsInfo.StorageType",
+      "anchor": "ctr-RecordingsInfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RecordingsInfo",
+      "summary": "Where the recording/transcript is stored.",
+      "description": "Where the recording/transcript is stored.",
+      "metricCategory": "Contact record field (RecordingsInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "Amazon S3 \\| `KINESIS_VIDEO_STREAM`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#References.Reference Info",
+      "name": "References.Reference Info",
+      "anchor": "ctr-contact-references",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-contact-references",
+      "summary": "Name",
+      "description": "Name\n\n+ When Type = `ATTACHMENT`, the record also has a Status field.\n\nStatus valid values: `APPROVED` \\| `REJECTED`\n\nValue",
+      "metricCategory": "Contact record field (References)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "URL \\| ATTACHMENT \\| NUMBER \\| STRING \\| DATE \\| EMAIL"
+    },
+    {
+      "id": "ctr-data-model#RoutingCriteria.ActivationTimestamp",
+      "name": "RoutingCriteria.ActivationTimestamp",
+      "anchor": "ctr-RoutingCriteria",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RoutingCriteria",
+      "summary": "The Timestamp indicating when the routing criteria is set to active. A routing criteria is activated when the contact is transferred to a queue.",
+      "description": "The Timestamp indicating when the routing criteria is set to active. A routing criteria is activated when the contact is transferred to a queue.\n\nActivationTimestamp is set on routing criteria for contacts in agent queue even though Routing criteria is never activated for contacts in agent queue.",
+      "metricCategory": "Contact record field (RoutingCriteria)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#RoutingCriteria.Index",
+      "name": "RoutingCriteria.Index",
+      "anchor": "ctr-RoutingCriteria",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RoutingCriteria",
+      "summary": "Information about the index of the routing criteria.",
+      "description": "Information about the index of the routing criteria.\n\nWhen you have updated the routing criteria more than 3 times on an enqueued contact, then only the last 3 updates appear on the contact record. However, you can use the index to identify how many times the routing criteria were updated on the contact record.\n\nFor example, if the routing criteria was updated 5 times, then you would see 3 routing criteria on the contact record with indices 2, 3, and 4. This is because at most only 3 routing criteria are stored on the contact record. The first two routing criteria updates that would have had indices 0 and 1 do not appear on the contact record.",
+      "metricCategory": "Contact record field (RoutingCriteria)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#RoutingCriteria.Steps",
+      "name": "RoutingCriteria.Steps",
+      "anchor": "ctr-RoutingCriteria",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RoutingCriteria",
+      "summary": "List of routing steps.",
+      "description": "List of routing steps.",
+      "metricCategory": "Contact record field (RoutingCriteria)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-5"
+      },
+      "metricType": "List of Step objects"
+    },
+    {
+      "id": "ctr-data-model#RoutingProfile.ARN",
+      "name": "RoutingProfile.ARN",
+      "anchor": "ctr-RoutingProfile",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RoutingProfile",
+      "summary": "The Amazon Resource Name of the routing profile.",
+      "description": "The Amazon Resource Name of the routing profile.",
+      "metricCategory": "Contact record field (RoutingProfile)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ARN"
+    },
+    {
+      "id": "ctr-data-model#RoutingProfile.Name",
+      "name": "RoutingProfile.Name",
+      "anchor": "ctr-RoutingProfile",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-RoutingProfile",
+      "summary": "The name of the routing profile.",
+      "description": "The name of the routing profile.",
+      "metricCategory": "Contact record field (RoutingProfile)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Routing profile",
+          "order": 1
+        }
+      ],
+      "extraSections": {
+        "Length": "1-100"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#StateTransitions.stateStartTimestamp",
+      "name": "StateTransitions.stateStartTimestamp",
+      "anchor": "ctr-StateTransitions",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-StateTransitions",
+      "summary": "The date and time when the state started in UTC time.",
+      "description": "The date and time when the state started in UTC time.",
+      "metricCategory": "Contact record field (StateTransitions)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#StateTransitions.stateEndTimestamp",
+      "name": "StateTransitions.stateEndTimestamp",
+      "anchor": "ctr-StateTransitions",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-StateTransitions",
+      "summary": "The date and time when the state ended in UTC time.",
+      "description": "The date and time when the state ended in UTC time.",
+      "metricCategory": "Contact record field (StateTransitions)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "String (yyyy-mm-ddThh:mm:ssZ)"
+    },
+    {
+      "id": "ctr-data-model#StateTransitions.state",
+      "name": "StateTransitions.state",
+      "anchor": "ctr-StateTransitions",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-StateTransitions",
+      "summary": "",
+      "description": "",
+      "metricCategory": "Contact record field (StateTransitions)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "`SILENT_MONITOR | BARGE`."
+      }
+    },
+    {
+      "id": "ctr-data-model#Steps.Status",
+      "name": "Steps.Status",
+      "anchor": "ctr-Steps",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Steps",
+      "summary": "Represents status of the Routing step.",
+      "description": "Represents status of the Routing step.",
+      "metricCategory": "Contact record field (Steps)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Valid values": "EXPIRED, ACTIVE, JOINED, INACTIVE, DEACTIVATED, INTERRUPTED"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#Steps.Expression",
+      "name": "Steps.Expression",
+      "anchor": "ctr-Steps",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Steps",
+      "summary": "An object to specify the expression of a routing step..",
+      "description": "An object to specify the expression of a routing step..",
+      "metricCategory": "Contact record field (Steps)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Expression"
+    },
+    {
+      "id": "ctr-data-model#Steps.Expiry",
+      "name": "Steps.Expiry",
+      "anchor": "ctr-Steps",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Steps",
+      "summary": "An object to specify the expiration of a routing step.",
+      "description": "An object to specify the expiration of a routing step.",
+      "metricCategory": "Contact record field (Steps)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "Expiry"
+    },
+    {
+      "id": "ctr-data-model#VoiceIdResult.Authentication",
+      "name": "VoiceIdResult.Authentication",
+      "anchor": "ctr-VoiceID",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-VoiceID",
+      "summary": "The voice authentication information for the call.",
+      "description": "The voice authentication information for the call.",
+      "metricCategory": "Contact record field (VoiceIdResult)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Authentication result",
+          "order": 1
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Authentication"
+    },
+    {
+      "id": "ctr-data-model#VoiceIdResult.FraudDetection",
+      "name": "VoiceIdResult.FraudDetection",
+      "anchor": "ctr-VoiceID",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-VoiceID",
+      "summary": "The fraud detection information for the call.",
+      "description": "The fraud detection information for the call.",
+      "metricCategory": "Contact record field (VoiceIdResult)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Fraud detection result",
+          "order": 1
+        }
+      ],
+      "extraSections": {},
+      "metricType": "FraudDetection"
+    },
+    {
+      "id": "ctr-data-model#VoiceIdResult.GeneratedSpeakerId",
+      "name": "VoiceIdResult.GeneratedSpeakerId",
+      "anchor": "ctr-VoiceID",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-VoiceID",
+      "summary": "The speaker identifier generated by Voice ID.",
+      "description": "The speaker identifier generated by Voice ID.",
+      "metricCategory": "Contact record field (VoiceIdResult)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "25 characters"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#VoiceIdResult.SpeakerEnrolled",
+      "name": "VoiceIdResult.SpeakerEnrolled",
+      "anchor": "ctr-VoiceID",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-VoiceID",
+      "summary": "Was the customer enrolled during this contact?",
+      "description": "Was the customer enrolled during this contact?",
+      "metricCategory": "Contact record field (VoiceIdResult)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Speaker enrolled"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Boolean"
+    },
+    {
+      "id": "ctr-data-model#VoiceIdResult.SpeakerOptedOut",
+      "name": "VoiceIdResult.SpeakerOptedOut",
+      "anchor": "ctr-VoiceID",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-VoiceID",
+      "summary": "Did the customer opt out during this contact?",
+      "description": "Did the customer opt out during this contact?",
+      "metricCategory": "Contact record field (VoiceIdResult)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Speaker opted out"
+        }
+      ],
+      "extraSections": {},
+      "metricType": "Boolean"
+    },
+    {
+      "id": "ctr-data-model#WisdomInfo.SessionArn",
+      "name": "WisdomInfo.SessionArn",
+      "anchor": "ctr-wisdominfo",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-wisdominfo",
+      "summary": "The Amazon Resource Name (ARN) of the agent assist session for the contact.",
+      "description": "The Amazon Resource Name (ARN) of the agent assist session for the contact.",
+      "metricCategory": "Contact record field (WisdomInfo)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {},
+      "metricType": "ARN"
+    },
+    {
+      "id": "ctr-data-model#Authentication.ScoreThreshold",
+      "name": "Authentication.ScoreThreshold",
+      "anchor": "ctr-Authentication",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Authentication",
+      "summary": "The minimum authentication score required for a user to be authenticated.",
+      "description": "The minimum authentication score required for a user to be authenticated.",
+      "metricCategory": "Contact record field (Authentication)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0",
+        "Max value": "100"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Authentication.MinimumSpeechInSeconds",
+      "name": "Authentication.MinimumSpeechInSeconds",
+      "anchor": "ctr-Authentication",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Authentication",
+      "summary": "The number of seconds of speech used to authenticate the user.",
+      "description": "The number of seconds of speech used to authenticate the user.",
+      "metricCategory": "Contact record field (Authentication)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "5",
+        "Max value": "10"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Authentication.Score",
+      "name": "Authentication.Score",
+      "anchor": "ctr-Authentication",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Authentication",
+      "summary": "The output of Voice ID authentication evaluation.",
+      "description": "The output of Voice ID authentication evaluation.",
+      "metricCategory": "Contact record field (Authentication)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0",
+        "Max value": "100"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#Authentication.Result",
+      "name": "Authentication.Result",
+      "anchor": "ctr-Authentication",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-Authentication",
+      "summary": "The string output of Voice ID authentication evaluation.",
+      "description": "The string output of Voice ID authentication evaluation.",
+      "metricCategory": "Contact record field (Authentication)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Authentication result"
+        }
+      ],
+      "extraSections": {
+        "Length": "1-32",
+        "Valid values": "`Authenticated` \\| `Not Authenticated`\\| `Not Enrolled` \\| `Opted Out` \\| `Inconclusive` \\| `Error`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#FraudDetection.ScoreThreshold",
+      "name": "FraudDetection.ScoreThreshold",
+      "anchor": "ctr-FraudDetection",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-FraudDetection",
+      "summary": "The threshold for detection of fraudsters in a watchlist that was set in the flow for the contact.",
+      "description": "The threshold for detection of fraudsters in a watchlist that was set in the flow for the contact.",
+      "metricCategory": "Contact record field (FraudDetection)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0",
+        "Max value": "100"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#FraudDetection.Result",
+      "name": "FraudDetection.Result",
+      "anchor": "ctr-FraudDetection",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-FraudDetection",
+      "summary": "The string output of detection of fraudsters in a watchlist.",
+      "description": "The string output of detection of fraudsters in a watchlist.",
+      "metricCategory": "Contact record field (FraudDetection)",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Fraud detection result"
+        }
+      ],
+      "extraSections": {
+        "Valid values": "`High Risk` \\| `Low Risk` \\| `Inconclusive` \\| `Error`"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#FraudDetection.Reasons",
+      "name": "FraudDetection.Reasons",
+      "anchor": "ctr-FraudDetection",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-FraudDetection",
+      "summary": "Contains fraud types: Known Fraudster and Voice Spoofing.",
+      "description": "Contains fraud types: Known Fraudster and Voice Spoofing.",
+      "metricCategory": "Contact record field (FraudDetection)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "1-128"
+      },
+      "metricType": "List of String"
+    },
+    {
+      "id": "ctr-data-model#FraudDetection.RiskScoreKnownFraudster",
+      "name": "FraudDetection.RiskScoreKnownFraudster",
+      "anchor": "ctr-FraudDetection",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-FraudDetection",
+      "summary": "The detection of fraudsters in a watchlist score for Known Fraudster category.",
+      "description": "The detection of fraudsters in a watchlist score for Known Fraudster category.",
+      "metricCategory": "Contact record field (FraudDetection)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Min value": "0",
+        "Max value": "100"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#FraudDetection.RiskScoreVoiceSpoofing",
+      "name": "FraudDetection.RiskScoreVoiceSpoofing",
+      "anchor": "ctr-FraudDetection",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-FraudDetection",
+      "summary": "The fraud risk score based on Voice Spoofing, such as playback of audio from Text-to-Speech systems recorded audio.",
+      "description": "The fraud risk score based on Voice Spoofing, such as playback of audio from Text-to-Speech systems recorded audio.",
+      "metricCategory": "Contact record field (FraudDetection)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "3"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#FraudDetection.RiskScoreSyntheticSpeech (unused)",
+      "name": "FraudDetection.RiskScoreSyntheticSpeech (unused)",
+      "anchor": "ctr-FraudDetection",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-FraudDetection",
+      "summary": "This field is unused. This score is presented as a combined risk score for Voice Spoofing.",
+      "description": "This field is unused. This score is presented as a combined risk score for Voice Spoofing.",
+      "metricCategory": "Contact record field (FraudDetection)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "3"
+      },
+      "metricType": "Integer"
+    },
+    {
+      "id": "ctr-data-model#FraudDetection.GeneratedFraudsterID",
+      "name": "FraudDetection.GeneratedFraudsterID",
+      "anchor": "ctr-FraudDetection",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-FraudDetection",
+      "summary": "The fraudster ID if the fraud type is Known Fraudster.",
+      "description": "The fraudster ID if the fraud type is Known Fraudster.",
+      "metricCategory": "Contact record field (FraudDetection)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "25 characters"
+      },
+      "metricType": "String"
+    },
+    {
+      "id": "ctr-data-model#FraudDetection.WatchlistID",
+      "name": "FraudDetection.WatchlistID",
+      "anchor": "ctr-FraudDetection",
+      "sourceSlug": "ctr-data-model",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-FraudDetection",
+      "summary": "The fraudster watchlist that was set in the flow for the contact. Use for Known Fraudster Detection.",
+      "description": "The fraudster watchlist that was set in the flow for the contact. Use for Known Fraudster Detection.",
+      "metricCategory": "Contact record field (FraudDetection)",
+      "api": [],
+      "uiLabels": [],
+      "extraSections": {
+        "Length": "22 characters"
+      },
+      "metricType": "String"
+    },
     {
       "id": "metrics-definitions#abandonment-rate",
       "name": "Abandonment rate",
@@ -5959,6 +9271,100 @@
       "metricType": "Double",
       "metricCategory": "Flow driven metric",
       "calculationLogic": "+ TEST\\_CASE\\_EXECUTION\\_SUCCESS\\_COUNT / TEST\\_CASE\\_EXECUTION\\_COUNT"
+    },
+    {
+      "id": "custom#contact-status",
+      "name": "Contact status",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-search.html",
+      "summary": "Whether the contact is completed or still in progress.",
+      "description": "Whether the contact is completed or still in progress. You can search for both completed and in-progress contacts. For contacts handled by agents, a contact is only marked as completed after the agent has completed After Contact Work (ACW).\n\nThe ability to search for in-progress contacts varies by channel: queued callbacks appear once queued; other voice contacts only after they are connected to an agent or disconnected; chats after they are connected to the system, queued, connected to an agent or disconnected; tasks and email as soon as they are initiated.",
+      "metricCategory": "Contact search column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Contact status"
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#contact-duration",
+      "name": "Contact duration",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "How long the contact lasted, as shown by the Contact search page.",
+      "description": "How long the contact lasted, as shown by the Contact search page. This is not a field of the contact record itself; the record stores the contact's **InitiationTimestamp** and **DisconnectTimestamp**, and per-segment durations such as **AgentInteractionDuration**, **CustomerHoldDuration** and **AfterContactWorkDuration**.",
+      "metricCategory": "Contact search column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Contact duration"
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#first-contact-flow",
+      "name": "First contact flow",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-search.html",
+      "summary": "The flow that first handled the contact.",
+      "description": "The flow that first handled the contact, shown by ID or by name. The Contact search page also lets you filter by the name of the initial flow for the contact.",
+      "metricCategory": "Contact search column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "First contact flow ID"
+        },
+        {
+          "surface": "contactsearch",
+          "label": "First contact flow name"
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#is-transferred-out",
+      "name": "Is transferred out",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-search.html",
+      "summary": "Whether the contact was transferred out to another agent, queue, or an external number.",
+      "description": "Indicates whether the contact was transferred out to another agent, queue, or an external number. This option only indicates cold transfers, where the agent disconnected before the contact was transferred. For the date and time (in UTC time) when the transfer was connected, see **TransferCompletedTimestamp** in the contact record.",
+      "metricCategory": "Contact search column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Is transferred out"
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#task-template-name",
+      "name": "Task template name",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-search.html",
+      "summary": "The task template used to create a task contact.",
+      "description": "The task template used to create a task contact. Filtering contacts by task template does not reflect updated templates for in-progress contacts: Contact search shows the original template until the contact terminates.",
+      "metricCategory": "Contact search column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "contactsearch",
+          "label": "Task template name"
+        }
+      ],
+      "extraSections": {}
     }
   ]
 }

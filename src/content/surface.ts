@@ -5,6 +5,7 @@ import type { PageSurface } from '../lib/index';
  * Path fragments are deliberately loose; they get tightened once verified against a live instance.
  */
 const RULES: Array<{ test: RegExp; surface: PageSurface }> = [
+  { test: /contact-?search/i, surface: 'contactsearch' },
   { test: /real-?time/i, surface: 'realtime' },
   { test: /historical/i, surface: 'historical' },
   { test: /dashboard|analytics/i, surface: 'dashboard' },

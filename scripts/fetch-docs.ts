@@ -2,15 +2,17 @@
  * Downloads the AWS admin guide metric definition pages as markdown into data/raw/.
  * Writes data/raw/meta.json with URL, fetch time and SHA-256 per file so builds are reproducible.
  *
- * Usage: npm run docs:fetch            (main metrics-definitions page only)
- *        npm run docs:fetch -- --all   (also the feature-specific metric pages)
+ * Usage: npm run docs:fetch                    (default pages)
+ *        npm run docs:fetch -- --all           (also the feature-specific metric pages)
+ *        npm run docs:fetch -- --pages a,b     (only the named page slugs)
  */
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const BASE = 'https://docs.aws.amazon.com/connect/latest/adminguide/';
-const MAIN_PAGES = ['metrics-definitions'];
+/** Pages fetched by default: metric definitions, plus the contact record data model (Contact search columns). */
+const MAIN_PAGES = ['metrics-definitions', 'ctr-data-model'];
 const FEATURE_PAGES = [
   'metric-primitive-definitions',
   'case-management-metrics',
@@ -32,7 +34,8 @@ export interface RawSourceMeta {
 
 async function main(): Promise<void> {
   const all = process.argv.includes('--all');
-  const slugs = all ? [...MAIN_PAGES, ...FEATURE_PAGES] : MAIN_PAGES;
+  const pagesArg = process.argv.find((a) => a.startsWith('--pages='))?.slice('--pages='.length);
+  const slugs = pagesArg ? pagesArg.split(',').filter(Boolean) : all ? [...MAIN_PAGES, ...FEATURE_PAGES] : MAIN_PAGES;
   const outDir = path.resolve('data/raw');
   await mkdir(outDir, { recursive: true });
 

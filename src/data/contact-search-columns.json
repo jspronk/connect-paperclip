@@ -1,0 +1,84 @@
+{
+  "$comment": "Maps column labels on the Contact search page to contact record fields parsed from ctr-data-model.md. 'custom' entries describe console-only columns that have no single contact record field; their text is taken from the linked docs page. Verified against a live instance on 2026-10-17.",
+  "surface": "contactsearch",
+  "columns": [
+    { "label": "Contact ID", "fields": ["ctr-data-model#ContactTraceRecord.ContactId"] },
+    { "label": "Channel", "fields": ["ctr-data-model#ContactTraceRecord.Channel"] },
+    { "label": "Initiation timestamp", "fields": ["ctr-data-model#ContactTraceRecord.InitiationTimestamp"] },
+    { "label": "System phone number / email address", "fields": ["ctr-data-model#ContactTraceRecord.SystemEndpoint"] },
+    { "label": "Queue", "fields": ["ctr-data-model#ContactTraceRecord.Queue", "ctr-data-model#QueueInfo.Name"] },
+    { "label": "Agent", "fields": ["ctr-data-model#ContactTraceRecord.Agent", "ctr-data-model#Agent.Username"] },
+    { "label": "Recording/Transcript", "fields": ["ctr-data-model#ContactTraceRecord.Recording", "ctr-data-model#ContactTraceRecord.Recordings"] },
+    { "label": "Customer phone number / email address", "fields": ["ctr-data-model#ContactTraceRecord.CustomerEndpoint"] },
+    { "label": "Disconnect timestamp", "fields": ["ctr-data-model#ContactTraceRecord.DisconnectTimestamp"] },
+    { "label": "Contact tag", "fields": ["ctr-data-model#ContactTraceRecord.Tags"] },
+    { "label": "Agent full name", "fields": ["ctr-data-model#Agent.Username"], "qualifier": "the console shows the agent's name from their user record" },
+    { "label": "Agent first name", "fields": ["ctr-data-model#Agent.Username"], "qualifier": "the console shows the agent's first name from their user record" },
+    { "label": "Agent last name", "fields": ["ctr-data-model#Agent.Username"], "qualifier": "the console shows the agent's last name from their user record" },
+    { "label": "Routing profile", "fields": ["ctr-data-model#Agent.RoutingProfile", "ctr-data-model#RoutingProfile.Name"] },
+    { "label": "Preferred agents", "fields": ["ctr-data-model#AttributeCondition.AgentsCriteria", "ctr-data-model#AttributeCondition.AgentIds"] },
+    { "label": "Authentication result", "fields": ["ctr-data-model#Authentication.Result", "ctr-data-model#VoiceIdResult.Authentication"] },
+    { "label": "Fraud detection result", "fields": ["ctr-data-model#FraudDetection.Result", "ctr-data-model#VoiceIdResult.FraudDetection"] },
+    { "label": "Speaker enrolled", "fields": ["ctr-data-model#VoiceIdResult.SpeakerEnrolled"] },
+    { "label": "Speaker opted out", "fields": ["ctr-data-model#VoiceIdResult.SpeakerOptedOut"] },
+    { "label": "Channel subtype", "fields": ["ctr-data-model#ContactTraceRecord.SegmentAttributes"], "qualifier": "stored as the connect:Subtype segment attribute" },
+    { "label": "Email subject", "fields": ["ctr-data-model#ContactTraceRecord.SegmentAttributes"], "qualifier": "stored as the connect:EmailSubject segment attribute" },
+    { "label": "Initiation method", "fields": ["ctr-data-model#ContactTraceRecord.InitiationMethod"] },
+    { "label": "Contact direction", "fields": ["ctr-data-model#ContactTraceRecord.InitiationMethod"], "qualifier": "inbound or outbound, derived from the initiation method" },
+    { "label": "Disconnect reason", "fields": ["ctr-data-model#ContactTraceRecord.DisconnectReason"] },
+    { "label": "Initial contact ID", "fields": ["ctr-data-model#ContactTraceRecord.InitialContactId"] },
+    { "label": "Next contact ID", "fields": ["ctr-data-model#ContactTraceRecord.NextContactId"] },
+    { "label": "Previous contact ID", "fields": ["ctr-data-model#ContactTraceRecord.PreviousContactId"] },
+    { "label": "Is transferred out", "fields": ["custom#is-transferred-out", "ctr-data-model#ContactTraceRecord.TransferCompletedTimestamp", "ctr-data-model#ContactTraceRecord.TransferredToEndpoint"] },
+    { "label": "Enqueue timestamp", "fields": ["ctr-data-model#QueueInfo.EnqueueTimestamp"] },
+    { "label": "Scheduled timestamp", "fields": ["ctr-data-model#ContactTraceRecord.ScheduledTimestamp"] },
+    { "label": "Agent connection attempts", "fields": ["ctr-data-model#ContactTraceRecord.AgentConnectionAttempts"] },
+    { "label": "Connected to agent timestamp", "fields": ["ctr-data-model#Agent.ConnectedToAgentTimestamp"] },
+    { "label": "Agent interaction duration", "fields": ["ctr-data-model#Agent.AgentInteractionDuration"] },
+    { "label": "Number of holds", "fields": ["ctr-data-model#Agent.NumberOfHolds"] },
+    { "label": "ACW start timestamp", "fields": ["ctr-data-model#Agent.AfterContactWorkStartTimestamp"] },
+    { "label": "ACW end timestamp", "fields": ["ctr-data-model#Agent.AfterContactWorkEndTimestamp"] },
+    { "label": "Contact status", "fields": ["custom#contact-status"] },
+    { "label": "Contact duration", "fields": ["custom#contact-duration"] },
+    { "label": "First contact flow ID", "fields": ["custom#first-contact-flow"] },
+    { "label": "First contact flow name", "fields": ["custom#first-contact-flow"] },
+    { "label": "Task template name", "fields": ["custom#task-template-name"] }
+  ],
+  "custom": [
+    {
+      "id": "custom#contact-status",
+      "name": "Contact status",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-search.html",
+      "summary": "Whether the contact is completed or still in progress.",
+      "description": "Whether the contact is completed or still in progress. You can search for both completed and in-progress contacts. For contacts handled by agents, a contact is only marked as completed after the agent has completed After Contact Work (ACW).\n\nThe ability to search for in-progress contacts varies by channel: queued callbacks appear once queued; other voice contacts only after they are connected to an agent or disconnected; chats after they are connected to the system, queued, connected to an agent or disconnected; tasks and email as soon as they are initiated."
+    },
+    {
+      "id": "custom#contact-duration",
+      "name": "Contact duration",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord",
+      "summary": "How long the contact lasted, as shown by the Contact search page.",
+      "description": "How long the contact lasted, as shown by the Contact search page. This is not a field of the contact record itself; the record stores the contact's **InitiationTimestamp** and **DisconnectTimestamp**, and per-segment durations such as **AgentInteractionDuration**, **CustomerHoldDuration** and **AfterContactWorkDuration**."
+    },
+    {
+      "id": "custom#first-contact-flow",
+      "name": "First contact flow",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-search.html",
+      "summary": "The flow that first handled the contact.",
+      "description": "The flow that first handled the contact, shown by ID or by name. The Contact search page also lets you filter by the name of the initial flow for the contact."
+    },
+    {
+      "id": "custom#is-transferred-out",
+      "name": "Is transferred out",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-search.html",
+      "summary": "Whether the contact was transferred out to another agent, queue, or an external number.",
+      "description": "Indicates whether the contact was transferred out to another agent, queue, or an external number. This option only indicates cold transfers, where the agent disconnected before the contact was transferred. For the date and time (in UTC time) when the transfer was connected, see **TransferCompletedTimestamp** in the contact record."
+    },
+    {
+      "id": "custom#task-template-name",
+      "name": "Task template name",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-search.html",
+      "summary": "The task template used to create a task contact.",
+      "description": "The task template used to create a task contact. Filtering contacts by task template does not reflect updated templates for in-progress contacts: Contact search shows the original template until the contact terminates."
+    }
+  ]
+}

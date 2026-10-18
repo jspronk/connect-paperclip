@@ -39,10 +39,42 @@ export interface Match {
 }
 
 export interface Scanner {
+  /** Scan `root` and every open shadow root beneath it. */
   scan(root: ParentNode): Match[];
+  /** Document plus every shadow root seen so far. */
+  roots(): ParentNode[];
 }
 
-export function createScanner(index: MetricIndex, getSurface: () => PageSurface, getMode: () => MatchMode): Scanner {
+export interface ScannerOptions {
+  /** Called once for each open shadow root discovered while scanning. */
+  onShadowRoot?: (root: ShadowRoot) => void;
+}
+
+/** Collect open shadow roots under `root`, recursively (hosts inside shadow roots included). */
+export function shadowRootsUnder(root: ParentNode, out: ShadowRoot[] = []): ShadowRoot[] {
+  const visit = (node: ParentNode): void => {
+    if (node instanceof Element && node.shadowRoot && node.id !== HOST_ID) {
+      out.push(node.shadowRoot);
+      visit(node.shadowRoot);
+    }
+    for (const el of node.querySelectorAll('*')) {
+      if (el.shadowRoot && el.id !== HOST_ID) {
+        out.push(el.shadowRoot);
+        visit(el.shadowRoot);
+      }
+    }
+  };
+  visit(root);
+  return out;
+}
+
+export function createScanner(
+  index: MetricIndex,
+  getSurface: () => PageSurface,
+  getMode: () => MatchMode,
+  options: ScannerOptions = {},
+): Scanner {
+  const knownShadowRoots = new Set<ShadowRoot>();
   function candidates(root: ParentNode): Element[] {
     const mode = getMode();
     const selector = mode === 'any' ? '*' : `${HEADER_SELECTOR},[class],[data-testid]`;
@@ -77,11 +109,9 @@ export function createScanner(index: MetricIndex, getSurface: () => PageSurface,
     return cur;
   }
 
-  return {
-    scan(root: ParentNode): Match[] {
+  function scanOne(root: ParentNode, out: Match[]): void {
       const mode = getMode();
       const surface = getSurface();
-      const out: Match[] = [];
       for (const el of candidates(root)) {
         if (el.closest(SKIP_SELECTOR)) continue;
         if (el.hasAttribute(ATTR) || el.closest(`[${ATTR}]`) || el.querySelector(`[${ATTR}]`)) continue;
@@ -101,7 +131,25 @@ export function createScanner(index: MetricIndex, getSurface: () => PageSurface,
         if (hint) target.setAttribute(HINT_ATTR, hint);
         out.push({ element: target, ids });
       }
+  }
+
+  return {
+    scan(root: ParentNode): Match[] {
+      const out: Match[] = [];
+      // A root that is itself inside a known shadow tree is scanned as-is; new shadow roots under
+      // it are discovered, reported once, and scanned too.
+      scanOne(root, out);
+      for (const sr of shadowRootsUnder(root)) {
+        if (!knownShadowRoots.has(sr)) {
+          knownShadowRoots.add(sr);
+          options.onShadowRoot?.(sr);
+        }
+        scanOne(sr, out);
+      }
       return out;
+    },
+    roots(): ParentNode[] {
+      return [document, ...knownShadowRoots].filter((r) => !(r instanceof ShadowRoot) || r.host.isConnected);
     },
   };
 }
@@ -116,10 +164,22 @@ export function findHint(target: Element): string | undefined {
   return holder?.getAttribute('title')?.trim() || undefined;
 }
 
-export function clearMatches(root: ParentNode = document): void {
-  for (const el of root.querySelectorAll(`[${ATTR}]`)) {
-    el.removeAttribute(ATTR);
-    el.removeAttribute(HINT_ATTR);
-    if (el.getAttribute('tabindex') === '0') el.removeAttribute('tabindex');
+export function clearMatches(roots: ParentNode | ParentNode[] = document): void {
+  for (const root of Array.isArray(roots) ? roots : [roots]) {
+    for (const el of root.querySelectorAll(`[${ATTR}]`)) {
+      el.removeAttribute(ATTR);
+      el.removeAttribute(HINT_ATTR);
+      if (el.getAttribute('tabindex') === '0') el.removeAttribute('tabindex');
+    }
   }
+}
+
+/** The tagged element for a DOM event, looking through shadow boundaries via composedPath(). */
+export function taggedFromEvent(e: Event): Element | null {
+  for (const n of e.composedPath()) {
+    if (!(n instanceof Element)) continue;
+    if (n.id === HOST_ID) return null;
+    if (n.hasAttribute(ATTR)) return n;
+  }
+  return null;
 }

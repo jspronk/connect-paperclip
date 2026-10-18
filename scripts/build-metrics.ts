@@ -4,8 +4,9 @@
  */
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { parseCtrMarkdown } from '../src/lib/parse-ctr';
 import { parseMetricsMarkdown } from '../src/lib/parse-docs';
-import type { MetricsData, MetricsSource } from '../src/data/schema';
+import type { Metric, MetricsData, MetricsSource, Surface } from '../src/data/schema';
 import type { RawSourceMeta } from './fetch-docs';
 
 async function main(): Promise<void> {
@@ -20,7 +21,7 @@ async function main(): Promise<void> {
   for (const file of files) {
     const slug = file.replace(/\.md$/, '');
     const md = await readFile(path.join(rawDir, file), 'utf8');
-    const { metrics, warnings } = parseMetricsMarkdown(md, slug);
+    const { metrics, warnings } = slug === 'ctr-data-model' ? parseCtrMarkdown(md, slug) : parseMetricsMarkdown(md, slug);
     for (const w of warnings) console.warn(`warn [${slug}] ${w.metric}: ${w.message}`);
     for (const m of metrics) {
       if (seenIds.has(m.id)) {
@@ -42,6 +43,8 @@ async function main(): Promise<void> {
     data.sources.push(source);
   }
 
+  applyColumnMap(data, seenIds, await readFile(path.resolve('src/data/contact-search-columns.json'), 'utf8'));
+
   let previousCount = 0;
   try {
     previousCount = (JSON.parse(await readFile(outPath, 'utf8')) as MetricsData).metrics.length;
@@ -55,7 +58,7 @@ async function main(): Promise<void> {
 
   await writeFile(outPath, JSON.stringify(data, null, 2) + '\n', 'utf8');
 
-  const bySurface = { realtime: 0, historical: 0, dashboard: 0 };
+  const bySurface: Record<Surface, number> = { realtime: 0, historical: 0, dashboard: 0, contactsearch: 0 };
   let noLabel = 0;
   let noType = 0;
   for (const m of data.metrics) {
@@ -65,7 +68,59 @@ async function main(): Promise<void> {
   }
   console.log(`Wrote ${outPath}`);
   console.log(`  metrics: ${data.metrics.length} (${noLabel} without a UI label, ${noType} without a type)`);
-  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}`);
+  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}`);
+}
+
+interface ColumnMap {
+  surface: Surface;
+  columns: Array<{ label: string; fields: string[]; qualifier?: string }>;
+  custom: Array<{ id: string; name: string; docsUrl: string; summary: string; description: string }>;
+}
+
+/**
+ * Attach console column labels (e.g. the Contact search page) to parsed contact record fields,
+ * and add hand-written entries for console-only columns.
+ */
+function applyColumnMap(data: MetricsData, seenIds: Set<string>, json: string): void {
+  const map = JSON.parse(json) as ColumnMap;
+  for (const c of map.custom) {
+    if (seenIds.has(c.id)) continue;
+    const metric: Metric = {
+      id: c.id,
+      name: c.name,
+      anchor: '',
+      sourceSlug: 'custom',
+      docsUrl: c.docsUrl,
+      summary: c.summary,
+      description: c.description,
+      metricCategory: 'Contact search column',
+      api: [],
+      uiLabels: [],
+      extraSections: {},
+    };
+    data.metrics.push(metric);
+    seenIds.add(c.id);
+  }
+  const byId = new Map(data.metrics.map((m) => [m.id, m]));
+  let attached = 0;
+  for (const col of map.columns) {
+    col.fields.forEach((id, order) => {
+      const m = byId.get(id);
+      if (!m) {
+        console.warn(`warn [column-map] "${col.label}" refers to unknown id ${id}`);
+        return;
+      }
+      const label = {
+        surface: map.surface,
+        label: col.label,
+        ...(col.qualifier ? { qualifier: col.qualifier } : {}),
+        ...(order ? { order } : {}),
+      };
+      m.uiLabels.push(label);
+      attached++;
+    });
+  }
+  console.log(`  column map: ${map.columns.length} ${map.surface} columns -> ${attached} field labels, ${map.custom.length} custom entries`);
 }
 
 main().catch((err) => {
