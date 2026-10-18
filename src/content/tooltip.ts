@@ -11,6 +11,7 @@ const SURFACE_LABEL: Record<string, string> = {
   dashboard: 'Dashboard',
   contactsearch: 'Contact search',
   routingprofile: 'Routing profile',
+  quickconnect: 'Quick connect',
   name: 'Metric name',
 };
 

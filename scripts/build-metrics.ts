@@ -60,7 +60,7 @@ async function main(): Promise<void> {
 
   await writeFile(outPath, JSON.stringify(data, null, 2) + '\n', 'utf8');
 
-  const bySurface: Record<Surface, number> = { realtime: 0, historical: 0, dashboard: 0, contactsearch: 0, routingprofile: 0 };
+  const bySurface: Record<Surface, number> = { realtime: 0, historical: 0, dashboard: 0, contactsearch: 0, routingprofile: 0, quickconnect: 0 };
   let noLabel = 0;
   let noType = 0;
   for (const m of data.metrics) {
@@ -70,12 +70,13 @@ async function main(): Promise<void> {
   }
   console.log(`Wrote ${outPath}`);
   console.log(`  metrics: ${data.metrics.length} (${noLabel} without a UI label, ${noType} without a type)`);
-  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}, routing profile ${bySurface.routingprofile}`);
+  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}, routing profile ${bySurface.routingprofile}, quick connect ${bySurface.quickconnect}`);
 }
 
 const SURFACE_TITLE: Partial<Record<Surface, string>> = {
   contactsearch: 'Contact search',
   routingprofile: 'Routing profile editor',
+  quickconnect: 'Quick connects',
 };
 
 interface ColumnMap {

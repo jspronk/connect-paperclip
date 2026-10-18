@@ -1,0 +1,163 @@
+{
+  "$comment": "Column headers on the Quick connects list (/transfer-dests), the quick connect detail page key labels, and the Edit quick connect dialog. Text comes from the 'Create quick connects' admin guide page. All labels are surface-only. Verified against a live instance on 2026-10-17.",
+  "surface": "quickconnect",
+  "surfaceOnly": true,
+  "columns": [
+    {
+      "label": "Name",
+      "fields": [
+        "custom#qc-name"
+      ]
+    },
+    {
+      "label": "Description",
+      "fields": [
+        "custom#qc-description"
+      ]
+    },
+    {
+      "label": "Description - optional",
+      "fields": [
+        "custom#qc-description"
+      ]
+    },
+    {
+      "label": "Type",
+      "fields": [
+        "custom#qc-type"
+      ]
+    },
+    {
+      "label": "Destination",
+      "fields": [
+        "custom#qc-destination"
+      ]
+    },
+    {
+      "label": "Phone number",
+      "fields": [
+        "custom#qc-phone-number"
+      ]
+    },
+    {
+      "label": "Country code",
+      "fields": [
+        "custom#qc-phone-number"
+      ]
+    },
+    {
+      "label": "Queue",
+      "fields": [
+        "custom#qc-queue"
+      ]
+    },
+    {
+      "label": "User",
+      "fields": [
+        "custom#qc-user"
+      ]
+    },
+    {
+      "label": "Agent",
+      "fields": [
+        "custom#qc-user"
+      ]
+    },
+    {
+      "label": "Flow",
+      "fields": [
+        "custom#qc-flow"
+      ]
+    },
+    {
+      "label": "Contact flow",
+      "fields": [
+        "custom#qc-flow"
+      ]
+    },
+    {
+      "label": "Tags",
+      "fields": [
+        "custom#qc-tags"
+      ]
+    },
+    {
+      "label": "ARN",
+      "fields": [
+        "custom#qc-arn"
+      ]
+    }
+  ],
+  "custom": [
+    {
+      "id": "custom#qc-name",
+      "name": "Quick connect name",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "A unique name for the quick connect, shown to agents in the Contact Control Panel when they transfer a contact.",
+      "description": "Enter a unique name for the quick connect. Agents see this name in the Contact Control Panel (CCP) under **Quick connects**.\n\nQuick connects are a way to create a list of destinations for common transfers. For example, you might create a quick connect for Tier 2 support: if agents in Tier 1 support can't solve the issue, they transfer the contact to Tier 2.\n\nAgents only see the quick connects of the queues in their routing profile, including the Default outbound queue. To make a quick connect visible, add it to the queue on the **Edit queue** page."
+    },
+    {
+      "id": "custom#qc-description",
+      "name": "Description",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "Optional text describing what the quick connect is for.",
+      "description": "Optional text describing what the quick connect is for. It is shown in the quick connects list and on the quick connect's detail page, and can be searched from the list page."
+    },
+    {
+      "id": "custom#qc-type",
+      "name": "Type",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "The kind of destination: Phone number, User, Queue, or Flow.",
+      "description": "The type of a quick connect specifies the destination:\n\n+ **Phone number**: contacts are transferred to a phone number (such as an on-call pager). No flows are involved; the call is connected directly to the destination, so you cannot set the outbound caller ID and the caller ID from the queue configuration is used. These external quick connects appear in the CCP at all times.\n+ **User**: contacts are transferred to a specific user, such as an agent, as part of a flow (the agent transfer flow you choose).\n+ **Queue**: contacts are transferred to a queue as part of a flow (the queue transfer flow you choose).\n+ **Flow**: agent-initiated contacts that provide interactive workflows during an active chat session. Flow quick connects are only supported for chat contacts.\n\n**Important:** User and Queue quick connects only appear in the CCP when an agent goes to transfer a contact."
+    },
+    {
+      "id": "custom#qc-destination",
+      "name": "Destination",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "Where contacts go when agents use this quick connect: a phone number, a user, a queue, or a flow, depending on the type.",
+      "description": "Where contacts are sent when an agent uses this quick connect. Depending on the **Type**, this is a phone number (entered with its country code), the name of a user such as an agent, the name of a queue, or a flow. For User and Queue quick connects you also choose the transfer flow that runs when the quick connect is used."
+    },
+    {
+      "id": "custom#qc-phone-number",
+      "name": "Phone number",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "For a Phone number quick connect: the destination number, starting with the country code.",
+      "description": "For a **Phone number** quick connect, enter the destination number starting with the country code. In the US, the country code is 1. For example, a supervisor's mobile phone so agents can call them if needed.\n\nWhen an agent uses an external quick connect the call is connected directly to the destination without invoking any flows, and caller ID is taken from the queue configuration. The customer hears the Customer hold flow while the transfer is in progress."
+    },
+    {
+      "id": "custom#qc-queue",
+      "name": "Queue",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "For a Queue quick connect: the queue contacts are transferred to, through the chosen queue transfer flow.",
+      "description": "For a **Queue** quick connect, the queue that contacts are transferred to. When an agent chooses the quick connect, the queue transfer flow associated with it runs; that flow's **Transfer to queue** block places the contact in the queue, and an available agent working that queue is notified to accept it. Agent and customer whisper flows then play before the agents are connected."
+    },
+    {
+      "id": "custom#qc-user",
+      "name": "User",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "For a User quick connect: the user, such as an agent, that contacts are transferred to, through the chosen agent transfer flow.",
+      "description": "For a **User** quick connect, the user (for example an agent) that contacts are transferred to. When an agent chooses the quick connect, the agent transfer flow associated with it runs and the destination agent is notified in their CCP to accept or reject the contact. The call is not connected until they accept; agent and customer whisper flows then play before the agents are connected."
+    },
+    {
+      "id": "custom#qc-flow",
+      "name": "Flow",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "The flow run when this quick connect is used: a transfer flow for User and Queue types, or the agent-initiated flow for a Flow quick connect.",
+      "description": "The flow run when this quick connect is used. For **User** quick connects this is an agent transfer flow; for **Queue** quick connects it is a queue transfer flow. For a **Flow** quick connect it is the agent-initiated flow that provides an interactive workflow during an active chat session (chat contacts only). Phone number quick connects involve no flow."
+    },
+    {
+      "id": "custom#qc-tags",
+      "name": "Tags",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/tagging.html",
+      "summary": "Key/value tags used to identify, organize, search for, filter and control access to the quick connect.",
+      "description": "Optional key/value tags that help you identify, organize, search for and filter quick connects, and control who can access them through tag-based access control in security profiles."
+    },
+    {
+      "id": "custom#qc-arn",
+      "name": "ARN",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html",
+      "summary": "The Amazon Resource Name that uniquely identifies this quick connect, used with the quick connect APIs.",
+      "description": "The Amazon Resource Name (ARN) that uniquely identifies this quick connect. Use it, or the ID it ends with, when calling APIs such as DescribeQuickConnect, UpdateQuickConnectConfig or AssociateQueueQuickConnects."
+    }
+  ]
+}

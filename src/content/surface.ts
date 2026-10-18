@@ -7,6 +7,7 @@ import type { PageSurface } from '../lib/index';
 const RULES: Array<{ test: RegExp; surface: PageSurface }> = [
   { test: /contact-?search/i, surface: 'contactsearch' },
   { test: /routing-?profiles/i, surface: 'routingprofile' },
+  { test: /transfer-dests|quick-?connects/i, surface: 'quickconnect' },
   { test: /real-?time/i, surface: 'realtime' },
   { test: /historical/i, surface: 'historical' },
   { test: /dashboard|analytics/i, surface: 'dashboard' },
