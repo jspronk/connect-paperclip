@@ -4,9 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connect Metrics Helper</title>
+    <link rel="stylesheet" href="../shared/ui.css" />
   </head>
   <body>
-    <h1>Connect Metrics Helper</h1>
+    <main class="popup">
+      <h1>Connect Metrics Helper</h1>
+      <p class="muted">Hover a metric label on the Connect admin website for its AWS definition.</p>
+      <label class="row"><input type="checkbox" id="enabled" /> <span><strong>Enabled</strong></span></label>
+      <div class="stat"><span>Metrics</span><b id="count">–</b></div>
+      <div class="stat"><span>On-page labels</span><b id="labels">–</b></div>
+      <div class="stat"><span>Docs synced</span><b id="synced">–</b></div>
+      <div class="actions">
+        <button type="button" id="options" class="primary">Options</button>
+        <a id="docs" href="https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html" target="_blank" rel="noopener noreferrer"><button type="button">AWS docs ↗</button></a>
+      </div>
+    </main>
     <script type="module" src="./popup.ts"></script>
   </body>
 </html>
