@@ -23,11 +23,19 @@ function mount(): { wrapperRoot: ShadowRoot; select: HTMLElement & { value: stri
       <label><input type="radio" value="static" checked /> Set manually</label>
       <fe-aggregate><fe-select><picasa-select label="Select a flow"></picasa-select></fe-select></fe-aggregate>
       <label><input type="radio" value="dynamic" /> Set dynamically</label>
-      <fe-aggregate><fe-input><input type="text" placeholder="Attribute key" /></fe-input></fe-aggregate>
+      <fe-aggregate class="dyn"><fe-input><picasa-input></picasa-input></fe-input></fe-aggregate>
     </div>`;
   const select = wrapperRoot.querySelector('picasa-select') as HTMLElement & { value: string };
   select.value = '';
-  const dyn = wrapperRoot.querySelector('input[type="text"]') as HTMLInputElement;
+  // The real picasa-select mirrors its value into an <input> inside a nested shadow root.
+  const selShadow = select.attachShadow({ mode: 'open' });
+  selShadow.innerHTML = '<div class="mdc"><input type="text" /></div>';
+  const mirror = selShadow.querySelector('input')!;
+  Object.defineProperty(select, 'value', { get: () => mirror.value, set: (v: string) => (mirror.value = v), configurable: true });
+  const pi = wrapperRoot.querySelector('picasa-input')!;
+  const piShadow = pi.attachShadow({ mode: 'open' });
+  piShadow.innerHTML = '<div class="mdc"><input type="text" placeholder="Attribute key" /></div>';
+  const dyn = piShadow.querySelector('input')!;
   return { wrapperRoot, select, dyn };
 }
 
@@ -77,6 +85,8 @@ describe('flow editor links', () => {
     expect(decorateEditor(document, ORIGIN)).toBe(0);
     m.dyn.value = FLOW;
     expect(decorateEditor(document, ORIGIN)).toBe(1);
+    const a = m.wrapperRoot.querySelector<HTMLAnchorElement>(`a[${EDITOR_LINK_ATTR}]`)!;
+    expect(a.previousElementSibling?.className).toBe('dyn');
     undecorateEditor(document);
     expect(m.wrapperRoot.querySelector(`a[${EDITOR_LINK_ATTR}]`)).toBeNull();
   });

@@ -24,15 +24,31 @@ export function editorUrlForArn(value: string, origin = location.origin): string
   return `${origin}/${route}/edit?id=${encodeURIComponent(value.trim())}&tab=designer`;
 }
 
-/** The element a link is placed after: the field's top-level wrapper inside its shadow tree. */
+/**
+ * The element a link is placed after: the field's outermost wrapper. Fields are nested web
+ * components (fe-aggregate > fe-select > picasa-select > shadow picasa-input > shadow input), so the
+ * climb crosses shadow boundaries through their hosts and stops at the first ancestor that is not a
+ * field component.
+ */
 function anchorPoint(field: Element): Element {
-  // picasa-select / input -> up through fe-select / fe-input / fe-aggregate to the outermost
-  // element that still sits in the same (shadow) tree as the field.
+  const isField = (el: Element): boolean => /^(fe-|picasa-)/.test(el.tagName.toLowerCase());
   let el: Element = field;
-  while (el.parentElement && el.parentElement !== null) {
-    const p: Element = el.parentElement;
-    if (!/^fe-/.test(p.tagName.toLowerCase()) && p.tagName.toLowerCase() !== 'picasa-select') break;
-    el = p;
+  for (let i = 0; i < 16; i++) {
+    const root = el.getRootNode();
+    const insideFieldShadow = root instanceof ShadowRoot && isField(root.host);
+    const parent = el.parentElement;
+    if (parent) {
+      if (isField(parent) || insideFieldShadow) {
+        el = parent;
+        continue;
+      }
+      break;
+    }
+    if (insideFieldShadow) {
+      el = (root as ShadowRoot).host;
+      continue;
+    }
+    break;
   }
   return el;
 }
@@ -50,10 +66,14 @@ function fieldArn(field: Element): string | undefined {
 export function decorateEditor(root: ParentNode, origin = location.origin): number {
   let created = 0;
   const roots: ParentNode[] = [root, ...shadowRootsUnder(root)];
+  const handled = new Set<Element>();
   for (const r of roots) {
     for (const field of r.querySelectorAll('picasa-select, input[type="text"], input:not([type])')) {
       const arn = fieldArn(field);
       const at = anchorPoint(field);
+      // A select and the input mirrored inside it share one anchor point; handle it once per pass.
+      if (handled.has(at)) continue;
+      if (arn) handled.add(at);
       const existing = at.nextElementSibling?.matches(`a[${EDITOR_LINK_ATTR}]`) ? (at.nextElementSibling as HTMLAnchorElement) : null;
       if (!arn) {
         existing?.remove();
