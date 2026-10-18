@@ -55,9 +55,15 @@ function anchorPoint(field: Element): Element {
   return el;
 }
 
-/** Current value of a flow-select or text field, if it is a flow ARN. */
+/**
+ * Current value of a flow-select or text field, if it is a flow ARN.
+ * The editor's web components reflect their value as a DOM attribute, which is what a content
+ * script can see: JavaScript properties defined by the page's component classes are invisible in
+ * the isolated world. Native inputs expose their value as a property.
+ */
 function fieldArn(field: Element): string | undefined {
-  const v = (field as HTMLInputElement).value;
+  const attr = field.getAttribute('value');
+  const v = attr ?? (field as HTMLInputElement).value;
   return typeof v === 'string' && FLOW_ARN.test(v.trim()) ? v.trim() : undefined;
 }
 

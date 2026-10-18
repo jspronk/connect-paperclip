@@ -25,13 +25,22 @@ function mount(): { wrapperRoot: ShadowRoot; select: HTMLElement & { value: stri
       <label><input type="radio" value="dynamic" /> Set dynamically</label>
       <fe-aggregate class="dyn"><fe-input><picasa-input></picasa-input></fe-input></fe-aggregate>
     </div>`;
-  const select = wrapperRoot.querySelector('picasa-select') as HTMLElement & { value: string };
-  select.value = '';
-  // The real picasa-select mirrors its value into an <input> inside a nested shadow root.
-  const selShadow = select.attachShadow({ mode: 'open' });
+  const el = wrapperRoot.querySelector('picasa-select') as HTMLElement;
+  // The real picasa-select reflects its value as a DOM attribute (its JS property is invisible to a
+  // content script) and may mirror it into an <input> inside a nested shadow root.
+  const selShadow = el.attachShadow({ mode: 'open' });
   selShadow.innerHTML = '<div class="mdc"><input type="text" /></div>';
   const mirror = selShadow.querySelector('input')!;
-  Object.defineProperty(select, 'value', { get: () => mirror.value, set: (v: string) => (mirror.value = v), configurable: true });
+  const select = el as HTMLElement & { value: string };
+  Object.defineProperty(select, 'value', {
+    get: () => el.getAttribute('value') ?? '',
+    set: (v: string) => {
+      el.setAttribute('value', v);
+      mirror.value = v;
+    },
+    configurable: true,
+  });
+  select.value = '';
   const pi = wrapperRoot.querySelector('picasa-input')!;
   const piShadow = pi.attachShadow({ mode: 'open' });
   piShadow.innerHTML = '<div class="mdc"><input type="text" placeholder="Attribute key" /></div>';
