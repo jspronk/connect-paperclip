@@ -1,0 +1,413 @@
+{
+  "$comment": "Column headers on the Scheduling page (/optimization/scheduling): Schedule manager, Activities, Profiles, Rotation patterns, Staffing groups, Trade Groups and the Time off tables. Text from the Schedule Manager, staffing groups, staff rules and shift rotation admin guide pages. Surface-only. Verified on a live instance 2026-10-17.",
+  "surface": "scheduling",
+  "surfaceOnly": true,
+  "columns": [
+    {
+      "label": "Schedule Name",
+      "fields": [
+        "custom#sc-schedule"
+      ]
+    },
+    {
+      "label": "Schedule type",
+      "fields": [
+        "custom#sc-schedule-type"
+      ]
+    },
+    {
+      "label": "Schedule status",
+      "fields": [
+        "custom#sc-schedule-status"
+      ]
+    },
+    {
+      "label": "Bid status",
+      "fields": [
+        "custom#sc-bid-status"
+      ]
+    },
+    {
+      "label": "Assignment method",
+      "fields": [
+        "custom#sc-assignment"
+      ]
+    },
+    {
+      "label": "Start date",
+      "fields": [
+        "custom#sc-dates"
+      ]
+    },
+    {
+      "label": "End date",
+      "fields": [
+        "custom#sc-dates"
+      ]
+    },
+    {
+      "label": "Associated forecast group",
+      "fields": [
+        "custom#sc-forecast-group"
+      ]
+    },
+    {
+      "label": "Date created",
+      "fields": [
+        "custom#sc-created"
+      ]
+    },
+    {
+      "label": "Last published",
+      "fields": [
+        "custom#sc-last-published"
+      ]
+    },
+    {
+      "label": "Updated by",
+      "fields": [
+        "custom#sc-updated-by"
+      ]
+    },
+    {
+      "label": "Activity Name",
+      "fields": [
+        "custom#sc-activity"
+      ]
+    },
+    {
+      "label": "Type",
+      "fields": [
+        "custom#sc-activity-type"
+      ]
+    },
+    {
+      "label": "Sub-type",
+      "fields": [
+        "custom#sc-activity-type"
+      ]
+    },
+    {
+      "label": "Staff requestable",
+      "fields": [
+        "custom#sc-staff-requestable"
+      ]
+    },
+    {
+      "label": "Duration",
+      "fields": [
+        "custom#sc-duration"
+      ]
+    },
+    {
+      "label": "Adherence",
+      "fields": [
+        "custom#sc-adherence"
+      ]
+    },
+    {
+      "label": "Paid",
+      "fields": [
+        "custom#sc-paid"
+      ]
+    },
+    {
+      "label": "Date updated",
+      "fields": [
+        "custom#sc-updated-by"
+      ]
+    },
+    {
+      "label": "Name",
+      "fields": [
+        "custom#sc-profile"
+      ]
+    },
+    {
+      "label": "Activities/Rules",
+      "fields": [
+        "custom#sc-profile-rules"
+      ]
+    },
+    {
+      "label": "Created at",
+      "fields": [
+        "custom#sc-created"
+      ]
+    },
+    {
+      "label": "Updated at",
+      "fields": [
+        "custom#sc-updated-by"
+      ]
+    },
+    {
+      "label": "Shift rotation pattern",
+      "fields": [
+        "custom#sc-rotation"
+      ]
+    },
+    {
+      "label": "Description",
+      "fields": [
+        "custom#sc-description"
+      ]
+    },
+    {
+      "label": "Steps",
+      "fields": [
+        "custom#sc-rotation-steps"
+      ]
+    },
+    {
+      "label": "Last updated",
+      "fields": [
+        "custom#sc-updated-by"
+      ]
+    },
+    {
+      "label": "Group name",
+      "fields": [
+        "custom#sc-staffing-group"
+      ]
+    },
+    {
+      "label": "Associated shift profile",
+      "fields": [
+        "custom#sc-profile"
+      ]
+    },
+    {
+      "label": "Status",
+      "fields": [
+        "custom#sc-status"
+      ]
+    },
+    {
+      "label": "Forecast group",
+      "fields": [
+        "custom#sc-forecast-group"
+      ]
+    },
+    {
+      "label": "Approval type",
+      "fields": [
+        "custom#sc-trade-approval"
+      ]
+    },
+    {
+      "label": "Notice period",
+      "fields": [
+        "custom#sc-trade-notice"
+      ]
+    },
+    {
+      "label": "Trade duration variance (minutes)",
+      "fields": [
+        "custom#sc-trade-variance"
+      ]
+    },
+    {
+      "label": "Paid hours variance (minutes)",
+      "fields": [
+        "custom#sc-trade-variance"
+      ]
+    },
+    {
+      "label": "Last modified",
+      "fields": [
+        "custom#sc-updated-by"
+      ]
+    },
+    {
+      "label": "Modified by",
+      "fields": [
+        "custom#sc-updated-by"
+      ]
+    }
+  ],
+  "custom": [
+    {
+      "id": "custom#sc-schedule",
+      "name": "Schedule",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "A generated set of agent shifts for a forecast group over a date range; a draft until published.",
+      "description": "Connect generates the least number of shifts for agents based on the forecasted demand pattern and configured constraints to hit the optimization goal. After you create shift activities, shift profiles, staffing groups and staffing group rules, choose **Generate new** in Schedule manager. The result is a draft that agents and supervisors cannot see until you publish it; you can edit shifts, regenerate, search and sort schedules here."
+    },
+    {
+      "id": "custom#sc-schedule-type",
+      "name": "Schedule type",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "Schedule (a standard schedule) or Shift bid (a schedule agents bid on).",
+      "description": "+ **Schedule**: a standard schedule that is not a shift bid.\n+ **Shift bid**: a schedule that agents bid on; see Shift bidding for how to set up and run a bid."
+    },
+    {
+      "id": "custom#sc-schedule-status",
+      "name": "Schedule status",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "In progress while generating, then Complete or Failed; publishing then makes it visible to agents.",
+      "description": "A newly generated schedule shows **In progress**; generation takes 30 minutes to 3 hours depending on the number of agents, rules and the schedule duration. It then becomes **Complete** or **Failed**. Review warnings (HIGH: an agent was not scheduled; MEDIUM: scheduled but not all requirements met; LOW: minor issues such as overstaffing) and choose **Publish** when satisfied; a published schedule is visible to staff and supervisors in the staffing groups."
+    },
+    {
+      "id": "custom#sc-bid-status",
+      "name": "Bid status",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "For Shift bid schedules, where the bidding process stands.",
+      "description": "Applies to schedules of type **Shift bid**: it tracks the bidding round in which agents choose shifts before the schedule is finalised. Standard schedules show no bid status. See Shift bidding in the admin guide for the bid lifecycle."
+    },
+    {
+      "id": "custom#sc-assignment",
+      "name": "Assignment method",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "For Shift bid schedules, how bids are turned into assigned shifts.",
+      "description": "Applies to **Shift bid** schedules: the method used to assign shifts from agents' bids once bidding closes. Standard schedules are assigned directly by the generator. See Shift bidding in the admin guide."
+    },
+    {
+      "id": "custom#sc-dates",
+      "name": "Schedule start and end dates",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "The period the schedule covers; up to 18 weeks ahead.",
+      "description": "The duration of the schedule. You can schedule up to 18 weeks out, within the published short-term forecast for the forecast group."
+    },
+    {
+      "id": "custom#sc-forecast-group",
+      "name": "Forecast group",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "The forecast group whose published short-term forecast the schedule or configuration is for.",
+      "description": "The forecast group selected as schedule input. A schedule covers one forecast group (you cannot schedule for multiple groups at once), and its demand pattern drives how many agents are needed per interval. Staffing groups and trade groups are associated with a forecast group too."
+    },
+    {
+      "id": "custom#sc-created",
+      "name": "Created",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "When the item was created.",
+      "description": "The date the schedule, activity, profile or group was created. Schedules can be sorted by creation date in Schedule manager."
+    },
+    {
+      "id": "custom#sc-last-published",
+      "name": "Last published",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "When the schedule was last published to agents and supervisors.",
+      "description": "When you choose **Publish** and confirm, the schedule becomes official and visible to staff and supervisors in the staffing groups. This is the date of the most recent publish."
+    },
+    {
+      "id": "custom#sc-updated-by",
+      "name": "Last updated and updated by",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "When the item was last changed and which user changed it.",
+      "description": "The most recent update to the item and the user who made it. For schedules this includes edits to shifts and activities made before or after publishing."
+    },
+    {
+      "id": "custom#sc-activity",
+      "name": "Shift activity",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-shift-activities-calendar-view.html",
+      "summary": "A block of time within a shift, such as Work, Break, Lunch, Training, PTO or Overtime.",
+      "description": "Shift activities are the building blocks of a shift. Work activities are when agents handle contacts; others (Break, Lunch, Training, Overtime, PTO) are placed by the scheduler according to shift profiles or added to draft and published schedules as **Shared** (one occurrence for all selected agents) or **Individual** activities, with placement left as specified or optimised within the shift or a time window."
+    },
+    {
+      "id": "custom#sc-activity-type",
+      "name": "Activity type and sub-type",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-shift-activities-calendar-view.html",
+      "summary": "Whether the activity is productive work or a non-work activity, and its category.",
+      "description": "The type classifies the activity (for example Work versus non-productive activities such as Break, Lunch, Training, Time off or Overtime) and the sub-type refines it. Scheduling uses the type to know when agents are available for contacts and how the activity counts for adherence and pay."
+    },
+    {
+      "id": "custom#sc-staff-requestable",
+      "name": "Staff requestable",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-create-staff-rules.html",
+      "summary": "Whether agents can request this activity themselves, for example time off or overtime.",
+      "description": "Whether staff can request this activity from the agent workspace. Time-off and overtime style activities can be made requestable so agents choose when to take time off or work overtime within the parameters you set, without manual manager approval; eligibility is set per agent in Staff rules."
+    },
+    {
+      "id": "custom#sc-duration",
+      "name": "Duration",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/shift-rotations.html",
+      "summary": "How long the activity, or the rotation pattern, lasts.",
+      "description": "For an activity, the length of time it occupies within a shift. For a shift rotation pattern, the number of weeks the pattern runs before it repeats."
+    },
+    {
+      "id": "custom#sc-adherence",
+      "name": "Adherence",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-shift-activities-calendar-view.html",
+      "summary": "Whether time in this activity is measured for schedule adherence.",
+      "description": "Whether agents' real-time status is compared against this activity for schedule adherence. Adherence metrics (Adherent time, Non-adherent time, Adherence) are tracked for scheduled activities that count toward adherence."
+    },
+    {
+      "id": "custom#sc-paid",
+      "name": "Paid",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-shift-activities-calendar-view.html",
+      "summary": "Whether time in this activity counts as paid hours.",
+      "description": "Whether the activity is paid time. Paid hours feed the paid-hours variance used when agents trade shifts and the hours tracked against staff contract rules."
+    },
+    {
+      "id": "custom#sc-profile",
+      "name": "Shift profile",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-create-staffing-groups.html",
+      "summary": "A template of shift rules: start-time windows, shift length, days, and where activities such as breaks and lunch go.",
+      "description": "A shift profile defines the shifts the generator may build: the activities and rules that apply, such as earliest and latest start, shift length, working days and break placement. Profiles are assigned to staffing groups, and an agent-level profile set in **Staff rules** overrides the group's profile."
+    },
+    {
+      "id": "custom#sc-profile-rules",
+      "name": "Activities and rules",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-create-staffing-groups.html",
+      "summary": "The activities a profile schedules and the rules that constrain them.",
+      "description": "The shift activities included in the profile (for example Work, Break, Lunch) and the rules that place them, such as how long after shift start a break may occur. The count summarises how many are configured."
+    },
+    {
+      "id": "custom#sc-rotation",
+      "name": "Shift rotation pattern",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/shift-rotations.html",
+      "summary": "A multi-week sequence of shift profiles that agents rotate through.",
+      "description": "A shift rotation pattern assigns a different shift profile to each step of a multi-week cycle, for example mornings one week and afternoons the next. Assign a pattern to agents in Staff rules (mutually exclusive with a single shift profile) and choose the step each agent starts on; the Generate schedule page shows the patterns in use for the forecast group."
+    },
+    {
+      "id": "custom#sc-rotation-steps",
+      "name": "Steps",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/shift-rotations.html",
+      "summary": "The ordered steps of the rotation, each pointing at a shift profile.",
+      "description": "The number of steps in the rotation pattern. Each step is one period of the cycle and names the shift profile used during it; agents can start the rotation on any step."
+    },
+    {
+      "id": "custom#sc-description",
+      "name": "Description",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/shift-rotations.html",
+      "summary": "Optional text describing the item.",
+      "description": "Optional descriptive text entered when the item was created."
+    },
+    {
+      "id": "custom#sc-staffing-group",
+      "name": "Staffing group",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-create-staffing-groups.html",
+      "summary": "The group of agents, with their supervisors, that a schedule is generated for.",
+      "description": "Every agent must be in a staffing group for a schedule to be generated for them. A staffing group is associated with a forecast group and a shift profile, and lists the supervisors who can view its published schedules. A user cannot be an agent in one staffing group and a supervisor in another. Removing an agent does not delete their shifts, so remove the shifts first if they will not join another group."
+    },
+    {
+      "id": "custom#sc-status",
+      "name": "Status",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling.html",
+      "summary": "Whether the item is active.",
+      "description": "Whether the configuration item is active and used by scheduling, or inactive."
+    },
+    {
+      "id": "custom#sc-trade-approval",
+      "name": "Approval type",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling.html",
+      "summary": "Whether shift trades in this trade group need manager approval or are approved automatically within the group's rules.",
+      "description": "How trades between agents in the group are approved: automatically when they fall within the group's variance and notice rules, or by a supervisor. Agents must be marked eligible to trade shifts in Staff rules."
+    },
+    {
+      "id": "custom#sc-trade-notice",
+      "name": "Notice period",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling.html",
+      "summary": "How far in advance of the shift a trade must be requested.",
+      "description": "The minimum lead time before a shift starts for a trade request to be allowed in this trade group."
+    },
+    {
+      "id": "custom#sc-trade-variance",
+      "name": "Trade and paid hours variance (minutes)",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling.html",
+      "summary": "How much the traded shifts may differ in duration and in paid hours.",
+      "description": "The maximum difference, in minutes, allowed between the two shifts in a trade: **Trade duration variance** for shift length and **Paid hours variance** for paid time. Trades outside these limits are not allowed, or need approval depending on the approval type."
+    }
+  ]
+}

@@ -66,6 +66,9 @@
 .badge[data-surface="routingprofile"] { background: #e6f7f5; color: #0b6b5e; }
 .badge[data-surface="quickconnect"] { background: #fdf0e6; color: #8a4500; }
 .badge[data-surface="securityprofile"] { background: #fbe9ec; color: #8a1c2b; }
+.badge[data-surface="forecasting"],
+.badge[data-surface="capacityplanning"],
+.badge[data-surface="scheduling"] { background: #e8f0fb; color: #1f3f7a; }
 .badge[data-surface="name"] { background: #eeeeee; color: #444; }
 @media (prefers-color-scheme: dark) {
   .badge { background: #0d3a66; color: #cfe6ff; }
@@ -75,6 +78,9 @@
   .badge[data-surface="routingprofile"] { background: #0f4a42; color: #c6f0ea; }
   .badge[data-surface="quickconnect"] { background: #5a2d00; color: #ffd9b3; }
   .badge[data-surface="securityprofile"] { background: #5c1620; color: #ffd0d6; }
+  .badge[data-surface="forecasting"],
+  .badge[data-surface="capacityplanning"],
+  .badge[data-surface="scheduling"] { background: #1d2f55; color: #cfe0ff; }
   .badge[data-surface="name"] { background: #3a3f46; color: #ddd; }
 }
 .hint {

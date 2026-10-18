@@ -13,6 +13,9 @@ const SURFACE_LABEL: Record<string, string> = {
   routingprofile: 'Routing profile',
   quickconnect: 'Quick connect',
   securityprofile: 'Security profile',
+  forecasting: 'Forecasting',
+  capacityplanning: 'Capacity planning',
+  scheduling: 'Scheduling',
   name: 'Metric name',
 };
 

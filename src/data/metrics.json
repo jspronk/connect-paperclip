@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T05:14:04.745Z",
+  "generatedAt": "2026-10-18T05:48:02.254Z",
   "sources": [
     {
       "slug": "bot-metrics",
@@ -12148,6 +12148,550 @@
       "extraSections": {}
     },
     {
+      "id": "custom#cp-plan",
+      "name": "Capacity plan",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "A plan that turns forecasts and a scenario into staffing targets for a date range.",
+      "description": "A capacity plan helps you determine how many agents your contact center needs. It uses forecasts and scenario inputs to set staffing targets for a given time period. Open a plan to review its output, override values (Hiring plans only), re-run it after new forecasts are published, download it, or publish it to make it official.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Plan Name",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-plan-type",
+      "name": "Plan type",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "Hiring plan (long-term FTE estimates) or Scheduling plan (interval-level headcount).",
+      "description": "+ **Hiring plan**: long-term FTE (full-time equivalent) estimates up to 64 weeks ahead, for hiring and workforce planning. Uses both a long-term and a short-term forecast; the two should overlap by at least 4 weeks (1 day minimum).\n+ **Scheduling plan**: interval-level headcount needs in 15- or 30-minute intervals for scheduling and resource use. Needs only a published short-term forecast, and the plan dates must fall within that forecast's range.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Plan Type",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-status",
+      "name": "Plan status",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "Whether the plan has finished computing.",
+      "description": "The state of the plan's computation. A plan is generated from the selected forecast group and scenario and shows **Complete** when its output is ready to review. Re-running the plan recomputes it from the latest published forecasts.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Status",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-dates",
+      "name": "Plan start and end dates",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "The period the plan covers.",
+      "description": "The first and last dates covered by the plan. Hiring plans can extend up to 64 weeks ahead; Scheduling plan dates must fall within the published short-term forecast's date range, and its output is reviewed up to 7 days at a time.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Start Date",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "End Date",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-forecast-group",
+      "name": "Forecast group",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "The forecast group whose published forecasts feed this plan.",
+      "description": "The forecast group used as input. Hiring plans use its published long-term and short-term forecasts; Scheduling plans use its published short-term forecast. The forecasted contact volume and AHT in the output reflect only this forecast group, so consider re-running the plan after new forecasts are published.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Forecast Group",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-scenario",
+      "name": "Planning scenario",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-create-scenarios.html",
+      "summary": "The what-if assumptions a plan is generated with: occupancy, attrition, FTE hours, shrinkage, hours of operation, and per-channel targets.",
+      "description": "A scenario has two parts. **Scenario inputs**: maximum occupancy, daily attrition (annual attrition divided by about 250 working days), FTE hours per week, optional outsourced contacts, maximum overtime and voluntary time off allowed, shrinkage, and the hours of operation your agents work. **Optimization inputs**: one target per channel, for up to four channels: service level (all channels), average speed of answer (Voice and Chat) or average time to complete (Task and Email, which treats the channel as asynchronous and uses backlog projections). You then generate a capacity plan from the scenario.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Planning Scenario",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Scenario Name",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Description",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-associated-plans",
+      "name": "Associated capacity plans",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-create-scenarios.html",
+      "summary": "How many capacity plans were generated with this scenario.",
+      "description": "The number of capacity plans that use this scenario. The same scenario can be used to generate several plans, for example best-case and worst-case assumptions against different forecast groups or date ranges.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Associated capacity plans",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-created",
+      "name": "Created",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "When, and by whom, the item was created.",
+      "description": "The creation date, and for scenarios the user who created it. Plans record the user who published them separately.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Date Created",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Date created",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Created by",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-last-computed",
+      "name": "Last computed",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "When the plan's output was last generated or re-run.",
+      "description": "When the plan was last computed. Re-run a plan after new forecasts are published, or after changing the hours of operation used by its scenario, so the output reflects the latest inputs.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Last Computed",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-last-modified",
+      "name": "Last modified",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-create-scenarios.html",
+      "summary": "When the scenario's inputs were last edited.",
+      "description": "When the scenario was last changed. Editing a scenario does not change plans already generated from it; re-run those plans to apply the new assumptions.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Last modified",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-published",
+      "name": "Published",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "When, and by whom, the plan was published to make it official.",
+      "description": "Publishing a capacity plan makes it the official plan you share with Human Resources, Finance and Training. The table shows the publish date and the user who published it.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Published Date",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Published By",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-volume",
+      "name": "Forecasted Contact Volume",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "The total forecasted contact volume across the channels in the scenario's optimization targets.",
+      "description": "The total forecasted contact volume across the channels in your selected scenario's optimization targets. It reflects only the selected forecast group; after new forecasts are published, re-run the plan to pick up the latest values.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Forecasted Contact Volume",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Contact volume",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-aht",
+      "name": "Forecasted Average Handling Time (AHT), seconds",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "The forecasted average handling time across the channels in the scenario's optimization targets.",
+      "description": "The forecasted average handling time, in seconds, across the channels in your selected scenario's optimization targets. It reflects only the selected forecast group; after new forecasts are published, re-run the plan.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Forecasted Average Handling Time (AHT), seconds",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Average handle time",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-required",
+      "name": "Required FTEs (without Shrinkage)",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How many full-time equivalent agents need to be hired to meet the business goals, ignoring shrinkage.",
+      "description": "How many full-time equivalent agents need to be hired to meet the defined business goals (such as the service level target), without considering shrinkage.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Required FTEs (without Shrinkage)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-required-shrink",
+      "name": "Required FTEs (with Shrinkage)",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How many FTEs need to be hired to meet the business goals once shrinkage is accounted for.",
+      "description": "How many full-time equivalent agents need to be hired to meet the defined business goals (such as the service level target), with shrinkage considered. Shrinkage comes from the scenario's total shrinkage percentage or from day-level values uploaded on the Import data tab.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Required FTEs (with Shrinkage)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-occupancy",
+      "name": "Forecasted Occupancy %",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "The occupancy agents are forecast to have under this plan.",
+      "description": "How much occupancy is forecast for the agents: the share of their time spent handling contacts under the planned staffing. The scenario's maximum occupancy input caps it.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Forecasted Occupancy %",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Forecasted occupancy",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-available",
+      "name": "Available FTEs",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How many agents are available to work that period, from the data you import.",
+      "description": "How many agents are available for working that day. It is uploaded in the **Import data** section; the gap, OT and VTO metrics are calculated from it.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Available FTEs",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-gap",
+      "name": "Gap between available and required FTEs",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "The difference between available FTEs and required FTEs, also shown as a percentage.",
+      "description": "The difference between available FTEs and required FTEs, and **Gap %**, that difference as a percentage. A negative gap is a supply deficit, a positive gap a surplus.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Gap between available FTEs and required FTEs",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "capacityplanning",
+          "label": "Gap %",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-ot",
+      "name": "Required OT %",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How much overtime would cover a supply deficit.",
+      "description": "If there is a supply deficit (required FTEs higher than available FTEs), required OT % indicates how much overtime would be needed to cover the deficit. The scenario's maximum overtime allowed bounds it.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Required OT %",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-vto",
+      "name": "Required VTO %",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How much voluntary time off could absorb a supply surplus.",
+      "description": "If there is a supply surplus (required FTEs lower than available FTEs), required VTO % indicates how much voluntary time off could be used to lower agent idle time and thus lower costs. The scenario's maximum VTO allowed bounds it.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Required VTO %",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-headcount",
+      "name": "Required headcount",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: how many agents are needed in this 15- or 30-minute interval.",
+      "description": "In a Scheduling plan, the number of agents needed in each interval to meet the channel targets. The interval size matches your short-term forecast settings. The Headcount requirements graph plots the same series.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Required headcount",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-available-headcount",
+      "name": "Available headcount",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: how many agents are available in this interval, from imported headcount data.",
+      "description": "In a Scheduling plan, the agents available in each interval, taken from the interval-level headcount data you import for Scheduling plans.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Available headcount",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-net",
+      "name": "Net staffing",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: available headcount minus required headcount for the interval.",
+      "description": "In a Scheduling plan, the difference between available and required headcount in each interval, before shrinkage. Negative values show understaffed intervals.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Net staffing",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-shrinkage",
+      "name": "Total shrinkage",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: the shrinkage applied to the interval.",
+      "description": "In a Scheduling plan, the total shrinkage applied to each interval, from the scenario's shrinkage percentage or the interval-level shrinkage data you import.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Total shrinkage",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-headcount-shrink",
+      "name": "Required headcount with shrinkage",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: required headcount once shrinkage is accounted for.",
+      "description": "In a Scheduling plan, the agents needed in each interval after applying shrinkage.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Required headcount with shrinkage",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#cp-out-net-shrink",
+      "name": "Net staffing with shrinkage",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: available headcount minus required headcount with shrinkage.",
+      "description": "In a Scheduling plan, the difference between available headcount and required headcount with shrinkage, per interval.",
+      "metricCategory": "Capacity planning column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "capacityplanning",
+          "label": "Net staffing with shrinkage",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
       "id": "custom#contact-status",
       "name": "Contact status",
       "anchor": "",
@@ -12237,6 +12781,196 @@
         {
           "surface": "contactsearch",
           "label": "Task template name"
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-forecast",
+      "name": "Forecast",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecasts.html",
+      "summary": "A forecast of future contact volume or average handle time for a forecast group, named after the group.",
+      "description": "Forecasts are a projection of the workload in your contact center. Connect generates them per forecast group from historical metrics; they include inbound, transfer and callback contacts across voice, chat, task and email. Each forecast group gets one forecast per type you select, and each forecast covers one metric (contact volume or average handling time). You can inspect a forecast before publishing it, download it, override it, or delete it; deleting a forecast affects capacity plans and schedules built from it.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Forecasts",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-type",
+      "name": "Forecast type",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/forecasting.html",
+      "summary": "Short-term (18 weeks, updated daily, for scheduling) or Long-term (64 weeks, updated weekly, for capacity planning).",
+      "description": "+ **Short-term** forecasts are automatically updated daily and are used for scheduling agents and interval-level headcount estimation, up to 18 weeks ahead.\n+ **Long-term** forecasts are automatically updated every week, on the weekday the forecast was created, and are used for capacity planning up to 64 weeks ahead.\n\nIntraday forecasts (updated every 15 minutes, for queues with at least 5000 unique contacts per week per queue-channel over the last 4 weeks) appear on the Intraday forecast performance dashboard rather than here. Only the most current forecast is kept, so download a day's forecast if you need to keep it.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Type",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-metric",
+      "name": "Forecast metric",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecasts.html",
+      "summary": "What the forecast predicts: Contact Volume or Average Handling Time.",
+      "description": "Each forecast predicts one metric for the forecast group: **Contact Volume** (the number of contacts expected per interval) or **Average Handling Time** (the expected average handle time). Both are produced for each forecast type you create, because capacity planning and scheduling need both.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Metric",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-status",
+      "name": "Forecast status",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecasts.html",
+      "summary": "Scheduled while the forecast is being computed, Complete when it is ready.",
+      "description": "When a forecast is created its status is **Scheduled**; it becomes **Complete** when the computation finishes. A first short-term or long-term forecast is typically available within 4 hours, often in about 1 hour. Changes to the forecast group (importing historical data, adding or removing queues) trigger a recomputation in the same timeframe.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Status",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-last-computed",
+      "name": "Last computed",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/forecasting.html",
+      "summary": "When Connect last recalculated this forecast with the most current contact data.",
+      "description": "The date the forecast was last computed. Short-term forecasts are recomputed daily and long-term forecasts weekly, always from the most current contact data; the models themselves are retrained weekly (short-term) and monthly (long-term). On the inspect page you can compare the **Last computed forecast** with the **Last published forecast**.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Last computed",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-last-published",
+      "name": "Last published",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/inspect-forecast.html",
+      "summary": "When this forecast was last published for use by capacity planning and scheduling.",
+      "description": "The date the forecast was last published. Publishing makes the forecast available to schedulers and to capacity planning; a published long-term forecast is required before a capacity plan can be created, and a published short-term forecast before a schedule can be generated. Inspect and, if needed, override a forecast before publishing it.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Last published",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-group",
+      "name": "Forecast group",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecast-groups.html",
+      "summary": "A set of queues forecast together; each queue belongs to exactly one group.",
+      "description": "Forecast groups combine different queues into one forecast, so the forecast is built from aggregated data across those queues. Group queues that share the same pool of agents, since forecast groups are associated with a staffing group for scheduling. Each queue can belong to only one forecast group, at least one group is needed before any forecast, and it is best to create all groups before creating forecasts so all relevant historical data trains the model.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Group name",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-queues",
+      "name": "Number of queues",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecast-groups.html",
+      "summary": "How many queues are in the forecast group.",
+      "description": "The number of queues assigned to the forecast group. Adding or removing queues later can trigger an immediate recomputation of the associated forecasts and affects downstream capacity plans and schedules. A disabled queue can stay in the group: it simply stops contributing contacts over time.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "No. of queues",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-demand-groups",
+      "name": "Demand groups",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecast-groups.html",
+      "summary": "Subsets of a forecast group's queues that are forecast separately, for example per language.",
+      "description": "Demand groups are distinct work subsets within a forecast group, each corresponding to specific queues that require specialised agent skills. They let one forecast group produce separate demand forecasts, for example per language, and scheduling then calculates headcount per demand group. A queue can be in only one demand group.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Demand groups",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#fc-date-modified",
+      "name": "Date modified",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecast-groups.html",
+      "summary": "When the forecast group's queues or settings were last changed.",
+      "description": "The date the forecast group was last changed. A change today, such as adding a queue, makes Connect compute new short-term and long-term forecasts for the group, and affects capacity plans and schedules based on it.",
+      "metricCategory": "Forecasting column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "forecasting",
+          "label": "Date modified",
+          "surfaceOnly": true
         }
       ],
       "extraSections": {}
@@ -12627,6 +13361,555 @@
         {
           "surface": "routingprofile",
           "label": "Delay (in seconds)",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-schedule",
+      "name": "Schedule",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "A generated set of agent shifts for a forecast group over a date range; a draft until published.",
+      "description": "Connect generates the least number of shifts for agents based on the forecasted demand pattern and configured constraints to hit the optimization goal. After you create shift activities, shift profiles, staffing groups and staffing group rules, choose **Generate new** in Schedule manager. The result is a draft that agents and supervisors cannot see until you publish it; you can edit shifts, regenerate, search and sort schedules here.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Schedule Name",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-schedule-type",
+      "name": "Schedule type",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "Schedule (a standard schedule) or Shift bid (a schedule agents bid on).",
+      "description": "+ **Schedule**: a standard schedule that is not a shift bid.\n+ **Shift bid**: a schedule that agents bid on; see Shift bidding for how to set up and run a bid.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Schedule type",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-schedule-status",
+      "name": "Schedule status",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "In progress while generating, then Complete or Failed; publishing then makes it visible to agents.",
+      "description": "A newly generated schedule shows **In progress**; generation takes 30 minutes to 3 hours depending on the number of agents, rules and the schedule duration. It then becomes **Complete** or **Failed**. Review warnings (HIGH: an agent was not scheduled; MEDIUM: scheduled but not all requirements met; LOW: minor issues such as overstaffing) and choose **Publish** when satisfied; a published schedule is visible to staff and supervisors in the staffing groups.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Schedule status",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-bid-status",
+      "name": "Bid status",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "For Shift bid schedules, where the bidding process stands.",
+      "description": "Applies to schedules of type **Shift bid**: it tracks the bidding round in which agents choose shifts before the schedule is finalised. Standard schedules show no bid status. See Shift bidding in the admin guide for the bid lifecycle.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Bid status",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-assignment",
+      "name": "Assignment method",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "For Shift bid schedules, how bids are turned into assigned shifts.",
+      "description": "Applies to **Shift bid** schedules: the method used to assign shifts from agents' bids once bidding closes. Standard schedules are assigned directly by the generator. See Shift bidding in the admin guide.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Assignment method",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-dates",
+      "name": "Schedule start and end dates",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "The period the schedule covers; up to 18 weeks ahead.",
+      "description": "The duration of the schedule. You can schedule up to 18 weeks out, within the published short-term forecast for the forecast group.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Start date",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "End date",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-forecast-group",
+      "name": "Forecast group",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "The forecast group whose published short-term forecast the schedule or configuration is for.",
+      "description": "The forecast group selected as schedule input. A schedule covers one forecast group (you cannot schedule for multiple groups at once), and its demand pattern drives how many agents are needed per interval. Staffing groups and trade groups are associated with a forecast group too.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Associated forecast group",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Forecast group",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-created",
+      "name": "Created",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "When the item was created.",
+      "description": "The date the schedule, activity, profile or group was created. Schedules can be sorted by creation date in Schedule manager.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Date created",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Created at",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-last-published",
+      "name": "Last published",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "When the schedule was last published to agents and supervisors.",
+      "description": "When you choose **Publish** and confirm, the schedule becomes official and visible to staff and supervisors in the staffing groups. This is the date of the most recent publish.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Last published",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-updated-by",
+      "name": "Last updated and updated by",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-publish-schedule.html",
+      "summary": "When the item was last changed and which user changed it.",
+      "description": "The most recent update to the item and the user who made it. For schedules this includes edits to shifts and activities made before or after publishing.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Updated by",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Date updated",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Updated at",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Last updated",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Last modified",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Modified by",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-activity",
+      "name": "Shift activity",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-shift-activities-calendar-view.html",
+      "summary": "A block of time within a shift, such as Work, Break, Lunch, Training, PTO or Overtime.",
+      "description": "Shift activities are the building blocks of a shift. Work activities are when agents handle contacts; others (Break, Lunch, Training, Overtime, PTO) are placed by the scheduler according to shift profiles or added to draft and published schedules as **Shared** (one occurrence for all selected agents) or **Individual** activities, with placement left as specified or optimised within the shift or a time window.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Activity Name",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-activity-type",
+      "name": "Activity type and sub-type",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-shift-activities-calendar-view.html",
+      "summary": "Whether the activity is productive work or a non-work activity, and its category.",
+      "description": "The type classifies the activity (for example Work versus non-productive activities such as Break, Lunch, Training, Time off or Overtime) and the sub-type refines it. Scheduling uses the type to know when agents are available for contacts and how the activity counts for adherence and pay.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Type",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Sub-type",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-staff-requestable",
+      "name": "Staff requestable",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-create-staff-rules.html",
+      "summary": "Whether agents can request this activity themselves, for example time off or overtime.",
+      "description": "Whether staff can request this activity from the agent workspace. Time-off and overtime style activities can be made requestable so agents choose when to take time off or work overtime within the parameters you set, without manual manager approval; eligibility is set per agent in Staff rules.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Staff requestable",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-duration",
+      "name": "Duration",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/shift-rotations.html",
+      "summary": "How long the activity, or the rotation pattern, lasts.",
+      "description": "For an activity, the length of time it occupies within a shift. For a shift rotation pattern, the number of weeks the pattern runs before it repeats.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Duration",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-adherence",
+      "name": "Adherence",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-shift-activities-calendar-view.html",
+      "summary": "Whether time in this activity is measured for schedule adherence.",
+      "description": "Whether agents' real-time status is compared against this activity for schedule adherence. Adherence metrics (Adherent time, Non-adherent time, Adherence) are tracked for scheduled activities that count toward adherence.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Adherence",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-paid",
+      "name": "Paid",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-shift-activities-calendar-view.html",
+      "summary": "Whether time in this activity counts as paid hours.",
+      "description": "Whether the activity is paid time. Paid hours feed the paid-hours variance used when agents trade shifts and the hours tracked against staff contract rules.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Paid",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-profile",
+      "name": "Shift profile",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-create-staffing-groups.html",
+      "summary": "A template of shift rules: start-time windows, shift length, days, and where activities such as breaks and lunch go.",
+      "description": "A shift profile defines the shifts the generator may build: the activities and rules that apply, such as earliest and latest start, shift length, working days and break placement. Profiles are assigned to staffing groups, and an agent-level profile set in **Staff rules** overrides the group's profile.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Name",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Associated shift profile",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-profile-rules",
+      "name": "Activities and rules",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-create-staffing-groups.html",
+      "summary": "The activities a profile schedules and the rules that constrain them.",
+      "description": "The shift activities included in the profile (for example Work, Break, Lunch) and the rules that place them, such as how long after shift start a break may occur. The count summarises how many are configured.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Activities/Rules",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-rotation",
+      "name": "Shift rotation pattern",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/shift-rotations.html",
+      "summary": "A multi-week sequence of shift profiles that agents rotate through.",
+      "description": "A shift rotation pattern assigns a different shift profile to each step of a multi-week cycle, for example mornings one week and afternoons the next. Assign a pattern to agents in Staff rules (mutually exclusive with a single shift profile) and choose the step each agent starts on; the Generate schedule page shows the patterns in use for the forecast group.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Shift rotation pattern",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-rotation-steps",
+      "name": "Steps",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/shift-rotations.html",
+      "summary": "The ordered steps of the rotation, each pointing at a shift profile.",
+      "description": "The number of steps in the rotation pattern. Each step is one period of the cycle and names the shift profile used during it; agents can start the rotation on any step.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Steps",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-description",
+      "name": "Description",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/shift-rotations.html",
+      "summary": "Optional text describing the item.",
+      "description": "Optional descriptive text entered when the item was created.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Description",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-staffing-group",
+      "name": "Staffing group",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-create-staffing-groups.html",
+      "summary": "The group of agents, with their supervisors, that a schedule is generated for.",
+      "description": "Every agent must be in a staffing group for a schedule to be generated for them. A staffing group is associated with a forecast group and a shift profile, and lists the supervisors who can view its published schedules. A user cannot be an agent in one staffing group and a supervisor in another. Removing an agent does not delete their shifts, so remove the shifts first if they will not join another group.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Group name",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-status",
+      "name": "Status",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling.html",
+      "summary": "Whether the item is active.",
+      "description": "Whether the configuration item is active and used by scheduling, or inactive.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Status",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-trade-approval",
+      "name": "Approval type",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling.html",
+      "summary": "Whether shift trades in this trade group need manager approval or are approved automatically within the group's rules.",
+      "description": "How trades between agents in the group are approved: automatically when they fall within the group's variance and notice rules, or by a supervisor. Agents must be marked eligible to trade shifts in Staff rules.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Approval type",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-trade-notice",
+      "name": "Notice period",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling.html",
+      "summary": "How far in advance of the shift a trade must be requested.",
+      "description": "The minimum lead time before a shift starts for a trade request to be allowed in this trade group.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Notice period",
+          "surfaceOnly": true
+        }
+      ],
+      "extraSections": {}
+    },
+    {
+      "id": "custom#sc-trade-variance",
+      "name": "Trade and paid hours variance (minutes)",
+      "anchor": "",
+      "sourceSlug": "custom",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling.html",
+      "summary": "How much the traded shifts may differ in duration and in paid hours.",
+      "description": "The maximum difference, in minutes, allowed between the two shifts in a trade: **Trade duration variance** for shift length and **Paid hours variance** for paid time. Trades outside these limits are not allowed, or need approval depending on the approval type.",
+      "metricCategory": "Scheduling column",
+      "api": [],
+      "uiLabels": [
+        {
+          "surface": "scheduling",
+          "label": "Trade duration variance (minutes)",
+          "surfaceOnly": true
+        },
+        {
+          "surface": "scheduling",
+          "label": "Paid hours variance (minutes)",
           "surfaceOnly": true
         }
       ],

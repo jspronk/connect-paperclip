@@ -1,0 +1,139 @@
+{
+  "$comment": "Column headers on the Forecasting page (/optimization/forecasting): Forecasts and Forecast Groups tables. Text from the Forecasting, Create forecasts, Inspect a forecast and Create forecast groups admin guide pages. Surface-only. Verified on a live instance 2026-10-17.",
+  "surface": "forecasting",
+  "surfaceOnly": true,
+  "columns": [
+    {
+      "label": "Forecasts",
+      "fields": [
+        "custom#fc-forecast"
+      ]
+    },
+    {
+      "label": "Type",
+      "fields": [
+        "custom#fc-type"
+      ]
+    },
+    {
+      "label": "Metric",
+      "fields": [
+        "custom#fc-metric"
+      ]
+    },
+    {
+      "label": "Status",
+      "fields": [
+        "custom#fc-status"
+      ]
+    },
+    {
+      "label": "Last computed",
+      "fields": [
+        "custom#fc-last-computed"
+      ]
+    },
+    {
+      "label": "Last published",
+      "fields": [
+        "custom#fc-last-published"
+      ]
+    },
+    {
+      "label": "Group name",
+      "fields": [
+        "custom#fc-group"
+      ]
+    },
+    {
+      "label": "No. of queues",
+      "fields": [
+        "custom#fc-queues"
+      ]
+    },
+    {
+      "label": "Demand groups",
+      "fields": [
+        "custom#fc-demand-groups"
+      ]
+    },
+    {
+      "label": "Date modified",
+      "fields": [
+        "custom#fc-date-modified"
+      ]
+    }
+  ],
+  "custom": [
+    {
+      "id": "custom#fc-forecast",
+      "name": "Forecast",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecasts.html",
+      "summary": "A forecast of future contact volume or average handle time for a forecast group, named after the group.",
+      "description": "Forecasts are a projection of the workload in your contact center. Connect generates them per forecast group from historical metrics; they include inbound, transfer and callback contacts across voice, chat, task and email. Each forecast group gets one forecast per type you select, and each forecast covers one metric (contact volume or average handling time). You can inspect a forecast before publishing it, download it, override it, or delete it; deleting a forecast affects capacity plans and schedules built from it."
+    },
+    {
+      "id": "custom#fc-type",
+      "name": "Forecast type",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/forecasting.html",
+      "summary": "Short-term (18 weeks, updated daily, for scheduling) or Long-term (64 weeks, updated weekly, for capacity planning).",
+      "description": "+ **Short-term** forecasts are automatically updated daily and are used for scheduling agents and interval-level headcount estimation, up to 18 weeks ahead.\n+ **Long-term** forecasts are automatically updated every week, on the weekday the forecast was created, and are used for capacity planning up to 64 weeks ahead.\n\nIntraday forecasts (updated every 15 minutes, for queues with at least 5000 unique contacts per week per queue-channel over the last 4 weeks) appear on the Intraday forecast performance dashboard rather than here. Only the most current forecast is kept, so download a day's forecast if you need to keep it."
+    },
+    {
+      "id": "custom#fc-metric",
+      "name": "Forecast metric",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecasts.html",
+      "summary": "What the forecast predicts: Contact Volume or Average Handling Time.",
+      "description": "Each forecast predicts one metric for the forecast group: **Contact Volume** (the number of contacts expected per interval) or **Average Handling Time** (the expected average handle time). Both are produced for each forecast type you create, because capacity planning and scheduling need both."
+    },
+    {
+      "id": "custom#fc-status",
+      "name": "Forecast status",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecasts.html",
+      "summary": "Scheduled while the forecast is being computed, Complete when it is ready.",
+      "description": "When a forecast is created its status is **Scheduled**; it becomes **Complete** when the computation finishes. A first short-term or long-term forecast is typically available within 4 hours, often in about 1 hour. Changes to the forecast group (importing historical data, adding or removing queues) trigger a recomputation in the same timeframe."
+    },
+    {
+      "id": "custom#fc-last-computed",
+      "name": "Last computed",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/forecasting.html",
+      "summary": "When Connect last recalculated this forecast with the most current contact data.",
+      "description": "The date the forecast was last computed. Short-term forecasts are recomputed daily and long-term forecasts weekly, always from the most current contact data; the models themselves are retrained weekly (short-term) and monthly (long-term). On the inspect page you can compare the **Last computed forecast** with the **Last published forecast**."
+    },
+    {
+      "id": "custom#fc-last-published",
+      "name": "Last published",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/inspect-forecast.html",
+      "summary": "When this forecast was last published for use by capacity planning and scheduling.",
+      "description": "The date the forecast was last published. Publishing makes the forecast available to schedulers and to capacity planning; a published long-term forecast is required before a capacity plan can be created, and a published short-term forecast before a schedule can be generated. Inspect and, if needed, override a forecast before publishing it."
+    },
+    {
+      "id": "custom#fc-group",
+      "name": "Forecast group",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecast-groups.html",
+      "summary": "A set of queues forecast together; each queue belongs to exactly one group.",
+      "description": "Forecast groups combine different queues into one forecast, so the forecast is built from aggregated data across those queues. Group queues that share the same pool of agents, since forecast groups are associated with a staffing group for scheduling. Each queue can belong to only one forecast group, at least one group is needed before any forecast, and it is best to create all groups before creating forecasts so all relevant historical data trains the model."
+    },
+    {
+      "id": "custom#fc-queues",
+      "name": "Number of queues",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecast-groups.html",
+      "summary": "How many queues are in the forecast group.",
+      "description": "The number of queues assigned to the forecast group. Adding or removing queues later can trigger an immediate recomputation of the associated forecasts and affects downstream capacity plans and schedules. A disabled queue can stay in the group: it simply stops contributing contacts over time."
+    },
+    {
+      "id": "custom#fc-demand-groups",
+      "name": "Demand groups",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecast-groups.html",
+      "summary": "Subsets of a forecast group's queues that are forecast separately, for example per language.",
+      "description": "Demand groups are distinct work subsets within a forecast group, each corresponding to specific queues that require specialised agent skills. They let one forecast group produce separate demand forecasts, for example per language, and scheduling then calculates headcount per demand group. A queue can be in only one demand group."
+    },
+    {
+      "id": "custom#fc-date-modified",
+      "name": "Date modified",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/create-forecast-groups.html",
+      "summary": "When the forecast group's queues or settings were last changed.",
+      "description": "The date the forecast group was last changed. A change today, such as adding a queue, makes Connect compute new short-term and long-term forecasts for the group, and affects capacity plans and schedules based on it."
+    }
+  ]
+}

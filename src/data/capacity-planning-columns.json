@@ -1,0 +1,407 @@
+{
+  "$comment": "Column headers on the Capacity planning page (/optimization/capacity): Capacity Plans and Planning Scenarios tables, plus the plan output tables. Text from the Capacity planning, Create capacity planning scenarios and Review capacity plan output admin guide pages. Surface-only. Verified on a live instance 2026-10-17.",
+  "surface": "capacityplanning",
+  "surfaceOnly": true,
+  "columns": [
+    {
+      "label": "Plan Name",
+      "fields": [
+        "custom#cp-plan"
+      ]
+    },
+    {
+      "label": "Plan Type",
+      "fields": [
+        "custom#cp-plan-type"
+      ]
+    },
+    {
+      "label": "Status",
+      "fields": [
+        "custom#cp-status"
+      ]
+    },
+    {
+      "label": "Start Date",
+      "fields": [
+        "custom#cp-dates"
+      ]
+    },
+    {
+      "label": "End Date",
+      "fields": [
+        "custom#cp-dates"
+      ]
+    },
+    {
+      "label": "Forecast Group",
+      "fields": [
+        "custom#cp-forecast-group"
+      ]
+    },
+    {
+      "label": "Planning Scenario",
+      "fields": [
+        "custom#cp-scenario"
+      ]
+    },
+    {
+      "label": "Date Created",
+      "fields": [
+        "custom#cp-created"
+      ]
+    },
+    {
+      "label": "Last Computed",
+      "fields": [
+        "custom#cp-last-computed"
+      ]
+    },
+    {
+      "label": "Published Date",
+      "fields": [
+        "custom#cp-published"
+      ]
+    },
+    {
+      "label": "Published By",
+      "fields": [
+        "custom#cp-published"
+      ]
+    },
+    {
+      "label": "Scenario Name",
+      "fields": [
+        "custom#cp-scenario"
+      ]
+    },
+    {
+      "label": "Description",
+      "fields": [
+        "custom#cp-scenario"
+      ]
+    },
+    {
+      "label": "Associated capacity plans",
+      "fields": [
+        "custom#cp-associated-plans"
+      ]
+    },
+    {
+      "label": "Date created",
+      "fields": [
+        "custom#cp-created"
+      ]
+    },
+    {
+      "label": "Last modified",
+      "fields": [
+        "custom#cp-last-modified"
+      ]
+    },
+    {
+      "label": "Created by",
+      "fields": [
+        "custom#cp-created"
+      ]
+    },
+    {
+      "label": "Forecasted Contact Volume",
+      "fields": [
+        "custom#cp-out-volume"
+      ]
+    },
+    {
+      "label": "Contact volume",
+      "fields": [
+        "custom#cp-out-volume"
+      ]
+    },
+    {
+      "label": "Forecasted Average Handling Time (AHT), seconds",
+      "fields": [
+        "custom#cp-out-aht"
+      ]
+    },
+    {
+      "label": "Average handle time",
+      "fields": [
+        "custom#cp-out-aht"
+      ]
+    },
+    {
+      "label": "Required FTEs (without Shrinkage)",
+      "fields": [
+        "custom#cp-out-required"
+      ]
+    },
+    {
+      "label": "Required FTEs (with Shrinkage)",
+      "fields": [
+        "custom#cp-out-required-shrink"
+      ]
+    },
+    {
+      "label": "Forecasted Occupancy %",
+      "fields": [
+        "custom#cp-out-occupancy"
+      ]
+    },
+    {
+      "label": "Forecasted occupancy",
+      "fields": [
+        "custom#cp-out-occupancy"
+      ]
+    },
+    {
+      "label": "Available FTEs",
+      "fields": [
+        "custom#cp-out-available"
+      ]
+    },
+    {
+      "label": "Gap between available FTEs and required FTEs",
+      "fields": [
+        "custom#cp-out-gap"
+      ]
+    },
+    {
+      "label": "Gap %",
+      "fields": [
+        "custom#cp-out-gap"
+      ]
+    },
+    {
+      "label": "Required OT %",
+      "fields": [
+        "custom#cp-out-ot"
+      ]
+    },
+    {
+      "label": "Required VTO %",
+      "fields": [
+        "custom#cp-out-vto"
+      ]
+    },
+    {
+      "label": "Required headcount",
+      "fields": [
+        "custom#cp-out-headcount"
+      ]
+    },
+    {
+      "label": "Available headcount",
+      "fields": [
+        "custom#cp-out-available-headcount"
+      ]
+    },
+    {
+      "label": "Net staffing",
+      "fields": [
+        "custom#cp-out-net"
+      ]
+    },
+    {
+      "label": "Total shrinkage",
+      "fields": [
+        "custom#cp-out-shrinkage"
+      ]
+    },
+    {
+      "label": "Required headcount with shrinkage",
+      "fields": [
+        "custom#cp-out-headcount-shrink"
+      ]
+    },
+    {
+      "label": "Net staffing with shrinkage",
+      "fields": [
+        "custom#cp-out-net-shrink"
+      ]
+    }
+  ],
+  "custom": [
+    {
+      "id": "custom#cp-plan",
+      "name": "Capacity plan",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "A plan that turns forecasts and a scenario into staffing targets for a date range.",
+      "description": "A capacity plan helps you determine how many agents your contact center needs. It uses forecasts and scenario inputs to set staffing targets for a given time period. Open a plan to review its output, override values (Hiring plans only), re-run it after new forecasts are published, download it, or publish it to make it official."
+    },
+    {
+      "id": "custom#cp-plan-type",
+      "name": "Plan type",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "Hiring plan (long-term FTE estimates) or Scheduling plan (interval-level headcount).",
+      "description": "+ **Hiring plan**: long-term FTE (full-time equivalent) estimates up to 64 weeks ahead, for hiring and workforce planning. Uses both a long-term and a short-term forecast; the two should overlap by at least 4 weeks (1 day minimum).\n+ **Scheduling plan**: interval-level headcount needs in 15- or 30-minute intervals for scheduling and resource use. Needs only a published short-term forecast, and the plan dates must fall within that forecast's range."
+    },
+    {
+      "id": "custom#cp-status",
+      "name": "Plan status",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "Whether the plan has finished computing.",
+      "description": "The state of the plan's computation. A plan is generated from the selected forecast group and scenario and shows **Complete** when its output is ready to review. Re-running the plan recomputes it from the latest published forecasts."
+    },
+    {
+      "id": "custom#cp-dates",
+      "name": "Plan start and end dates",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "The period the plan covers.",
+      "description": "The first and last dates covered by the plan. Hiring plans can extend up to 64 weeks ahead; Scheduling plan dates must fall within the published short-term forecast's date range, and its output is reviewed up to 7 days at a time."
+    },
+    {
+      "id": "custom#cp-forecast-group",
+      "name": "Forecast group",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "The forecast group whose published forecasts feed this plan.",
+      "description": "The forecast group used as input. Hiring plans use its published long-term and short-term forecasts; Scheduling plans use its published short-term forecast. The forecasted contact volume and AHT in the output reflect only this forecast group, so consider re-running the plan after new forecasts are published."
+    },
+    {
+      "id": "custom#cp-scenario",
+      "name": "Planning scenario",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-create-scenarios.html",
+      "summary": "The what-if assumptions a plan is generated with: occupancy, attrition, FTE hours, shrinkage, hours of operation, and per-channel targets.",
+      "description": "A scenario has two parts. **Scenario inputs**: maximum occupancy, daily attrition (annual attrition divided by about 250 working days), FTE hours per week, optional outsourced contacts, maximum overtime and voluntary time off allowed, shrinkage, and the hours of operation your agents work. **Optimization inputs**: one target per channel, for up to four channels: service level (all channels), average speed of answer (Voice and Chat) or average time to complete (Task and Email, which treats the channel as asynchronous and uses backlog projections). You then generate a capacity plan from the scenario."
+    },
+    {
+      "id": "custom#cp-associated-plans",
+      "name": "Associated capacity plans",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-create-scenarios.html",
+      "summary": "How many capacity plans were generated with this scenario.",
+      "description": "The number of capacity plans that use this scenario. The same scenario can be used to generate several plans, for example best-case and worst-case assumptions against different forecast groups or date ranges."
+    },
+    {
+      "id": "custom#cp-created",
+      "name": "Created",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "When, and by whom, the item was created.",
+      "description": "The creation date, and for scenarios the user who created it. Plans record the user who published them separately."
+    },
+    {
+      "id": "custom#cp-last-computed",
+      "name": "Last computed",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "When the plan's output was last generated or re-run.",
+      "description": "When the plan was last computed. Re-run a plan after new forecasts are published, or after changing the hours of operation used by its scenario, so the output reflects the latest inputs."
+    },
+    {
+      "id": "custom#cp-last-modified",
+      "name": "Last modified",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-create-scenarios.html",
+      "summary": "When the scenario's inputs were last edited.",
+      "description": "When the scenario was last changed. Editing a scenario does not change plans already generated from it; re-run those plans to apply the new assumptions."
+    },
+    {
+      "id": "custom#cp-published",
+      "name": "Published",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning.html",
+      "summary": "When, and by whom, the plan was published to make it official.",
+      "description": "Publishing a capacity plan makes it the official plan you share with Human Resources, Finance and Training. The table shows the publish date and the user who published it."
+    },
+    {
+      "id": "custom#cp-out-volume",
+      "name": "Forecasted Contact Volume",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "The total forecasted contact volume across the channels in the scenario's optimization targets.",
+      "description": "The total forecasted contact volume across the channels in your selected scenario's optimization targets. It reflects only the selected forecast group; after new forecasts are published, re-run the plan to pick up the latest values."
+    },
+    {
+      "id": "custom#cp-out-aht",
+      "name": "Forecasted Average Handling Time (AHT), seconds",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "The forecasted average handling time across the channels in the scenario's optimization targets.",
+      "description": "The forecasted average handling time, in seconds, across the channels in your selected scenario's optimization targets. It reflects only the selected forecast group; after new forecasts are published, re-run the plan."
+    },
+    {
+      "id": "custom#cp-out-required",
+      "name": "Required FTEs (without Shrinkage)",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How many full-time equivalent agents need to be hired to meet the business goals, ignoring shrinkage.",
+      "description": "How many full-time equivalent agents need to be hired to meet the defined business goals (such as the service level target), without considering shrinkage."
+    },
+    {
+      "id": "custom#cp-out-required-shrink",
+      "name": "Required FTEs (with Shrinkage)",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How many FTEs need to be hired to meet the business goals once shrinkage is accounted for.",
+      "description": "How many full-time equivalent agents need to be hired to meet the defined business goals (such as the service level target), with shrinkage considered. Shrinkage comes from the scenario's total shrinkage percentage or from day-level values uploaded on the Import data tab."
+    },
+    {
+      "id": "custom#cp-out-occupancy",
+      "name": "Forecasted Occupancy %",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "The occupancy agents are forecast to have under this plan.",
+      "description": "How much occupancy is forecast for the agents: the share of their time spent handling contacts under the planned staffing. The scenario's maximum occupancy input caps it."
+    },
+    {
+      "id": "custom#cp-out-available",
+      "name": "Available FTEs",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How many agents are available to work that period, from the data you import.",
+      "description": "How many agents are available for working that day. It is uploaded in the **Import data** section; the gap, OT and VTO metrics are calculated from it."
+    },
+    {
+      "id": "custom#cp-out-gap",
+      "name": "Gap between available and required FTEs",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "The difference between available FTEs and required FTEs, also shown as a percentage.",
+      "description": "The difference between available FTEs and required FTEs, and **Gap %**, that difference as a percentage. A negative gap is a supply deficit, a positive gap a surplus."
+    },
+    {
+      "id": "custom#cp-out-ot",
+      "name": "Required OT %",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How much overtime would cover a supply deficit.",
+      "description": "If there is a supply deficit (required FTEs higher than available FTEs), required OT % indicates how much overtime would be needed to cover the deficit. The scenario's maximum overtime allowed bounds it."
+    },
+    {
+      "id": "custom#cp-out-vto",
+      "name": "Required VTO %",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "How much voluntary time off could absorb a supply surplus.",
+      "description": "If there is a supply surplus (required FTEs lower than available FTEs), required VTO % indicates how much voluntary time off could be used to lower agent idle time and thus lower costs. The scenario's maximum VTO allowed bounds it."
+    },
+    {
+      "id": "custom#cp-out-headcount",
+      "name": "Required headcount",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: how many agents are needed in this 15- or 30-minute interval.",
+      "description": "In a Scheduling plan, the number of agents needed in each interval to meet the channel targets. The interval size matches your short-term forecast settings. The Headcount requirements graph plots the same series."
+    },
+    {
+      "id": "custom#cp-out-available-headcount",
+      "name": "Available headcount",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: how many agents are available in this interval, from imported headcount data.",
+      "description": "In a Scheduling plan, the agents available in each interval, taken from the interval-level headcount data you import for Scheduling plans."
+    },
+    {
+      "id": "custom#cp-out-net",
+      "name": "Net staffing",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: available headcount minus required headcount for the interval.",
+      "description": "In a Scheduling plan, the difference between available and required headcount in each interval, before shrinkage. Negative values show understaffed intervals."
+    },
+    {
+      "id": "custom#cp-out-shrinkage",
+      "name": "Total shrinkage",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: the shrinkage applied to the interval.",
+      "description": "In a Scheduling plan, the total shrinkage applied to each interval, from the scenario's shrinkage percentage or the interval-level shrinkage data you import."
+    },
+    {
+      "id": "custom#cp-out-headcount-shrink",
+      "name": "Required headcount with shrinkage",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: required headcount once shrinkage is accounted for.",
+      "description": "In a Scheduling plan, the agents needed in each interval after applying shrinkage."
+    },
+    {
+      "id": "custom#cp-out-net-shrink",
+      "name": "Net staffing with shrinkage",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/capacity-planning-review-output.html",
+      "summary": "Scheduling plan: available headcount minus required headcount with shrinkage.",
+      "description": "In a Scheduling plan, the difference between available headcount and required headcount with shrinkage, per interval."
+    }
+  ]
+}

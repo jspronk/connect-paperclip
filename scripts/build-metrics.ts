@@ -85,7 +85,10 @@ async function main(): Promise<void> {
 
   await writeFile(outPath, JSON.stringify(data, null, 2) + '\n', 'utf8');
 
-  const bySurface: Record<Surface, number> = { realtime: 0, historical: 0, dashboard: 0, contactsearch: 0, routingprofile: 0, quickconnect: 0, securityprofile: 0 };
+  const bySurface: Record<Surface, number> = {
+    realtime: 0, historical: 0, dashboard: 0, contactsearch: 0, routingprofile: 0, quickconnect: 0, securityprofile: 0,
+    forecasting: 0, capacityplanning: 0, scheduling: 0,
+  };
   let noLabel = 0;
   let noType = 0;
   for (const m of data.metrics) {
@@ -95,7 +98,7 @@ async function main(): Promise<void> {
   }
   console.log(`Wrote ${outPath}`);
   console.log(`  metrics: ${data.metrics.length} (${noLabel} without a UI label, ${noType} without a type)`);
-  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}, routing profile ${bySurface.routingprofile}, quick connect ${bySurface.quickconnect}, security profile ${bySurface.securityprofile}`);
+  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}, routing profile ${bySurface.routingprofile}, quick connect ${bySurface.quickconnect}, security profile ${bySurface.securityprofile}, forecasting ${bySurface.forecasting}, capacity ${bySurface.capacityplanning}, scheduling ${bySurface.scheduling}`);
 }
 
 /** Pages parsed with the metric-definitions layout (as opposed to the data model or permissions pages). */
@@ -108,6 +111,9 @@ const SURFACE_TITLE: Partial<Record<Surface, string>> = {
   routingprofile: 'Routing profile editor',
   quickconnect: 'Quick connects',
   securityprofile: 'Security profile editor',
+  forecasting: 'Forecasting',
+  capacityplanning: 'Capacity planning',
+  scheduling: 'Scheduling',
 };
 
 interface ColumnMap {

@@ -47,6 +47,9 @@ export class MetricIndex {
     routingprofile: new Map(),
     quickconnect: new Map(),
     securityprofile: new Map(),
+    forecasting: new Map(),
+    capacityplanning: new Map(),
+    scheduling: new Map(),
   };
   private readonly byName = new Map<string, Candidate[]>();
   private readonly patterns: PatternEntry[] = [];
@@ -108,7 +111,7 @@ export class MetricIndex {
     if (!key) return [];
     const found: Candidate[] = [];
 
-    const all: Surface[] = ['realtime', 'historical', 'dashboard', 'contactsearch', 'routingprofile', 'quickconnect', 'securityprofile'];
+    const all: Surface[] = ['realtime', 'historical', 'dashboard', 'contactsearch', 'routingprofile', 'quickconnect', 'securityprofile', 'forecasting', 'capacityplanning', 'scheduling'];
     const order: Surface[] = surface === 'unknown' ? all : [surface, ...all.filter((s) => s !== surface)];
 
     order.forEach((s, i) => {
