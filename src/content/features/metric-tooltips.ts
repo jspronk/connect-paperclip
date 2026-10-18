@@ -47,6 +47,7 @@ export function startMetricTooltips(ctx: FeatureContext): void {
       onShadowRoot: (sr) => {
         addStyle(sr);
         observer.observe(sr, OBSERVE_OPTS);
+        attachPointerHandlers(sr);
       },
     },
   );
@@ -136,6 +137,11 @@ export function startMetricTooltips(ctx: FeatureContext): void {
   window.addEventListener('hashchange', onRoute);
 
   // Hover and focus handling via delegation.
+  //
+  // Listeners are attached to the document AND to every shadow root we scan. A document-level
+  // listener alone misses pointer moves between two elements inside the same shadow tree: the
+  // browser retargets both target and relatedTarget to the shadow host, sees them as equal, and
+  // does not dispatch the event beyond the shadow boundary at all.
   let hoverTimer: number | undefined;
   const open = (el: Element): void => {
     const ids = (el.getAttribute(ATTR) ?? '').split('|').filter(Boolean);
@@ -150,34 +156,39 @@ export function startMetricTooltips(ctx: FeatureContext): void {
     const nativeHint = el.getAttribute(HINT_ATTR) ?? findHint(el) ?? '';
     tooltip.show(el, candidates, nativeHint);
   };
-  document.addEventListener('mouseover', (e) => {
-    if (!settings.enabled) return;
-    const el = taggedFromEvent(e);
-    if (!el) return;
-    if (tooltip.currentAnchor === el) {
-      tooltip.cancelHide();
-      return;
-    }
-    window.clearTimeout(hoverTimer);
-    hoverTimer = window.setTimeout(() => open(el), settings.hoverDelay);
-  });
-  document.addEventListener('mouseout', (e) => {
-    const el = taggedFromEvent(e);
-    if (!el) return;
-    const to = e.relatedTarget as Node | null;
-    if (to && el.contains(to)) return;
-    window.clearTimeout(hoverTimer);
-    if (tooltip.currentAnchor === el) tooltip.scheduleHide();
-  });
-  document.addEventListener('focusin', (e) => {
-    if (!settings.enabled) return;
-    const el = taggedFromEvent(e);
-    if (el) open(el);
-  });
-  document.addEventListener('focusout', (e) => {
-    const el = taggedFromEvent(e);
-    if (el && tooltip.currentAnchor === el) tooltip.scheduleHide();
-  });
+  const attachPointerHandlers = (target: Document | ShadowRoot): void => {
+    target.addEventListener('mouseover', (e) => {
+      if (!settings.enabled) return;
+      const el = taggedFromEvent(e);
+      if (!el) return;
+      if (tooltip.currentAnchor === el) {
+        tooltip.cancelHide();
+        return;
+      }
+      window.clearTimeout(hoverTimer);
+      hoverTimer = window.setTimeout(() => open(el), settings.hoverDelay);
+    });
+    target.addEventListener('mouseout', (e) => {
+      const el = taggedFromEvent(e);
+      if (!el) return;
+      const to = (e as MouseEvent).relatedTarget as Node | null;
+      if (to && el.contains(to)) return;
+      window.clearTimeout(hoverTimer);
+      if (tooltip.currentAnchor === el) tooltip.scheduleHide();
+    });
+    target.addEventListener('focusin', (e) => {
+      if (!settings.enabled) return;
+      const el = taggedFromEvent(e);
+      if (el) open(el);
+    });
+    target.addEventListener('focusout', (e) => {
+      const el = taggedFromEvent(e);
+      if (el && tooltip.currentAnchor === el) tooltip.scheduleHide();
+    });
+  };
+  attachPointerHandlers(document);
+  for (const root of scanner.roots()) if (root instanceof ShadowRoot) attachPointerHandlers(root);
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && tooltip.isOpen) tooltip.hide();
   });
