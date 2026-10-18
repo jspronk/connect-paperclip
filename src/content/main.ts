@@ -71,6 +71,15 @@ async function main(): Promise<void> {
 
   const observer = new MutationObserver((records) => {
     for (const r of records) {
+      if (r.type === 'attributes') {
+        // The console sets header "title" hints after the cell is inserted; cache them when they appear.
+        const el = r.target as Element;
+        const title = el.getAttribute('title')?.trim();
+        if (!title) continue;
+        const tagged = el.closest(`[${ATTR}]`) ?? el.querySelector(`[${ATTR}]`);
+        tagged?.setAttribute(HINT_ATTR, title);
+        continue;
+      }
       if (r.type === 'characterData') {
         const parent = r.target.parentElement;
         if (parent && !parent.closest(`#${HOST_ID}`)) {
@@ -85,7 +94,7 @@ async function main(): Promise<void> {
       }
     }
   });
-  observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+  observer.observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['title'] });
 
   // SPA route changes. Content scripts run in an isolated world, so patching history.pushState
   // would not see the page's router; instead re-check the URL whenever we scan, and on the
