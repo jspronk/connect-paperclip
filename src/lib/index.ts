@@ -26,6 +26,8 @@ export interface Candidate {
   uiLabel: UiLabel | null;
   /** Lower is better: 0 = label on the current surface, 1 = label on another surface, 2 = metric name. */
   rank: 0 | 1 | 2;
+  /** For name matches of surface-only entries: the surfaces the name may match on. */
+  onlyOn?: Set<Surface>;
 }
 
 interface PatternEntry {
@@ -68,7 +70,12 @@ export class MetricIndex {
       }
       const nameKey = normalizeLabel(metric.name);
       if (nameKey) {
-        push(this.byName, nameKey, { metric, uiLabel: null, rank: 2 });
+        // An entry whose labels are all surface-only is itself surface-only: its name must not
+        // match generic headers ("Channels", "Priority") on other pages.
+        const restricted = metric.uiLabels.length > 0 && metric.uiLabels.every((l) => l.surfaceOnly);
+        const cand: Candidate = { metric, uiLabel: null, rank: 2 };
+        if (restricted) cand.onlyOn = new Set(metric.uiLabels.map((l) => l.surface));
+        push(this.byName, nameKey, cand);
         this.allKeys.add(nameKey);
       }
     }
@@ -113,7 +120,10 @@ export class MetricIndex {
       }
     }
 
-    for (const c of this.byName.get(key) ?? []) found.push(c);
+    for (const c of this.byName.get(key) ?? []) {
+      if (c.onlyOn && (surface === 'unknown' || !c.onlyOn.has(surface))) continue;
+      found.push(c);
+    }
 
     const best = new Map<string, Candidate>();
     for (const c of found) {
