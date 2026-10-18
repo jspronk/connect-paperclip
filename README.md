@@ -1,4 +1,4 @@
-# Amazon Connect Paperclip
+# Connect Paperclip
 
 A Chrome extension (Manifest V3), formerly "Connect Metrics Helper", that adds hover definitions to metric labels on the
 **Amazon Connect Customer** admin website (the product formerly called Amazon Connect).
@@ -111,6 +111,9 @@ npm install
 npm test            # parser, normalization, index and DOM matcher tests
 npm run build       # type-check and build to dist/
 ```
+
+The icons are rendered from `public/icons/icon.svg` with `npm run icons` (uses @resvg/resvg-js); the
+PNGs are committed.
 
 Load it in Chrome: open `chrome://extensions`, enable **Developer mode**, choose **Load unpacked**,
 and select the `dist/` folder. Rebuild and click the extension's reload button after changes

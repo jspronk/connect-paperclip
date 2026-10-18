@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Amazon Connect Paperclip",
+  "name": "Connect Paperclip",
   "version": "0.1.0",
   "description": "Hover any metric label on the Amazon Connect Customer admin website to see its official AWS definition.",
   "permissions": [
@@ -12,14 +12,16 @@
   ],
   "icons": {
     "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
   "action": {
-    "default_title": "Amazon Connect Paperclip",
+    "default_title": "Connect Paperclip",
     "default_popup": "src/popup/index.html",
     "default_icon": {
       "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }

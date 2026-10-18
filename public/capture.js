@@ -1,5 +1,5 @@
 /**
- * Amazon Connect Paperclip: page-world capture script.
+ * Connect Paperclip: page-world capture script.
  *
  * Runs in the page's own JavaScript world (manifest "world": "MAIN", run_at document_start) as a
  * plain, synchronous script, so window.fetch and XMLHttpRequest are wrapped before any page script runs.

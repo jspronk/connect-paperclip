@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Connect Paperclip icon: teal rounded tile with a white paperclip. Source for icon16/48/128.png (scripts/render-icons.ts). -->
+  <rect x="0" y="0" width="128" height="128" rx="28" ry="28" fill="#00AEBD"/>
+  <path fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"
+        d="M 46 90 V 40 a 18 18 0 0 1 36 0 V 96 a 12 12 0 0 1 -24 0 V 48 a 6 6 0 0 1 12 0 V 84"/>
+</svg>
