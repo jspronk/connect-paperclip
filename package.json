@@ -2,7 +2,7 @@
   "name": "connect-paperclip",
   "version": "0.1.0",
   "private": true,
-  "description": "Hover definitions from the AWS docs for Amazon Connect metrics, columns and permissions, plus quick links to flows and routing profiles.",
+  "description": "Hover definitions from the AWS docs for Amazon Connect metrics, columns and permissions, plus links to flows and routing profiles.",
   "type": "module",
   "scripts": {
     "dev": "vite",
