@@ -106,11 +106,24 @@
     var path = pathOf(xhr.__cmhUrl || '');
     if (!isInteresting(path)) return;
     try {
-      var body;
-      if (xhr.responseType === 'json') body = xhr.response;
-      else if (xhr.responseType === '' || xhr.responseType === 'text') body = JSON.parse(xhr.responseText);
-      else return;
-      handleBody(path, body);
+      var rt = xhr.responseType;
+      if (rt === 'json') {
+        handleBody(path, xhr.response);
+      } else if (rt === '' || rt === 'text') {
+        handleBody(path, JSON.parse(xhr.responseText));
+      } else if (rt === 'arraybuffer' && xhr.response) {
+        // The Email addresses micro-frontend requests binary bodies and decodes them itself.
+        handleBody(path, JSON.parse(new TextDecoder('utf-8').decode(xhr.response)));
+      } else if (rt === 'blob' && xhr.response && typeof xhr.response.text === 'function') {
+        xhr.response
+          .text()
+          .then(function (text) {
+            handleBody(path, JSON.parse(text));
+          })
+          .catch(function () {
+            /* ignore */
+          });
+      }
     } catch (e) {
       /* not JSON: ignore */
     }
