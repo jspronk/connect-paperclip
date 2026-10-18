@@ -7,8 +7,12 @@ export const MESSAGE_SOURCE = 'connect-metrics-helper';
 /** Attribute on anchors this feature creates. (Name kept from the first, flow-only version.) */
 export const FLOW_ATTR = 'data-cmh-flow';
 const STYLE_ID = 'cmh-flow-links-style';
-const CSS = `a[${FLOW_ATTR}]{color:inherit;text-decoration:underline dotted;text-underline-offset:3px;cursor:pointer}
-a[${FLOW_ATTR}]:hover{color:#0972d3;text-decoration-style:solid}`;
+/**
+ * Same colour the console gives its own links (its theme variable, which also inherits into shadow
+ * roots), so links we add inside shadow-rooted tables look like links in light-DOM tables.
+ */
+const CSS = `a[${FLOW_ATTR}]{color:var(--workspace-palette-primary-default,#077398);text-decoration:underline dotted;text-underline-offset:3px;cursor:pointer}
+a[${FLOW_ATTR}]:hover{text-decoration-style:solid}`;
 
 /** Everything learned from the page's own API responses, forwarded by public/capture.js. */
 export interface LinkMaps {

@@ -148,7 +148,7 @@ export class Tooltip {
     this.tip.append(this.renderMeta(metric));
 
     if (metric.calculationLogic) {
-      this.tip.append(this.renderDetails('Calculation logic', metric.calculationLogic, metric, this.settings.expandCalc));
+      this.tip.append(this.renderDetails('Calculation logic', metric.calculationLogic, metric, false));
     }
     if (metric.notes) {
       this.tip.append(this.renderDetails('Notes', metric.notes, metric, false));

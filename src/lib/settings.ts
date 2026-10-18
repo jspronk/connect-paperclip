@@ -1,20 +1,11 @@
 /** User settings stored in chrome.storage.sync, shared by content script, options and popup. */
 
-export type MatchMode = 'headers' | 'any';
-
 export interface Settings {
   enabled: boolean;
   /** Milliseconds before the tooltip opens on hover. */
   hoverDelay: number;
   /** Dotted underline on matched labels. */
   underline: boolean;
-  /** Show calculation logic expanded by default. */
-  expandCalc: boolean;
-  /**
-   * "headers": only table headers, headings and header-like elements are matched (default).
-   * "any": any short text element is matched. Broader, more false positives.
-   */
-  matchMode: MatchMode;
   /** Link flow names on the Phone numbers page to the flow editor. */
   flowLinks: boolean;
 }
@@ -23,8 +14,6 @@ export const DEFAULT_SETTINGS: Settings = {
   enabled: true,
   hoverDelay: 350,
   underline: true,
-  expandCalc: false,
-  matchMode: 'headers',
   flowLinks: true,
 };
 

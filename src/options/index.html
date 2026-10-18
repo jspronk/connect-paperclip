@@ -28,20 +28,10 @@
         </label>
 
         <label class="row">
-          <input type="checkbox" name="expandCalc" />
-          <span><strong>Expand calculation logic by default</strong><br /><small>Otherwise it is collapsed inside the tooltip.</small></span>
-        </label>
-
-        <label class="row">
           <span class="grow"><strong>Hover delay</strong><br /><small>Milliseconds before the tooltip opens.</small></span>
           <input type="number" name="hoverDelay" min="0" max="3000" step="50" class="num" />
         </label>
 
-        <fieldset class="row block">
-          <legend><strong>What to match</strong></legend>
-          <label><input type="radio" name="matchMode" value="headers" /> Table headers and titles only <small>(recommended)</small></label>
-          <label><input type="radio" name="matchMode" value="any" /> Any short text that equals a metric label <small>(broader, more false positives)</small></label>
-        </fieldset>
       </form>
 
       <p id="status" class="muted" role="status"></p>

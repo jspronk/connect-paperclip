@@ -39,18 +39,13 @@ export function startMetricTooltips(ctx: FeatureContext): void {
 
   const OBSERVE_OPTS: MutationObserverInit = { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['title'] };
   let observer: MutationObserver; // assigned below; shadow roots found during scanning are observed too
-  const scanner = createScanner(
-    index,
-    () => surface,
-    () => settings.matchMode,
-    {
-      onShadowRoot: (sr) => {
-        addStyle(sr);
-        observer.observe(sr, OBSERVE_OPTS);
-        attachPointerHandlers(sr);
-      },
+  const scanner = createScanner(index, () => surface, {
+    onShadowRoot: (sr) => {
+      addStyle(sr);
+      observer.observe(sr, OBSERVE_OPTS);
+      attachPointerHandlers(sr);
     },
-  );
+  });
 
   // SPA route changes. Content scripts run in an isolated world, so patching history.pushState
   // would not see the page's router; instead re-check the URL whenever we scan, and on the
@@ -195,14 +190,14 @@ export function startMetricTooltips(ctx: FeatureContext): void {
   window.addEventListener('scroll', () => tooltip.isOpen && tooltip.hide(), { passive: true, capture: true });
 
   ctx.onSettings((next) => {
-    const modeChanged = next.matchMode !== settings.matchMode || next.enabled !== settings.enabled;
+    const enabledChanged = next.enabled !== settings.enabled;
     settings = next;
     tooltip.updateSettings(next);
     applyUnderline();
     if (!next.enabled) {
       tooltip.hide();
       clearMatches(scanner.roots());
-    } else if (modeChanged) {
+    } else if (enabledChanged) {
       rescanAll();
     }
   });

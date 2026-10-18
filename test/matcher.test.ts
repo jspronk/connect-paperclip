@@ -24,7 +24,7 @@ describe('scanner on a live-shaped Real-time Queues table', () => {
   });
 
   it('tags metric headers only, on the innermost wrapper, and ignores body cells', () => {
-    const scanner = createScanner(index, () => 'realtime', () => 'headers');
+    const scanner = createScanner(index, () => 'realtime');
     const matches = scanner.scan(document.body);
     const labels = tagged().map(([t]) => t).sort();
     expect(labels).toEqual(['ACW', 'Available', 'Duration', 'Online', 'SL 60 secs']);
@@ -44,7 +44,7 @@ describe('scanner on a live-shaped Real-time Queues table', () => {
   });
 
   it('caches the console hint text on the tagged element', () => {
-    createScanner(index, () => 'realtime', () => 'headers').scan(document.body);
+    createScanner(index, () => 'realtime').scan(document.body);
     const acw = document.querySelector(`[${ATTR}*="agent-after-contact-work"]`)!;
     expect(acw.getAttribute('data-cmh-hint')).toBe('Count of agents in after contact work');
   });
@@ -54,7 +54,7 @@ describe('scanner on a live-shaped Real-time Queues table', () => {
   });
 
   it('resolves SL 60 secs to Service level and Duration to both ACW time and the Duration column', () => {
-    createScanner(index, () => 'realtime', () => 'headers').scan(document.body);
+    createScanner(index, () => 'realtime').scan(document.body);
     const map = Object.fromEntries(tagged());
     expect(map['SL 60 secs']).toBe('metrics-definitions#service-level');
     expect(map['Duration']!.split('|').sort()).toEqual([
@@ -64,7 +64,7 @@ describe('scanner on a live-shaped Real-time Queues table', () => {
   });
 
   it('does not double-tag on a second scan and can be cleared', () => {
-    const scanner = createScanner(index, () => 'realtime', () => 'headers');
+    const scanner = createScanner(index, () => 'realtime');
     scanner.scan(document.body);
     expect(scanner.scan(document.body)).toHaveLength(0);
     expect(tagged()).toHaveLength(5);
@@ -72,12 +72,6 @@ describe('scanner on a live-shaped Real-time Queues table', () => {
     expect(tagged()).toHaveLength(0);
   });
 
-  it('in "any" mode also tags body cells whose text equals a label, but never form controls', () => {
-    createScanner(index, () => 'realtime', () => 'any').scan(document.body);
-    const labels = tagged().map(([t]) => t);
-    expect(labels.filter((l) => l === 'Available')).toHaveLength(2);
-    expect(document.querySelectorAll(`input[${ATTR}], option[${ATTR}]`)).toHaveLength(0);
-  });
 });
 
 describe('scanner inside open shadow roots', () => {
@@ -92,7 +86,7 @@ describe('scanner inside open shadow roots', () => {
     innerRoot.innerHTML = html;
 
     const seen: ShadowRoot[] = [];
-    const scanner = createScanner(index, () => 'realtime', () => 'headers', { onShadowRoot: (r) => seen.push(r) });
+    const scanner = createScanner(index, () => 'realtime', { onShadowRoot: (r) => seen.push(r) });
     const matches = scanner.scan(document.body);
     expect(matches.map((m) => (m.element.textContent ?? '').trim()).sort()).toEqual(['ACW', 'Available', 'Duration', 'Online', 'SL 60 secs']);
     expect(seen).toEqual([outerRoot, innerRoot]);

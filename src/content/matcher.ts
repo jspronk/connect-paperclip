@@ -1,5 +1,4 @@
 import type { MetricIndex, PageSurface } from '../lib/index';
-import type { MatchMode } from '../lib/settings';
 import { normalizeLabel } from '../lib/normalize';
 
 export const ATTR = 'data-cmh-metric';
@@ -68,16 +67,11 @@ export function shadowRootsUnder(root: ParentNode, out: ShadowRoot[] = []): Shad
   return out;
 }
 
-export function createScanner(
-  index: MetricIndex,
-  getSurface: () => PageSurface,
-  getMode: () => MatchMode,
-  options: ScannerOptions = {},
-): Scanner {
+export function createScanner(index: MetricIndex, getSurface: () => PageSurface, options: ScannerOptions = {}): Scanner {
   const knownShadowRoots = new Set<ShadowRoot>();
   function candidates(root: ParentNode): Element[] {
-    const mode = getMode();
-    const selector = mode === 'any' ? '*' : `${HEADER_SELECTOR},[class],[data-testid]`;
+    // Only table headers, headings and header-like elements (by role, tag or class hint) are considered.
+    const selector = `${HEADER_SELECTOR},[class],[data-testid]`;
     const list: Element[] = [];
     if (root instanceof Element && root.matches(selector)) list.push(root);
     list.push(...root.querySelectorAll(selector));
@@ -110,12 +104,11 @@ export function createScanner(
   }
 
   function scanOne(root: ParentNode, out: Match[]): void {
-      const mode = getMode();
       const surface = getSurface();
       for (const el of candidates(root)) {
         if (el.closest(SKIP_SELECTOR)) continue;
         if (el.hasAttribute(ATTR) || el.closest(`[${ATTR}]`) || el.querySelector(`[${ATTR}]`)) continue;
-        if (mode === 'headers' && !isHeaderLike(el)) continue;
+        if (!isHeaderLike(el)) continue;
         const text = ownText(el);
         if (!text || text.length > MAX_LABEL_CHARS) continue;
         if (!index.mightMatch(text)) continue;
