@@ -172,3 +172,11 @@ network requests of its own. See [PRIVACY.md](PRIVACY.md) for the full policy.
   hint at the top of its tooltip and adds the full definition below it.
 - Dashboard widgets only render their tables when they have data, so labels in empty widgets
   cannot be matched until data appears.
+- The extension's error log in `chrome://extensions` can show fetch errors that belong to the
+  Connect console itself, for example `Fetch API cannot load https://….cloudfront.net/connect-csm-worker.js.
+  Refused to connect because it violates the document's Content Security Policy.` The page-world
+  capture script wraps `window.fetch`, so every request the console makes has a `capture.js` frame on
+  its call stack, and Chrome attributes any failure of such a request to the extension. The requests
+  are made, and in this case blocked, by the console's own code and would fail the same way with the
+  extension disabled. The capture script never alters a request or response, and these entries do
+  not affect any feature.
