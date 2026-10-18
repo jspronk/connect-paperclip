@@ -31,7 +31,9 @@ export function editorUrlForArn(value: string, origin = location.origin): string
  * field component.
  */
 function anchorPoint(field: Element): Element {
-  const isField = (el: Element): boolean => /^(fe-|picasa-)/.test(el.tagName.toLowerCase());
+  // fe-aggregate groups a field with its companions (e.g. the flow select plus Alias/Version), so the
+  // climb stops below it: the link then sits directly under the select, not under the whole group.
+  const isField = (el: Element): boolean => /^(fe-|picasa-)/.test(el.tagName.toLowerCase()) && el.tagName.toLowerCase() !== 'fe-aggregate';
   let el: Element = field;
   for (let i = 0; i < 16; i++) {
     const root = el.getRootNode();

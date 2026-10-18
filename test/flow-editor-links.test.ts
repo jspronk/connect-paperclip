@@ -62,8 +62,9 @@ describe('flow editor links', () => {
     expect(a.getAttribute('href')).toBe(editorUrlForArn(FLOW, ORIGIN));
     expect(a.target).toBe('_blank');
     expect(a.textContent).toBe('Open flow ↗');
-    // Placed right after the outermost fe-* wrapper of the select, inside the same shadow root.
-    expect(a.previousElementSibling?.tagName.toLowerCase()).toBe('fe-aggregate');
+    // Placed right after the select's fe-select wrapper (inside its fe-aggregate group), in the same shadow root.
+    expect(a.previousElementSibling?.tagName.toLowerCase()).toBe('fe-select');
+    expect(a.parentElement?.tagName.toLowerCase()).toBe('fe-aggregate');
     expect(m.wrapperRoot.getElementById('cmh-editor-link-style')).not.toBeNull();
     expect(decorateEditor(document, ORIGIN)).toBe(0);
   });
@@ -86,7 +87,8 @@ describe('flow editor links', () => {
     m.dyn.value = FLOW;
     expect(decorateEditor(document, ORIGIN)).toBe(1);
     const a = m.wrapperRoot.querySelector<HTMLAnchorElement>(`a[${EDITOR_LINK_ATTR}]`)!;
-    expect(a.previousElementSibling?.className).toBe('dyn');
+    expect(a.previousElementSibling?.tagName.toLowerCase()).toBe('fe-input');
+    expect(a.parentElement?.className).toBe('dyn');
     undecorateEditor(document);
     expect(m.wrapperRoot.querySelector(`a[${EDITOR_LINK_ATTR}]`)).toBeNull();
   });
