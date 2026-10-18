@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T04:02:32.810Z",
+  "generatedAt": "2026-10-18T04:06:39.138Z",
   "sources": [
     {
       "slug": "ctr-data-model",
@@ -9481,11 +9481,6 @@
           "surface": "routingprofile",
           "label": "Name - Required",
           "surfaceOnly": true
-        },
-        {
-          "surface": "routingprofile",
-          "label": "Name",
-          "surfaceOnly": true
         }
       ],
       "extraSections": {}
@@ -9547,11 +9542,6 @@
         {
           "surface": "routingprofile",
           "label": "Delay (in seconds)",
-          "surfaceOnly": true
-        },
-        {
-          "surface": "routingprofile",
-          "label": "Delay",
           "surfaceOnly": true
         }
       ],

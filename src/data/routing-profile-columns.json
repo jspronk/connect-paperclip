@@ -1,5 +1,5 @@
 {
-  "$comment": "Column headers on the routing profile editor (Channel settings, Queues and Manual assignment tables). Text is taken from the 'Create a routing profile' and 'Queue priority and delay examples' admin guide pages. All labels are surface-only because words like Status or Channels appear on many other pages. Verified against a live instance on 2026-10-17.",
+  "$comment": "Column headers on the routing profile editor (Channel settings, Queues and Manual assignment tables). Text is taken from the 'Create a routing profile' and 'Queue priority and delay examples' admin guide pages. All labels are surface-only because words like Status or Channels appear on many other pages. Verified against a live instance on 2026-10-17. Plain 'Name' is deliberately not listed: the details form's Name field label would match it.",
   "surface": "routingprofile",
   "surfaceOnly": true,
   "columns": [
@@ -46,12 +46,6 @@
       ]
     },
     {
-      "label": "Name",
-      "fields": [
-        "custom#rp-queue-name"
-      ]
-    },
-    {
       "label": "Channels",
       "fields": [
         "custom#rp-queue-channels"
@@ -71,12 +65,6 @@
     },
     {
       "label": "Delay (in seconds)",
-      "fields": [
-        "custom#rp-delay"
-      ]
-    },
-    {
-      "label": "Delay",
       "fields": [
         "custom#rp-delay"
       ]
