@@ -29,7 +29,13 @@ on the **Email addresses** page into links that open each flow in the flow edito
 - `src/lib/parse-docs.ts` parses every `## Metric` entry into `src/data/metrics.json`, including the
   exact labels the docs say each metric uses on Real-time reports, Historical reports and Dashboards.
 - `src/data/aliases.json` adds the few console labels the docs do not list verbatim (e.g. the
-  Agents table column **Activity**).
+  Agents table column **Activity**). `src/data/dashboard-picker-aliases.json` maps the names used by
+  the dashboard widget editor's metric pickers (**Actions → Edit → Metric N**), which spell metrics
+  differently from both the docs and the dashboard columns ("Avg. handle time" for "AHT",
+  "Agents in ACW" for "ACW contacts"). The matcher treats the picker's selected value and its
+  dropdown options as candidates, and the tooltip sits beside an option in an open list.
+  `scripts/propose-aliases.ts` takes a JSON list of console labels and proposes metrics for the
+  ones that do not resolve, by spelling normalisation, for hand review.
 - `src/lib/parse-security-profiles.ts` parses the
   [security profile permissions](https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html)
   tables into one entry per permission ("Routing profiles" lists its Create, Edit and View rows with
@@ -100,8 +106,10 @@ npm run docs:update
 This refetches the docs markdown and regenerates `src/data/metrics.json`. The build refuses to
 write if the parsed metric count drops by more than 20 percent, which guards against a layout
 change on the docs page. Commit both `data/raw/` and `src/data/metrics.json` so builds stay
-reproducible. Pass `-- --all` to `npm run docs:fetch` to also pull the feature-specific metric pages
-(Cases, bots, Contact Lens, evaluations, outbound campaigns, schedule adherence).
+reproducible. `npm run docs:fetch -- --all` also pulls the feature-specific metric pages (metric
+primitives, Cases, bots, Contact Lens, evaluations, outbound campaigns, schedule adherence); they
+are committed too. Metrics those pages repeat from the main page are dropped at build time, with
+any extra labels merged into the main entry, so a label shows one tooltip.
 
 ## Project layout
 
@@ -125,6 +133,11 @@ test/                    vitest suites and sanitized HTML fixtures from a live i
 - Custom metrics defined in your instance are not in the AWS docs and get no tooltip.
 - On Contact search, the four video/screen-share duration columns have no documented contact record
   field yet and get no tooltip.
+- In the dashboard widget editor, 165 of the 265 picker names seen on a live instance resolve.
+  The rest have no entry on any fetched docs page: flow performance metrics (Avg. flow duration,
+  Dropped, Transferred to queue, Flows started variants), campaign channel deliveries (Email, SMS,
+  WhatsApp, Web notification, Voicemail), forecast and daily projection metrics, the "Evaluated …"
+  outcome rates, "Percent online time" splits, and a few others.
 - On the security profile editor, permissions that the docs page does not list yet (for example
   Conversational AI, Agentic CX designer, Test Cases, Staff calendar, Connect assistant, File
   attachments) get no tooltip.
