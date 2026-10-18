@@ -8,6 +8,7 @@ import { parseCtrMarkdown } from '../src/lib/parse-ctr';
 import { parseMetricsMarkdown } from '../src/lib/parse-docs';
 import { parseSecurityProfilesMarkdown } from '../src/lib/parse-security-profiles';
 import type { Metric, MetricsData, MetricsSource, Surface } from '../src/data/schema';
+import { normalizeLabel } from '../src/lib/normalize';
 import type { RawSourceMeta } from './fetch-docs';
 
 async function main(): Promise<void> {
@@ -49,6 +50,24 @@ async function main(): Promise<void> {
     data.sources.push(source);
   }
 
+  // Feature-specific pages (bot, Cases, campaigns, metric primitives, ...) repeat metrics that the
+  // main definitions page already covers. Keep the main-page entry so a label shows one tab, not two.
+  const mainByName = new Map(data.metrics.filter((m) => m.sourceSlug === 'metrics-definitions').map((m) => [normalizeLabel(m.name), m]));
+  const before = data.metrics.length;
+  data.metrics = data.metrics.filter((m) => {
+    if (m.sourceSlug === 'metrics-definitions' || !isMetricPage(m.sourceSlug)) return true;
+    const main = mainByName.get(normalizeLabel(m.name));
+    if (!main) return true;
+    // Keep any label the feature page adds that the main entry lacks.
+    for (const l of m.uiLabels) {
+      if (!main.uiLabels.some((x) => x.surface === l.surface && normalizeLabel(x.label) === normalizeLabel(l.label))) main.uiLabels.push(l);
+    }
+    return false;
+  });
+  seenIds.clear();
+  for (const m of data.metrics) seenIds.add(m.id);
+  if (before !== data.metrics.length) console.log(`  dropped ${before - data.metrics.length} feature-page duplicates of main-page metrics (labels merged)`);
+
   for (const file of (await readdir(path.resolve('src/data'))).filter((f) => f.endsWith('-columns.json')).sort()) {
     applyColumnMap(data, seenIds, await readFile(path.resolve('src/data', file), 'utf8'), file);
   }
@@ -77,6 +96,11 @@ async function main(): Promise<void> {
   console.log(`Wrote ${outPath}`);
   console.log(`  metrics: ${data.metrics.length} (${noLabel} without a UI label, ${noType} without a type)`);
   console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}, routing profile ${bySurface.routingprofile}, quick connect ${bySurface.quickconnect}, security profile ${bySurface.securityprofile}`);
+}
+
+/** Pages parsed with the metric-definitions layout (as opposed to the data model or permissions pages). */
+function isMetricPage(slug: string): boolean {
+  return slug !== 'ctr-data-model' && slug !== 'security-profile-list' && slug !== 'custom';
 }
 
 const SURFACE_TITLE: Partial<Record<Surface, string>> = {

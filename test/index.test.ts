@@ -2,7 +2,10 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { MetricsData } from '../src/data/schema';
-import { MetricIndex } from '../src/lib/index';
+import realData from '../src/data/metrics.json';
+import realAliases from '../src/data/aliases.json';
+import pickerAliases from '../src/data/dashboard-picker-aliases.json';
+import { MetricIndex, type Overrides } from '../src/lib/index';
 import { parseMetricsMarkdown } from '../src/lib/parse-docs';
 
 const md = readFileSync(path.join(__dirname, 'fixtures/sample-metrics.md'), 'utf8');
@@ -81,5 +84,25 @@ describe('MetricIndex', () => {
     const c = index.lookup('Adherence', 'historical');
     expect(c).toHaveLength(1);
     expect(c[0]!.rank).toBe(0);
+  });
+});
+
+describe('dashboard picker aliases against the real data', () => {
+  const idx = new MetricIndex(realData as MetricsData, {
+    ...(realAliases as Overrides),
+    aliases: [...(realAliases as Overrides).aliases!, ...(pickerAliases as Overrides).aliases!],
+  });
+  it('every alias points at an existing metric', () => {
+    const ids = new Set((realData as MetricsData).metrics.map((m) => m.id));
+    expect((pickerAliases as Overrides).aliases!.filter((a) => !ids.has(a.metricId))).toEqual([]);
+  });
+  it('resolves the picker spellings on the dashboard surface', () => {
+    expect(idx.lookup('Avg. handle time', 'dashboard')[0]!.metric.name).toBe('Average handle time');
+    expect(idx.lookup('Agents in ACW', 'dashboard')[0]!.metric.name).toBe('Agent After contact work');
+    expect(idx.lookup('Contacts in queue', 'dashboard')[0]!.metric.name).toBe('Contacts in queue');
+    expect(idx.lookup('Service level 20 seconds', 'dashboard')[0]!.metric.name).toBe('Service level X');
+  });
+  it('shows one entry for metrics repeated on feature pages', () => {
+    expect(idx.lookup('Flows started', 'dashboard').map((c) => c.metric.sourceSlug)).toEqual(['metrics-definitions']);
   });
 });

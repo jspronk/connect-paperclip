@@ -3,7 +3,7 @@
     "slug": "metrics-definitions",
     "url": "https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.md",
     "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html",
-    "fetchedAt": "2026-10-18T02:17:47.611Z",
+    "fetchedAt": "2026-10-18T05:11:56.386Z",
     "sha256": "cd5347ab2a4499ba970d2c319d146b1996114c724c3b39402ca8de4fed2dd3fe",
     "bytes": 261411
   },
@@ -11,7 +11,7 @@
     "slug": "ctr-data-model",
     "url": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.md",
     "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html",
-    "fetchedAt": "2026-10-18T03:29:52.862Z",
+    "fetchedAt": "2026-10-18T05:11:56.508Z",
     "sha256": "4627e3c13c7f9839a158982c15a8cc31c23434c0cc8d24cd6aa70acce30dcd5a",
     "bytes": 60723
   },
@@ -19,8 +19,64 @@
     "slug": "security-profile-list",
     "url": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.md",
     "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html",
-    "fetchedAt": "2026-10-18T04:36:58.127Z",
+    "fetchedAt": "2026-10-18T05:11:56.626Z",
     "sha256": "a6a360ede4242e98abf38bad9a01f7caa6377927752a05c6194e3a52c12b3b86",
     "bytes": 49418
+  },
+  "metric-primitive-definitions": {
+    "slug": "metric-primitive-definitions",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/metric-primitive-definitions.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/metric-primitive-definitions.html",
+    "fetchedAt": "2026-10-18T05:11:56.676Z",
+    "sha256": "efab296391dc6d947616c8f834cce1ad49ed75ee9f3c727bfc8ce9fdacd918fc",
+    "bytes": 60527
+  },
+  "case-management-metrics": {
+    "slug": "case-management-metrics",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/case-management-metrics.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/case-management-metrics.html",
+    "fetchedAt": "2026-10-18T05:11:56.790Z",
+    "sha256": "33ea686255b5be41898b3555825457ac3890e0e3e7cc63928ba027f296213064",
+    "bytes": 6572
+  },
+  "bot-metrics": {
+    "slug": "bot-metrics",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html",
+    "fetchedAt": "2026-10-18T05:11:56.899Z",
+    "sha256": "fb6b5562c88b8ed89b11c06885caa86dce03d00d5e2e69fa33ca25b79c737735",
+    "bytes": 7338
+  },
+  "contact-lens-metrics": {
+    "slug": "contact-lens-metrics",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-metrics.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-metrics.html",
+    "fetchedAt": "2026-10-18T05:11:57.015Z",
+    "sha256": "d75348b77ec0d82755573a1027385e92d8fceedf436120e241c0956f55516fe6",
+    "bytes": 11360
+  },
+  "evaluation-metrics": {
+    "slug": "evaluation-metrics",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/evaluation-metrics.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/evaluation-metrics.html",
+    "fetchedAt": "2026-10-18T05:11:57.131Z",
+    "sha256": "60c429cc6418e1b9cf323742bfbdbca736b646cee14424c2fd642384fa66dbe7",
+    "bytes": 5895
+  },
+  "outbound-campaign-metrics": {
+    "slug": "outbound-campaign-metrics",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/outbound-campaign-metrics.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/outbound-campaign-metrics.html",
+    "fetchedAt": "2026-10-18T05:11:57.256Z",
+    "sha256": "3e3b35fdc8c3c61a6575fcbd4467ae87d02db1acca93d599c048c8eadd407407",
+    "bytes": 25734
+  },
+  "scheduling-metrics": {
+    "slug": "scheduling-metrics",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-metrics.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/scheduling-metrics.html",
+    "fetchedAt": "2026-10-18T05:11:57.363Z",
+    "sha256": "f3888a371dce200e6a9368be30e14041f53ff37e046176f5766647dcb459a4e2",
+    "bytes": 4243
   }
 }

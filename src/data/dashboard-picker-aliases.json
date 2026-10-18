@@ -1,0 +1,280 @@
+{
+  "$comment": "Metric names as they appear in the dashboard widget editor's metric pickers (Actions > Edit > Metric N). The console uses longer spellings than the docs' dashboard column labels (e.g. 'Avg. handle time' for 'AHT'). The first block is documented on dashboard-customize-widgets.html; the rest were collected from a live instance on 2026-10-17 and mapped by spelling normalisation plus hand review (scripts/propose-aliases.ts). Picker names that have no entry on any fetched docs page are listed in README.md.",
+  "aliases": [
+    {
+      "metricId": "metrics-definitions#online-agents",
+      "surface": "dashboard",
+      "label": "Agents online"
+    },
+    {
+      "metricId": "metrics-definitions#available-real-time",
+      "surface": "dashboard",
+      "label": "Agents available"
+    },
+    {
+      "metricId": "metrics-definitions#agent-error",
+      "surface": "dashboard",
+      "label": "Agents in error"
+    },
+    {
+      "metricId": "metrics-definitions#agent-non-productive",
+      "surface": "dashboard",
+      "label": "Agents in NPT"
+    },
+    {
+      "metricId": "metrics-definitions#staffed-agents",
+      "surface": "dashboard",
+      "label": "Agents staffed"
+    },
+    {
+      "metricId": "metrics-definitions#agents-on-contact",
+      "surface": "dashboard",
+      "label": "Agents on contact"
+    },
+    {
+      "metricId": "metrics-definitions#agent-after-contact-work",
+      "surface": "dashboard",
+      "label": "Agents in ACW"
+    },
+    {
+      "metricId": "metrics-definitions#active-slots",
+      "surface": "dashboard",
+      "label": "Contacts active"
+    },
+    {
+      "metricId": "metrics-definitions#availability-real-time",
+      "surface": "dashboard",
+      "label": "Contact availability"
+    },
+    {
+      "metricId": "metrics-definitions#oldest-real-time",
+      "surface": "dashboard",
+      "label": "Oldest contact"
+    },
+    {
+      "metricId": "metrics-definitions#oldest-real-time",
+      "surface": "dashboard",
+      "label": "Oldest contact age"
+    },
+    {
+      "metricId": "metrics-definitions#contacts-in-queue",
+      "surface": "dashboard",
+      "label": "Contacts in queue"
+    },
+    {
+      "metricId": "metrics-definitions#scheduled",
+      "surface": "dashboard",
+      "label": "Contacts scheduled"
+    },
+    {
+      "metricId": "metrics-definitions#average-active-time",
+      "surface": "dashboard",
+      "label": "Avg. active time"
+    },
+    {
+      "metricId": "metrics-definitions#average-after-contact-work-time",
+      "surface": "dashboard",
+      "label": "Avg. after contact work time"
+    },
+    {
+      "metricId": "metrics-definitions#average-agent-greeting-time",
+      "surface": "dashboard",
+      "label": "Avg. agent greeting time"
+    },
+    {
+      "metricId": "metrics-definitions#average-agent-interaction-time",
+      "surface": "dashboard",
+      "label": "Avg. agent interaction time"
+    },
+    {
+      "metricId": "metrics-definitions#average-agent-interruption-time",
+      "surface": "dashboard",
+      "label": "Avg. agent interruption time"
+    },
+    {
+      "metricId": "metrics-definitions#average-agent-interruptions",
+      "surface": "dashboard",
+      "label": "Avg. agent interruptions"
+    },
+    {
+      "metricId": "metrics-definitions#average-agent-pause-time",
+      "surface": "dashboard",
+      "label": "Avg. agent pause time"
+    },
+    {
+      "metricId": "metrics-definitions#average-agent-talk-time",
+      "surface": "dashboard",
+      "label": "Avg. agent talk time"
+    },
+    {
+      "metricId": "metrics-definitions#average-contact-duration",
+      "surface": "dashboard",
+      "label": "Avg. contact duration"
+    },
+    {
+      "metricId": "metrics-definitions#average-conversation-duration",
+      "surface": "dashboard",
+      "label": "Avg. conversation duration"
+    },
+    {
+      "metricId": "metrics-definitions#average-customer-hold-time",
+      "surface": "dashboard",
+      "label": "Avg. customer hold time"
+    },
+    {
+      "metricId": "metrics-definitions#average-customer-message-length",
+      "surface": "dashboard",
+      "label": "Avg. customer message length"
+    },
+    {
+      "metricId": "metrics-definitions#average-customer-talk-time",
+      "surface": "dashboard",
+      "label": "Avg. customer talk time"
+    },
+    {
+      "metricId": "metrics-definitions#average-handle-time",
+      "surface": "dashboard",
+      "label": "Avg. handle time"
+    },
+    {
+      "metricId": "metrics-definitions#average-holds",
+      "surface": "dashboard",
+      "label": "Avg. holds"
+    },
+    {
+      "metricId": "metrics-definitions#average-non-talk-time",
+      "surface": "dashboard",
+      "label": "Avg. non-talk time"
+    },
+    {
+      "metricId": "metrics-definitions#average-queue-abandon-time",
+      "surface": "dashboard",
+      "label": "Avg. queue abandon time"
+    },
+    {
+      "metricId": "metrics-definitions#average-queue-answer-time",
+      "surface": "dashboard",
+      "label": "Avg. queue answer time"
+    },
+    {
+      "metricId": "metrics-definitions#average-queue-answer-time-enqueue-timestamp",
+      "surface": "dashboard",
+      "label": "Avg. queue answer time (enqueue timestamp)"
+    },
+    {
+      "metricId": "metrics-definitions#average-resolution-time",
+      "surface": "dashboard",
+      "label": "Avg. resolution time"
+    },
+    {
+      "metricId": "metrics-definitions#average-talk-time",
+      "surface": "dashboard",
+      "label": "Avg. talk time"
+    },
+    {
+      "metricId": "metrics-definitions#maximum-queued-time",
+      "surface": "dashboard",
+      "label": "Max. queued time"
+    },
+    {
+      "metricId": "metrics-definitions#step-expired-percent-real-time",
+      "surface": "dashboard",
+      "label": "Step expired percent"
+    },
+    {
+      "metricId": "metrics-definitions#average-evaluation-score",
+      "surface": "dashboard",
+      "label": "Avg. evaluation score"
+    },
+    {
+      "metricId": "metrics-definitions#average-weighted-evaluation-score",
+      "surface": "dashboard",
+      "label": "Avg. weighted evaluation score"
+    },
+    {
+      "metricId": "metrics-definitions#average-wait-time-after-customer-connection",
+      "surface": "dashboard",
+      "label": "Avg. wait time after customer connection"
+    },
+    {
+      "metricId": "metrics-definitions#average-contacts-per-case",
+      "surface": "dashboard",
+      "label": "Avg. case related contacts"
+    },
+    {
+      "metricId": "metrics-definitions#average-case-resolution-time",
+      "surface": "dashboard",
+      "label": "Avg. case resolution time"
+    },
+    {
+      "metricId": "metrics-definitions#average-customer-hold-time-all-contacts",
+      "surface": "dashboard",
+      "label": "Avg. hold time all contacts"
+    },
+    {
+      "metricId": "metrics-definitions#average-agent-interaction-and-customer-hold-time",
+      "surface": "dashboard",
+      "label": "Avg. interaction and hold time"
+    },
+    {
+      "metricId": "metrics-definitions#contacts-transferred-out-queue",
+      "surface": "dashboard",
+      "label": "Contacts transferred out from queue"
+    },
+    {
+      "metricId": "metrics-definitions#step-joined-percent-real-time",
+      "surface": "dashboard",
+      "label": "Step joined percent"
+    },
+    {
+      "metricId": "metrics-definitions#contacts-queued-by-enqueue",
+      "surface": "dashboard",
+      "label": "Contact volume (enqueue timestamp)"
+    },
+    {
+      "metricId": "metrics-definitions#ai-handoffs",
+      "surface": "dashboard",
+      "label": "Handoffs"
+    },
+    {
+      "metricId": "metrics-definitions#ai-agent-response-helpful",
+      "surface": "dashboard",
+      "label": "Helpful response"
+    },
+    {
+      "metricId": "metrics-definitions#ai-agent-response-not-helpful",
+      "surface": "dashboard",
+      "label": "Unhelpful response"
+    },
+    {
+      "metricId": "metrics-definitions#ai-agent-invocation-success",
+      "surface": "dashboard",
+      "label": "AI agent invocation success count"
+    },
+    {
+      "metricId": "metrics-definitions#ai-prompt-invocation-success",
+      "surface": "dashboard",
+      "label": "AI prompt invocation success count"
+    },
+    {
+      "metricId": "metrics-definitions#ai-tool-invocation-success",
+      "surface": "dashboard",
+      "label": "AI tool invocation success count"
+    },
+    {
+      "metricId": "metrics-definitions#ai-tool-parameter-accuracy",
+      "surface": "dashboard",
+      "label": "Tool parameter accuracy"
+    },
+    {
+      "metricId": "metrics-definitions#ai-tool-selection-accuracy",
+      "surface": "dashboard",
+      "label": "Tool selection accuracy"
+    },
+    {
+      "metricId": "metrics-definitions#ai-tool-use-accuracy",
+      "surface": "dashboard",
+      "label": "Tool utilization accuracy"
+    }
+  ]
+}

@@ -139,3 +139,23 @@ describe('loose matching on the security profile editor', () => {
     expect(document.querySelectorAll(`[${ATTR}]`)).toHaveLength(0);
   });
 });
+
+describe('dashboard widget editor metric pickers', () => {
+  it('tags Cloudscape select values and option labels that are known metrics, and nothing else', () => {
+    document.body.innerHTML = `
+      <div class="awsui_form-field"><label>Metric 1</label>
+        <button class="awsui_button-trigger_18eso_x"><span class="awsui_trigger_dwuol_x">Contacts handled</span><span class="awsui_arrow_x"><svg></svg></span></button>
+      </div>
+      <div class="awsui_form-field"><label>Time range</label>
+        <button class="awsui_button-trigger_18eso_x"><span class="awsui_trigger_dwuol_x">Trailing</span></button>
+      </div>
+      <div role="dialog" class="awsui_dropdown_x"><ul role="listbox" class="awsui_options-list_x">
+        <li role="option"><div class="awsui_option-content_x"><span class="awsui_label-content_1p2cx_x">Contacts abandoned</span></div></li>
+        <li role="option"><div class="awsui_option-content_x"><span class="awsui_label-content_1p2cx_x">Oldest</span><span class="awsui_description_x">The metric selection cannot be changed.</span></div></li>
+        <li role="option"><div class="awsui_option-content_x"><span class="awsui_label-content_1p2cx_x">Current contact (5)</span></div></li>
+      </ul></div>`;
+    createScanner(index, () => 'dashboard').scan(document.body);
+    const tagged = [...document.querySelectorAll(`[${ATTR}]`)].map((e) => e.textContent);
+    expect(tagged).toEqual(['Contacts handled', 'Contacts abandoned', 'Oldest']);
+  });
+});

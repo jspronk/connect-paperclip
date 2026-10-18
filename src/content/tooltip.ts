@@ -224,12 +224,22 @@ export class Tooltip {
     const t = this.tip.getBoundingClientRect();
 
     let top = a.bottom + margin;
-    if (top + t.height > vh - margin) {
-      const above = a.top - margin - t.height;
-      top = above >= margin ? above : Math.max(margin, vh - margin - t.height);
-    }
     let left = a.left;
-    if (left + t.width > vw - margin) left = Math.max(margin, vw - margin - t.width);
+    // Inside an open dropdown list, sit beside the option so the other options stay readable.
+    const inList = !!this.anchor.closest('[role="listbox"]');
+    if (inList && a.right + margin + t.width <= vw - margin) {
+      left = a.right + margin;
+      top = Math.min(Math.max(margin, a.top), Math.max(margin, vh - margin - t.height));
+    } else if (inList && a.left - margin - t.width >= margin) {
+      left = a.left - margin - t.width;
+      top = Math.min(Math.max(margin, a.top), Math.max(margin, vh - margin - t.height));
+    } else {
+      if (top + t.height > vh - margin) {
+        const above = a.top - margin - t.height;
+        top = above >= margin ? above : Math.max(margin, vh - margin - t.height);
+      }
+      if (left + t.width > vw - margin) left = Math.max(margin, vw - margin - t.width);
+    }
     this.tip.style.top = `${Math.round(top)}px`;
     this.tip.style.left = `${Math.round(left)}px`;
   }

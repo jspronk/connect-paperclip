@@ -26,6 +26,13 @@ const HEADER_SELECTOR = [
   'dt',
 ].join(',');
 
+/**
+ * Cloudscape Select controls, as used by the dashboard widget editor's metric pickers: the chosen
+ * value sits in a span inside the trigger button, and open-list options carry a label-content span.
+ * Class hashes change per release, so only stable fragments are used.
+ */
+const PICKER_SELECTOR = 'button[class*="button-trigger"] span[class*="awsui_trigger"],[role="option"] span[class*="label-content"]';
+
 /** Class or test-id fragments that usually mark a label or title element in Cloudscape-style UIs. */
 const HEADER_HINT = /header|heading|title|label|metric|legend|caption/i;
 const NON_HEADER_HINT = /cell|value|input|button|option|menu|breadcrumb|nav/i;
@@ -88,7 +95,7 @@ export function createScanner(index: MetricIndex, getSurface: () => PageSurface,
   }
 
   function isHeaderLike(el: Element): boolean {
-    if (el.matches(HEADER_SELECTOR)) return true;
+    if (el.matches(HEADER_SELECTOR) || el.matches(PICKER_SELECTOR)) return true;
     const hint = `${el.className ?? ''} ${el.getAttribute('data-testid') ?? ''}`;
     return HEADER_HINT.test(hint) && !NON_HEADER_HINT.test(hint);
   }

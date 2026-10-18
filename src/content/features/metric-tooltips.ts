@@ -1,5 +1,6 @@
 import type { MetricsData } from '../../data/schema';
 import aliasesJson from '../../data/aliases.json';
+import pickerAliasesJson from '../../data/dashboard-picker-aliases.json';
 import metricsJson from '../../data/metrics.json';
 import { MetricIndex, type Overrides, type PageSurface } from '../../lib/index';
 import type { Settings } from '../../lib/settings';
@@ -15,7 +16,11 @@ export function startMetricTooltips(ctx: FeatureContext): void {
   if (document.getElementById(HOST_ID)) return; // already injected
 
   const data = metricsJson as MetricsData;
-  const index = new MetricIndex(data, aliasesJson as Overrides);
+  const overrides = aliasesJson as Overrides;
+  const index = new MetricIndex(data, {
+    ...overrides,
+    aliases: [...(overrides.aliases ?? []), ...(pickerAliasesJson as Overrides).aliases!],
+  });
   let settings: Settings = ctx.settings;
   let surface: PageSurface = detectSurface();
 
