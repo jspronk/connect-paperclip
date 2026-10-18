@@ -15,6 +15,8 @@ export interface Settings {
    * "any": any short text element is matched. Broader, more false positives.
    */
   matchMode: MatchMode;
+  /** Link flow names on the Phone numbers page to the flow editor. */
+  flowLinks: boolean;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -23,6 +25,7 @@ export const DEFAULT_SETTINGS: Settings = {
   underline: true,
   expandCalc: false,
   matchMode: 'headers',
+  flowLinks: true,
 };
 
 const KEY = 'settings';

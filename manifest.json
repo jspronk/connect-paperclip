@@ -3,7 +3,9 @@
   "name": "Connect Metrics Helper",
   "version": "0.1.0",
   "description": "Hover any metric label on the Amazon Connect Customer admin website to see its official AWS definition.",
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "host_permissions": [
     "https://*.my.connect.aws/*",
     "https://*.awsapps.com/*"
@@ -32,7 +34,9 @@
         "https://*.my.connect.aws/*",
         "https://*.awsapps.com/*"
       ],
-      "js": ["src/content/main.ts"],
+      "js": [
+        "src/content/main.ts"
+      ],
       "run_at": "document_idle"
     }
   ]

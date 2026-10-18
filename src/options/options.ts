@@ -10,6 +10,7 @@ function fill(settings: Settings): void {
   (form.elements.namedItem('enabled') as HTMLInputElement).checked = settings.enabled;
   (form.elements.namedItem('underline') as HTMLInputElement).checked = settings.underline;
   (form.elements.namedItem('expandCalc') as HTMLInputElement).checked = settings.expandCalc;
+  (form.elements.namedItem('flowLinks') as HTMLInputElement).checked = settings.flowLinks;
   (form.elements.namedItem('hoverDelay') as HTMLInputElement).value = String(settings.hoverDelay);
   for (const radio of form.querySelectorAll<HTMLInputElement>('input[name="matchMode"]')) {
     radio.checked = radio.value === settings.matchMode;
@@ -23,6 +24,7 @@ function read(): Partial<Settings> {
     enabled: fd.get('enabled') === 'on',
     underline: fd.get('underline') === 'on',
     expandCalc: fd.get('expandCalc') === 'on',
+    flowLinks: fd.get('flowLinks') === 'on',
     hoverDelay: Number.isFinite(delay) ? Math.min(3000, Math.max(0, delay)) : 350,
     matchMode: (fd.get('matchMode') as MatchMode | null) ?? 'headers',
   };
