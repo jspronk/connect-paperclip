@@ -3,7 +3,7 @@ import aliasesJson from '../data/aliases.json';
 import metricsJson from '../data/metrics.json';
 import { MetricIndex, type Overrides, type PageSurface } from '../lib/index';
 import { loadSettings, onSettingsChanged, type Settings } from '../lib/settings';
-import { ATTR, HINT_ATTR, HOST_ID, clearMatches, createScanner } from './matcher';
+import { ATTR, HINT_ATTR, HOST_ID, clearMatches, createScanner, findHint } from './matcher';
 import { detectSurface, isConnectAdminPage } from './surface';
 import { Tooltip } from './tooltip';
 
@@ -76,7 +76,8 @@ async function main(): Promise<void> {
         const el = r.target as Element;
         const title = el.getAttribute('title')?.trim();
         if (!title) continue;
-        const tagged = el.closest(`[${ATTR}]`) ?? el.querySelector(`[${ATTR}]`);
+        const cell = el.closest('th,[role="columnheader"],[role="rowheader"]') ?? el;
+        const tagged = cell.closest(`[${ATTR}]`) ?? cell.querySelector(`[${ATTR}]`);
         tagged?.setAttribute(HINT_ATTR, title);
         continue;
       }
@@ -130,7 +131,7 @@ async function main(): Promise<void> {
       candidates = ids.flatMap((id) => (byId.get(id) ? [{ metric: byId.get(id)!, uiLabel: null, rank: 2 as const }] : []));
     }
     // The console removes the title attribute while its own tooltip is open, so prefer the copy cached at scan time.
-    const nativeHint = el.getAttribute(HINT_ATTR) ?? el.closest('[title]')?.getAttribute('title')?.trim() ?? '';
+    const nativeHint = el.getAttribute(HINT_ATTR) ?? findHint(el) ?? '';
     tooltip.show(el, candidates, nativeHint);
   };
   document.addEventListener('mouseover', (e) => {

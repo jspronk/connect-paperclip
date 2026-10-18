@@ -97,13 +97,23 @@ export function createScanner(index: MetricIndex, getSurface: () => PageSurface,
         const ids = found.map((c) => c.metric.id);
         target.setAttribute(ATTR, ids.join('|'));
         target.setAttribute('tabindex', target.getAttribute('tabindex') ?? '0');
-        const hint = el.closest('[title]')?.getAttribute('title')?.trim();
+        const hint = findHint(target);
         if (hint) target.setAttribute(HINT_ATTR, hint);
         out.push({ element: target, ids });
       }
       return out;
     },
   };
+}
+
+/**
+ * The console's own hint for a header lives in a "title" attribute somewhere in the header cell:
+ * on the cell, an ancestor, or a descendant of the cell. Look in all three places.
+ */
+export function findHint(target: Element): string | undefined {
+  const cell = target.closest('th,[role="columnheader"],[role="rowheader"]') ?? target;
+  const holder = cell.closest('[title]') ?? cell.querySelector('[title]');
+  return holder?.getAttribute('title')?.trim() || undefined;
 }
 
 export function clearMatches(root: ParentNode = document): void {
