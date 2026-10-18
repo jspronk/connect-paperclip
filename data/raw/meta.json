@@ -1,0 +1,10 @@
+{
+  "metrics-definitions": {
+    "slug": "metrics-definitions",
+    "url": "https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.md",
+    "htmlUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html",
+    "fetchedAt": "2026-10-18T02:17:47.611Z",
+    "sha256": "cd5347ab2a4499ba970d2c319d146b1996114c724c3b39402ca8de4fed2dd3fe",
+    "bytes": 261411
+  }
+}

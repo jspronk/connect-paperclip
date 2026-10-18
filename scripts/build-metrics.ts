@@ -1,0 +1,74 @@
+/**
+ * Parses data/raw/*.md into src/data/metrics.json.
+ * Refuses to write if the metric count drops more than 20% versus the committed file.
+ */
+import { readFile, readdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { parseMetricsMarkdown } from '../src/lib/parse-docs';
+import type { MetricsData, MetricsSource } from '../src/data/schema';
+import type { RawSourceMeta } from './fetch-docs';
+
+async function main(): Promise<void> {
+  const rawDir = path.resolve('data/raw');
+  const outPath = path.resolve('src/data/metrics.json');
+  const meta = JSON.parse(await readFile(path.join(rawDir, 'meta.json'), 'utf8')) as Record<string, RawSourceMeta>;
+  const files = (await readdir(rawDir)).filter((f) => f.endsWith('.md')).sort();
+
+  const data: MetricsData = { generatedAt: new Date().toISOString(), sources: [], metrics: [] };
+  const seenIds = new Set<string>();
+
+  for (const file of files) {
+    const slug = file.replace(/\.md$/, '');
+    const md = await readFile(path.join(rawDir, file), 'utf8');
+    const { metrics, warnings } = parseMetricsMarkdown(md, slug);
+    for (const w of warnings) console.warn(`warn [${slug}] ${w.metric}: ${w.message}`);
+    for (const m of metrics) {
+      if (seenIds.has(m.id)) {
+        console.warn(`warn [${slug}] duplicate id ${m.id}, keeping first`);
+        continue;
+      }
+      seenIds.add(m.id);
+      data.metrics.push(m);
+    }
+    const src = meta[slug];
+    const source: MetricsSource = {
+      slug,
+      url: src?.url ?? '',
+      htmlUrl: src?.htmlUrl ?? '',
+      fetchedAt: src?.fetchedAt ?? '',
+      sha256: src?.sha256 ?? '',
+      metricCount: metrics.length,
+    };
+    data.sources.push(source);
+  }
+
+  let previousCount = 0;
+  try {
+    previousCount = (JSON.parse(await readFile(outPath, 'utf8')) as MetricsData).metrics.length;
+  } catch {
+    // no committed file yet
+  }
+  if (previousCount && data.metrics.length < previousCount * 0.8) {
+    console.error(`Refusing to write: parsed ${data.metrics.length} metrics, previously ${previousCount}.`);
+    process.exit(1);
+  }
+
+  await writeFile(outPath, JSON.stringify(data, null, 2) + '\n', 'utf8');
+
+  const bySurface = { realtime: 0, historical: 0, dashboard: 0 };
+  let noLabel = 0;
+  let noType = 0;
+  for (const m of data.metrics) {
+    if (!m.uiLabels.length) noLabel++;
+    if (!m.metricType) noType++;
+    for (const l of m.uiLabels) bySurface[l.surface]++;
+  }
+  console.log(`Wrote ${outPath}`);
+  console.log(`  metrics: ${data.metrics.length} (${noLabel} without a UI label, ${noType} without a type)`);
+  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}`);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
