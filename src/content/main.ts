@@ -1,5 +1,6 @@
 import { loadSettings, onSettingsChanged, type Settings } from '../lib/settings';
 import type { FeatureContext } from './features/context';
+import { startFlowEditorLinks } from './features/flow-editor-links';
 import { startResourceLinks } from './features/resource-links';
 import { startMetricTooltips } from './features/metric-tooltips';
 import { isConnectAdminPage } from './surface';
@@ -19,6 +20,7 @@ async function main(): Promise<void> {
 
   startMetricTooltips(ctx);
   startResourceLinks(ctx);
+  startFlowEditorLinks(ctx);
 }
 
 main().catch((err) => console.error(LOG, err));
