@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Connect Paperclip",
   "version": "0.1.0",
-  "description": "Hover any metric label on the Amazon Connect Customer admin website to see its official AWS definition.",
+  "description": "Hover definitions from the AWS docs for Amazon Connect metrics, columns and permissions, plus quick links to flows and routing profiles.",
   "permissions": [
     "storage"
   ],
