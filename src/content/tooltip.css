@@ -63,12 +63,14 @@
 .badge[data-surface="historical"] { background: #eef6ea; color: #1f5c1a; }
 .badge[data-surface="dashboard"] { background: #f7efe3; color: #7a4c00; }
 .badge[data-surface="contactsearch"] { background: #f3e8fb; color: #5b2a86; }
+.badge[data-surface="routingprofile"] { background: #e6f7f5; color: #0b6b5e; }
 .badge[data-surface="name"] { background: #eeeeee; color: #444; }
 @media (prefers-color-scheme: dark) {
   .badge { background: #0d3a66; color: #cfe6ff; }
   .badge[data-surface="historical"] { background: #1f4a1b; color: #d6f0d0; }
   .badge[data-surface="dashboard"] { background: #5a3a00; color: #ffe2b0; }
   .badge[data-surface="contactsearch"] { background: #3f1f5c; color: #e9d5ff; }
+  .badge[data-surface="routingprofile"] { background: #0f4a42; color: #c6f0ea; }
   .badge[data-surface="name"] { background: #3a3f46; color: #ddd; }
 }
 .hint {

@@ -1,6 +1,6 @@
 /** Types for the generated src/data/metrics.json. Produced by scripts/build-metrics.ts. */
 
-export type Surface = 'realtime' | 'historical' | 'dashboard' | 'contactsearch';
+export type Surface = 'realtime' | 'historical' | 'dashboard' | 'contactsearch' | 'routingprofile';
 
 export interface UiLabel {
   surface: Surface;
@@ -14,6 +14,8 @@ export interface UiLabel {
   dashboardName?: string;
   /** Preferred position among several metrics sharing this label (lower first). */
   order?: number;
+  /** Only match on this label's own surface; generic words like "Status" must not leak to other pages. */
+  surfaceOnly?: boolean;
 }
 
 export interface ApiAccess {

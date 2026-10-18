@@ -43,7 +43,9 @@ async function main(): Promise<void> {
     data.sources.push(source);
   }
 
-  applyColumnMap(data, seenIds, await readFile(path.resolve('src/data/contact-search-columns.json'), 'utf8'));
+  for (const file of (await readdir(path.resolve('src/data'))).filter((f) => f.endsWith('-columns.json')).sort()) {
+    applyColumnMap(data, seenIds, await readFile(path.resolve('src/data', file), 'utf8'), file);
+  }
 
   let previousCount = 0;
   try {
@@ -58,7 +60,7 @@ async function main(): Promise<void> {
 
   await writeFile(outPath, JSON.stringify(data, null, 2) + '\n', 'utf8');
 
-  const bySurface: Record<Surface, number> = { realtime: 0, historical: 0, dashboard: 0, contactsearch: 0 };
+  const bySurface: Record<Surface, number> = { realtime: 0, historical: 0, dashboard: 0, contactsearch: 0, routingprofile: 0 };
   let noLabel = 0;
   let noType = 0;
   for (const m of data.metrics) {
@@ -68,12 +70,19 @@ async function main(): Promise<void> {
   }
   console.log(`Wrote ${outPath}`);
   console.log(`  metrics: ${data.metrics.length} (${noLabel} without a UI label, ${noType} without a type)`);
-  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}`);
+  console.log(`  labels:  realtime ${bySurface.realtime}, historical ${bySurface.historical}, dashboard ${bySurface.dashboard}, contact search ${bySurface.contactsearch}, routing profile ${bySurface.routingprofile}`);
 }
+
+const SURFACE_TITLE: Partial<Record<Surface, string>> = {
+  contactsearch: 'Contact search',
+  routingprofile: 'Routing profile editor',
+};
 
 interface ColumnMap {
   surface: Surface;
-  columns: Array<{ label: string; fields: string[]; qualifier?: string }>;
+  /** Default for every column: only match on this surface. */
+  surfaceOnly?: boolean;
+  columns: Array<{ label: string; fields: string[]; qualifier?: string; surfaceOnly?: boolean }>;
   custom: Array<{ id: string; name: string; docsUrl: string; summary: string; description: string }>;
 }
 
@@ -81,7 +90,7 @@ interface ColumnMap {
  * Attach console column labels (e.g. the Contact search page) to parsed contact record fields,
  * and add hand-written entries for console-only columns.
  */
-function applyColumnMap(data: MetricsData, seenIds: Set<string>, json: string): void {
+function applyColumnMap(data: MetricsData, seenIds: Set<string>, json: string, file = 'column map'): void {
   const map = JSON.parse(json) as ColumnMap;
   for (const c of map.custom) {
     if (seenIds.has(c.id)) continue;
@@ -93,7 +102,7 @@ function applyColumnMap(data: MetricsData, seenIds: Set<string>, json: string): 
       docsUrl: c.docsUrl,
       summary: c.summary,
       description: c.description,
-      metricCategory: 'Contact search column',
+      metricCategory: `${SURFACE_TITLE[map.surface] ?? map.surface} column`,
       api: [],
       uiLabels: [],
       extraSections: {},
@@ -107,20 +116,22 @@ function applyColumnMap(data: MetricsData, seenIds: Set<string>, json: string): 
     col.fields.forEach((id, order) => {
       const m = byId.get(id);
       if (!m) {
-        console.warn(`warn [column-map] "${col.label}" refers to unknown id ${id}`);
+        console.warn(`warn [${file}] "${col.label}" refers to unknown id ${id}`);
         return;
       }
+      const surfaceOnly = col.surfaceOnly ?? map.surfaceOnly ?? false;
       const label = {
         surface: map.surface,
         label: col.label,
         ...(col.qualifier ? { qualifier: col.qualifier } : {}),
         ...(order ? { order } : {}),
+        ...(surfaceOnly ? { surfaceOnly: true } : {}),
       };
       m.uiLabels.push(label);
       attached++;
     });
   }
-  console.log(`  column map: ${map.columns.length} ${map.surface} columns -> ${attached} field labels, ${map.custom.length} custom entries`);
+  console.log(`  ${file}: ${map.columns.length} ${map.surface} columns -> ${attached} labels, ${map.custom.length} custom entries`);
 }
 
 main().catch((err) => {

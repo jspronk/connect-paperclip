@@ -58,6 +58,24 @@ describe('MetricIndex', () => {
     expect(index.lookup('Activity', 'realtime')).toEqual([]);
   });
 
+  it('keeps surface-only labels off other surfaces', () => {
+    const scoped: MetricsData = {
+      ...data,
+      metrics: [
+        ...data.metrics,
+        {
+          id: 'custom#status', name: 'Status', anchor: '', sourceSlug: 'custom', docsUrl: 'https://example.test',
+          summary: 'x', description: 'x', api: [], extraSections: {},
+          uiLabels: [{ surface: 'routingprofile', label: 'Status', surfaceOnly: true }],
+        },
+      ],
+    };
+    const idx = new MetricIndex(scoped);
+    expect(idx.lookup('Status', 'routingprofile').map((c) => c.metric.id)).toEqual(['custom#status']);
+    expect(idx.lookup('Status', 'realtime')).toEqual([]);
+    expect(idx.lookup('Status', 'unknown')).toEqual([]);
+  });
+
   it('collapses duplicate metrics to their best rank', () => {
     // "Adherence" is both a historical label and the metric name.
     const c = index.lookup('Adherence', 'historical');

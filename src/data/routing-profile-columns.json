@@ -1,0 +1,150 @@
+{
+  "$comment": "Column headers on the routing profile editor (Channel settings, Queues and Manual assignment tables). Text is taken from the 'Create a routing profile' and 'Queue priority and delay examples' admin guide pages. All labels are surface-only because words like Status or Channels appear on many other pages. Verified against a live instance on 2026-10-17.",
+  "surface": "routingprofile",
+  "surfaceOnly": true,
+  "columns": [
+    {
+      "label": "Status",
+      "fields": [
+        "custom#rp-channel-availability"
+      ]
+    },
+    {
+      "label": "Channel availability",
+      "fields": [
+        "custom#rp-channel-availability"
+      ]
+    },
+    {
+      "label": "Workload type",
+      "fields": [
+        "custom#rp-workload-type-concurrency"
+      ]
+    },
+    {
+      "label": "Maximum contacts per agent",
+      "fields": [
+        "custom#rp-max-contacts"
+      ]
+    },
+    {
+      "label": "Cross-channel concurrency",
+      "fields": [
+        "custom#rp-cross-channel"
+      ]
+    },
+    {
+      "label": "Add/remove workload type",
+      "fields": [
+        "custom#rp-workload-type-rows"
+      ]
+    },
+    {
+      "label": "Name - Required",
+      "fields": [
+        "custom#rp-queue-name"
+      ]
+    },
+    {
+      "label": "Name",
+      "fields": [
+        "custom#rp-queue-name"
+      ]
+    },
+    {
+      "label": "Channels",
+      "fields": [
+        "custom#rp-queue-channels"
+      ]
+    },
+    {
+      "label": "Priority",
+      "fields": [
+        "custom#rp-priority"
+      ]
+    },
+    {
+      "label": "Delay (seconds)",
+      "fields": [
+        "custom#rp-delay"
+      ]
+    },
+    {
+      "label": "Delay (in seconds)",
+      "fields": [
+        "custom#rp-delay"
+      ]
+    },
+    {
+      "label": "Delay",
+      "fields": [
+        "custom#rp-delay"
+      ]
+    }
+  ],
+  "custom": [
+    {
+      "id": "custom#rp-channel-availability",
+      "name": "Channel availability",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html",
+      "summary": "Choose which types of contacts will be routed to agents who are assigned to this routing profile.",
+      "description": "Choose which types of contacts (voice, chat, task, email) will be routed to agents who are assigned to this routing profile. The **Status** toggle enables or disables each channel for the whole profile.\n\nFor example, if 20 queues assigned to a profile are all enabled for voice, chat, task and email, removing the **Voice** option at the routing profile level stops all voice calls to these agents across all queues in the profile. Select **Voice** again to restart voice contacts for them.\n\nThe channels you enable here must match the channels chosen for each queue in the **Queues** section; otherwise contacts from that channel are not routed to agents."
+    },
+    {
+      "id": "custom#rp-max-contacts",
+      "name": "Maximum contacts per agent",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html",
+      "summary": "For chat, task and email channels, how many contacts an agent can handle simultaneously, up to 10.",
+      "description": "For chat, task, and email channels, specify how many contacts an agent can handle simultaneously, up to 10.\n\nFor emails, this field defines how many emails agents can receive, and double that number is how many outbound emails agents can initiate. For example, if you set **Maximum contacts per agent** to 5, agents can receive up to 5 emails and create up to 10 agent-initiated outbound emails.\n\nWhen workload type concurrency is enabled for a channel, this field is disabled for that channel and capacity is configured per workload type row instead."
+    },
+    {
+      "id": "custom#rp-cross-channel",
+      "name": "Cross-channel concurrency",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/channels-and-concurrency.html",
+      "summary": "Whether agents can be offered contacts from other channels while already handling this channel.",
+      "description": "Choose one of the following options:\n\n+ **No other channels while agent is on `channel`**. For example, while an agent is on a chat, they will not receive a voice contact, email, or a task.\n+ **Allow other channels concurrently**. For example, while an agent is on a voice contact, they can be offered contacts from any other channels enabled in the routing profile, such as chats, emails, and tasks.\n\nWhen using cross-channel concurrency, Connect checks which contact to offer the agent as follows: it checks what contacts/channels the agent is currently handling; based on that and the cross-channel configuration in the agent's routing profile, it determines whether the agent can be routed the next contact; and it prioritizes the longest waiting contact if Priority and Delay are equal, so First-In First-Out is still respected across channels.\n\nWhen workload type concurrency is enabled for a channel, this field becomes inactive for that channel and cross-channel behaviour is set per workload type."
+    },
+    {
+      "id": "custom#rp-workload-type-concurrency",
+      "name": "Workload type concurrency",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html",
+      "summary": "(Task and Email channels only) Configure agent capacity per workload type instead of a single channel-level number.",
+      "description": "(Task and Email channels only) Toggle this on to configure agent capacity per workload type instead of a single channel-level number. When enabled, the **Maximum contacts per agent** field is disabled for that channel, and you configure capacity through individual workload type rows instead.\n\nWorkload type values come from the system predefined attribute `connect:WorkloadType`; you must create them before they appear here. If a contact's workload type doesn't match any entry in the routing profile, the contact stays in queue."
+    },
+    {
+      "id": "custom#rp-workload-type-rows",
+      "name": "Workload type rows",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html",
+      "summary": "Add one row per workload type the agent should handle on this channel, with its concurrency and cross-channel behaviour.",
+      "description": "Under the channel, choose **Add workload type** and configure each row:\n\n+ **Workload Type**: a value of the system predefined attribute `connect:WorkloadType`.\n+ **Concurrency**: the number of contacts of this workload type the agent can handle simultaneously (1 to 10).\n+ **Cross-channel behavior**: **No other channels or workload types**, **Only allow other workload types of the same channel**, or **Allow other channels concurrently**.\n\nRules: up to 5 workload types per channel in a single routing profile; the sum of concurrency values across a channel's workload types cannot exceed the channel's maximum concurrency limit (10); channel-level and workload-type concurrency cannot both be active for the same channel; every workload type assigned to contacts that route to this profile must have a corresponding row, or those contacts queue indefinitely."
+    },
+    {
+      "id": "custom#rp-queue-name",
+      "name": "Queue",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html",
+      "summary": "A queue that agents with this routing profile handle. You can add multiple queues to a routing profile.",
+      "description": "Use the dropdown menu or text field to choose a queue that you've already set up. You can add multiple queues to a routing profile. If you want a queue to handle several channels with a different priority per channel, add the queue once per channel.\n\nIn the **Manual assignment** section, queue and channel combinations are listed for routing with manual assignment, which supports tasks, emails, and chats."
+    },
+    {
+      "id": "custom#rp-queue-channels",
+      "name": "Channels",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html",
+      "summary": "Whether this queue entry is for chat, voice, email, task, or all of them.",
+      "description": "Choose whether the queue is for chat, voice, email, task, or all of them.\n\n**Important:** the channel that you specify here must also be enabled in the **Channel settings** section. If it isn't, contacts from that channel won't be routed to agents."
+    },
+    {
+      "id": "custom#rp-priority",
+      "name": "Priority",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html",
+      "summary": "The order in which contacts are to be handled for that queue; priority 1 is handled before priority 2.",
+      "description": "Specify the order in which contacts are to be handled for that queue. For example, a contact in a queue with a priority of 2 would be a lower priority than a contact in a queue with a priority of 1.\n\nPriority takes precedence over delay. Priority for queues is relevant to searching for queues for an individual agent; it does not determine which agent out of multiple available agents is routed a contact. When priority and delay are equal, the oldest contact is routed first.\n\nValid values: 1 to 99."
+    },
+    {
+      "id": "custom#rp-delay",
+      "name": "Delay (in seconds)",
+      "docsUrl": "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html",
+      "summary": "The minimum time a contact should be in the queue before it is routed to an available agent with this profile.",
+      "description": "Enter the minimum amount of time a contact should be in the queue before they are routed to an available agent.\n\nThe **Delay** setting means that X seconds must pass before this contact can be offered to agents with this routing profile; whether the agents are idle or not isn't taken into account. For example, with a 30-second delay a 15-second-old contact is not offered to an idle agent until it is at least 30 seconds old. When a delayed contact ages past its delay it is treated with the queue's priority alongside the other queues.\n\nValid values: 0 to 9999."
+    }
+  ]
+}

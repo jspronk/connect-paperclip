@@ -40,6 +40,7 @@ export class MetricIndex {
     historical: new Map(),
     dashboard: new Map(),
     contactsearch: new Map(),
+    routingprofile: new Map(),
   };
   private readonly byName = new Map<string, Candidate[]>();
   private readonly patterns: PatternEntry[] = [];
@@ -94,12 +95,14 @@ export class MetricIndex {
     if (!key) return [];
     const found: Candidate[] = [];
 
-    const all: Surface[] = ['realtime', 'historical', 'dashboard', 'contactsearch'];
+    const all: Surface[] = ['realtime', 'historical', 'dashboard', 'contactsearch', 'routingprofile'];
     const order: Surface[] = surface === 'unknown' ? all : [surface, ...all.filter((s) => s !== surface)];
 
     order.forEach((s, i) => {
+      const own = i === 0 && surface !== 'unknown';
       for (const c of this.bySurface[s].get(key) ?? []) {
-        found.push({ ...c, rank: i === 0 && surface !== 'unknown' ? 0 : 1 });
+        if (!own && c.uiLabel?.surfaceOnly) continue;
+        found.push({ ...c, rank: own ? 0 : 1 });
       }
     });
 

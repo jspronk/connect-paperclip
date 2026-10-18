@@ -10,6 +10,7 @@ const SURFACE_LABEL: Record<string, string> = {
   historical: 'Historical',
   dashboard: 'Dashboard',
   contactsearch: 'Contact search',
+  routingprofile: 'Routing profile',
   name: 'Metric name',
 };
 
