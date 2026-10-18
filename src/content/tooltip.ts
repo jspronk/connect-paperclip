@@ -81,6 +81,19 @@ export class Tooltip {
     this.hideTimer = undefined;
   }
 
+  /** Re-place the tooltip after the page or a container scrolled; hide if the anchor left the viewport. */
+  reposition(): void {
+    if (this.tip.hidden || !this.anchor) return;
+    const a = this.anchor.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const vh = document.documentElement.clientHeight;
+    if (a.bottom < 0 || a.top > vh || a.right < 0 || a.left > vw || !this.anchor.isConnected) {
+      this.hide();
+      return;
+    }
+    this.position();
+  }
+
   hide(): void {
     this.cancelHide();
     this.tip.removeAttribute('data-open');

@@ -192,7 +192,9 @@ export function startMetricTooltips(ctx: FeatureContext): void {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && tooltip.isOpen) tooltip.hide();
   });
-  window.addEventListener('scroll', () => tooltip.isOpen && tooltip.hide(), { passive: true, capture: true });
+  // Scrolling (the page, or a container such as an open dropdown list that scrolls its highlighted
+  // option into view) moves the anchor: follow it rather than closing.
+  window.addEventListener('scroll', () => tooltip.isOpen && tooltip.reposition(), { passive: true, capture: true });
 
   ctx.onSettings((next) => {
     const enabledChanged = next.enabled !== settings.enabled;
