@@ -14,6 +14,13 @@ export interface Alias {
   label: string;
 }
 
+/** Hand-written corrections applied on top of the generated data. */
+export interface Overrides {
+  aliases?: Alias[];
+  /** Docs labels to ignore, e.g. copy/paste errors on the AWS page. */
+  suppress?: Alias[];
+}
+
 export interface Candidate {
   metric: Metric;
   uiLabel: UiLabel | null;
@@ -40,12 +47,14 @@ export class MetricIndex {
 
   constructor(
     public readonly data: MetricsData,
-    aliases: Alias[] = [],
+    overrides: Overrides = {},
   ) {
     const extra = new Map<string, UiLabel[]>();
-    for (const a of aliases) push(extra, a.metricId, { surface: a.surface, label: a.label });
+    for (const a of overrides.aliases ?? []) push(extra, a.metricId, { surface: a.surface, label: a.label });
+    const suppressed = new Set((overrides.suppress ?? []).map((a) => `${a.metricId}|${a.surface}|${normalizeLabel(a.label)}`));
     for (const metric of data.metrics) {
       for (const uiLabel of [...metric.uiLabels, ...(extra.get(metric.id) ?? [])]) {
+        if (suppressed.has(`${metric.id}|${uiLabel.surface}|${normalizeLabel(uiLabel.label)}`)) continue;
         if (uiLabel.pattern) {
           this.patterns.push({ regex: new RegExp(uiLabel.pattern, 'i'), metric, uiLabel });
           continue;

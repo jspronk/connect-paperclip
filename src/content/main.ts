@@ -1,9 +1,9 @@
 import type { MetricsData } from '../data/schema';
 import aliasesJson from '../data/aliases.json';
 import metricsJson from '../data/metrics.json';
-import { MetricIndex, type Alias, type PageSurface } from '../lib/index';
+import { MetricIndex, type Overrides, type PageSurface } from '../lib/index';
 import { loadSettings, onSettingsChanged, type Settings } from '../lib/settings';
-import { ATTR, HOST_ID, clearMatches, createScanner } from './matcher';
+import { ATTR, HINT_ATTR, HOST_ID, clearMatches, createScanner } from './matcher';
 import { detectSurface, isConnectAdminPage } from './surface';
 import { Tooltip } from './tooltip';
 
@@ -14,7 +14,7 @@ async function main(): Promise<void> {
   if (document.getElementById(HOST_ID)) return; // already injected
 
   const data = metricsJson as MetricsData;
-  const index = new MetricIndex(data, aliasesJson.aliases as Alias[]);
+  const index = new MetricIndex(data, aliasesJson as Overrides);
   let settings: Settings = await loadSettings();
   let surface: PageSurface = detectSurface();
 
@@ -31,7 +31,7 @@ async function main(): Promise<void> {
   document.head.append(style);
   const applyUnderline = (): void => {
     style.textContent = settings.underline && settings.enabled
-      ? `[${ATTR}]{text-decoration:underline dotted;text-decoration-color:rgba(9,114,211,.8);text-underline-offset:3px;cursor:help}`
+      ? `[${ATTR}]{text-decoration:underline dotted currentColor;text-decoration-thickness:1px;text-underline-offset:3px;cursor:help}`
       : '';
   };
   applyUnderline();
@@ -115,7 +115,8 @@ async function main(): Promise<void> {
       const byId = new Map(data.metrics.map((m) => [m.id, m]));
       candidates = ids.flatMap((id) => (byId.get(id) ? [{ metric: byId.get(id)!, uiLabel: null, rank: 2 as const }] : []));
     }
-    const nativeHint = el.closest('[title]')?.getAttribute('title')?.trim() ?? '';
+    // The console removes the title attribute while its own tooltip is open, so prefer the copy cached at scan time.
+    const nativeHint = el.getAttribute(HINT_ATTR) ?? el.closest('[title]')?.getAttribute('title')?.trim() ?? '';
     tooltip.show(el, candidates, nativeHint);
   };
   document.addEventListener('mouseover', (e) => {

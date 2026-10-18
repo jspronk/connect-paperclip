@@ -3,6 +3,8 @@ import type { MatchMode } from '../lib/settings';
 import { normalizeLabel } from '../lib/normalize';
 
 export const ATTR = 'data-cmh-metric';
+/** The console's own hint text (title attribute), cached when tagging because it disappears on hover. */
+export const HINT_ATTR = 'data-cmh-hint';
 export const HOST_ID = 'cmh-tooltip-host';
 
 const MAX_LABEL_CHARS = 72;
@@ -95,6 +97,8 @@ export function createScanner(index: MetricIndex, getSurface: () => PageSurface,
         const ids = found.map((c) => c.metric.id);
         target.setAttribute(ATTR, ids.join('|'));
         target.setAttribute('tabindex', target.getAttribute('tabindex') ?? '0');
+        const hint = el.closest('[title]')?.getAttribute('title')?.trim();
+        if (hint) target.setAttribute(HINT_ATTR, hint);
         out.push({ element: target, ids });
       }
       return out;
@@ -105,6 +109,7 @@ export function createScanner(index: MetricIndex, getSurface: () => PageSurface,
 export function clearMatches(root: ParentNode = document): void {
   for (const el of root.querySelectorAll(`[${ATTR}]`)) {
     el.removeAttribute(ATTR);
+    el.removeAttribute(HINT_ATTR);
     if (el.getAttribute('tabindex') === '0') el.removeAttribute('tabindex');
   }
 }

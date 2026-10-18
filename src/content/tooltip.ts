@@ -163,7 +163,7 @@ export class Tooltip {
     link.rel = 'noopener noreferrer';
     link.textContent = 'Open in AWS docs ↗';
     const synced = document.createElement('span');
-    synced.textContent = `Docs synced ${this.generatedAt.slice(0, 10)}`;
+    synced.textContent = `Docs synced ${new Date(this.generatedAt).toLocaleDateString()}`;
     foot.append(link, synced);
     this.tip.append(foot);
   }

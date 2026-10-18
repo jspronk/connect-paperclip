@@ -51,9 +51,9 @@ describe('MetricIndex', () => {
   });
 
   it('accepts hand-written aliases for console labels', () => {
-    const withAlias = new MetricIndex(data, [
-      { metricId: 'metrics-definitions#agent-activity-state-real-time', surface: 'realtime', label: 'Activity' },
-    ]);
+    const withAlias = new MetricIndex(data, {
+      aliases: [{ metricId: 'metrics-definitions#agent-activity-state-real-time', surface: 'realtime', label: 'Activity' }],
+    });
     expect(withAlias.lookup('Activity', 'realtime')[0]!.metric.name).toBe('Agent Activity');
     expect(index.lookup('Activity', 'realtime')).toEqual([]);
   });

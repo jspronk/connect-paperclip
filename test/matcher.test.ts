@@ -6,10 +6,10 @@ import aliases from '../src/data/aliases.json';
 import metricsJson from '../src/data/metrics.json';
 import type { MetricsData } from '../src/data/schema';
 import { ATTR, clearMatches, createScanner } from '../src/content/matcher';
-import { MetricIndex, type Alias } from '../src/lib/index';
+import { MetricIndex, type Overrides } from '../src/lib/index';
 
 const html = readFileSync(path.join(__dirname, 'fixtures/realtime-queues-table.html'), 'utf8');
-const index = new MetricIndex(metricsJson as MetricsData, aliases.aliases as Alias[]);
+const index = new MetricIndex(metricsJson as MetricsData, aliases as Overrides);
 
 function tagged(): Array<[string, string]> {
   return [...document.querySelectorAll(`[${ATTR}]`)].map((el) => [
@@ -41,6 +41,16 @@ describe('scanner on a live-shaped Real-time Queues table', () => {
     expect(acw.tagName).toBe('DIV');
     expect(acw.getAttribute('role')).toBe('button');
     expect(acw.closest('th')).not.toBeNull();
+  });
+
+  it('caches the console hint text on the tagged element', () => {
+    createScanner(index, () => 'realtime', () => 'headers').scan(document.body);
+    const acw = document.querySelector(`[${ATTR}*="agent-after-contact-work"]`)!;
+    expect(acw.getAttribute('data-cmh-hint')).toBe('Count of agents in after contact work');
+  });
+
+  it('suppresses the docs typo that maps the Active column to AI Handoffs', () => {
+    expect(index.lookup('Active', 'realtime').map((c) => c.metric.name)).toEqual(['Active slots']);
   });
 
   it('resolves SL 60 secs to Service level and Duration to both ACW time and the Duration column', () => {

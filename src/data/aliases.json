@@ -1,7 +1,23 @@
 {
-  "$comment": "Console labels that the AWS docs do not list verbatim. Key: metric id from metrics.json. Verified against a live instance on 2026-10-17.",
+  "$comment": "Hand-written corrections to the docs data, verified against a live instance on 2026-10-17. aliases: console labels the docs do not list. suppress: docs labels that are wrong (e.g. copy/paste errors in the AWS page).",
   "aliases": [
-    { "metricId": "metrics-definitions#agent-activity-state-real-time", "surface": "realtime", "label": "Activity" },
-    { "metricId": "metrics-definitions#duration-real-time", "surface": "realtime", "label": "Duration" }
+    {
+      "metricId": "metrics-definitions#agent-activity-state-real-time",
+      "surface": "realtime",
+      "label": "Activity"
+    },
+    {
+      "metricId": "metrics-definitions#duration-real-time",
+      "surface": "realtime",
+      "label": "Duration"
+    }
+  ],
+  "suppress": [
+    {
+      "metricId": "metrics-definitions#ai-handoffs",
+      "surface": "historical",
+      "label": "Active",
+      "reason": "Docs list 'Active' for AI Handoffs; the Real-time 'Active' column is Active slots."
+    }
   ]
 }
