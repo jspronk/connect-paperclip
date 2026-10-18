@@ -45,6 +45,11 @@ async function main(): Promise<void> {
       pending.clear();
       return;
     }
+    if (refreshSurface()) {
+      // Route changed under us: drop stale tags so they are re-ranked for the new surface.
+      clearMatches();
+      pending.add(document.body);
+    }
     const roots = [...pending];
     pending = new Set();
     let count = 0;
@@ -82,27 +87,27 @@ async function main(): Promise<void> {
   });
   observer.observe(document.body, { childList: true, subtree: true, characterData: true });
 
-  // SPA route changes.
-  const onRoute = (): void => {
+  // SPA route changes. Content scripts run in an isolated world, so patching history.pushState
+  // would not see the page's router; instead re-check the URL whenever we scan, and on the
+  // DOM events that do reach us.
+  let lastHref = location.href;
+  const refreshSurface = (): boolean => {
+    if (location.href === lastHref) return false;
+    lastHref = location.href;
     const next = detectSurface();
     if (next !== surface) {
       surface = next;
       console.debug(LOG, `surface -> ${surface}`);
     }
+    return true;
+  };
+  const onRoute = (): void => {
+    if (!refreshSurface()) return;
     tooltip.hide();
     rescanAll();
   };
-  for (const method of ['pushState', 'replaceState'] as const) {
-    const original = history[method];
-    history[method] = function patched(this: History, ...args: Parameters<History['pushState']>) {
-      const result = original.apply(this, args);
-      window.dispatchEvent(new Event('cmh:route'));
-      return result;
-    } as History['pushState'];
-  }
   window.addEventListener('popstate', onRoute);
   window.addEventListener('hashchange', onRoute);
-  window.addEventListener('cmh:route', onRoute);
 
   // Hover and focus handling via delegation.
   let hoverTimer: number | undefined;
