@@ -2,7 +2,7 @@
  * Connect Metrics Helper: page-world capture script.
  *
  * Runs in the page's own JavaScript world (manifest "world": "MAIN", run_at document_start) as a
- * plain, synchronous script, so window.fetch is wrapped before any page script runs.
+ * plain, synchronous script, so window.fetch and XMLHttpRequest are wrapped before any page script runs.
  *
  * The Connect admin website fetches phone numbers, email addresses and their flow associations
  * from internal endpoints that reject requests made by anyone but the page itself. Rather than
@@ -27,62 +27,118 @@
     window.postMessage({ source: SOURCE, type: type, items: items }, location.origin);
   }
 
-  function handle(url, response) {
-    var path;
+  function pathOf(url) {
     try {
-      path = new URL(url, location.href).pathname;
+      return new URL(url, location.href).pathname;
     } catch (e) {
-      return;
+      return '';
     }
+  }
+
+  function isInteresting(path) {
+    return (
+      path.indexOf('/api-proxy/connect/phone-number/list') !== -1 ||
+      path.indexOf('/api-proxy/connect/search-email-addresses') !== -1 ||
+      path.indexOf('/api-proxy/connect/flow-associations-batch/') !== -1
+    );
+  }
+
+  function handleBody(path, body) {
+    if (!body || typeof body !== 'object') return;
     var isNumbers = path.indexOf('/api-proxy/connect/phone-number/list') !== -1;
     var isEmails = path.indexOf('/api-proxy/connect/search-email-addresses') !== -1;
     var isAssoc = path.indexOf('/api-proxy/connect/flow-associations-batch/') !== -1;
-    if (!isNumbers && !isEmails && !isAssoc) return;
+    var i, n, a, items;
+    if (isNumbers && Array.isArray(body.ListPhoneNumbersSummaryList)) {
+      items = [];
+      for (i = 0; i < body.ListPhoneNumbersSummaryList.length; i++) {
+        n = body.ListPhoneNumbersSummaryList[i];
+        if (n && typeof n.PhoneNumber === 'string' && typeof n.PhoneNumberArn === 'string') {
+          items.push({ number: n.PhoneNumber, arn: n.PhoneNumberArn });
+        }
+      }
+      post('phone-numbers', items);
+    } else if (isEmails) {
+      // SearchEmailAddresses shape: { EmailAddresses: [{ EmailAddress, EmailAddressArn, ... }] }.
+      // Look through top-level arrays so a renamed list key still works.
+      items = [];
+      var keys = Object.keys(body);
+      for (var k = 0; k < keys.length; k++) {
+        var list = body[keys[k]];
+        if (!Array.isArray(list)) continue;
+        for (i = 0; i < list.length; i++) {
+          var e = list[i];
+          if (e && typeof e.EmailAddress === 'string' && typeof e.EmailAddressArn === 'string') {
+            items.push({ address: e.EmailAddress, arn: e.EmailAddressArn });
+          }
+        }
+      }
+      if (items.length) post('email-addresses', items);
+    } else if (isAssoc && Array.isArray(body.FlowAssociationSummaryList)) {
+      items = [];
+      for (i = 0; i < body.FlowAssociationSummaryList.length; i++) {
+        a = body.FlowAssociationSummaryList[i];
+        if (a && typeof a.ResourceId === 'string' && typeof a.FlowId === 'string') {
+          items.push({ resourceArn: a.ResourceId, flowArn: a.FlowId, resourceType: String(a.ResourceType || '') });
+        }
+      }
+      post('flow-associations', items);
+    }
+  }
+
+  /** fetch(): clone the response and parse it off the page's critical path. */
+  function handle(url, response) {
+    var path = pathOf(url);
+    if (!isInteresting(path)) return;
     response
       .clone()
       .json()
       .then(function (body) {
-        if (!body || typeof body !== 'object') return;
-        var i, n, a, items;
-        if (isNumbers && Array.isArray(body.ListPhoneNumbersSummaryList)) {
-          items = [];
-          for (i = 0; i < body.ListPhoneNumbersSummaryList.length; i++) {
-            n = body.ListPhoneNumbersSummaryList[i];
-            if (n && typeof n.PhoneNumber === 'string' && typeof n.PhoneNumberArn === 'string') {
-              items.push({ number: n.PhoneNumber, arn: n.PhoneNumberArn });
-            }
-          }
-          post('phone-numbers', items);
-        } else if (isEmails) {
-          // SearchEmailAddresses shape: { EmailAddresses: [{ EmailAddress, EmailAddressArn, ... }] }.
-          // Look through top-level arrays so a renamed list key still works.
-          items = [];
-          var keys = Object.keys(body);
-          for (var k = 0; k < keys.length; k++) {
-            var list = body[keys[k]];
-            if (!Array.isArray(list)) continue;
-            for (i = 0; i < list.length; i++) {
-              var e = list[i];
-              if (e && typeof e.EmailAddress === 'string' && typeof e.EmailAddressArn === 'string') {
-                items.push({ address: e.EmailAddress, arn: e.EmailAddressArn });
-              }
-            }
-          }
-          if (items.length) post('email-addresses', items);
-        } else if (isAssoc && Array.isArray(body.FlowAssociationSummaryList)) {
-          items = [];
-          for (i = 0; i < body.FlowAssociationSummaryList.length; i++) {
-            a = body.FlowAssociationSummaryList[i];
-            if (a && typeof a.ResourceId === 'string' && typeof a.FlowId === 'string') {
-              items.push({ resourceArn: a.ResourceId, flowArn: a.FlowId, resourceType: String(a.ResourceType || '') });
-            }
-          }
-          post('flow-associations', items);
-        }
+        handleBody(path, body);
       })
       .catch(function () {
         /* not JSON or body unavailable: ignore */
       });
+  }
+
+  /** XMLHttpRequest: some console micro-frontends (e.g. Email addresses) use XHR instead of fetch. */
+  function handleXhr(xhr) {
+    var path = pathOf(xhr.__cmhUrl || '');
+    if (!isInteresting(path)) return;
+    try {
+      var body;
+      if (xhr.responseType === 'json') body = xhr.response;
+      else if (xhr.responseType === '' || xhr.responseType === 'text') body = JSON.parse(xhr.responseText);
+      else return;
+      handleBody(path, body);
+    } catch (e) {
+      /* not JSON: ignore */
+    }
+  }
+
+  var xhrOpen = XMLHttpRequest.prototype.open;
+  var xhrSend = XMLHttpRequest.prototype.send;
+  if (typeof xhrOpen === 'function' && typeof xhrSend === 'function') {
+    XMLHttpRequest.prototype.open = function (method, url) {
+      try {
+        this.__cmhUrl = typeof url === 'string' ? url : String(url);
+      } catch (e) {
+        /* ignore */
+      }
+      return xhrOpen.apply(this, arguments);
+    };
+    XMLHttpRequest.prototype.send = function () {
+      try {
+        if (this.__cmhUrl && isInteresting(pathOf(this.__cmhUrl))) {
+          this.addEventListener('load', function () {
+            handleXhr(this);
+          });
+        }
+      } catch (e) {
+        /* never interfere with the page */
+      }
+      return xhrSend.apply(this, arguments);
+    };
   }
 
   window.fetch = function (input, init) {
