@@ -63,6 +63,19 @@ on the **Email addresses** page into links that open each flow in the flow edito
   starts collapsed in the tooltip. Options let you change the hover delay, hide the dotted
   underline, or turn the resource links off.
 
+### Open flow links in the flow editor
+
+In the flow editor (`/contact-flows/edit`, `/flow-modules/edit`), a block's properties panel is a
+tree of web components (`block-form` → `fe-section` → `attribute-wrapper` → `fe-select` →
+`picasa-select`), each with its own shadow root. When a block setting holds a flow (Transfer to
+flow's **Set manually**, Set customer queue flow, Set hold flow, and so on) the `picasa-select`
+element's value is the flow ARN, so `src/content/features/flow-editor-links.ts` adds an
+**Open flow ↗** link directly under that select, opening the flow in a new tab so the current draft
+is untouched. A **Set dynamically** field holds an attribute reference, which cannot be resolved to
+a flow; a link appears there only when the field literally contains a flow or flow-module ARN.
+Values change without DOM mutations when a flow is picked, so the panel is also re-checked on a
+short timer while the editor is open.
+
 ### Resource links on list pages (flows, routing profiles)
 
 The list tables show names, not IDs or ARNs, and the console's internal endpoints reject requests
@@ -122,7 +135,7 @@ data/raw/                committed docs markdown snapshots + meta.json
 src/data/                metrics.json (generated), aliases.json (hand-written), schema.ts
 src/lib/                 parser, normalization, lookup index, settings
 src/content/             content script entry, matcher, tooltip, markdown renderer, dom helpers
-src/content/features/    metric-tooltips and resource-links feature modules
+src/content/features/    metric-tooltips, resource-links and flow-editor-links feature modules
 public/capture.js        page-world fetch/XHR capture for the link pages (static, unbundled)
 src/options/, src/popup/ options page and toolbar popup
 test/                    vitest suites and sanitized HTML fixtures from a live instance
