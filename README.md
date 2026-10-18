@@ -71,7 +71,11 @@ tree of web components (`block-form` → `fe-section` → `attribute-wrapper` �
 flow's **Set manually**, Set customer queue flow, Set hold flow, and so on) the `picasa-select`
 element's value is the flow ARN, so `src/content/features/flow-editor-links.ts` adds an
 **Open flow ↗** link directly under that select, opening the flow in a new tab so the current draft
-is untouched. A **Set dynamically** field holds an attribute reference, which cannot be resolved to
+is untouched. The **Invoke module** block's "Module name" picker stores only the module id; the
+extension builds the module ARN from the instance prefix of the flow being edited (the page's `id`
+parameter) and links to `/flow-modules/edit?id=<module ARN>&tab=designer` as **Open flow module ↗**.
+Note that a content script cannot read JavaScript properties set by the page's component classes,
+so values are read from the reflected `value` attribute. A **Set dynamically** field holds an attribute reference, which cannot be resolved to
 a flow; a link appears there only when the field literally contains a flow or flow-module ARN.
 Values change without DOM mutations when a flow is picked, so the panel is also re-checked on a
 short timer while the editor is open.
