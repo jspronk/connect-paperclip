@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Connect Paperclip",
   "version": "0.1.0",
-  "description": "Hover definitions from the AWS docs for Amazon Connect metrics, columns and permissions, plus Open flow links in the flow editor.",
+  "description": "Stop memorizing or looking up Amazon Connect metrics. Hover any metric, column or permission to see its official AWS definition.",
   "permissions": [
     "storage"
   ],

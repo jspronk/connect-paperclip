@@ -1,25 +1,56 @@
 # Connect Paperclip
 
-A Chrome extension (Manifest V3), formerly "Connect Metrics Helper", that adds hover definitions to metric labels on the
-**Amazon Connect Customer** admin website (the product formerly called Amazon Connect).
-Hover a column header such as **ACW**, **NPT**, **SL 60 secs** or **After contact work time**
-and get the official AWS definition, metric type and category, calculation logic, API identifier,
-and a link to the exact anchor in the AWS docs. On the **Contact search** page the column headers
-(default and optional) are explained from the contact record data model, on the **routing
-profile editor** the Channel settings, Queues and Manual assignment headers are explained from the
-"Create a routing profile" guide, on the **Quick connects** list, detail and edit views the
-headers and field labels are explained from the "Create quick connects" guide, and on the
-**security profile editor** every permission name is explained from the "List of security profile
-permissions" page, with all of its actions and API names.
+**Every Amazon Connect metric, explained the moment you need it.**
 
-All definitions are generated from the AWS Administrator Guide page
-[Metric definitions](https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html)
-and bundled with the extension. The extension makes **no network calls of its own** at runtime and
-collects nothing.
+Amazon Connect reports on hundreds of metrics, and the column headers rarely explain themselves.
+What exactly counts toward **ACW**? Is **AHT** measured from answer or from queue? Does
+**Contacts abandoned** include callbacks? Today the answer means either remembering it, or stopping
+what you are doing, opening the AWS documentation, and searching a page with hundreds of entries.
 
-In the **flow editor**, blocks that reference another flow or module (Transfer to flow, Set customer
-queue flow, Set hold flow, Invoke module, and so on) get an **Open flow ↗** link that opens that flow
-in a new tab.
+Connect Paperclip removes that step. Hover any metric, column header or permission in the Amazon
+Connect admin website and the official AWS definition appears right where you are looking: what it
+measures, how it is calculated, its type and category, its API name, and a link to the exact spot in
+the AWS docs if you want to go deeper. No memorizing, no searching, no extra tabs.
+
+### Why teams use it
+
+- **Answers at your fingertips.** Over 600 definitions ship inside the extension: 260+ metrics, 200+
+  contact record fields and 120+ security profile permissions, all taken directly from the AWS
+  Administrator Guide.
+- **Read reports with confidence.** Supervisors, analysts and new admins can interpret Real-time,
+  Historical and Dashboard numbers correctly the first time, without guessing or asking someone.
+- **Faster onboarding.** New team members learn the meaning of every column in context, while they
+  work, instead of studying documentation up front.
+- **Nothing to set up.** Install it and hover. There are no accounts, no API keys and no AWS
+  permissions to grant.
+- **Private by design.** Everything runs in your browser. The extension makes no network calls and
+  collects no data. See [PRIVACY.md](PRIVACY.md).
+
+### Where it works
+
+| Area | What gets a definition on hover |
+| --- | --- |
+| Real-time metrics | Every metric column header |
+| Historical metrics | Every metric column header |
+| Dashboards | Widget column headers and the metric pickers in the widget editor |
+| Contact search | Default and optional columns, from the contact record data model |
+| Forecasting, Capacity planning, Scheduling | Column headers |
+| Routing profiles | Channel settings, Queues and Manual assignment headers |
+| Quick connects | List, detail and edit view headers and field labels |
+| Security profiles | Every permission name, with all of its actions and API names |
+
+### Bonus: jump between flows in one click
+
+In the flow editor, blocks that point to another flow or module (Transfer to flow, Set customer
+queue flow, Set hold flow, Set whisper flow, Invoke module and more) get an **Open flow ↗** link
+that opens the referenced flow in a new tab, so you can follow a call path without hunting for it in
+the flow list.
+
+---
+
+_Connect Paperclip is an independent project and is not affiliated with or endorsed by Amazon Web
+Services. Definitions are bundled from the public AWS documentation and refreshed with each release;
+the snapshot date is shown in the popup and in every tooltip._
 
 ## How it works
 
@@ -120,6 +151,7 @@ src/lib/                 parser, normalization, lookup index, settings
 src/content/             content script entry, matcher, tooltip, markdown renderer, dom helpers
 src/content/features/    metric-tooltips and flow-editor-links feature modules
 src/options/, src/popup/ options page and toolbar popup
+docs/                    store listing copy and 1280x800 listing screenshots
 test/                    vitest suites and sanitized HTML fixtures from a live instance
 ```
 
