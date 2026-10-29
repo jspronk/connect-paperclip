@@ -14,7 +14,8 @@
     "docs:fetch": "tsx scripts/fetch-docs.ts",
     "docs:build": "tsx scripts/build-metrics.ts",
     "docs:update": "npm run docs:fetch && npm run docs:build",
-    "icons": "tsx scripts/render-icons.ts"
+    "icons": "tsx scripts/render-icons.ts",
+    "site": "tsx scripts/build-site.ts"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^3.0.0",

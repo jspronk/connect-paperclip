@@ -152,6 +152,7 @@ src/content/             content script entry, matcher, tooltip, markdown render
 src/content/features/    metric-tooltips and flow-editor-links feature modules
 src/options/, src/popup/ options page and toolbar popup
 docs/                    store listing copy and 1280x800 listing screenshots
+site/                    landing page: cp.template.html -> npm run site -> self-contained cp.html
 test/                    vitest suites and sanitized HTML fixtures from a live instance
 ```
 

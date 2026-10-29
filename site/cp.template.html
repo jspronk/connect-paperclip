@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Connect Paperclip · Amazon Connect metrics, explained on hover</title>
+<meta name="description" content="Stop memorizing or looking up Amazon Connect metrics. Connect Paperclip is a free Chrome extension that shows the official AWS definition when you hover any metric, column or permission." />
+<meta property="og:title" content="Connect Paperclip" />
+<meta property="og:description" content="Every Amazon Connect metric, explained the moment you need it." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.spronkworks.com/cp.html" />
+<meta name="theme-color" content="#00AEBD" />
+<link rel="icon" href="{{svg:public/icons/icon.svg}}" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --brand: #00AEBD;
+    --brand-strong: #008A96;
+    --brand-ink: #00525A;
+    --brand-soft: #E3F7F9;
+    --bg: #FFFFFF;
+    --bg-alt: #F5F9FA;
+    --surface: #FFFFFF;
+    --ink: #0F1B1E;
+    --ink-2: #44575C;
+    --ink-3: #6B7C80;
+    --line: #DCE6E8;
+    --shadow: 0 1px 2px rgba(15,27,30,.06), 0 12px 32px -8px rgba(15,27,30,.16);
+    --shadow-lg: 0 2px 4px rgba(15,27,30,.06), 0 30px 60px -20px rgba(0,82,90,.35);
+    --table-head: #536B80;
+    --good: #1E8E5A;
+    --bad: #C0392B;
+    --radius: 16px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --brand: #22C6D4;
+      --brand-strong: #5ED8E2;
+      --brand-ink: #A6EEF3;
+      --brand-soft: #0E2F33;
+      --bg: #0B1416;
+      --bg-alt: #0F1C1F;
+      --surface: #132326;
+      --ink: #E8F1F2;
+      --ink-2: #B3C4C7;
+      --ink-3: #8A9EA2;
+      --line: #22383C;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -8px rgba(0,0,0,.6);
+      --shadow-lg: 0 2px 4px rgba(0,0,0,.4), 0 30px 60px -20px rgba(0,0,0,.8);
+      --table-head: #2D4556;
+      --good: #4CC38A;
+      --bad: #F07A6E;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --brand: #22C6D4; --brand-strong: #5ED8E2; --brand-ink: #A6EEF3; --brand-soft: #0E2F33;
+    --bg: #0B1416; --bg-alt: #0F1C1F; --surface: #132326; --ink: #E8F1F2; --ink-2: #B3C4C7; --ink-3: #8A9EA2;
+    --line: #22383C; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -8px rgba(0,0,0,.6);
+    --shadow-lg: 0 2px 4px rgba(0,0,0,.4), 0 30px 60px -20px rgba(0,0,0,.8);
+    --table-head: #2D4556; --good: #4CC38A; --bad: #F07A6E; color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  section, header { scroll-margin-top: 72px; }
+  a { color: var(--brand-strong); }
+  .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: saturate(1.4) blur(12px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+  .brand svg { width: 32px; height: 32px; border-radius: 8px; flex: none; }
+  .nav-links { display: none; gap: 28px; }
+  .nav-links a { color: var(--ink-2); text-decoration: none; font-size: 15px; font-weight: 500; }
+  .nav-links a:hover { color: var(--ink); }
+  @media (min-width: 860px) { .nav-links { display: flex; } }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid transparent; transition: transform .15s ease, box-shadow .15s ease, background .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--brand) 70%, transparent); }
+  :root[data-theme="dark"] .btn-primary { color: #04282C; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #04282C; } }
+  .btn-primary:hover { background: var(--brand-strong); }
+  .btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--brand); }
+  .btn small { font-weight: 500; opacity: .85; }
+  .btn-sm { padding: 9px 16px; font-size: 14px; white-space: nowrap; }
+  .sm-only { display: none; }
+  @media (max-width: 480px) { .sm-only { display: inline; } .sm-hide { display: none; } }
+
+  /* Hero */
+  .hero { position: relative; padding: 56px 0 72px; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: -40% -20% auto auto; width: 900px; height: 900px; border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--brand) 22%, transparent), transparent 70%); pointer-events: none; }
+  .hero .wrap { position: relative; display: grid; gap: 48px; align-items: center; }
+  .hero .wrap > * { min-width: 0; }
+  @media (min-width: 980px) { .hero { padding: 88px 0 104px; } .hero .wrap { grid-template-columns: 1.02fr 1fr; gap: 56px; } }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+    background: var(--brand-soft); color: var(--brand-ink); font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand); }
+  h1 { font-size: clamp(36px, 5.6vw, 60px); line-height: 1.05; letter-spacing: -.035em; margin: 18px 0 18px; font-weight: 800; }
+  h1 .hl { color: var(--brand); }
+  .lede { font-size: clamp(18px, 2vw, 20px); color: var(--ink-2); max-width: 36em; margin: 0 0 28px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .stat b { display: block; font-size: 28px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+  .stat span { font-size: 14px; color: var(--ink-3); }
+
+  /* Demo */
+  .demo { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: visible; }
+  .demo-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  .demo-bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--line); display: block; }
+  .demo-bar .url { margin-left: 10px; flex: 1; min-width: 0; font-size: 12px; color: var(--ink-3); background: var(--bg-alt); border-radius: 8px; padding: 5px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .demo-body { padding: 18px 18px 22px; }
+  .demo-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .demo-title h3 { margin: 0; font-size: 20px; letter-spacing: -.01em; }
+  .demo-title span { font-size: 12px; color: var(--ink-3); }
+  .table-scroll { overflow-x: auto; border-radius: 10px; border: 1px solid var(--line); }
+  table.rt { border-collapse: collapse; width: 100%; min-width: 480px; font-size: 14px; }
+  .rt th { background: var(--table-head); color: #fff; font-weight: 600; text-align: left; padding: 11px 12px; white-space: nowrap; }
+  .rt th[data-def] { cursor: help; }
+  .rt th[data-def] span { border-bottom: 1.5px dotted rgba(255,255,255,.85); padding-bottom: 1px; }
+  .rt th[data-def]:hover, .rt th[data-def]:focus-visible, .rt th.active { background: color-mix(in srgb, var(--table-head) 70%, var(--brand)); outline: none; }
+  .rt td { padding: 10px 12px; border-top: 1px solid var(--line); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .rt td:first-child { color: var(--ink); font-weight: 500; }
+  .demo-hint { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 13px; color: var(--ink-3); }
+  .demo-hint svg { width: 16px; height: 16px; color: var(--brand); flex: none; }
+
+  .tip { position: absolute; z-index: 5; width: min(360px, calc(100% - 24px)); background: var(--surface); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 16px 18px 14px; font-size: 14px; line-height: 1.55;
+    opacity: 0; transform: translateY(6px); transition: opacity .16s ease, transform .16s ease; pointer-events: none; }
+  .tip.show { opacity: 1; transform: translateY(0); }
+  .tip h4 { margin: 0 0 8px; font-size: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .badge { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; padding: 3px 8px; border-radius: 999px; background: #E6F0FB; color: #1B4F8C; text-transform: uppercase; }
+  :root[data-theme="dark"] .badge { background: #17304A; color: #9CC6F2; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .badge { background: #17304A; color: #9CC6F2; } }
+  .tip p { margin: 0 0 10px; color: var(--ink-2); }
+  .tip dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 0 0 10px; font-size: 13px; }
+  .tip dt { color: var(--ink-3); font-weight: 600; }
+  .tip dd { margin: 0; color: var(--ink-2); }
+  .tip .foot { display: flex; justify-content: space-between; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-3); }
+  .tip .foot a { color: var(--brand-strong); }
+
+  /* Sections */
+  section { padding: 80px 0; }
+  section.alt { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .kicker { color: var(--brand-strong); font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 10px; }
+  h2 { font-size: clamp(28px, 3.8vw, 42px); line-height: 1.12; letter-spacing: -.03em; margin: 0 0 16px; font-weight: 800; }
+  .sub { color: var(--ink-2); font-size: 18px; max-width: 40em; margin: 0; }
+  .head { margin-bottom: 44px; }
+  .head.center { text-align: center; } .head.center .sub { margin: 0 auto; }
+
+  /* Before / after */
+  .ba { display: grid; gap: 20px; }
+  @media (min-width: 860px) { .ba { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+  .card h3 { margin: 0 0 6px; font-size: 20px; letter-spacing: -.01em; }
+  .card .tag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px; }
+  .card.before .tag { color: var(--bad); }
+  .card.after { border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); box-shadow: var(--shadow-lg); }
+  .card.after .tag { color: var(--good); }
+  .steps { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; }
+  .steps li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink-2); }
+  .steps .n { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; background: var(--bg-alt); color: var(--ink-3); border: 1px solid var(--line); }
+  .card.after .steps .n { background: var(--brand); color: #fff; border-color: transparent; }
+  .time { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; font-size: 14px; color: var(--ink-3); }
+  .time b { color: var(--ink); }
+
+  /* Features */
+  .features { display: grid; gap: 20px; }
+  @media (min-width: 720px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1040px) { .features { grid-template-columns: repeat(3, 1fr); } }
+  .feature { padding: 26px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+  .feature .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand-strong); margin-bottom: 16px; }
+  .feature .ic svg { width: 22px; height: 22px; }
+  .feature h3 { margin: 0 0 6px; font-size: 18px; letter-spacing: -.01em; }
+  .feature p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+  /* Showcase */
+  .showcase { display: grid; gap: 56px; }
+  .show-row { display: grid; gap: 28px; align-items: center; }
+  @media (min-width: 940px) { .show-row { grid-template-columns: 1fr 1.25fr; gap: 56px; } .show-row.flip > :first-child { order: 2; } }
+  .show-row h3 { font-size: 26px; letter-spacing: -.02em; margin: 0 0 12px; line-height: 1.2; }
+  .show-row p { color: var(--ink-2); margin: 0 0 14px; }
+  .shot { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-lg); background: #fff; }
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .checks li { display: flex; gap: 10px; color: var(--ink-2); font-size: 15.5px; }
+  .checks li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 4px; border-radius: 50%;
+    background: var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 10.5l3.2 3.2L15 7'/%3E%3C/svg%3E") center/12px no-repeat; }
+
+  /* Coverage */
+  .cover { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 600px) { .cover { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .cover { grid-template-columns: repeat(4, 1fr); } }
+  .area { padding: 20px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); transition: border-color .15s ease, transform .15s ease; }
+  .area:hover { border-color: var(--brand); transform: translateY(-2px); }
+  .area b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .area span { font-size: 14px; color: var(--ink-3); line-height: 1.5; display: block; }
+
+  /* Numbers band */
+  .band { background: linear-gradient(135deg, #00AEBD 0%, #007F8B 100%); color: #fff; border-radius: 24px; padding: 40px 28px; display: grid; gap: 28px; text-align: center; }
+  @media (min-width: 760px) { .band { grid-template-columns: repeat(4, 1fr); padding: 48px 40px; } }
+  .band b { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+  .band span { font-size: 15px; opacity: .9; }
+
+  /* Personas */
+  .people { display: grid; gap: 16px; }
+  @media (min-width: 720px) { .people { grid-template-columns: repeat(2, 1fr); } }
+  .person { display: flex; gap: 16px; padding: 22px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
+  .person .av { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand-strong); font-weight: 800; }
+  .person h3 { margin: 0 0 4px; font-size: 17px; }
+  .person p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+  /* Privacy */
+  .privacy { display: grid; gap: 32px; align-items: center; }
+  @media (min-width: 900px) { .privacy { grid-template-columns: 1fr 1fr; } }
+  .pills { display: grid; gap: 12px; }
+  .pill { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font-weight: 600; }
+  .pill svg { width: 22px; height: 22px; color: var(--good); flex: none; }
+
+  /* Final CTA */
+  .final { text-align: center; padding: 96px 0; }
+  .final .logo { width: 84px; height: 84px; margin: 0 auto 24px; border-radius: 20px; box-shadow: var(--shadow-lg); }
+  .final .cta-row { justify-content: center; margin-top: 28px; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--ink-3); font-size: 14px; }
+  footer .wrap { display: grid; gap: 14px; }
+  footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  footer a { color: var(--ink-2); text-decoration: none; margin-right: 18px; }
+  footer a:hover { color: var(--brand-strong); }
+  footer .legal { font-size: 12.5px; line-height: 1.55; max-width: 60em; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Connect Paperclip home">
+      {{svgInline:public/icons/icon.svg}}
+      Connect Paperclip
+    </a>
+    <div class="nav-links">
+      <a href="#why">Why</a>
+      <a href="#features">Features</a>
+      <a href="#coverage">Where it works</a>
+      <a href="#privacy">Privacy</a>
+    </div>
+    <!-- STORE_URL: replace both store links' href with the Chrome Web Store listing URL once published. -->
+    <a class="btn btn-primary btn-sm" href="https://github.com/jspronk/connect-paperclip" data-store-link><span class="sm-hide">Get the extension</span><span class="sm-only">Install</span></a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Free Chrome extension for Amazon Connect</span>
+      <h1>Every Amazon Connect metric, <span class="hl">explained on hover.</span></h1>
+      <p class="lede">Stop memorizing hundreds of metric definitions. Stop digging through the AWS docs. Hover any metric, column or permission in Amazon Connect and the official definition is right there at your fingertips.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/jspronk/connect-paperclip" data-store-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
+          Add to Chrome <small>· it's free</small>
+        </a>
+        <a class="btn btn-ghost" href="#why">See how it works</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>600+</b><span>built-in definitions</span></div>
+        <div class="stat"><b>10</b><span>Connect pages covered</span></div>
+        <div class="stat"><b>0</b><span>data collected</span></div>
+      </div>
+    </div>
+
+    <div class="demo" id="demo">
+      <div class="demo-bar" aria-hidden="true"><i></i><i></i><i></i><div class="url">your-instance.my.connect.aws/real-time-metrics</div></div>
+      <div class="demo-body">
+        <div class="demo-title"><h3>Queues</h3><span>Real-time metrics</span></div>
+        <div class="table-scroll">
+          <table class="rt" aria-describedby="demo-hint">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th tabindex="0" data-def="online"><span>Online</span></th>
+                <th tabindex="0" data-def="oncontact"><span>On contact</span></th>
+                <th tabindex="0" data-def="npt"><span>NPT</span></th>
+                <th tabindex="0" data-def="acw"><span>ACW</span></th>
+                <th tabindex="0" data-def="inqueue"><span>In queue</span></th>
+                <th tabindex="0" data-def="oldest"><span>Oldest</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Sales</td><td>24</td><td>17</td><td>3</td><td>2</td><td>6</td><td>1:42</td></tr>
+              <tr><td>Support</td><td>31</td><td>26</td><td>1</td><td>4</td><td>11</td><td>3:05</td></tr>
+              <tr><td>Billing</td><td>12</td><td>9</td><td>2</td><td>1</td><td>2</td><td>0:38</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="demo-hint" id="demo-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5a2 2 0 1 1 4 0v5"/><path d="M13 10V8a2 2 0 1 1 4 0v4a7 7 0 0 1-7 7h-.5A5.5 5.5 0 0 1 4 13.5V12a2 2 0 1 1 4 0v1"/></svg>
+          Try it: hover or tap a column header.
+        </div>
+      </div>
+      <div class="tip" id="tip" role="tooltip" aria-live="polite"></div>
+    </div>
+  </div>
+</header>
+
+<section class="alt" id="why">
+  <div class="wrap">
+    <div class="head center">
+      <p class="kicker">The problem</p>
+      <h2>Hundreds of metrics. Nobody remembers them all.</h2>
+      <p class="sub">What exactly counts toward ACW? Does Contacts abandoned include callbacks? How is Online different from Available? Until now, every answer cost you a trip to the documentation.</p>
+    </div>
+    <div class="ba">
+      <div class="card before">
+        <span class="tag">Without Connect Paperclip</span>
+        <h3>Stop, switch, search, scroll, switch back</h3>
+        <ol class="steps">
+          <li><span class="n">1</span>Notice a column you are not sure about.</li>
+          <li><span class="n">2</span>Open a new tab and search the AWS documentation.</li>
+          <li><span class="n">3</span>Scroll a page with hundreds of metric entries to find the right one.</li>
+          <li><span class="n">4</span>Work out which console label maps to which docs entry.</li>
+          <li><span class="n">5</span>Switch back to your report and try to remember where you were.</li>
+        </ol>
+        <div class="time"><span>Every time, for every metric</span><b>Minutes lost</b></div>
+      </div>
+      <div class="card after">
+        <span class="tag">With Connect Paperclip</span>
+        <h3>Hover. Read. Keep working.</h3>
+        <ol class="steps">
+          <li><span class="n">1</span>Hover the column header.</li>
+          <li><span class="n">2</span>Read the official AWS definition, right where you are looking.</li>
+        </ol>
+        <p style="color:var(--ink-2);margin:18px 0 0;">No memorizing. No searching. No extra tabs. And when you want the full story, one click takes you to the exact entry in the AWS docs.</p>
+        <div class="time"><span>Every time, for every metric</span><b>About a second</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="head">
+      <p class="kicker">What you get</p>
+      <h2>The answer, right at your fingertips</h2>
+      <p class="sub">Connect Paperclip quietly marks every label it can explain with a dotted underline. Hover one and a clean card shows you everything you need.</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M8 7h8M8 11h6"/></svg></div>
+        <h3>Official definitions</h3>
+        <p>Every word comes straight from the AWS Administrator Guide. No paraphrasing and no guesswork.</p>
+      </div>
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M14 11h2M8 15h2M14 15h2"/></svg></div>
+        <h3>Calculation logic</h3>
+        <p>See exactly how a metric is calculated, tucked behind an expander so it is there when you need the detail.</p>
+      </div>
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+        <h3>API names included</h3>
+        <p>Metric type, category and API identifier, ready for anyone building reports or automation.</p>
+      </div>
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></div>
+        <h3>One click to the docs</h3>
+        <p>Every card links to the exact anchor in the AWS documentation, not just the top of a very long page.</p>
+      </div>
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Shorthand decoded</h3>
+        <p>ACW, NPT, AHT, SL 60 secs. Console abbreviations are matched to their full definitions automatically.</p>
+      </div>
+      <div class="feature">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+        <h3>Bonus: jump between flows</h3>
+        <p>In the flow editor, blocks that call another flow or module get an Open flow link, so you can follow a call path in one click.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap showcase">
+    <div class="show-row">
+      <div>
+        <p class="kicker">Real-time and Historical</p>
+        <h3>Read every report with confidence</h3>
+        <p>Supervisors make decisions in seconds. Connect Paperclip makes sure they are reading the numbers the way AWS defines them.</p>
+        <ul class="checks">
+          <li>Every Real-time and Historical metric column</li>
+          <li>Dashboard widgets and the metric pickers in the widget editor</li>
+          <li>Console shorthand like ACW and NPT decoded automatically</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="{{img:docs/screenshots/realtime-metrics.jpg}}" alt="Hovering the Online column on a Real-time Queues report shows the Online agents definition card" width="1280" height="800" loading="lazy" /></div>
+    </div>
+    <div class="show-row flip">
+      <div>
+        <p class="kicker">Workforce management</p>
+        <h3>Forecasting, capacity and scheduling, demystified</h3>
+        <p>Optimization pages are full of specialised terms. Hover any column header to see what it means and how it is used.</p>
+        <ul class="checks">
+          <li>Forecasting and Capacity planning columns</li>
+          <li>Schedule manager and scheduling columns</li>
+          <li>Contact search columns, from the contact record data model</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="{{img:docs/screenshots/scheduling.jpg}}" alt="Hovering Schedule type in the Schedule manager shows its definition card" width="1280" height="800" loading="lazy" /></div>
+    </div>
+    <div class="show-row">
+      <div>
+        <p class="kicker">Administration</p>
+        <h3>Know exactly what every permission grants</h3>
+        <p>Security profiles have more than a hundred permissions. Hover any of them to see each action, what it allows, and its API name before you grant it.</p>
+        <ul class="checks">
+          <li>Every security profile permission, with all actions</li>
+          <li>Routing profile Channel, Queue and Manual assignment settings</li>
+          <li>Quick connect list, detail and edit views</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="{{img:docs/screenshots/sec-permissions.jpg}}" alt="Hovering a security profile permission shows the View action, what it grants and its API name" width="1280" height="800" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<section id="coverage">
+  <div class="wrap">
+    <div class="head center">
+      <p class="kicker">Where it works</p>
+      <h2>Across the Amazon Connect admin website</h2>
+      <p class="sub">Install once. Connect Paperclip recognises the page you are on and explains the labels that matter there.</p>
+    </div>
+    <div class="cover">
+      <div class="area"><b>Real-time metrics</b><span>Every metric column header</span></div>
+      <div class="area"><b>Historical metrics</b><span>Every metric column header</span></div>
+      <div class="area"><b>Dashboards</b><span>Widget columns and metric pickers</span></div>
+      <div class="area"><b>Contact search</b><span>Default and optional columns</span></div>
+      <div class="area"><b>Forecasting</b><span>Column headers</span></div>
+      <div class="area"><b>Capacity planning</b><span>Column headers</span></div>
+      <div class="area"><b>Scheduling</b><span>Column headers</span></div>
+      <div class="area"><b>Routing profiles</b><span>Channel, queue and assignment settings</span></div>
+      <div class="area"><b>Quick connects</b><span>List, detail and edit views</span></div>
+      <div class="area"><b>Security profiles</b><span>Every permission and action</span></div>
+      <div class="area"><b>Flow editor</b><span>Open flow links on transfer and module blocks</span></div>
+      <div class="area" style="border-style:dashed"><b>More coming</b><span>Definitions refresh with each release</span></div>
+    </div>
+    <div style="height:56px"></div>
+    <div class="band" role="list">
+      <div role="listitem"><b>260+</b><span>metric definitions</span></div>
+      <div role="listitem"><b>200+</b><span>contact record fields</span></div>
+      <div role="listitem"><b>120+</b><span>security permissions</span></div>
+      <div role="listitem"><b>100%</b><span>from official AWS docs</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="head center">
+      <p class="kicker">Who it's for</p>
+      <h2>Built for everyone who lives in Amazon Connect</h2>
+    </div>
+    <div class="people">
+      <div class="person"><div class="av">S</div><div><h3>Supervisors</h3><p>Read real-time and historical numbers correctly, right now, without breaking focus during a busy shift.</p></div></div>
+      <div class="person"><div class="av">A</div><div><h3>Analysts</h3><p>Pick the right metric for every dashboard column, and explain to stakeholders exactly what it measures.</p></div></div>
+      <div class="person"><div class="av">Ad</div><div><h3>Administrators</h3><p>Configure routing profiles, quick connects and security permissions knowing exactly what each setting does.</p></div></div>
+      <div class="person"><div class="av">N</div><div><h3>New team members</h3><p>Learn Amazon Connect on the job, in context, instead of studying hundreds of definitions up front.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap privacy">
+    <div>
+      <p class="kicker">Private by design</p>
+      <h2>Your contact center data never leaves your browser</h2>
+      <p class="sub">Every definition ships inside the extension. Connect Paperclip reads the labels on the page you are viewing and nothing else. It has no servers, no accounts and no tracking.</p>
+      <p style="margin-top:18px"><a href="https://github.com/jspronk/connect-paperclip/blob/main/PRIVACY.md">Read the privacy policy</a></p>
+    </div>
+    <div class="pills">
+      <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>No network requests, ever</div>
+      <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>No AWS credentials or API access needed</div>
+      <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>No analytics, ads or data collection</div>
+      <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Runs only on Amazon Connect admin pages</div>
+    </div>
+  </div>
+</section>
+
+<section class="final alt">
+  <div class="wrap">
+    <div class="logo">{{svgInline:public/icons/icon.svg}}</div>
+    <h2>Stop looking things up.<br />Start knowing.</h2>
+    <p class="sub" style="margin:0 auto">Install Connect Paperclip and every metric in Amazon Connect is one hover away.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/jspronk/connect-paperclip" data-store-link>Add to Chrome <small>· it's free</small></a>
+      <a class="btn btn-ghost" href="https://github.com/jspronk/connect-paperclip">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <a href="https://github.com/jspronk/connect-paperclip">GitHub</a>
+        <a href="https://github.com/jspronk/connect-paperclip/blob/main/PRIVACY.md">Privacy policy</a>
+        <a href="https://github.com/jspronk/connect-paperclip/issues">Support</a>
+      </div>
+      <div>© <span id="yr">2026</span> Spronkworks</div>
+    </div>
+    <p class="legal">Connect Paperclip is an independent project and is not affiliated with, endorsed by or sponsored by Amazon Web Services. Amazon Connect is a trademark of Amazon.com, Inc. or its affiliates. Definitions are taken from the public AWS documentation and bundled with each release. Chrome is a trademark of Google LLC.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var DOCS = 'https://docs.aws.amazon.com/connect/latest/adminguide/metrics-definitions.html';
+  var DEFS = {
+    online: { name: 'Online agents', type: 'Count', cat: 'Current agent metric',
+      text: 'This metric counts the agents who have set their status in the CCP to something other than Offline. For example, they might have set their status to Available, or to a custom value such as Break or Training.' },
+    oncontact: { name: 'Agents on contact', type: 'Count', cat: 'Current agent metric',
+      text: 'This metric counts agents currently handling at least one contact. An agent is considered "on contact" when they are handling a contact that is connected, on hold, in After Contact Work (ACW), paused, or in outbound ring state.' },
+    npt: { name: 'Agent non-productive', type: 'Count', cat: 'Current agent metric',
+      text: 'This metric counts agents who have set their status in the CCP to a custom status. That is, any status other than Available or Offline.' },
+    acw: { name: 'Agent After contact work', type: 'Count', cat: 'Current agent metric',
+      text: 'This metric counts contacts that are in an AfterContactWork (ACW) state. After a conversation between an agent and customer ends, the contact is moved into the ACW state.' },
+    inqueue: { name: 'Contacts in queue', type: 'Count', cat: 'Current queue metric',
+      text: 'This metric counts the contacts currently in the queue. The queue count updates when the contact is routed to an agent, before the agent accepts the contact.' },
+    oldest: { name: 'Oldest', type: 'Duration', cat: 'Current queue metric',
+      text: 'This metric measures the length of time in the queue for the contact that has been in the queue the longest.' }
+  };
+  var demo = document.getElementById('demo');
+  var tip = document.getElementById('tip');
+  var heads = demo.querySelectorAll('th[data-def]');
+  var active = null, hideTimer = null;
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function show(th) {
+    var d = DEFS[th.getAttribute('data-def')];
+    if (!d) return;
+    clearTimeout(hideTimer);
+    if (active) active.classList.remove('active');
+    active = th; th.classList.add('active');
+    tip.innerHTML = '<h4>' + esc(d.name) + ' <span class="badge">Real-time</span></h4>' +
+      '<p>' + esc(d.text) + '</p>' +
+      '<dl><dt>Type</dt><dd>' + esc(d.type) + '</dd><dt>Category</dt><dd>' + esc(d.cat) + '</dd></dl>' +
+      '<div class="foot"><a href="' + DOCS + '" target="_blank" rel="noopener">Open in AWS docs ↗</a><span>Official AWS definition</span></div>';
+    var box = demo.getBoundingClientRect();
+    var r = th.getBoundingClientRect();
+    var w = tip.offsetWidth;
+    var left = r.left - box.left + r.width / 2 - w / 2;
+    left = Math.max(12, Math.min(left, box.width - w - 12));
+    tip.style.left = left + 'px';
+    tip.style.top = (r.bottom - box.top + 10) + 'px';
+    tip.classList.add('show');
+  }
+  function hide() {
+    hideTimer = setTimeout(function () {
+      tip.classList.remove('show');
+      if (active) { active.classList.remove('active'); active = null; }
+    }, 120);
+  }
+  Array.prototype.forEach.call(heads, function (th) {
+    th.addEventListener('mouseenter', function () { show(th); });
+    th.addEventListener('mouseleave', hide);
+    th.addEventListener('focus', function () { show(th); });
+    th.addEventListener('blur', hide);
+    th.addEventListener('click', function () { show(th); });
+  });
+  document.addEventListener('click', function (e) { if (!demo.contains(e.target)) hide(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+
+  // Show one definition on load so visitors immediately see what the extension does.
+  window.addEventListener('load', function () {
+    var first = demo.querySelector('th[data-def="acw"]');
+    if (first && window.matchMedia('(hover: hover)').matches) show(first);
+  });
+
+  var yr = document.getElementById('yr');
+  if (yr) yr.textContent = String(new Date().getFullYear());
+})();
+</script>
+</body>
+</html>
