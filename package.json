@@ -1,6 +1,6 @@
 {
   "name": "connect-paperclip",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Stop memorizing or looking up Amazon Connect metrics. Hover any metric, column or permission to see its official AWS definition.",
   "type": "module",

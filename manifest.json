@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Connect Paperclip",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Stop memorizing or looking up Amazon Connect metrics. Hover any metric, column or permission to see its official AWS definition.",
   "permissions": [
     "storage"
